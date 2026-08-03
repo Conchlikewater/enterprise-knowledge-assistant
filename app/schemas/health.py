@@ -9,4 +9,4 @@ class HealthResponse(BaseModel):
     status: Literal["ok"] = "ok"
     service: str
     version: str
-    components: dict[str, Literal["ok"]]
+    components: dict[str, Literal["ok", "configured"]]

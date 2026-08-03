@@ -69,6 +69,12 @@ class EmbeddingProviderError(ApplicationError):
     status_code = 502
 
 
+class ProviderConfigurationError(ApplicationError):
+    code = "PROVIDER_NOT_CONFIGURED"
+    message = "The required model provider is not configured."
+    status_code = 503
+
+
 class AnswerProviderError(ApplicationError):
     code = "ANSWER_PROVIDER_ERROR"
     message = "The answer provider could not complete the request."

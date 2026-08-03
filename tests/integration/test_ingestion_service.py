@@ -13,36 +13,11 @@ from app.core.exceptions import (
     VectorStoreError,
 )
 from app.domain.models import Chunk, DocumentStatus, RetrievalResult
-from app.providers.embedding_provider import EmbeddingProvider
 from app.services.ingestion_service import IngestionService
 from app.storage.qdrant_vector_store import QdrantVectorStore
 from app.storage.sqlite_document_repository import SQLiteDocumentRepository
 from app.storage.vector_store import VectorStore
-
-
-class FakeEmbeddingProvider(EmbeddingProvider):
-    def __init__(self, dimensions: int = 3) -> None:
-        self._dimensions = dimensions
-
-    @property
-    def name(self) -> str:
-        return "fake"
-
-    @property
-    def dimensions(self) -> int:
-        return self._dimensions
-
-    def embed_documents(self, texts: Sequence[str]) -> list[list[float]]:
-        return [self._vector(text) for text in texts]
-
-    def embed_query(self, text: str) -> list[float]:
-        return self._vector(text)
-
-    def close(self) -> None:
-        pass
-
-    def _vector(self, text: str) -> list[float]:
-        return [1.0, float(len(text) % 5) / 10.0, 0.0]
+from tests.fakes import DeterministicEmbeddingProvider
 
 
 class FailAfterUpsertVectorStore(VectorStore):
@@ -96,7 +71,7 @@ class IngestionServiceTests(unittest.TestCase):
             vector_size=3,
         )
         self.vector_store.initialize()
-        self.provider = FakeEmbeddingProvider()
+        self.provider = DeterministicEmbeddingProvider()
         self.service = self._new_service(self.vector_store)
 
     def tearDown(self) -> None:
@@ -211,7 +186,7 @@ class IngestionServiceTests(unittest.TestCase):
             IngestionService(
                 document_repository=self.repository,
                 vector_store=self.vector_store,
-                embedding_provider=FakeEmbeddingProvider(dimensions=2),
+                embedding_provider=DeterministicEmbeddingProvider(dimensions=2),
                 upload_dir=self.upload_dir,
                 max_upload_bytes=1024,
                 chunk_size=32,

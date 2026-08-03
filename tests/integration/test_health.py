@@ -12,6 +12,7 @@ import httpx
 
 from app.core.config import Settings
 from app.main import create_app
+from tests.fakes import DeterministicEmbeddingProvider
 
 
 def test_health_endpoint() -> None:
@@ -21,7 +22,11 @@ def test_health_endpoint() -> None:
                 Settings(
                     app_name="Test Assistant",
                     sqlite_path=Path(temporary_directory) / "app.db",
-                )
+                    qdrant_path=Path(temporary_directory) / "qdrant",
+                    upload_dir=Path(temporary_directory) / "uploads",
+                    embedding_dimensions=3,
+                ),
+                embedding_provider=DeterministicEmbeddingProvider(),
             )
             transport = httpx.ASGITransport(app=application)
             async with application.router.lifespan_context(application):
@@ -41,6 +46,8 @@ def test_health_endpoint() -> None:
         "components": {
             "application": "ok",
             "document_repository": "ok",
+            "vector_store": "ok",
+            "embedding_provider": "configured",
         },
     }
     assert response.headers["X-Request-ID"]

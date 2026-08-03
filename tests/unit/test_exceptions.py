@@ -7,6 +7,7 @@ from app.core.exceptions import (
     EmptyFileError,
     FileTooLargeError,
     InvalidFilenameError,
+    ProviderConfigurationError,
     UnsupportedFileTypeError,
     VectorStoreError,
 )
@@ -22,6 +23,7 @@ class ExceptionContractTests(unittest.TestCase):
             (FileTooLargeError(), 413),
             (UnsupportedFileTypeError(), 415),
             (EmbeddingProviderError(), 502),
+            (ProviderConfigurationError(), 503),
             (VectorStoreError(), 503),
         )
 

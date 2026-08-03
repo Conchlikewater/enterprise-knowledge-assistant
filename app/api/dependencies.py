@@ -1,0 +1,18 @@
+"""Small FastAPI dependency functions for application services."""
+
+from fastapi import Request
+
+from app.core.exceptions import ProviderConfigurationError
+from app.services.document_service import DocumentService
+from app.services.ingestion_service import IngestionService
+
+
+def get_document_service(request: Request) -> DocumentService:
+    return request.app.state.document_service
+
+
+def get_ingestion_service(request: Request) -> IngestionService:
+    service: IngestionService | None = request.app.state.ingestion_service
+    if service is None:
+        raise ProviderConfigurationError()
+    return service

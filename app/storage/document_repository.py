@@ -11,6 +11,10 @@ from app.domain.models import Document, DocumentStatus
 
 class DocumentRepository(ABC):
     @abstractmethod
+    def initialize(self) -> None:
+        """Create or validate the backing repository."""
+
+    @abstractmethod
     def health(self) -> bool:
         """Return whether the repository can serve requests."""
 
