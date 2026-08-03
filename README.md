@@ -2,9 +2,9 @@
 
 这是一个面向学习和本地演示的企业知识助手后端。V1 将通过 FastAPI 提供 TXT/PDF 同步摄取、限定文档范围的向量检索，以及由检索结果生成的结构化引用。
 
-## 当前阶段：Day 6 云端 Embedding Provider
+## 当前阶段：Day 7 同步摄取事务
 
-目前已建立模块边界、类型化配置、统一错误格式、健康检查、核心领域模型、SQLite 文档仓库、安全的 TXT/PDF 文档处理层、本地持久化 Qdrant，以及 OpenAI embedding provider。LLM 实现和完整摄取编排尚未接入。
+目前已建立模块边界、类型化配置、统一错误格式、健康检查、核心领域模型、SQLite 文档仓库、安全的 TXT/PDF 文档处理层、本地持久化 Qdrant、OpenAI embedding provider，以及带补偿回滚的同步摄取服务。HTTP 上传接口和 LLM 实现尚未接入。
 
 ```text
 app/api              HTTP 路由与应用入口
@@ -12,7 +12,7 @@ app/core             配置、异常和全局错误处理
 app/domain           与框架无关的核心数据模型
 app/providers        OpenAI embedding 实现与 LLM 接口
 app/storage          SQLite 文档仓库与本地 Qdrant 向量存储
-app/services         后续业务流程编排
+app/services         同步摄取与后续业务流程编排
 app/document_processing  文件校验、哈希、TXT/PDF 解析与切块
 tests                单元、集成和评估测试
 data                 本地运行数据（不提交数据库内容）
@@ -44,6 +44,7 @@ data                 本地运行数据（不提交数据库内容）
 - 尚未安装 OCR 或大型 RAG 框架
 - `.env.example` 只包含非敏感默认值；真实 `.env` 不提交 Git
 - API Key 只从环境或 `.env` 读取，不进入日志、响应或 Settings 的字符串表示
+- 摄取失败会删除该次写入的向量和上传文件，并保留状态为 `failed` 的文档记录用于排查
 
 依赖清单写在 `requirements.txt` 和 `requirements-dev.txt`，新增依赖前必须先说明用途和范围。
 

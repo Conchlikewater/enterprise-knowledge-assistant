@@ -21,6 +21,13 @@ SUPPORTED_MEDIA_TYPES: Final[dict[str, str]] = {
 
 
 @dataclass(frozen=True, slots=True)
+class ValidatedFileIdentity:
+    filename: str
+    suffix: str
+    media_type: str
+
+
+@dataclass(frozen=True, slots=True)
 class ValidatedFile:
     filename: str
     suffix: str
@@ -28,13 +35,11 @@ class ValidatedFile:
     size_bytes: int
 
 
-def validate_file(
+def validate_file_identity(
     filename: str,
     declared_media_type: str,
-    size_bytes: int,
-    max_upload_bytes: int,
-) -> ValidatedFile:
-    """Validate metadata using the measured file size, not a request header."""
+) -> ValidatedFileIdentity:
+    """Validate the client-supplied name and declared media type."""
     clean_filename = filename.strip()
     normalized_name = clean_filename.replace("\\", "/")
     posix_path = PurePosixPath(normalized_name)
@@ -56,6 +61,22 @@ def validate_file(
     normalized_media_type = declared_media_type.partition(";")[0].strip().lower()
     if expected_media_type is None or normalized_media_type != expected_media_type:
         raise UnsupportedFileTypeError()
+
+    return ValidatedFileIdentity(
+        filename=clean_filename,
+        suffix=suffix,
+        media_type=expected_media_type,
+    )
+
+
+def validate_file(
+    filename: str,
+    declared_media_type: str,
+    size_bytes: int,
+    max_upload_bytes: int,
+) -> ValidatedFile:
+    """Validate metadata using the measured file size, not a request header."""
+    identity = validate_file_identity(filename, declared_media_type)
     if size_bytes <= 0:
         raise EmptyFileError()
     if max_upload_bytes <= 0:
@@ -64,9 +85,9 @@ def validate_file(
         raise FileTooLargeError()
 
     return ValidatedFile(
-        filename=clean_filename,
-        suffix=suffix,
-        media_type=expected_media_type,
+        filename=identity.filename,
+        suffix=identity.suffix,
+        media_type=identity.media_type,
         size_bytes=size_bytes,
     )
 

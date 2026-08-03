@@ -45,6 +45,7 @@ class QdrantVectorStoreTests(unittest.TestCase):
         )
 
     def test_initialize_creates_a_healthy_collection(self) -> None:
+        self.assertEqual(self.store.dimensions, 3)
         self.assertTrue(self.store.health())
 
         self.store.initialize()

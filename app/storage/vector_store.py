@@ -10,6 +10,11 @@ from app.domain.models import Chunk, RetrievalResult
 
 
 class VectorStore(ABC):
+    @property
+    @abstractmethod
+    def dimensions(self) -> int:
+        """Fixed vector dimension required by this store."""
+
     @abstractmethod
     def initialize(self) -> None:
         """Create or validate the backing collection."""

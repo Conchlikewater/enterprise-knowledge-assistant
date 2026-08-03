@@ -51,6 +51,12 @@ class DocumentParseError(ApplicationError):
     status_code = 400
 
 
+class DocumentStorageError(ApplicationError):
+    code = "DOCUMENT_STORAGE_ERROR"
+    message = "The document file could not be stored."
+    status_code = 500
+
+
 class DocumentConflictError(ApplicationError):
     code = "DOCUMENT_CONFLICT"
     message = "The document conflicts with an existing record or state."

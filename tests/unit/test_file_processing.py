@@ -1,5 +1,6 @@
 import tempfile
 import unittest
+from io import BytesIO
 from hashlib import sha256
 from pathlib import Path
 from uuid import uuid4
@@ -9,6 +10,7 @@ from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
 
 from app.core.exceptions import (
     DocumentParseError,
+    DocumentStorageError,
     EmptyFileError,
     FileTooLargeError,
     InvalidFilenameError,
@@ -16,11 +18,23 @@ from app.core.exceptions import (
 )
 from app.document_processing.chunker import chunk_sections
 from app.document_processing.file_hash import calculate_sha256
-from app.document_processing.file_validation import build_storage_path, validate_file
+from app.document_processing.file_storage import save_upload_stream
+from app.document_processing.file_validation import (
+    build_storage_path,
+    validate_file,
+    validate_file_identity,
+)
 from app.document_processing.loaders import DocumentSection, load_pdf, load_txt
 
 
 class FileValidationTests(unittest.TestCase):
+    def test_identity_can_be_validated_before_stream_size_is_known(self) -> None:
+        result = validate_file_identity("notes.TXT", "text/plain; charset=utf-8")
+
+        self.assertEqual(result.filename, "notes.TXT")
+        self.assertEqual(result.suffix, ".txt")
+        self.assertEqual(result.media_type, "text/plain")
+
     def test_valid_txt_metadata_is_normalized(self) -> None:
         result = validate_file("notes.TXT", "text/plain; charset=utf-8", 12, 100)
 
@@ -73,6 +87,57 @@ class FileHashTests(unittest.TestCase):
             result = calculate_sha256(file_path, buffer_size=2)
 
         self.assertEqual(result, sha256(b"abc").hexdigest())
+
+
+class FileStorageTests(unittest.TestCase):
+    def test_stream_is_bounded_hashed_and_published(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            destination = Path(temporary_directory) / "uploads" / "document.txt"
+
+            result = save_upload_stream(
+                BytesIO(b"streamed content"),
+                destination,
+                max_upload_bytes=100,
+                buffer_size=3,
+            )
+
+            self.assertEqual(destination.read_bytes(), b"streamed content")
+            self.assertEqual(result.size_bytes, 16)
+            self.assertEqual(result.sha256, sha256(b"streamed content").hexdigest())
+            self.assertEqual(list(destination.parent.glob("*.part")), [])
+
+    def test_empty_and_oversized_streams_leave_no_file(self) -> None:
+        cases = (
+            (b"", EmptyFileError),
+            (b"too large", FileTooLargeError),
+        )
+        for content, expected_error in cases:
+            with self.subTest(expected_error=expected_error.__name__):
+                with tempfile.TemporaryDirectory() as temporary_directory:
+                    destination = Path(temporary_directory) / "document.txt"
+                    with self.assertRaises(expected_error):
+                        save_upload_stream(
+                            BytesIO(content),
+                            destination,
+                            max_upload_bytes=4,
+                            buffer_size=2,
+                        )
+                    self.assertEqual(list(Path(temporary_directory).iterdir()), [])
+
+    def test_existing_destination_is_not_overwritten(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            destination = Path(temporary_directory) / "document.txt"
+            destination.write_bytes(b"keep me")
+
+            with self.assertRaises(DocumentStorageError):
+                save_upload_stream(
+                    BytesIO(b"replacement"),
+                    destination,
+                    max_upload_bytes=100,
+                )
+
+            self.assertEqual(destination.read_bytes(), b"keep me")
+            self.assertEqual(list(Path(temporary_directory).iterdir()), [destination])
 
 
 class LoaderTests(unittest.TestCase):

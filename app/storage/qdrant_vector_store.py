@@ -30,6 +30,10 @@ class QdrantVectorStore(VectorStore):
         self._vector_size = vector_size
         self._client: QdrantClient | None = None
 
+    @property
+    def dimensions(self) -> int:
+        return self._vector_size
+
     def initialize(self) -> None:
         if self._client is not None:
             self._validate_collection(self._client)
