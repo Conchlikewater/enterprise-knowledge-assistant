@@ -21,7 +21,9 @@ def chunk_sections(
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
     if not 0 <= chunk_overlap < chunk_size:
-        raise ValueError("chunk_overlap must be non-negative and smaller than chunk_size")
+        raise ValueError(
+            "chunk_overlap must be non-negative and smaller than chunk_size"
+        )
     if not filename:
         raise ValueError("filename must not be empty")
 

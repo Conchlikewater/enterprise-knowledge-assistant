@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from evaluation.runner import run_evaluation
+from evaluation.runner import run_evaluation  # noqa: E402
 
 
 def main() -> int:
@@ -51,18 +51,9 @@ def main() -> int:
         print(f"top5_source_accuracy={report.top5_source_accuracy:.2%}")
         print(f"multi_chunk_pass_rate={report.multi_chunk_pass_rate:.2%}")
         print(f"scope_isolation_pass_rate={report.scope_isolation_pass_rate:.2%}")
-        print(
-            "unanswerable_rejection_rate="
-            f"{report.unanswerable_rejection_rate:.2%}"
-        )
-        print(
-            "citation_integrity_pass_rate="
-            f"{report.citation_integrity_pass_rate:.2%}"
-        )
-        print(
-            "pdf_page_metadata_pass_rate="
-            f"{report.pdf_page_metadata_pass_rate:.2%}"
-        )
+        print(f"unanswerable_rejection_rate={report.unanswerable_rejection_rate:.2%}")
+        print(f"citation_integrity_pass_rate={report.citation_integrity_pass_rate:.2%}")
+        print(f"pdf_page_metadata_pass_rate={report.pdf_page_metadata_pass_rate:.2%}")
         print(f"deletion_passed={str(report.deletion_passed).lower()}")
         if report.failed_checks:
             print(f"failed_checks={','.join(report.failed_checks)}")

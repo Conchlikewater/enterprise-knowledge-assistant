@@ -15,6 +15,7 @@ FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant
 - 可信引用：文件名、页码、chunk ID 和分数由应用从真实检索结果构造。
 - 隐私边界：不记录问题、文档内容、prompt、回答、向量、密钥或本地路径。
 - 可重复评估：10 份合成文档、20 道题，不使用 API Key 即可运行。
+- 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
 
 ## 架构
 
@@ -75,7 +76,8 @@ Copy-Item .env.example .env
 
 ### 4. 先运行质量门槛
 
-此命令依次检查测试、依赖完整性、Python 编译和离线 RAG 评估：
+此命令依次检查 Ruff lint/格式、带分支覆盖率的测试、依赖完整性、Python
+编译和离线 RAG 评估：
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\check_quality.py
@@ -86,6 +88,8 @@ Copy-Item .env.example .env
 ```text
 quality_gate_passed=true
 ```
+
+质量门槛还会检查 Ruff 代码规范与格式，并要求应用分支覆盖率不低于 85%。
 
 ### 5. 启动 API
 
@@ -202,6 +206,7 @@ app/domain              框架无关的文档、chunk、检索和引用模型
 app/providers           OpenAI embedding/LLM 接口与适配器
 app/services            摄取、检索、回答和文档生命周期
 app/storage             SQLite repository 与本地 Qdrant adapter
+.github/workflows       独立仓库的 GitHub Actions 质量门槛
 evaluation              可重复语料、问题、provider 和评估报告
 scripts                 语料生成、评估和质量门槛入口
 tests                   单元、集成和评估测试
@@ -219,6 +224,11 @@ docs                    调研、架构、provider 和发布记录
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。
 
 更多安全说明见 [SECURITY.md](SECURITY.md)。
+
+## 许可证
+
+项目使用 [MIT License](LICENSE)。可以在保留版权和许可声明的前提下使用、
+修改和分发；软件按原样提供，不附带担保。
 
 ## 设计依据
 

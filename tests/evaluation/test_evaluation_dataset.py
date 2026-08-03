@@ -13,9 +13,7 @@ def test_evaluation_dataset_matches_architecture_requirements() -> None:
         )
     )["documents"]
     questions = json.loads(
-        (PROJECT_ROOT / "evaluation" / "questions.json").read_text(
-            encoding="utf-8"
-        )
+        (PROJECT_ROOT / "evaluation" / "questions.json").read_text(encoding="utf-8")
     )["questions"]
 
     assert len(corpus) == 10

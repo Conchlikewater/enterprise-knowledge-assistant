@@ -2,7 +2,7 @@ import unittest
 from math import nan
 from uuid import uuid4
 
-from app.domain.models import AnswerResult, Citation, Chunk, RetrievalResult
+from app.domain.models import AnswerResult, Chunk, Citation, RetrievalResult
 
 
 class DomainModelTests(unittest.TestCase):

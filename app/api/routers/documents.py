@@ -38,8 +38,7 @@ def list_documents(
     service: Annotated[DocumentService, Depends(get_document_service)],
 ) -> DocumentListResponse:
     documents = [
-        DocumentResponse.from_domain(document)
-        for document in service.list_documents()
+        DocumentResponse.from_domain(document) for document in service.list_documents()
     ]
     return DocumentListResponse(documents=documents, count=len(documents))
 

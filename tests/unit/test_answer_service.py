@@ -5,7 +5,7 @@ from uuid import UUID, uuid4
 from app.core.exceptions import AnswerProviderError
 from app.domain.models import RetrievalResult
 from app.providers.llm_provider import INSUFFICIENT_EVIDENCE_MARKER
-from app.services.answer_service import AnswerService, NO_EVIDENCE_ANSWER
+from app.services.answer_service import NO_EVIDENCE_ANSWER, AnswerService
 from tests.fakes import DeterministicLLMProvider
 
 

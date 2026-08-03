@@ -40,7 +40,7 @@ class RetrievalResultResponse(BaseModel):
     score: float
 
     @classmethod
-    def from_domain(cls, result: RetrievalResult) -> "RetrievalResultResponse":
+    def from_domain(cls, result: RetrievalResult) -> RetrievalResultResponse:
         return cls(
             chunk_id=result.chunk_id,
             document_id=result.document_id,

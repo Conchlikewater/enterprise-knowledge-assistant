@@ -41,7 +41,7 @@ class CitationResponse(BaseModel):
     score: float
 
     @classmethod
-    def from_domain(cls, citation: Citation) -> "CitationResponse":
+    def from_domain(cls, citation: Citation) -> CitationResponse:
         return cls(
             citation_number=citation.citation_number,
             document_id=citation.document_id,
@@ -59,12 +59,11 @@ class AnswerResponse(BaseModel):
     retrieval_count: int = Field(ge=0)
 
     @classmethod
-    def from_domain(cls, result: AnswerResult) -> "AnswerResponse":
+    def from_domain(cls, result: AnswerResult) -> AnswerResponse:
         return cls(
             answer=result.answer,
             citations=[
-                CitationResponse.from_domain(citation)
-                for citation in result.citations
+                CitationResponse.from_domain(citation) for citation in result.citations
             ],
             retrieval_count=result.retrieval_count,
         )

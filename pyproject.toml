@@ -7,3 +7,21 @@ addopts = [
     "-p",
     "no:cacheprovider",
 ]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "RUF"]
+# Full-width punctuation is intentional in Chinese-aware text splitting.
+ignore = ["RUF001"]
+
+[tool.coverage.run]
+branch = true
+source = ["app"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+skip_covered = true

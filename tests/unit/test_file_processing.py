@@ -1,7 +1,7 @@
 import tempfile
 import unittest
-from io import BytesIO
 from hashlib import sha256
+from io import BytesIO
 from pathlib import Path
 from uuid import uuid4
 
@@ -209,7 +209,9 @@ class ChunkerTests(unittest.TestCase):
         )
 
         self.assertGreater(len(chunks), 1)
-        self.assertEqual([chunk.chunk_index for chunk in chunks], list(range(len(chunks))))
+        self.assertEqual(
+            [chunk.chunk_index for chunk in chunks], list(range(len(chunks)))
+        )
         self.assertTrue(all(chunk.document_id == document_id for chunk in chunks))
         self.assertTrue(all(chunk.filename == "policy.pdf" for chunk in chunks))
         self.assertTrue(all(chunk.page_number == 2 for chunk in chunks))
@@ -235,11 +237,7 @@ def _write_text_pdf(file_path: Path, text: str) -> None:
     )
     font_reference = writer._add_object(font)
     page[NameObject("/Resources")] = DictionaryObject(
-        {
-            NameObject("/Font"): DictionaryObject(
-                {NameObject("/F1"): font_reference}
-            )
-        }
+        {NameObject("/Font"): DictionaryObject({NameObject("/F1"): font_reference})}
     )
 
     content = DecodedStreamObject()

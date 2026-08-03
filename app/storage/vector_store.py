@@ -24,7 +24,9 @@ class VectorStore(ABC):
         """Return whether the store can serve requests."""
 
     @abstractmethod
-    def upsert(self, chunks: Sequence[Chunk], vectors: Sequence[Sequence[float]]) -> None:
+    def upsert(
+        self, chunks: Sequence[Chunk], vectors: Sequence[Sequence[float]]
+    ) -> None:
         """Persist aligned chunk and vector sequences."""
 
     @abstractmethod

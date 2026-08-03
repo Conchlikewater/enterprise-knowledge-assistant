@@ -49,11 +49,7 @@ def _write_pdf(output_path: Path, pages: list[str]) -> None:
     for page_text in pages:
         page = writer.add_blank_page(width=612, height=792)
         page[NameObject("/Resources")] = DictionaryObject(
-            {
-                NameObject("/Font"): DictionaryObject(
-                    {NameObject("/F1"): font_reference}
-                )
-            }
+            {NameObject("/Font"): DictionaryObject({NameObject("/F1"): font_reference})}
         )
         lines = []
         for paragraph in page_text.split("\n"):

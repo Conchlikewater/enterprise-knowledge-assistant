@@ -22,7 +22,7 @@ class DocumentResponse(BaseModel):
     updated_at: datetime
 
     @classmethod
-    def from_domain(cls, document: Document) -> "DocumentResponse":
+    def from_domain(cls, document: Document) -> DocumentResponse:
         return cls(
             document_id=document.document_id,
             filename=document.filename,

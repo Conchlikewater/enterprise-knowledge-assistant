@@ -34,9 +34,7 @@ def save_upload_stream(
     if buffer_size <= 0:
         raise ValueError("buffer_size must be positive")
 
-    temporary_path = destination.with_name(
-        f".{destination.name}.{uuid4().hex}.part"
-    )
+    temporary_path = destination.with_name(f".{destination.name}.{uuid4().hex}.part")
     digest = sha256()
     size_bytes = 0
 

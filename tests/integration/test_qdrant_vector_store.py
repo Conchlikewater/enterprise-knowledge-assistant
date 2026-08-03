@@ -57,7 +57,9 @@ class QdrantVectorStoreTests(unittest.TestCase):
     def test_search_is_document_scoped_and_score_ordered(self) -> None:
         selected_document = uuid4()
         excluded_document = uuid4()
-        selected_best = self._chunk(selected_document, 0, "selected best", page_number=2)
+        selected_best = self._chunk(
+            selected_document, 0, "selected best", page_number=2
+        )
         selected_second = self._chunk(selected_document, 1, "selected second")
         excluded = self._chunk(excluded_document, 0, "excluded perfect match")
         self.store.upsert(
@@ -67,8 +69,13 @@ class QdrantVectorStoreTests(unittest.TestCase):
 
         results = self.store.search([1.0, 0.0, 0.0], [selected_document], limit=10)
 
-        self.assertEqual([result.chunk_id for result in results], [selected_best.chunk_id, selected_second.chunk_id])
-        self.assertTrue(all(result.document_id == selected_document for result in results))
+        self.assertEqual(
+            [result.chunk_id for result in results],
+            [selected_best.chunk_id, selected_second.chunk_id],
+        )
+        self.assertTrue(
+            all(result.document_id == selected_document for result in results)
+        )
         self.assertEqual(results[0].page_number, 2)
         self.assertGreaterEqual(results[0].score, results[1].score)
 
@@ -93,10 +100,10 @@ class QdrantVectorStoreTests(unittest.TestCase):
             self.store.search([1.0, 0.0, 0.0], [first_document], limit=10),
             [],
         )
-        remaining = self.store.search(
-            [1.0, 0.0, 0.0], [second_document], limit=10
+        remaining = self.store.search([1.0, 0.0, 0.0], [second_document], limit=10)
+        self.assertEqual(
+            [result.chunk_id for result in remaining], [second_chunk.chunk_id]
         )
-        self.assertEqual([result.chunk_id for result in remaining], [second_chunk.chunk_id])
 
     def test_points_persist_after_reopening_local_storage(self) -> None:
         document_id = uuid4()

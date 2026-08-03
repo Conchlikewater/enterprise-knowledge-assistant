@@ -19,18 +19,24 @@ def _request_id(request: Request) -> str:
     return getattr(request.state, "request_id", str(uuid4()))
 
 
-def _response(code: str, message: str, request_id: str, status_code: int) -> JSONResponse:
+def _response(
+    code: str, message: str, request_id: str, status_code: int
+) -> JSONResponse:
     body = ErrorResponse(
         error=ErrorDetail(code=code, message=message, request_id=request_id)
     )
     return JSONResponse(status_code=status_code, content=body.model_dump())
 
 
-async def application_error_handler(request: Request, exc: ApplicationError) -> JSONResponse:
+async def application_error_handler(
+    request: Request, exc: ApplicationError
+) -> JSONResponse:
     return _response(exc.code, exc.safe_message, _request_id(request), exc.status_code)
 
 
-async def validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+async def validation_error_handler(
+    request: Request, exc: RequestValidationError
+) -> JSONResponse:
     # Validation internals may contain user content, so return a stable generic message.
     return _response(
         "REQUEST_VALIDATION_ERROR",

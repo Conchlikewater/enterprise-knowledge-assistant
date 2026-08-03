@@ -66,7 +66,9 @@ class Chunk:
         try:
             int(self.content_hash, 16)
         except ValueError as exc:
-            raise ValueError("content_hash must contain 64 hexadecimal characters") from exc
+            raise ValueError(
+                "content_hash must contain 64 hexadecimal characters"
+            ) from exc
         if self.page_number is not None and self.page_number < 1:
             raise ValueError("page_number must be positive when present")
 
@@ -107,7 +109,7 @@ class Citation:
         result: RetrievalResult,
         citation_number: int,
         excerpt_limit: int = 240,
-    ) -> "Citation":
+    ) -> Citation:
         if citation_number < 1:
             raise ValueError("citation_number must be positive")
         if excerpt_limit < 1:

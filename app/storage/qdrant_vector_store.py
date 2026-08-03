@@ -67,7 +67,9 @@ class QdrantVectorStore(VectorStore):
         except Exception:
             return False
 
-    def upsert(self, chunks: Sequence[Chunk], vectors: Sequence[Sequence[float]]) -> None:
+    def upsert(
+        self, chunks: Sequence[Chunk], vectors: Sequence[Sequence[float]]
+    ) -> None:
         if len(chunks) != len(vectors):
             raise ValueError("chunks and vectors must have the same length")
         if not chunks:

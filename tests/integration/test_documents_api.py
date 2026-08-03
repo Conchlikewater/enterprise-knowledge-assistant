@@ -52,9 +52,9 @@ def test_document_api_full_txt_lifecycle() -> None:
     assert body["filename"] == "policy.txt"
     assert body["status"] == "ready"
     assert body["chunk_count"] == 1
-    assert body["sha256"] == sha256(
-        b"Quarterly access reviews are mandatory."
-    ).hexdigest()
+    assert (
+        body["sha256"] == sha256(b"Quarterly access reviews are mandatory.").hexdigest()
+    )
     assert "stored_path" not in body
     assert upload.headers["X-Request-ID"]
 
@@ -152,7 +152,9 @@ def test_upload_errors_keep_the_stable_contract() -> None:
     assert duplicate.json()["error"]["code"] == "DOCUMENT_CONFLICT"
 
 
-def test_missing_provider_reports_service_unavailable_without_crashing_startup() -> None:
+def test_missing_provider_reports_service_unavailable_without_crashing_startup() -> (
+    None
+):
     async def exercise() -> tuple[httpx.Response, httpx.Response, httpx.Response]:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)

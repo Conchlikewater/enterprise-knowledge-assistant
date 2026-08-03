@@ -146,7 +146,12 @@ class SQLiteDocumentRepository(DocumentRepository):
                     SET status = ?, chunk_count = ?, updated_at = ?
                     WHERE document_id = ?
                     """,
-                    (status.value, chunk_count, utc_now().isoformat(), str(document_id)),
+                    (
+                        status.value,
+                        chunk_count,
+                        utc_now().isoformat(),
+                        str(document_id),
+                    ),
                 )
                 if cursor.rowcount == 0:
                     raise DocumentNotFoundError()

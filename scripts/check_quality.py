@@ -10,6 +10,29 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 CHECKS = (
     (
+        "lint",
+        sys.executable,
+        "-m",
+        "ruff",
+        "check",
+        "app",
+        "evaluation",
+        "scripts",
+        "tests",
+    ),
+    (
+        "format",
+        sys.executable,
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "app",
+        "evaluation",
+        "scripts",
+        "tests",
+    ),
+    (
         "tests",
         sys.executable,
         "-m",
@@ -17,6 +40,8 @@ CHECKS = (
         "-q",
         "-W",
         "error",
+        "--cov=app",
+        "--cov-report=term-missing",
     ),
     ("dependencies", sys.executable, "-m", "pip", "check"),
     (

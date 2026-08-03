@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 import os
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Mapping
 
 from dotenv import dotenv_values
 
-_LLM_REASONING_EFFORTS = frozenset(
-    {"none", "low", "medium", "high", "xhigh", "max"}
-)
+_LLM_REASONING_EFFORTS = frozenset({"none", "low", "medium", "high", "xhigh", "max"})
 _LLM_VERBOSITY_LEVELS = frozenset({"low", "medium", "high"})
 _LOG_LEVELS = frozenset({"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"})
 
@@ -95,14 +93,16 @@ class Settings:
         if self.chunk_size <= 0:
             raise ValueError("chunk_size must be positive")
         if not 0 <= self.chunk_overlap < self.chunk_size:
-            raise ValueError("chunk_overlap must be non-negative and smaller than chunk_size")
+            raise ValueError(
+                "chunk_overlap must be non-negative and smaller than chunk_size"
+            )
 
     @classmethod
     def from_env(
         cls,
         environment: Mapping[str, str] | None = None,
         env_file: Path = Path(".env"),
-    ) -> "Settings":
+    ) -> Settings:
         if environment is None:
             file_values = {
                 key: value
@@ -123,27 +123,15 @@ class Settings:
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
             qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
             openai_api_key=api_key.strip() if api_key and api_key.strip() else None,
-            embedding_model=env.get(
-                "RAG_EMBEDDING_MODEL", "text-embedding-3-small"
-            ),
-            embedding_dimensions=_read_int(
-                env, "RAG_EMBEDDING_DIMENSIONS", 1536
-            ),
+            embedding_model=env.get("RAG_EMBEDDING_MODEL", "text-embedding-3-small"),
+            embedding_dimensions=_read_int(env, "RAG_EMBEDDING_DIMENSIONS", 1536),
             embedding_batch_size=_read_int(env, "RAG_EMBEDDING_BATCH_SIZE", 64),
-            openai_timeout_seconds=_read_float(
-                env, "RAG_OPENAI_TIMEOUT_SECONDS", 30.0
-            ),
+            openai_timeout_seconds=_read_float(env, "RAG_OPENAI_TIMEOUT_SECONDS", 30.0),
             llm_model=env.get("RAG_LLM_MODEL", "gpt-5.6-sol"),
-            llm_reasoning_effort=env.get(
-                "RAG_LLM_REASONING_EFFORT", "low"
-            ).lower(),
+            llm_reasoning_effort=env.get("RAG_LLM_REASONING_EFFORT", "low").lower(),
             llm_verbosity=env.get("RAG_LLM_VERBOSITY", "low").lower(),
-            llm_max_output_tokens=_read_int(
-                env, "RAG_LLM_MAX_OUTPUT_TOKENS", 800
-            ),
-            llm_timeout_seconds=_read_float(
-                env, "RAG_LLM_TIMEOUT_SECONDS", 60.0
-            ),
+            llm_max_output_tokens=_read_int(env, "RAG_LLM_MAX_OUTPUT_TOKENS", 800),
+            llm_timeout_seconds=_read_float(env, "RAG_LLM_TIMEOUT_SECONDS", 60.0),
             max_upload_bytes=_read_int(env, "RAG_MAX_UPLOAD_BYTES", 10 * 1024 * 1024),
             chunk_size=_read_int(env, "RAG_CHUNK_SIZE", 1000),
             chunk_overlap=_read_int(env, "RAG_CHUNK_OVERLAP", 150),

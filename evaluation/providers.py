@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from collections.abc import Sequence
 from hashlib import sha256
+from itertools import pairwise
 from math import sqrt
 
 from app.providers.embedding_provider import EmbeddingProvider
@@ -82,7 +83,7 @@ class HashingEmbeddingProvider(EmbeddingProvider):
         ]
         if not tokens:
             raise ValueError("evaluation text must contain lexical features")
-        features = [*tokens, *(f"{a}_{b}" for a, b in zip(tokens, tokens[1:]))]
+        features = [*tokens, *(f"{a}_{b}" for a, b in pairwise(tokens))]
         vector = [0.0] * self._dimensions
         for feature in features:
             digest = sha256(feature.encode("utf-8")).digest()
@@ -95,11 +96,7 @@ class HashingEmbeddingProvider(EmbeddingProvider):
 def _normalize_token(token: str) -> str:
     if len(token) > 4 and token.endswith("ies"):
         return f"{token[:-3]}y"
-    if (
-        len(token) > 4
-        and token.endswith("s")
-        and not token.endswith(("ss", "us"))
-    ):
+    if len(token) > 4 and token.endswith("s") and not token.endswith(("ss", "us")):
         return token[:-1]
     return token
 

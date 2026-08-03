@@ -19,7 +19,9 @@ class _FakeEmbeddingsResource:
 
         items = []
         for index, text in enumerate(kwargs["input"]):
-            dimensions = self.dimensions - 1 if self.malformed_dimensions else self.dimensions
+            dimensions = (
+                self.dimensions - 1 if self.malformed_dimensions else self.dimensions
+            )
             vector = [float(len(text))] + [0.0] * (dimensions - 1)
             items.append(SimpleNamespace(index=index, embedding=vector))
         return SimpleNamespace(data=list(reversed(items)))

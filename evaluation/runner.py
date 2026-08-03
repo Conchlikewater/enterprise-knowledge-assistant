@@ -10,7 +10,7 @@ from typing import Any
 
 from app.document_processing.file_validation import SUPPORTED_MEDIA_TYPES
 from app.domain.models import Document
-from app.services.answer_service import AnswerService, NO_EVIDENCE_ANSWER
+from app.services.answer_service import NO_EVIDENCE_ANSWER, AnswerService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
 from app.services.retrieval_service import RetrievalService
@@ -94,7 +94,9 @@ def run_evaluation(project_root: Path | None = None) -> EvaluationReport:
 
             ingested: dict[str, Document] = {}
             for document_spec in documents:
-                source_path = root / "evaluation" / "documents" / document_spec["filename"]
+                source_path = (
+                    root / "evaluation" / "documents" / document_spec["filename"]
+                )
                 with source_path.open("rb") as source:
                     ingested_document = ingestion_service.ingest(
                         source,
@@ -324,9 +326,7 @@ def _evaluate_questions(
         "citation_integrity_pass_rate": _rate(
             counters["citation_pass"], counters["citation"]
         ),
-        "pdf_page_metadata_pass_rate": _rate(
-            counters["pages_pass"], counters["pages"]
-        ),
+        "pdf_page_metadata_pass_rate": _rate(counters["pages_pass"], counters["pages"]),
         "question_results": tuple(question_results),
     }
 
@@ -389,12 +389,8 @@ def _validate_manifests(
     return {
         "document_count": len(documents),
         "txt_count": sum(item["media_type"] == "text/plain" for item in documents),
-        "pdf_count": sum(
-            item["media_type"] == "application/pdf" for item in documents
-        ),
-        "multi_page_document_count": sum(
-            len(item["pages"]) > 1 for item in documents
-        ),
+        "pdf_count": sum(item["media_type"] == "application/pdf" for item in documents),
+        "multi_page_document_count": sum(len(item["pages"]) > 1 for item in documents),
         "question_count": len(questions),
         "category_counts": category_counts,
     }

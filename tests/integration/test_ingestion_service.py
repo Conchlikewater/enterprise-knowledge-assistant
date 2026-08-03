@@ -107,7 +107,9 @@ class IngestionServiceTests(unittest.TestCase):
             limit=10,
         )
         self.assertEqual(len(results), document.chunk_count)
-        self.assertTrue(all(item.document_id == document.document_id for item in results))
+        self.assertTrue(
+            all(item.document_id == document.document_id for item in results)
+        )
         self.assertNotIn(private_text, "\n".join(logs.output))
 
     def test_duplicate_content_keeps_only_the_first_ready_document(self) -> None:
@@ -122,7 +124,9 @@ class IngestionServiceTests(unittest.TestCase):
         self.assertEqual(documents[0].status, DocumentStatus.READY)
         self.assertEqual(list(self.upload_dir.iterdir()), [first.stored_path])
 
-    def test_parse_failure_marks_record_failed_and_removes_file_and_vectors(self) -> None:
+    def test_parse_failure_marks_record_failed_and_removes_file_and_vectors(
+        self,
+    ) -> None:
         with self.assertRaises(DocumentParseError):
             self.service.ingest(BytesIO(b"   \n"), "blank.txt", "text/plain")
 
