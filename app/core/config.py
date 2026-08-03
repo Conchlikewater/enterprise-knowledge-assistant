@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Mapping
+
+from dotenv import dotenv_values
 
 
 def _read_int(environment: Mapping[str, str], name: str, default: int) -> int:
@@ -16,6 +18,16 @@ def _read_int(environment: Mapping[str, str], name: str, default: int) -> int:
         return int(raw_value)
     except ValueError as exc:
         raise ValueError(f"{name} must be an integer") from exc
+
+
+def _read_float(environment: Mapping[str, str], name: str, default: float) -> float:
+    raw_value = environment.get(name)
+    if raw_value is None:
+        return default
+    try:
+        return float(raw_value)
+    except ValueError as exc:
+        raise ValueError(f"{name} must be a number") from exc
 
 
 @dataclass(frozen=True, slots=True)
@@ -37,6 +49,11 @@ class Settings:
     sqlite_path: Path = Path("data/app.db")
     qdrant_path: Path = Path("data/qdrant")
     qdrant_collection: str = "knowledge_chunks"
+    openai_api_key: str | None = field(default=None, repr=False, compare=False)
+    embedding_model: str = "text-embedding-3-small"
+    embedding_dimensions: int = 1536
+    embedding_batch_size: int = 64
+    openai_timeout_seconds: float = 30.0
     max_upload_bytes: int = 10 * 1024 * 1024
     chunk_size: int = 1000
     chunk_overlap: int = 150
@@ -48,14 +65,35 @@ class Settings:
             raise ValueError("max_upload_bytes must be positive")
         if not self.qdrant_collection.strip():
             raise ValueError("qdrant_collection must not be empty")
+        if not self.embedding_model.strip():
+            raise ValueError("embedding_model must not be empty")
+        if self.embedding_dimensions <= 0:
+            raise ValueError("embedding_dimensions must be positive")
+        if self.embedding_batch_size <= 0:
+            raise ValueError("embedding_batch_size must be positive")
+        if self.openai_timeout_seconds <= 0:
+            raise ValueError("openai_timeout_seconds must be positive")
         if self.chunk_size <= 0:
             raise ValueError("chunk_size must be positive")
         if not 0 <= self.chunk_overlap < self.chunk_size:
             raise ValueError("chunk_overlap must be non-negative and smaller than chunk_size")
 
     @classmethod
-    def from_env(cls, environment: Mapping[str, str] | None = None) -> "Settings":
-        env = os.environ if environment is None else environment
+    def from_env(
+        cls,
+        environment: Mapping[str, str] | None = None,
+        env_file: Path = Path(".env"),
+    ) -> "Settings":
+        if environment is None:
+            file_values = {
+                key: value
+                for key, value in dotenv_values(env_file).items()
+                if value is not None
+            }
+            env: Mapping[str, str] = {**file_values, **os.environ}
+        else:
+            env = environment
+        api_key = env.get("OPENAI_API_KEY")
         return cls(
             environment=env.get("RAG_ENVIRONMENT", "development"),
             host=env.get("RAG_HOST", "127.0.0.1"),
@@ -65,6 +103,17 @@ class Settings:
             sqlite_path=Path(env.get("RAG_SQLITE_PATH", "data/app.db")),
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
             qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
+            openai_api_key=api_key.strip() if api_key and api_key.strip() else None,
+            embedding_model=env.get(
+                "RAG_EMBEDDING_MODEL", "text-embedding-3-small"
+            ),
+            embedding_dimensions=_read_int(
+                env, "RAG_EMBEDDING_DIMENSIONS", 1536
+            ),
+            embedding_batch_size=_read_int(env, "RAG_EMBEDDING_BATCH_SIZE", 64),
+            openai_timeout_seconds=_read_float(
+                env, "RAG_OPENAI_TIMEOUT_SECONDS", 30.0
+            ),
             max_upload_bytes=_read_int(env, "RAG_MAX_UPLOAD_BYTES", 10 * 1024 * 1024),
             chunk_size=_read_int(env, "RAG_CHUNK_SIZE", 1000),
             chunk_overlap=_read_int(env, "RAG_CHUNK_OVERLAP", 150),

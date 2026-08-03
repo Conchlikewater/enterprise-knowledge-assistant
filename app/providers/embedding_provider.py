@@ -12,6 +12,11 @@ class EmbeddingProvider(ABC):
     def name(self) -> str:
         """Stable provider name safe to include in logs."""
 
+    @property
+    @abstractmethod
+    def dimensions(self) -> int:
+        """Fixed output size used to configure the vector collection."""
+
     @abstractmethod
     def embed_documents(self, texts: Sequence[str]) -> list[list[float]]:
         """Embed document chunks in the same order as the supplied texts."""
@@ -19,3 +24,7 @@ class EmbeddingProvider(ABC):
     @abstractmethod
     def embed_query(self, text: str) -> list[float]:
         """Embed one retrieval query."""
+
+    @abstractmethod
+    def close(self) -> None:
+        """Release network resources owned by the provider."""
