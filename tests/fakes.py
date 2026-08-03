@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from app.providers.embedding_provider import EmbeddingProvider
+from app.providers.llm_provider import LLMProvider
 
 
 class DeterministicEmbeddingProvider(EmbeddingProvider):
@@ -41,3 +42,29 @@ class DeterministicEmbeddingProvider(EmbeddingProvider):
         if self._dimensions > 1:
             vector[1] = float(len(text) % 5) / 10.0
         return vector
+
+
+class DeterministicLLMProvider(LLMProvider):
+    def __init__(self, answer: str = "Grounded test answer [1].") -> None:
+        self.answer = answer
+        self.calls: list[tuple[str, tuple[str, ...]]] = []
+        self.closed = False
+
+    @property
+    def name(self) -> str:
+        return "deterministic-test"
+
+    @property
+    def model(self) -> str:
+        return "deterministic-answer-model"
+
+    def generate_answer(
+        self,
+        question: str,
+        context_blocks: Sequence[str],
+    ) -> str:
+        self.calls.append((question, tuple(context_blocks)))
+        return self.answer
+
+    def close(self) -> None:
+        self.closed = True

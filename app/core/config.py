@@ -9,6 +9,11 @@ from typing import Mapping
 
 from dotenv import dotenv_values
 
+_LLM_REASONING_EFFORTS = frozenset(
+    {"none", "low", "medium", "high", "xhigh", "max"}
+)
+_LLM_VERBOSITY_LEVELS = frozenset({"low", "medium", "high"})
+
 
 def _read_int(environment: Mapping[str, str], name: str, default: int) -> int:
     raw_value = environment.get(name)
@@ -32,11 +37,7 @@ def _read_float(environment: Mapping[str, str], name: str, default: float) -> fl
 
 @dataclass(frozen=True, slots=True)
 class Settings:
-    """Non-secret V1 settings.
-
-    Provider credentials will be added only with a selected provider adapter and
-    must never be included in logs or API responses.
-    """
+    """Typed V1 settings with credentials excluded from repr and comparisons."""
 
     app_name: str = "Enterprise Knowledge Assistant"
     app_version: str = "0.1.0"
@@ -54,6 +55,11 @@ class Settings:
     embedding_dimensions: int = 1536
     embedding_batch_size: int = 64
     openai_timeout_seconds: float = 30.0
+    llm_model: str = "gpt-5.6-sol"
+    llm_reasoning_effort: str = "low"
+    llm_verbosity: str = "low"
+    llm_max_output_tokens: int = 800
+    llm_timeout_seconds: float = 60.0
     max_upload_bytes: int = 10 * 1024 * 1024
     chunk_size: int = 1000
     chunk_overlap: int = 150
@@ -73,6 +79,16 @@ class Settings:
             raise ValueError("embedding_batch_size must be positive")
         if self.openai_timeout_seconds <= 0:
             raise ValueError("openai_timeout_seconds must be positive")
+        if not self.llm_model.strip():
+            raise ValueError("llm_model must not be empty")
+        if self.llm_reasoning_effort not in _LLM_REASONING_EFFORTS:
+            raise ValueError("llm_reasoning_effort is not supported")
+        if self.llm_verbosity not in _LLM_VERBOSITY_LEVELS:
+            raise ValueError("llm_verbosity is not supported")
+        if self.llm_max_output_tokens <= 0:
+            raise ValueError("llm_max_output_tokens must be positive")
+        if self.llm_timeout_seconds <= 0:
+            raise ValueError("llm_timeout_seconds must be positive")
         if self.chunk_size <= 0:
             raise ValueError("chunk_size must be positive")
         if not 0 <= self.chunk_overlap < self.chunk_size:
@@ -113,6 +129,17 @@ class Settings:
             embedding_batch_size=_read_int(env, "RAG_EMBEDDING_BATCH_SIZE", 64),
             openai_timeout_seconds=_read_float(
                 env, "RAG_OPENAI_TIMEOUT_SECONDS", 30.0
+            ),
+            llm_model=env.get("RAG_LLM_MODEL", "gpt-5.6-sol"),
+            llm_reasoning_effort=env.get(
+                "RAG_LLM_REASONING_EFFORT", "low"
+            ).lower(),
+            llm_verbosity=env.get("RAG_LLM_VERBOSITY", "low").lower(),
+            llm_max_output_tokens=_read_int(
+                env, "RAG_LLM_MAX_OUTPUT_TOKENS", 800
+            ),
+            llm_timeout_seconds=_read_float(
+                env, "RAG_LLM_TIMEOUT_SECONDS", 60.0
             ),
             max_upload_bytes=_read_int(env, "RAG_MAX_UPLOAD_BYTES", 10 * 1024 * 1024),
             chunk_size=_read_int(env, "RAG_CHUNK_SIZE", 1000),

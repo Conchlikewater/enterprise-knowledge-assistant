@@ -7,13 +7,17 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Request
 
+from app.api.routers.answers import router as answers_router
 from app.api.routers.documents import router as documents_router
 from app.api.routers.health import router as health_router
 from app.api.routers.retrieval import router as retrieval_router
 from app.core.config import Settings
 from app.core.error_handlers import register_error_handlers
 from app.providers.embedding_provider import EmbeddingProvider
+from app.providers.llm_provider import LLMProvider
 from app.providers.openai_embedding_provider import OpenAIEmbeddingProvider
+from app.providers.openai_llm_provider import OpenAILLMProvider
+from app.services.answer_service import AnswerService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
 from app.services.retrieval_service import RetrievalService
@@ -28,6 +32,7 @@ def create_app(
     document_repository: DocumentRepository | None = None,
     vector_store: VectorStore | None = None,
     embedding_provider: EmbeddingProvider | None = None,
+    llm_provider: LLMProvider | None = None,
 ) -> FastAPI:
     resolved_settings = settings or Settings.from_env()
     resolved_repository = document_repository or SQLiteDocumentRepository(
@@ -44,6 +49,7 @@ def create_app(
         resolved_repository.initialize()
         resolved_vector_store.initialize()
         runtime_provider = embedding_provider
+        runtime_llm_provider = llm_provider
         try:
             if (
                 runtime_provider is None
@@ -56,10 +62,23 @@ def create_app(
                     batch_size=resolved_settings.embedding_batch_size,
                     timeout_seconds=resolved_settings.openai_timeout_seconds,
                 )
+            if (
+                runtime_llm_provider is None
+                and resolved_settings.openai_api_key is not None
+            ):
+                runtime_llm_provider = OpenAILLMProvider(
+                    api_key=resolved_settings.openai_api_key,
+                    model=resolved_settings.llm_model,
+                    reasoning_effort=resolved_settings.llm_reasoning_effort,
+                    verbosity=resolved_settings.llm_verbosity,
+                    max_output_tokens=resolved_settings.llm_max_output_tokens,
+                    timeout_seconds=resolved_settings.llm_timeout_seconds,
+                )
 
             application.state.document_repository = resolved_repository
             application.state.vector_store = resolved_vector_store
             application.state.embedding_provider = runtime_provider
+            application.state.llm_provider = runtime_llm_provider
             application.state.document_service = DocumentService(
                 document_repository=resolved_repository,
                 vector_store=resolved_vector_store,
@@ -78,7 +97,7 @@ def create_app(
                 if runtime_provider is not None
                 else None
             )
-            application.state.retrieval_service = (
+            runtime_retrieval_service = (
                 RetrievalService(
                     document_repository=resolved_repository,
                     vector_store=resolved_vector_store,
@@ -87,11 +106,25 @@ def create_app(
                 if runtime_provider is not None
                 else None
             )
+            application.state.retrieval_service = runtime_retrieval_service
+            application.state.answer_service = (
+                AnswerService(
+                    retrieval_service=runtime_retrieval_service,
+                    llm_provider=runtime_llm_provider,
+                )
+                if runtime_retrieval_service is not None
+                and runtime_llm_provider is not None
+                else None
+            )
             yield
         finally:
             try:
-                if runtime_provider is not None:
-                    runtime_provider.close()
+                try:
+                    if runtime_llm_provider is not None:
+                        runtime_llm_provider.close()
+                finally:
+                    if runtime_provider is not None:
+                        runtime_provider.close()
             finally:
                 resolved_vector_store.close()
 
@@ -119,6 +152,10 @@ def create_app(
     )
     application.include_router(
         retrieval_router,
+        prefix=resolved_settings.api_v1_prefix,
+    )
+    application.include_router(
+        answers_router,
         prefix=resolved_settings.api_v1_prefix,
     )
     return application

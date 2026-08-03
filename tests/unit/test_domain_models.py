@@ -2,7 +2,7 @@ import unittest
 from math import nan
 from uuid import uuid4
 
-from app.domain.models import Citation, Chunk, RetrievalResult
+from app.domain.models import AnswerResult, Citation, Chunk, RetrievalResult
 
 
 class DomainModelTests(unittest.TestCase):
@@ -49,6 +49,23 @@ class DomainModelTests(unittest.TestCase):
                         document_id=uuid4(),
                         **values,
                     )
+
+    def test_answer_result_rejects_more_citations_than_retrievals(self) -> None:
+        result = RetrievalResult(
+            chunk_id=uuid4(),
+            document_id=uuid4(),
+            filename="policy.txt",
+            text="evidence",
+            score=0.8,
+        )
+        citation = Citation.from_result(result, citation_number=1)
+
+        with self.assertRaises(ValueError):
+            AnswerResult(
+                answer="answer",
+                citations=(citation,),
+                retrieval_count=0,
+            )
 
 
 if __name__ == "__main__":

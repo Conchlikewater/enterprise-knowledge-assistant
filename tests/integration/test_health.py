@@ -12,7 +12,7 @@ import httpx
 
 from app.core.config import Settings
 from app.main import create_app
-from tests.fakes import DeterministicEmbeddingProvider
+from tests.fakes import DeterministicEmbeddingProvider, DeterministicLLMProvider
 
 
 def test_health_endpoint() -> None:
@@ -27,6 +27,7 @@ def test_health_endpoint() -> None:
                     embedding_dimensions=3,
                 ),
                 embedding_provider=DeterministicEmbeddingProvider(),
+                llm_provider=DeterministicLLMProvider(),
             )
             transport = httpx.ASGITransport(app=application)
             async with application.router.lifespan_context(application):
@@ -48,6 +49,7 @@ def test_health_endpoint() -> None:
             "document_repository": "ok",
             "vector_store": "ok",
             "embedding_provider": "configured",
+            "llm_provider": "configured",
         },
     }
     assert response.headers["X-Request-ID"]

@@ -1,6 +1,7 @@
 import unittest
 
 from app.core.exceptions import (
+    AnswerProviderError,
     DocumentNotFoundError,
     DocumentNotReadyError,
     DocumentStorageError,
@@ -25,6 +26,7 @@ class ExceptionContractTests(unittest.TestCase):
             (FileTooLargeError(), 413),
             (UnsupportedFileTypeError(), 415),
             (EmbeddingProviderError(), 502),
+            (AnswerProviderError(), 502),
             (ProviderConfigurationError(), 503),
             (VectorStoreError(), 503),
         )

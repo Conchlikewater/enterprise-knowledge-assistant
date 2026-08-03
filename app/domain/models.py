@@ -70,6 +70,7 @@ class Chunk:
         if self.page_number is not None and self.page_number < 1:
             raise ValueError("page_number must be positive when present")
 
+
 @dataclass(frozen=True, slots=True)
 class RetrievalResult:
     chunk_id: UUID
@@ -122,3 +123,18 @@ class Citation:
             excerpt=excerpt,
             score=result.score,
         )
+
+
+@dataclass(frozen=True, slots=True)
+class AnswerResult:
+    answer: str
+    citations: tuple[Citation, ...]
+    retrieval_count: int
+
+    def __post_init__(self) -> None:
+        if not self.answer.strip():
+            raise ValueError("answer must not be empty")
+        if self.retrieval_count < 0:
+            raise ValueError("retrieval_count must not be negative")
+        if len(self.citations) > self.retrieval_count:
+            raise ValueError("citations cannot exceed retrieval_count")

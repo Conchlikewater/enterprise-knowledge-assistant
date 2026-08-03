@@ -15,19 +15,35 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.upload_dir, Path("data/uploads"))
         self.assertEqual(settings.qdrant_path, Path("data/qdrant"))
         self.assertEqual(settings.qdrant_collection, "knowledge_chunks")
+        self.assertEqual(settings.llm_model, "gpt-5.6-sol")
+        self.assertEqual(settings.llm_reasoning_effort, "low")
 
     def test_environment_values_are_typed(self) -> None:
         settings = Settings.from_env(
-            {"RAG_PORT": "9000", "RAG_CHUNK_SIZE": "600", "RAG_CHUNK_OVERLAP": "60"}
+            {
+                "RAG_PORT": "9000",
+                "RAG_CHUNK_SIZE": "600",
+                "RAG_CHUNK_OVERLAP": "60",
+                "RAG_LLM_REASONING_EFFORT": "MEDIUM",
+                "RAG_LLM_MAX_OUTPUT_TOKENS": "500",
+            }
         )
 
         self.assertEqual(settings.port, 9000)
         self.assertEqual(settings.chunk_size, 600)
         self.assertEqual(settings.chunk_overlap, 60)
+        self.assertEqual(settings.llm_reasoning_effort, "medium")
+        self.assertEqual(settings.llm_max_output_tokens, 500)
 
     def test_invalid_overlap_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             Settings(chunk_size=100, chunk_overlap=100)
+
+    def test_invalid_llm_configuration_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            Settings(llm_reasoning_effort="extreme")
+        with self.assertRaises(ValueError):
+            Settings(llm_max_output_tokens=0)
 
     def test_env_file_loads_key_without_exposing_it_in_repr(self) -> None:
         secret = "test-secret-value"
