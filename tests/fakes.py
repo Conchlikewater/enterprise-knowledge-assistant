@@ -13,6 +13,8 @@ class DeterministicEmbeddingProvider(EmbeddingProvider):
             raise ValueError("dimensions must be positive")
         self._dimensions = dimensions
         self.closed = False
+        self.embedded_document_batches: list[tuple[str, ...]] = []
+        self.embedded_queries: list[str] = []
 
     @property
     def name(self) -> str:
@@ -23,9 +25,11 @@ class DeterministicEmbeddingProvider(EmbeddingProvider):
         return self._dimensions
 
     def embed_documents(self, texts: Sequence[str]) -> list[list[float]]:
+        self.embedded_document_batches.append(tuple(texts))
         return [self._vector(text) for text in texts]
 
     def embed_query(self, text: str) -> list[float]:
+        self.embedded_queries.append(text)
         return self._vector(text)
 
     def close(self) -> None:

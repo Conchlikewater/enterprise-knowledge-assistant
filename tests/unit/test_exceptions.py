@@ -2,6 +2,7 @@ import unittest
 
 from app.core.exceptions import (
     DocumentNotFoundError,
+    DocumentNotReadyError,
     DocumentStorageError,
     EmbeddingProviderError,
     EmptyFileError,
@@ -17,6 +18,7 @@ class ExceptionContractTests(unittest.TestCase):
     def test_exception_status_mapping(self) -> None:
         cases = (
             (DocumentNotFoundError(), 404),
+            (DocumentNotReadyError(), 409),
             (EmptyFileError(), 400),
             (InvalidFilenameError(), 400),
             (DocumentStorageError(), 500),

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import StrEnum
+from math import isfinite
 from pathlib import Path
 from uuid import UUID
 
@@ -69,8 +70,6 @@ class Chunk:
         if self.page_number is not None and self.page_number < 1:
             raise ValueError("page_number must be positive when present")
 
-
-
 @dataclass(frozen=True, slots=True)
 class RetrievalResult:
     chunk_id: UUID
@@ -79,6 +78,16 @@ class RetrievalResult:
     text: str
     score: float
     page_number: int | None = None
+
+    def __post_init__(self) -> None:
+        if not self.filename:
+            raise ValueError("filename must not be empty")
+        if not self.text.strip():
+            raise ValueError("retrieval text must not be empty")
+        if not isfinite(self.score):
+            raise ValueError("retrieval score must be finite")
+        if self.page_number is not None and self.page_number < 1:
+            raise ValueError("page_number must be positive when present")
 
 
 @dataclass(frozen=True, slots=True)

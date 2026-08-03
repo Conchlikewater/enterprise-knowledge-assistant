@@ -21,6 +21,12 @@ class DocumentNotFoundError(ApplicationError):
     status_code = 404
 
 
+class DocumentNotReadyError(ApplicationError):
+    code = "DOCUMENT_NOT_READY"
+    message = "A selected document is not ready for retrieval."
+    status_code = 409
+
+
 class UnsupportedFileTypeError(ApplicationError):
     code = "UNSUPPORTED_FILE_TYPE"
     message = "Only supported TXT and PDF files can be uploaded."

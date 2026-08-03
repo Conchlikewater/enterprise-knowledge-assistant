@@ -9,12 +9,14 @@ from fastapi import FastAPI, Request
 
 from app.api.routers.documents import router as documents_router
 from app.api.routers.health import router as health_router
+from app.api.routers.retrieval import router as retrieval_router
 from app.core.config import Settings
 from app.core.error_handlers import register_error_handlers
 from app.providers.embedding_provider import EmbeddingProvider
 from app.providers.openai_embedding_provider import OpenAIEmbeddingProvider
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
+from app.services.retrieval_service import RetrievalService
 from app.storage.document_repository import DocumentRepository
 from app.storage.qdrant_vector_store import QdrantVectorStore
 from app.storage.sqlite_document_repository import SQLiteDocumentRepository
@@ -76,6 +78,15 @@ def create_app(
                 if runtime_provider is not None
                 else None
             )
+            application.state.retrieval_service = (
+                RetrievalService(
+                    document_repository=resolved_repository,
+                    vector_store=resolved_vector_store,
+                    embedding_provider=runtime_provider,
+                )
+                if runtime_provider is not None
+                else None
+            )
             yield
         finally:
             try:
@@ -104,6 +115,10 @@ def create_app(
     application.include_router(health_router)
     application.include_router(
         documents_router,
+        prefix=resolved_settings.api_v1_prefix,
+    )
+    application.include_router(
+        retrieval_router,
         prefix=resolved_settings.api_v1_prefix,
     )
     return application
