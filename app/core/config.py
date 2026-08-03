@@ -13,6 +13,7 @@ _LLM_REASONING_EFFORTS = frozenset(
     {"none", "low", "medium", "high", "xhigh", "max"}
 )
 _LLM_VERBOSITY_LEVELS = frozenset({"low", "medium", "high"})
+_LOG_LEVELS = frozenset({"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"})
 
 
 def _read_int(environment: Mapping[str, str], name: str, default: int) -> int:
@@ -67,6 +68,8 @@ class Settings:
     def __post_init__(self) -> None:
         if not 1 <= self.port <= 65535:
             raise ValueError("port must be between 1 and 65535")
+        if self.log_level not in _LOG_LEVELS:
+            raise ValueError("log_level is not supported")
         if self.max_upload_bytes <= 0:
             raise ValueError("max_upload_bytes must be positive")
         if not self.qdrant_collection.strip():

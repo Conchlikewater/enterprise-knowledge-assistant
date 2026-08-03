@@ -44,7 +44,10 @@ class EvaluationReport:
     question_results: tuple[dict[str, Any], ...]
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        payload = asdict(self)
+        payload["failed_checks"] = list(self.failed_checks)
+        payload["question_results"] = list(self.question_results)
+        return payload
 
 
 def run_evaluation(project_root: Path | None = None) -> EvaluationReport:

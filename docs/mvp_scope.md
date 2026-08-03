@@ -1,91 +1,58 @@
-# RAG MVP Scope
+# RAG V1 Scope and Acceptance
 
-## 1. Project Goal
+- Product: Enterprise Knowledge Assistant
+- Version: 0.1.0
+- Runtime: Python 3.12, FastAPI, SQLite, local Qdrant, OpenAI API
+- Scope status: implemented; final portfolio release audit in progress
 
-Build a small RAG knowledge-base question-answering system that can:
+## Goal
 
-- import local documents
-- split documents into chunks
-- generate embeddings
-- store and retrieve vectors
-- answer questions based on retrieved content
-- return source citations
+Build a small local knowledge-base API that ingests documents, retrieves
+document-scoped evidence, generates grounded answers, and returns citations
+whose metadata comes from stored chunks rather than the language model.
 
-## 2. Document Input
+## Final V1 Scope
 
-Initial supported document types:
+- UTF-8 TXT and text-based PDF upload
+- synchronous validation, storage, parsing, chunking, embedding, and indexing
+- SQLite document records and persistent local Qdrant vectors
+- one OpenAI embedding provider and one OpenAI LLM provider
+- explicit one-or-more-document retrieval scope
+- optional score threshold and configurable Top-K
+- evidence-only answer generation
+- application-built citations with filename, page, chunk, excerpt, and score
+- document listing, lookup, and consistent deletion from all stores
+- typed configuration, stable errors, request IDs, and privacy-safe logs
+- unit, integration, security-oriented, and offline evaluation tests
 
-- TXT
-- Markdown
-- PDF
+## Acceptance Evidence
 
-Initial dataset size:
+| Requirement | Evidence | Status |
+|---|---|---|
+| Ingest at least five documents | Offline evaluation ingests 10 tracked fixtures | Passed |
+| Support TXT and PDF | 6 TXT and 4 PDF fixtures, including two multi-page PDFs | Passed |
+| Produce searchable non-empty chunks | Domain invariants and evaluation gate | Passed |
+| Retrieve only selected documents | Service/API tests and two isolation questions | Passed |
+| Generate evidence-grounded answers | Answer service/API tests and live synthetic smoke check | Passed |
+| Return traceable citations | Citation unit/API tests and evaluation integrity gate | Passed |
+| Handle unanswerable questions | Four evaluation questions require no-evidence behavior | Passed |
+| Delete files, records, and vectors | Unit, API, and evaluation deletion checks | Passed |
+| Expose the workflow through FastAPI | Seven operations across five OpenAPI paths | Passed |
+| Use stable privacy-safe errors and logs | Exception, API, and log-content tests | Passed |
+| Evaluate 20 prepared questions | Tracked deterministic report | Passed |
 
-- 5 to 10 documents
-- mainly technical notes, job descriptions, and project materials
+The current evaluation report is `evaluation/latest_report.json`. The release
+checklist records the final installation and repository checks separately.
 
-## 3. Core Pipeline
+## Explicitly Out of Scope
 
-The MVP pipeline contains:
+- Docker or container orchestration
+- Celery, RabbitMQ, Redis, or background ingestion jobs
+- authentication, authorization, multi-tenancy, or public deployment
+- OCR, scanned PDFs, Markdown, DOCX, spreadsheets, or presentations
+- several active model or vector-store providers
+- reranking, hybrid search, fine-tuning, agents, tools, MCP, or frontend UI
+- large-scale or highly available production storage
 
-1. document loading
-2. text cleaning
-3. chunking
-4. embedding generation
-5. vector storage
-6. similarity retrieval
-7. answer generation
-8. source citation output
-
-## 4. API Requirements
-
-Use FastAPI to provide:
-
-- document upload or import endpoint
-- question-answering endpoint
-- health check endpoint
-- clear error responses
-
-## 5. Evaluation
-
-Prepare:
-
-- 20 test questions
-- expected source documents
-- answer correctness notes
-- retrieval failure cases
-- bad case log
-
-Evaluation dimensions:
-
-- retrieval relevance
-- answer correctness
-- citation correctness
-- response time
-- failure handling
-
-## 6. MVP Acceptance Criteria
-
-The MVP is complete when it can:
-
-- import at least 5 documents
-- divide documents into searchable chunks
-- retrieve relevant chunks for a question
-- generate an answer based on retrieved content
-- display source citations
-- answer 20 prepared test questions
-- record bad cases
-- run through FastAPI
-
-## 7. Out of Scope
-
-The MVP will not include:
-
-- Agent workflows
-- Docker deployment
-- complex frontend
-- model fine-tuning
-- multi-user system
-- login and permission management
-- large-scale distributed vector database
-- advanced document parsing
+Deferred features should be added only after a measured limitation justifies
+their cost and the security boundary is redesigned for shared deployment.

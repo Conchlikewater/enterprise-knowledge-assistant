@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from evaluation.runner import run_evaluation
@@ -18,3 +19,10 @@ def test_offline_evaluation_meets_every_quality_gate() -> None:
     assert report.pdf_page_metadata_pass_rate == 1.0
     assert report.empty_chunk_invariant_passed
     assert report.deletion_passed
+
+    tracked_report = json.loads(
+        (PROJECT_ROOT / "evaluation" / "latest_report.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert report.to_dict() == tracked_report

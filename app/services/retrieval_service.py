@@ -89,7 +89,7 @@ class RetrievalService:
                 ]
 
             logger.info(
-                "retrieval_succeeded provider=%s selected_document_count=%d "
+                "event=retrieval_succeeded provider=%s selected_document_count=%d "
                 "result_count=%d top_k=%d elapsed_ms=%d",
                 self._embedding_provider.name,
                 len(selected_ids),
@@ -100,7 +100,7 @@ class RetrievalService:
             return ordered_results
         except Exception as exc:
             logger.warning(
-                "retrieval_failed provider=%s selected_document_count=%d "
+                "event=retrieval_failed provider=%s selected_document_count=%d "
                 "error_type=%s elapsed_ms=%d",
                 self._embedding_provider.name,
                 len(selected_ids),

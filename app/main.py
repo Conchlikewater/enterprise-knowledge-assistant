@@ -13,6 +13,7 @@ from app.api.routers.health import router as health_router
 from app.api.routers.retrieval import router as retrieval_router
 from app.core.config import Settings
 from app.core.error_handlers import register_error_handlers
+from app.core.logging import configure_logging
 from app.providers.embedding_provider import EmbeddingProvider
 from app.providers.llm_provider import LLMProvider
 from app.providers.openai_embedding_provider import OpenAIEmbeddingProvider
@@ -35,6 +36,7 @@ def create_app(
     llm_provider: LLMProvider | None = None,
 ) -> FastAPI:
     resolved_settings = settings or Settings.from_env()
+    configure_logging(resolved_settings.log_level)
     resolved_repository = document_repository or SQLiteDocumentRepository(
         resolved_settings.sqlite_path
     )

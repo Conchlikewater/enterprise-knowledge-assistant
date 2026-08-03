@@ -121,7 +121,7 @@ class IngestionService:
                 raise DocumentRepositoryError()
 
             logger.info(
-                "document_ingestion_succeeded document_id=%s media_type=%s "
+                "event=document_ingestion_succeeded document_id=%s media_type=%s "
                 "size_bytes=%d chunk_count=%d elapsed_ms=%d",
                 document_id,
                 validated_file.media_type,
@@ -135,7 +135,7 @@ class IngestionService:
                 self._rollback_record(document_id)
             self._remove_stored_file(stored_path, document_id)
             logger.warning(
-                "document_ingestion_failed document_id=%s media_type=%s "
+                "event=document_ingestion_failed document_id=%s media_type=%s "
                 "error_type=%s elapsed_ms=%d",
                 document_id,
                 identity.media_type,
@@ -149,7 +149,7 @@ class IngestionService:
             self._vector_store.delete_by_document(document_id)
         except Exception as exc:
             logger.error(
-                "document_ingestion_vector_rollback_failed "
+                "event=document_ingestion_vector_rollback_failed "
                 "document_id=%s error_type=%s",
                 document_id,
                 type(exc).__name__,
@@ -163,7 +163,7 @@ class IngestionService:
             )
         except Exception as exc:
             logger.error(
-                "document_ingestion_record_rollback_failed "
+                "event=document_ingestion_record_rollback_failed "
                 "document_id=%s error_type=%s",
                 document_id,
                 type(exc).__name__,
@@ -175,7 +175,7 @@ class IngestionService:
             stored_path.unlink(missing_ok=True)
         except OSError as exc:
             logger.error(
-                "document_ingestion_file_rollback_failed "
+                "event=document_ingestion_file_rollback_failed "
                 "document_id=%s error_type=%s",
                 document_id,
                 type(exc).__name__,

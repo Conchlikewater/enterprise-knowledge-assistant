@@ -82,7 +82,7 @@ class AnswerService:
                     )
 
             logger.info(
-                "answer_succeeded provider=%s model=%s retrieval_count=%d "
+                "event=answer_succeeded provider=%s model=%s retrieval_count=%d "
                 "citation_count=%d elapsed_ms=%d",
                 self._llm_provider.name,
                 self._llm_provider.model,
@@ -93,7 +93,8 @@ class AnswerService:
             return answer_result
         except Exception as exc:
             logger.warning(
-                "answer_failed provider=%s model=%s error_type=%s elapsed_ms=%d",
+                "event=answer_failed provider=%s model=%s error_type=%s "
+                "elapsed_ms=%d",
                 self._llm_provider.name,
                 self._llm_provider.model,
                 type(exc).__name__,

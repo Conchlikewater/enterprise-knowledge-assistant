@@ -45,6 +45,10 @@ class SettingsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Settings(llm_max_output_tokens=0)
 
+    def test_invalid_log_level_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            Settings(log_level="TRACE")
+
     def test_env_file_loads_key_without_exposing_it_in_repr(self) -> None:
         secret = "test-secret-value"
         with tempfile.TemporaryDirectory() as temporary_directory:
