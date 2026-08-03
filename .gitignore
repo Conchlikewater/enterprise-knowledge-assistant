@@ -1,0 +1,25 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Local configuration and secrets
+.env
+!.env.example
+
+# Runtime data (keep the directory placeholders)
+data/app.db
+data/uploads/*
+!data/uploads/.gitkeep
+data/qdrant/*
+!data/qdrant/.gitkeep
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

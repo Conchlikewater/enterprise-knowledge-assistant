@@ -1,0 +1,115 @@
+"""Framework-independent V1 domain models."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from datetime import UTC, datetime
+from enum import StrEnum
+from pathlib import Path
+from uuid import UUID
+
+
+def utc_now() -> datetime:
+    return datetime.now(UTC)
+
+
+class DocumentStatus(StrEnum):
+    PROCESSING = "processing"
+    READY = "ready"
+    FAILED = "failed"
+
+
+@dataclass(frozen=True, slots=True)
+class Document:
+    document_id: UUID
+    filename: str
+    media_type: str
+    size_bytes: int
+    sha256: str
+    status: DocumentStatus
+    stored_path: Path
+    chunk_count: int = 0
+    created_at: datetime = field(default_factory=utc_now)
+    updated_at: datetime = field(default_factory=utc_now)
+
+    def __post_init__(self) -> None:
+        if not self.filename:
+            raise ValueError("filename must not be empty")
+        if self.size_bytes < 0 or self.chunk_count < 0:
+            raise ValueError("sizes and counts must not be negative")
+        if len(self.sha256) != 64:
+            raise ValueError("sha256 must contain 64 hexadecimal characters")
+        try:
+            int(self.sha256, 16)
+        except ValueError as exc:
+            raise ValueError("sha256 must contain 64 hexadecimal characters") from exc
+
+
+@dataclass(frozen=True, slots=True)
+class Chunk:
+    chunk_id: UUID
+    document_id: UUID
+    chunk_index: int
+    text: str
+    filename: str
+    content_hash: str
+    page_number: int | None = None
+
+    def __post_init__(self) -> None:
+        if self.chunk_index < 0:
+            raise ValueError("chunk_index must not be negative")
+        if not self.text.strip():
+            raise ValueError("chunk text must not be empty")
+        if len(self.content_hash) != 64:
+            raise ValueError("content_hash must contain 64 hexadecimal characters")
+        try:
+            int(self.content_hash, 16)
+        except ValueError as exc:
+            raise ValueError("content_hash must contain 64 hexadecimal characters") from exc
+        if self.page_number is not None and self.page_number < 1:
+            raise ValueError("page_number must be positive when present")
+
+
+
+@dataclass(frozen=True, slots=True)
+class RetrievalResult:
+    chunk_id: UUID
+    document_id: UUID
+    filename: str
+    text: str
+    score: float
+    page_number: int | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class Citation:
+    citation_number: int
+    document_id: UUID
+    chunk_id: UUID
+    filename: str
+    excerpt: str
+    score: float
+    page_number: int | None = None
+
+    @classmethod
+    def from_result(
+        cls,
+        result: RetrievalResult,
+        citation_number: int,
+        excerpt_limit: int = 240,
+    ) -> "Citation":
+        if citation_number < 1:
+            raise ValueError("citation_number must be positive")
+        if excerpt_limit < 1:
+            raise ValueError("excerpt_limit must be positive")
+        compact_text = " ".join(result.text.split())
+        excerpt = compact_text[:excerpt_limit]
+        return cls(
+            citation_number=citation_number,
+            document_id=result.document_id,
+            chunk_id=result.chunk_id,
+            filename=result.filename,
+            page_number=result.page_number,
+            excerpt=excerpt,
+            score=result.score,
+        )
