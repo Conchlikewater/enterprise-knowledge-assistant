@@ -1,0 +1,672 @@
+{
+  "passed": true,
+  "document_count": 10,
+  "txt_count": 6,
+  "pdf_count": 4,
+  "multi_page_document_count": 2,
+  "question_count": 20,
+  "category_counts": {
+    "direct": 10,
+    "multi_chunk": 4,
+    "scope_isolation": 2,
+    "unanswerable": 4
+  },
+  "ingested_document_count": 10,
+  "top5_source_accuracy": 1.0,
+  "multi_chunk_pass_rate": 1.0,
+  "scope_isolation_pass_rate": 1.0,
+  "unanswerable_rejection_rate": 1.0,
+  "citation_integrity_pass_rate": 1.0,
+  "pdf_page_metadata_pass_rate": 1.0,
+  "empty_chunk_invariant_passed": true,
+  "deletion_passed": true,
+  "failed_checks": [],
+  "question_results": [
+    {
+      "id": "direct-01",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.4376
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.1741
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1017
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0599
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0563
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-02",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "change_management.pdf",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.533
+        },
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.1553
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1515
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0844
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.074
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-03",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "data_retention.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.4411
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0702
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0658
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0658
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0639
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-04",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "change_management.pdf",
+        "data_retention.txt",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.5803
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.1857
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1529
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1238
+        },
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.1068
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-05",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "remote_work.pdf",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.3596
+        },
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1448
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1083
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1083
+        },
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.0899
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-06",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "data_retention.txt",
+        "incident_response.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.4724
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1413
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1383
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1083
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.105
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-07",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "leave_policy.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.6181
+        },
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.0899
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0727
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0619
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0599
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-08",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "leave_policy.txt",
+        "remote_work.pdf",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.5394
+        },
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.1931
+        },
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1448
+        },
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.1158
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.092
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-09",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "data_retention.txt",
+        "expense_policy.txt",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.3146
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.112
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.105
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0692
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.056
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-10",
+      "category": "direct",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "expense_policy.txt",
+        "leave_policy.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.4874
+        },
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.2314
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1391
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1391
+        },
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.1155
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-01",
+      "category": "multi_chunk",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "data_retention.txt",
+        "expense_policy.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.2182
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1883
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0787
+        },
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.0787
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0449
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-02",
+      "category": "multi_chunk",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.3466
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.3225
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.1004
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0824
+        },
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0735
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-03",
+      "category": "multi_chunk",
+      "passed": true,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "expense_policy.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.2736
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0927
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0927
+        },
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.0787
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0563
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-04",
+      "category": "multi_chunk",
+      "passed": true,
+      "retrieved_sources": [
+        "incident_response.txt",
+        "remote_work.pdf",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.1942
+        },
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.1808
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1136
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0999
+        },
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0777
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "scope-01",
+      "category": "scope_isolation",
+      "passed": true,
+      "retrieved_sources": [
+        "access_policy.txt"
+      ],
+      "result_count": 3,
+      "results": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.2917
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0563
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0508
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "scope-02",
+      "category": "scope_isolation",
+      "passed": true,
+      "retrieved_sources": [
+        "data_retention.txt"
+      ],
+      "result_count": 4,
+      "results": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.2321
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1238
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.058
+        },
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0563
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-01",
+      "category": "unanswerable",
+      "passed": true,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-02",
+      "category": "unanswerable",
+      "passed": true,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-03",
+      "category": "unanswerable",
+      "passed": true,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-04",
+      "category": "unanswerable",
+      "passed": true,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    }
+  ]
+}

@@ -72,3 +72,13 @@ data                 本地运行数据（不提交数据库内容）
 - `docs/architecture_log.md`：V1 架构决策、API 契约和质量边界。
 - `docs/open_source_research.md`：开源项目调研证据。
 - `docs/provider_decisions.md`：OpenAI embedding/LLM 选择和隐私配置。
+
+## 离线评估
+
+项目包含 10 份合成文档和 20 道评估题，可在不使用 API Key、不产生云端费用的情况下运行完整 SQLite/Qdrant RAG 评估：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_evaluation.py
+```
+
+当前门槛覆盖 Top-5 来源命中、多块证据、文档范围隔离、不可回答问题、引用完整性、PDF 页码和删除一致性。方法说明与最新结果位于 `evaluation/README.md` 和 `evaluation/latest_report.json`。

@@ -1,0 +1,3 @@
+Finance records are retained for seven years. Human Resources records are retained for six years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.
+
+A legal hold suspends normal deletion for affected records until Legal releases the hold. Automated deletion jobs run every quarter, and record owners review purge exceptions within ten business days.

@@ -1,0 +1,53 @@
+import json
+from pathlib import Path
+
+from pypdf import PdfReader
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def test_evaluation_dataset_matches_architecture_requirements() -> None:
+    corpus = json.loads(
+        (PROJECT_ROOT / "evaluation" / "corpus_sources.json").read_text(
+            encoding="utf-8"
+        )
+    )["documents"]
+    questions = json.loads(
+        (PROJECT_ROOT / "evaluation" / "questions.json").read_text(
+            encoding="utf-8"
+        )
+    )["questions"]
+
+    assert len(corpus) == 10
+    assert sum(item["media_type"] == "text/plain" for item in corpus) >= 4
+    assert sum(item["media_type"] == "application/pdf" for item in corpus) >= 4
+    assert sum(len(item["pages"]) > 1 for item in corpus) >= 2
+    assert len(questions) == 20
+
+    category_counts = {
+        category: sum(item["category"] == category for item in questions)
+        for category in {item["category"] for item in questions}
+    }
+    assert category_counts == {
+        "direct": 10,
+        "multi_chunk": 4,
+        "scope_isolation": 2,
+        "unanswerable": 4,
+    }
+
+
+def test_generated_documents_exist_and_pdf_pages_are_extractable() -> None:
+    corpus = json.loads(
+        (PROJECT_ROOT / "evaluation" / "corpus_sources.json").read_text(
+            encoding="utf-8"
+        )
+    )["documents"]
+
+    for document in corpus:
+        file_path = PROJECT_ROOT / "evaluation" / "documents" / document["filename"]
+        assert file_path.is_file()
+        assert file_path.stat().st_size > 0
+        if document["media_type"] == "application/pdf":
+            reader = PdfReader(file_path)
+            assert len(reader.pages) == len(document["pages"])
+            assert all((page.extract_text() or "").strip() for page in reader.pages)

@@ -1,3 +1,3 @@
 # Evaluation tests
 
-Day 2 只保留评估测试结构。后续将在这里加入 20 个问题、预期来源、不可回答问题和 bad-case 记录。
+这些测试验证 `evaluation/` 中的合成语料结构，并运行完整的离线 RAG 评估门槛。评估使用临时 SQLite、Qdrant 和上传目录，不读取真实 `.env`，也不调用云端 API。

@@ -1,0 +1,3 @@
+Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors. Critical vendors require approval from Procurement and Security.
+
+Critical vendors are reassessed annually. Contracts must require notification of a confirmed data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.

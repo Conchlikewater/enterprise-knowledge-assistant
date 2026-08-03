@@ -1,0 +1,154 @@
+{
+  "questions": [
+    {
+      "id": "direct-01",
+      "category": "direct",
+      "question": "How often is privileged access recertification performed?",
+      "scope": ["*"],
+      "expected_sources": ["access_policy.txt"]
+    },
+    {
+      "id": "direct-02",
+      "category": "direct",
+      "question": "Within how many minutes must a Severity 1 incident reach the incident commander?",
+      "scope": ["*"],
+      "expected_sources": ["incident_response.txt"]
+    },
+    {
+      "id": "direct-03",
+      "category": "direct",
+      "question": "How often are critical vendors reassessed?",
+      "scope": ["*"],
+      "expected_sources": ["vendor_management.txt"]
+    },
+    {
+      "id": "direct-04",
+      "category": "direct",
+      "question": "How many years are finance records retained?",
+      "scope": ["*"],
+      "expected_sources": ["data_retention.txt"]
+    },
+    {
+      "id": "direct-05",
+      "category": "direct",
+      "question": "After how many minutes of inactivity does a company device lock?",
+      "scope": ["*"],
+      "expected_sources": ["remote_work.pdf"],
+      "expected_pages": [1]
+    },
+    {
+      "id": "direct-06",
+      "category": "direct",
+      "question": "What evidence and review are required for a normal production change?",
+      "scope": ["*"],
+      "expected_sources": ["change_management.pdf"],
+      "expected_pages": [1]
+    },
+    {
+      "id": "direct-07",
+      "category": "direct",
+      "question": "What is the customer portal recovery time objective?",
+      "scope": ["*"],
+      "expected_sources": ["business_continuity.pdf"],
+      "expected_pages": [1]
+    },
+    {
+      "id": "direct-08",
+      "category": "direct",
+      "question": "When must new starters complete security awareness training?",
+      "scope": ["*"],
+      "expected_sources": ["security_awareness.pdf"],
+      "expected_pages": [1]
+    },
+    {
+      "id": "direct-09",
+      "category": "direct",
+      "question": "Above what amount is an itemized expense receipt required?",
+      "scope": ["*"],
+      "expected_sources": ["expense_policy.txt"]
+    },
+    {
+      "id": "direct-10",
+      "category": "direct",
+      "question": "How many annual leave days do full-time employees receive?",
+      "scope": ["*"],
+      "expected_sources": ["leave_policy.txt"]
+    },
+    {
+      "id": "multi-01",
+      "category": "multi_chunk",
+      "question": "What are the quarterly privileged recertification and terminated-worker access removal requirements?",
+      "scope": ["*"],
+      "expected_sources": ["access_policy.txt"],
+      "minimum_expected_chunks": 2
+    },
+    {
+      "id": "multi-02",
+      "category": "multi_chunk",
+      "question": "What are the Severity 1 notification deadline and post-incident review deadline?",
+      "scope": ["*"],
+      "expected_sources": ["incident_response.txt"],
+      "minimum_expected_chunks": 2
+    },
+    {
+      "id": "multi-03",
+      "category": "multi_chunk",
+      "question": "What are the customer portal recovery objective and backup restore testing schedule?",
+      "scope": ["*"],
+      "expected_sources": ["business_continuity.pdf"],
+      "minimum_expected_chunks": 2,
+      "expected_pages": [1, 2]
+    },
+    {
+      "id": "multi-04",
+      "category": "multi_chunk",
+      "question": "What are the new-starter training deadline and suspected phishing reporting deadline?",
+      "scope": ["*"],
+      "expected_sources": ["security_awareness.pdf"],
+      "minimum_expected_chunks": 2,
+      "expected_pages": [1, 2]
+    },
+    {
+      "id": "scope-01",
+      "category": "scope_isolation",
+      "question": "Which quarterly review applies to privileged accounts?",
+      "scope": ["access_policy.txt"],
+      "expected_sources": ["access_policy.txt"]
+    },
+    {
+      "id": "scope-02",
+      "category": "scope_isolation",
+      "question": "What retention period applies to finance records?",
+      "scope": ["data_retention.txt"],
+      "expected_sources": ["data_retention.txt"]
+    },
+    {
+      "id": "unanswerable-01",
+      "category": "unanswerable",
+      "question": "Which desserts appear on the lunar cafeteria menu?",
+      "scope": ["*"],
+      "expected_sources": []
+    },
+    {
+      "id": "unanswerable-02",
+      "category": "unanswerable",
+      "question": "What is the approved orbital launch window for satellites?",
+      "scope": ["*"],
+      "expected_sources": []
+    },
+    {
+      "id": "unanswerable-03",
+      "category": "unanswerable",
+      "question": "Which dental plan covers orthodontic implants?",
+      "scope": ["*"],
+      "expected_sources": []
+    },
+    {
+      "id": "unanswerable-04",
+      "category": "unanswerable",
+      "question": "When must factory robots receive lubricant replacement?",
+      "scope": ["*"],
+      "expected_sources": []
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. The commander opens the incident channel, assigns an owner, and records major decisions in the incident timeline.
+
+A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and owners. Investigation evidence and the final review are retained for two years.

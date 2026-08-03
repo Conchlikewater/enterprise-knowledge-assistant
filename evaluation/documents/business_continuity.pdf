@@ -1,0 +1,99 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (RAG V1 evaluator)
+/Title (business\137continuity)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 2
+/Kids [ 5 0 R 7 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 283
+>>
+stream
+BT /F1 10 Tf 72 730 Td 14 TL
+(The customer portal has a recovery time objective of two hours. Payroll has a) Tj T*
+(recovery time objective of four hours. Business owners validate recovery) Tj T*
+(priorities during continuity exercises, which are conducted twice each year.) Tj T*
+ET
+endstream
+endobj
+7 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 323
+>>
+stream
+BT /F1 10 Tf 72 730 Td 14 TL
+(Production backups run daily and are encrypted before leaving the primary) Tj T*
+(environment. Restore tests are performed every quarter. Crisis contact lists are) Tj T*
+(reviewed monthly, and failed restore tests require a corrective-action owner) Tj T*
+(within three business days.) Tj T*
+ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000097 00000 n 
+0000000162 00000 n 
+0000000211 00000 n 
+0000000281 00000 n 
+0000000413 00000 n 
+0000000747 00000 n 
+0000000879 00000 n 
+trailer
+<<
+/Size 9
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+1253
+%%EOF
