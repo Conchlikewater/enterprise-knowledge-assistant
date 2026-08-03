@@ -1,6 +1,7 @@
-# Lightweight web/runtime and text-based PDF parsing dependencies.
-# Vector databases, model SDKs and OCR packages are intentionally deferred.
+# Lightweight web/runtime, text-based PDF parsing and local vector storage.
+# Model SDKs and OCR packages are intentionally deferred.
 fastapi>=0.115,<1.0
 pydantic>=2.10,<3.0
 pypdf>=5.0,<7.0
+qdrant-client>=1.14,<2.0
 uvicorn[standard]>=0.34,<1.0

@@ -11,6 +11,10 @@ from app.domain.models import Chunk, RetrievalResult
 
 class VectorStore(ABC):
     @abstractmethod
+    def initialize(self) -> None:
+        """Create or validate the backing collection."""
+
+    @abstractmethod
     def health(self) -> bool:
         """Return whether the store can serve requests."""
 
@@ -30,3 +34,7 @@ class VectorStore(ABC):
     @abstractmethod
     def delete_by_document(self, document_id: UUID) -> None:
         """Delete all points belonging to one document."""
+
+    @abstractmethod
+    def close(self) -> None:
+        """Release local or network resources held by the store."""

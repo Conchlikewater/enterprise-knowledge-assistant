@@ -11,6 +11,7 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.host, "127.0.0.1")
         self.assertEqual(settings.upload_dir, Path("data/uploads"))
         self.assertEqual(settings.qdrant_path, Path("data/qdrant"))
+        self.assertEqual(settings.qdrant_collection, "knowledge_chunks")
 
     def test_environment_values_are_typed(self) -> None:
         settings = Settings.from_env(

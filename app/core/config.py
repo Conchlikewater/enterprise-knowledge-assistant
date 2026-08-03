@@ -36,6 +36,7 @@ class Settings:
     upload_dir: Path = Path("data/uploads")
     sqlite_path: Path = Path("data/app.db")
     qdrant_path: Path = Path("data/qdrant")
+    qdrant_collection: str = "knowledge_chunks"
     max_upload_bytes: int = 10 * 1024 * 1024
     chunk_size: int = 1000
     chunk_overlap: int = 150
@@ -45,6 +46,8 @@ class Settings:
             raise ValueError("port must be between 1 and 65535")
         if self.max_upload_bytes <= 0:
             raise ValueError("max_upload_bytes must be positive")
+        if not self.qdrant_collection.strip():
+            raise ValueError("qdrant_collection must not be empty")
         if self.chunk_size <= 0:
             raise ValueError("chunk_size must be positive")
         if not 0 <= self.chunk_overlap < self.chunk_size:
@@ -61,6 +64,7 @@ class Settings:
             upload_dir=Path(env.get("RAG_UPLOAD_DIR", "data/uploads")),
             sqlite_path=Path(env.get("RAG_SQLITE_PATH", "data/app.db")),
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
+            qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
             max_upload_bytes=_read_int(env, "RAG_MAX_UPLOAD_BYTES", 10 * 1024 * 1024),
             chunk_size=_read_int(env, "RAG_CHUNK_SIZE", 1000),
             chunk_overlap=_read_int(env, "RAG_CHUNK_OVERLAP", 150),
