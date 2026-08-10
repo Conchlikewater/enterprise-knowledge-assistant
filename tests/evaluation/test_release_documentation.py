@@ -19,7 +19,9 @@ def test_primary_documentation_uses_current_v2_evidence() -> None:
     assert "143 passed plus 34 subtests" in release
     assert "Semantic Dense Recall@5 / MRR | 100% / 0.9833" in release
     assert "Semantic Hybrid Recall@5 / MRR | 92.50% / 0.8438" in release
-    assert "- [ ] create and publish the standalone GitHub repository" in checklist
+    assert "- [x] create and publish the standalone GitHub repository" in checklist
+    assert "2932451552-beep/enterprise-knowledge-assistant" in release
+    assert "2932451552-beep/enterprise-knowledge-assistant" in checklist
 
 
 def test_interview_guide_no_longer_presents_v1_counts_as_current() -> None:

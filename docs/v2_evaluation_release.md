@@ -4,7 +4,8 @@
 - Product API: V1 modular FastAPI application, version `0.1.0`
 - V2 scope: evaluation, retrieval experiments, observability, and portfolio evidence
 - Production retrieval decision: OpenAI semantic Dense through local Qdrant
-- Publication state: standalone GitHub repository pending
+- Publication state: published at
+  `https://github.com/2932451552-beep/enterprise-knowledge-assistant`
 
 ## What V2 Adds
 
@@ -91,8 +92,9 @@ Claims that are not supported:
 - a production Hybrid or reranking system
 - model training, fine-tuning, Agent, or multi-tenant capabilities
 
-## Remaining External Release Step
+## Publication
 
-The project is currently a subdirectory of the larger `ai-internship-prep`
-repository. Code and evidence are frozen, but the final standalone GitHub
-repository must still be created and published before the portfolio URL is ready.
+The working copy remains a subdirectory of the larger `ai-internship-prep`
+repository. Its filtered project history is published independently at
+`https://github.com/2932451552-beep/enterprise-knowledge-assistant`, without
+the parent repository's unrelated projects or local runtime data.

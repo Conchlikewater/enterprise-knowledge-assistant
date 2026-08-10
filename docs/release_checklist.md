@@ -49,11 +49,9 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] MIT license is selected by the owner
 - [x] standalone-repository GitHub Actions workflow is tracked
 - [x] V2 release decision and claim boundaries are documented
-- [ ] create and publish the standalone GitHub repository
+- [x] create and publish the standalone GitHub repository
 
-The standalone repository target was selected by the owner. While this project
-still lives inside a larger local Git repository, GitHub will discover the
-tracked workflow after this directory becomes the root of its own repository.
-
-V2 code and evidence are frozen locally. Publishing the separate repository is
-an external release step and is intentionally not marked complete here.
+The local project still lives inside a larger Git repository, but its filtered
+history has been published as the standalone public repository
+`2932451552-beep/enterprise-knowledge-assistant`. GitHub recognizes `main` as
+the default branch and the MIT license from the repository root.
