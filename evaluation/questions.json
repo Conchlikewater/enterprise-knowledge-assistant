@@ -5,81 +5,170 @@
       "category": "direct",
       "question": "How often is privileged access recertification performed?",
       "scope": ["*"],
-      "expected_sources": ["access_policy.txt"]
+      "answerable": true,
+      "expected_answer": "Privileged access recertification is performed every quarter.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ]
     },
     {
       "id": "direct-02",
       "category": "direct",
       "question": "Within how many minutes must a Severity 1 incident reach the incident commander?",
       "scope": ["*"],
-      "expected_sources": ["incident_response.txt"]
+      "answerable": true,
+      "expected_answer": "A Severity 1 incident must reach the incident commander within 15 minutes of confirmation.",
+      "expected_evidence": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ]
     },
     {
       "id": "direct-03",
       "category": "direct",
       "question": "How often are critical vendors reassessed?",
       "scope": ["*"],
-      "expected_sources": ["vendor_management.txt"]
+      "answerable": true,
+      "expected_answer": "Critical vendors are reassessed annually.",
+      "expected_evidence": [
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Critical vendors are reassessed annually."
+        }
+      ]
     },
     {
       "id": "direct-04",
       "category": "direct",
       "question": "How many years are finance records retained?",
       "scope": ["*"],
-      "expected_sources": ["data_retention.txt"]
+      "answerable": true,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ]
     },
     {
       "id": "direct-05",
       "category": "direct",
       "question": "After how many minutes of inactivity does a company device lock?",
       "scope": ["*"],
-      "expected_sources": ["remote_work.pdf"],
-      "expected_pages": [1]
+      "answerable": true,
+      "expected_answer": "Company devices automatically lock after ten minutes of inactivity.",
+      "expected_evidence": [
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Company devices automatically lock after ten minutes of inactivity."
+        }
+      ]
     },
     {
       "id": "direct-06",
       "category": "direct",
       "question": "What evidence and review are required for a normal production change?",
       "scope": ["*"],
-      "expected_sources": ["change_management.pdf"],
-      "expected_pages": [1]
+      "answerable": true,
+      "expected_answer": "A normal production change requires documented test evidence and peer review, together with a change ticket and service-owner approval before deployment.",
+      "expected_evidence": [
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "snippet": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment."
+        }
+      ]
     },
     {
       "id": "direct-07",
       "category": "direct",
       "question": "What is the customer portal recovery time objective?",
       "scope": ["*"],
-      "expected_sources": ["business_continuity.pdf"],
-      "expected_pages": [1]
+      "answerable": true,
+      "expected_answer": "The customer portal recovery time objective is two hours.",
+      "expected_evidence": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        }
+      ]
     },
     {
       "id": "direct-08",
       "category": "direct",
       "question": "When must new starters complete security awareness training?",
       "scope": ["*"],
-      "expected_sources": ["security_awareness.pdf"],
-      "expected_pages": [1]
+      "answerable": true,
+      "expected_answer": "New starters must complete security awareness training within 30 days of joining.",
+      "expected_evidence": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        }
+      ]
     },
     {
       "id": "direct-09",
       "category": "direct",
       "question": "Above what amount is an itemized expense receipt required?",
       "scope": ["*"],
-      "expected_sources": ["expense_policy.txt"]
+      "answerable": true,
+      "expected_answer": "An itemized receipt is required for any expense above 75 dollars.",
+      "expected_evidence": [
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "An itemized receipt is required for any expense above 75 dollars."
+        }
+      ]
     },
     {
       "id": "direct-10",
       "category": "direct",
       "question": "How many annual leave days do full-time employees receive?",
       "scope": ["*"],
-      "expected_sources": ["leave_policy.txt"]
+      "answerable": true,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ]
     },
     {
       "id": "multi-01",
       "category": "multi_chunk",
       "question": "What are the quarterly privileged recertification and terminated-worker access removal requirements?",
       "scope": ["*"],
-      "expected_sources": ["access_policy.txt"],
+      "answerable": true,
+      "expected_answer": "Privileged access is recertified every quarter, and a terminated worker's access must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ],
       "minimum_expected_chunks": 2
     },
     {
@@ -87,7 +176,20 @@
       "category": "multi_chunk",
       "question": "What are the Severity 1 notification deadline and post-incident review deadline?",
       "scope": ["*"],
-      "expected_sources": ["incident_response.txt"],
+      "answerable": true,
+      "expected_answer": "A Severity 1 incident must reach the incident commander within 15 minutes of confirmation, and its post-incident review must be completed within five business days after service restoration.",
+      "expected_evidence": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        },
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A post-incident review must be completed within five business days after service restoration."
+        }
+      ],
       "minimum_expected_chunks": 2
     },
     {
@@ -95,60 +197,558 @@
       "category": "multi_chunk",
       "question": "What are the customer portal recovery objective and backup restore testing schedule?",
       "scope": ["*"],
-      "expected_sources": ["business_continuity.pdf"],
-      "minimum_expected_chunks": 2,
-      "expected_pages": [1, 2]
+      "answerable": true,
+      "expected_answer": "The customer portal recovery time objective is two hours, and restore tests are performed every quarter.",
+      "expected_evidence": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "snippet": "Restore tests are performed every quarter."
+        }
+      ],
+      "minimum_expected_chunks": 2
     },
     {
       "id": "multi-04",
       "category": "multi_chunk",
       "question": "What are the new-starter training deadline and suspected phishing reporting deadline?",
       "scope": ["*"],
-      "expected_sources": ["security_awareness.pdf"],
-      "minimum_expected_chunks": 2,
-      "expected_pages": [1, 2]
+      "answerable": true,
+      "expected_answer": "New starters must complete security awareness training within 30 days of joining, and suspected phishing messages must be reported within one hour.",
+      "expected_evidence": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        },
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "snippet": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded."
+        }
+      ],
+      "minimum_expected_chunks": 2
     },
     {
       "id": "scope-01",
       "category": "scope_isolation",
       "question": "Which quarterly review applies to privileged accounts?",
       "scope": ["access_policy.txt"],
-      "expected_sources": ["access_policy.txt"]
+      "answerable": true,
+      "expected_answer": "Privileged access recertification is performed every quarter.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ]
     },
     {
       "id": "scope-02",
       "category": "scope_isolation",
       "question": "What retention period applies to finance records?",
       "scope": ["data_retention.txt"],
-      "expected_sources": ["data_retention.txt"]
+      "answerable": true,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ]
     },
     {
       "id": "unanswerable-01",
       "category": "unanswerable",
       "question": "Which desserts appear on the lunar cafeteria menu?",
       "scope": ["*"],
-      "expected_sources": []
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
     },
     {
       "id": "unanswerable-02",
       "category": "unanswerable",
       "question": "What is the approved orbital launch window for satellites?",
       "scope": ["*"],
-      "expected_sources": []
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
     },
     {
       "id": "unanswerable-03",
       "category": "unanswerable",
       "question": "Which dental plan covers orthodontic implants?",
       "scope": ["*"],
-      "expected_sources": []
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
     },
     {
       "id": "unanswerable-04",
       "category": "unanswerable",
       "question": "When must factory robots receive lubricant replacement?",
       "scope": ["*"],
-      "expected_sources": []
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
+    },
+    {
+      "id": "direct-11",
+      "category": "direct",
+      "question": "How quickly must access belonging to a terminated worker be disabled?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ]
+    },
+    {
+      "id": "direct-12",
+      "category": "direct",
+      "question": "Within what period must a vendor report a confirmed data breach?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Vendor contracts must require notification of a confirmed data breach within 48 hours.",
+      "expected_evidence": [
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ]
+    },
+    {
+      "id": "direct-13",
+      "category": "direct",
+      "question": "What does a legal hold do to normal record deletion?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "A legal hold suspends normal deletion for affected records until Legal releases the hold."
+        }
+      ]
+    },
+    {
+      "id": "direct-14",
+      "category": "direct",
+      "question": "When must an emergency production change receive retrospective review?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "An emergency production change requires a retrospective review within two business days.",
+      "expected_evidence": [
+        {
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "snippet": "Emergency changes require incident-commander approval and a retrospective review within two business days."
+        }
+      ]
+    },
+    {
+      "id": "multi-05",
+      "category": "multi_chunk",
+      "question": "Who must approve a critical vendor before onboarding, and how quickly must its confirmed breach be reported?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Procurement and Security must approve a critical vendor, and its contract must require confirmed breach notification within 48 hours.",
+      "expected_evidence": [
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Critical vendors require approval from Procurement and Security."
+        },
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ],
+      "minimum_expected_chunks": 2
+    },
+    {
+      "id": "multi-06",
+      "category": "multi_chunk",
+      "question": "What advance notice applies to long planned leave, and how many unused annual-leave days may be carried forward?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Planned leave of at least five days should be requested two weeks in advance, and up to five unused annual-leave days may be carried into the next year.",
+      "expected_evidence": [
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Planned leave of five days or more should be requested at least two weeks in advance."
+        },
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Up to five unused annual-leave days may be carried into the next year; additional unused days expire."
+        }
+      ],
+      "minimum_expected_chunks": 2
+    },
+    {
+      "id": "scope-03",
+      "category": "scope_isolation",
+      "question": "How soon must a lost company device be reported?",
+      "scope": ["remote_work.pdf"],
+      "answerable": true,
+      "expected_answer": "A lost company device must be reported to the service desk within one hour.",
+      "expected_evidence": [
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Lost devices must be reported to the service desk within one hour."
+        }
+      ]
+    },
+    {
+      "id": "scope-04",
+      "category": "scope_isolation",
+      "question": "Which expenses are explicitly not reimbursable?",
+      "scope": ["expense_policy.txt"],
+      "answerable": true,
+      "expected_answer": "Personal purchases, commuting costs, and minibar charges are not reimbursable.",
+      "expected_evidence": [
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "Personal purchases, commuting costs, and minibar charges are not reimbursable."
+        }
+      ]
+    },
+    {
+      "id": "unanswerable-05",
+      "category": "unanswerable",
+      "question": "What is the price of breakfast in the staff cafeteria?",
+      "scope": ["*"],
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
+    },
+    {
+      "id": "unanswerable-06",
+      "category": "unanswerable",
+      "question": "When do employee stock options finish vesting?",
+      "scope": ["*"],
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
+    },
+    {
+      "id": "unanswerable-07",
+      "category": "unanswerable",
+      "question": "How often must warehouse forklifts pass mechanical inspection?",
+      "scope": ["*"],
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
+    },
+    {
+      "id": "unanswerable-08",
+      "category": "unanswerable",
+      "question": "What is the official name of the corporate mascot?",
+      "scope": ["*"],
+      "answerable": false,
+      "expected_answer": null,
+      "expected_evidence": []
+    },
+    {
+      "id": "paraphrase-01",
+      "category": "paraphrase",
+      "question": "How frequently must administrators' special access be checked again?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Privileged access is checked every quarter.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-02",
+      "category": "paraphrase",
+      "question": "What is the maximum time to escalate a confirmed top-priority outage?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A confirmed Severity 1 incident must reach the incident commander within 15 minutes.",
+      "expected_evidence": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-03",
+      "category": "paraphrase",
+      "question": "How long are accounting documents kept?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-04",
+      "category": "paraphrase",
+      "question": "What is the yearly paid-holiday allowance for full-time staff?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-05",
+      "category": "paraphrase",
+      "question": "When does a remote laptop secure itself if left untouched?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A company device locks after ten minutes of inactivity.",
+      "expected_evidence": [
+        {
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Company devices automatically lock after ten minutes of inactivity."
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-06",
+      "category": "paraphrase",
+      "question": "How soon must a suspicious email be sent to the security team?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Suspected phishing messages must be reported to Security within one hour.",
+      "expected_evidence": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "snippet": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded."
+        }
+      ]
+    },
+    {
+      "id": "distractor-01",
+      "category": "distractor",
+      "question": "Is the customer portal recovery objective two hours or four hours?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "The customer portal recovery time objective is two hours; four hours applies to payroll.",
+      "expected_evidence": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        }
+      ]
+    },
+    {
+      "id": "distractor-02",
+      "category": "distractor",
+      "question": "Are restore tests performed monthly or quarterly?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Restore tests are performed every quarter; monthly review applies to crisis contact lists.",
+      "expected_evidence": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "snippet": "Restore tests are performed every quarter."
+        }
+      ]
+    },
+    {
+      "id": "distractor-03",
+      "category": "distractor",
+      "question": "Does the critical-vendor breach rule require 48-hour notification or annual notification?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A confirmed data breach must be notified within 48 hours; annual timing applies to vendor reassessment.",
+      "expected_evidence": [
+        {
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ]
+    },
+    {
+      "id": "distractor-04",
+      "category": "distractor",
+      "question": "Which records are retained for seven years rather than six years?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Finance records are retained for seven years; Human Resources records use the six-year period.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ]
+    },
+    {
+      "id": "distractor-05",
+      "category": "distractor",
+      "question": "Does the receipt threshold concern 75 dollars or ten calendar days?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "The itemized receipt threshold is an expense above 75 dollars; ten calendar days is the submission deadline.",
+      "expected_evidence": [
+        {
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "An itemized receipt is required for any expense above 75 dollars."
+        }
+      ]
+    },
+    {
+      "id": "distractor-06",
+      "category": "distractor",
+      "question": "Does employee security training recur annually or quarterly?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Employee security awareness training repeats annually; phishing simulations occur quarterly.",
+      "expected_evidence": [
+        {
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        }
+      ]
+    },
+    {
+      "id": "low-score-01",
+      "category": "low_score",
+      "question": "How long can former staff credentials remain live?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A terminated worker's access must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ]
+    },
+    {
+      "id": "low-score-02",
+      "category": "low_score",
+      "question": "How quickly must the most serious outage be escalated?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "A Severity 1 incident must be reported within 15 minutes of confirmation.",
+      "expected_evidence": [
+        {
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ]
+    },
+    {
+      "id": "low-score-03",
+      "category": "low_score",
+      "question": "What is the bookkeeping archive period?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ]
+    },
+    {
+      "id": "low-score-04",
+      "category": "low_score",
+      "question": "What is the paid vacation entitlement?",
+      "scope": ["*"],
+      "answerable": true,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-01",
+      "category": "ambiguous",
+      "question": "What is the recovery time objective?",
+      "scope": ["business_continuity.pdf"],
+      "answerable": false,
+      "expected_behavior": "clarify",
+      "expected_answer": null,
+      "expected_evidence": [
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        },
+        {
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "Payroll has a recovery time objective of four hours."
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-02",
+      "category": "ambiguous",
+      "question": "How often is the review performed?",
+      "scope": ["access_policy.txt"],
+      "answerable": false,
+      "expected_behavior": "clarify",
+      "expected_answer": null,
+      "expected_evidence": [
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        },
+        {
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Security Operations reviews overdue removals each week."
+        }
+      ]
     }
   ]
 }

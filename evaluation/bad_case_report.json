@@ -1,0 +1,382 @@
+{
+  "report_version": 1,
+  "source_reports": [
+    "evaluation/latest_report.json",
+    "evaluation/semantic_report.json",
+    "evaluation/semantic_hybrid_report.json"
+  ],
+  "groups": [
+    {
+      "name": "hashing_answerable_retrieval_misses",
+      "failure_stage": "retrieval",
+      "status": "baseline_limitation",
+      "count": 7,
+      "cases": [
+        {
+          "id": "paraphrase-01",
+          "category": "paraphrase",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "access_policy.txt",
+            "expense_policy.txt",
+            "remote_work.pdf",
+            "vendor_management.txt"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "paraphrase-02",
+          "category": "paraphrase",
+          "failures": [
+            "expected_source_missing",
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "business_continuity.pdf",
+            "change_management.pdf",
+            "expense_policy.txt",
+            "leave_policy.txt",
+            "remote_work.pdf"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "paraphrase-05",
+          "category": "paraphrase",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "access_policy.txt",
+            "business_continuity.pdf",
+            "change_management.pdf",
+            "leave_policy.txt",
+            "remote_work.pdf"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "low-score-01",
+          "category": "low_score",
+          "failures": [
+            "expected_source_missing",
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "change_management.pdf",
+            "incident_response.txt",
+            "leave_policy.txt",
+            "remote_work.pdf"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "low-score-02",
+          "category": "low_score",
+          "failures": [
+            "expected_source_missing",
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "access_policy.txt",
+            "business_continuity.pdf",
+            "data_retention.txt",
+            "expense_policy.txt",
+            "security_awareness.pdf"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "low-score-03",
+          "category": "low_score",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "business_continuity.pdf",
+            "data_retention.txt",
+            "leave_policy.txt",
+            "security_awareness.pdf"
+          ],
+          "result_count": 5
+        },
+        {
+          "id": "low-score-04",
+          "category": "low_score",
+          "failures": [
+            "expected_source_missing",
+            "no_expected_evidence_in_top_k"
+          ],
+          "retrieved_sources": [
+            "business_continuity.pdf",
+            "incident_response.txt",
+            "security_awareness.pdf"
+          ],
+          "result_count": 5
+        }
+      ]
+    },
+    {
+      "name": "hashing_refusal_false_accepts",
+      "failure_stage": "refusal_threshold",
+      "status": "baseline_limitation",
+      "count": 1,
+      "cases": [
+        {
+          "id": "unanswerable-05",
+          "category": "unanswerable",
+          "failures": [
+            "unsupported_answer"
+          ],
+          "retrieved_sources": [
+            "data_retention.txt"
+          ],
+          "result_count": 1
+        }
+      ]
+    },
+    {
+      "name": "semantic_refusal_false_accepts_at_old_threshold",
+      "failure_stage": "refusal_threshold",
+      "status": "synthetic_candidate_found_not_promoted",
+      "count": 4,
+      "cases": [
+        {
+          "id": "unanswerable-02",
+          "category": "unanswerable",
+          "configured_threshold": 0.25,
+          "dataset_candidate_threshold": 0.37
+        },
+        {
+          "id": "unanswerable-04",
+          "category": "unanswerable",
+          "configured_threshold": 0.25,
+          "dataset_candidate_threshold": 0.37
+        },
+        {
+          "id": "unanswerable-06",
+          "category": "unanswerable",
+          "configured_threshold": 0.25,
+          "dataset_candidate_threshold": 0.37
+        },
+        {
+          "id": "unanswerable-07",
+          "category": "unanswerable",
+          "configured_threshold": 0.25,
+          "dataset_candidate_threshold": 0.37
+        }
+      ]
+    },
+    {
+      "name": "clarification_response_not_supported",
+      "failure_stage": "response_policy",
+      "status": "planned",
+      "count": 2,
+      "cases": [
+        {
+          "id": "ambiguous-01",
+          "category": "ambiguous",
+          "expected_behavior": "clarify"
+        },
+        {
+          "id": "ambiguous-02",
+          "category": "ambiguous",
+          "expected_behavior": "clarify"
+        }
+      ]
+    },
+    {
+      "name": "semantic_hybrid_regressions",
+      "failure_stage": "retrieval_ranking",
+      "status": "rejected_experiment",
+      "count": 3,
+      "cases": [
+        {
+          "id": "paraphrase-05",
+          "category": "paraphrase",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "expected_evidence": [
+            {
+              "evidence_number": 1,
+              "filename": "remote_work.pdf",
+              "page_number": 1,
+              "snippet": "Company devices automatically lock after ten minutes of inactivity."
+            }
+          ],
+          "results": [
+            {
+              "rank": 1,
+              "filename": "remote_work.pdf",
+              "page_number": 1,
+              "score": 0.9841,
+              "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 2,
+              "filename": "access_policy.txt",
+              "page_number": null,
+              "score": 0.9387,
+              "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 3,
+              "filename": "access_policy.txt",
+              "page_number": null,
+              "score": 0.9276,
+              "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 4,
+              "filename": "access_policy.txt",
+              "page_number": null,
+              "score": 0.8973,
+              "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 5,
+              "filename": "business_continuity.pdf",
+              "page_number": 1,
+              "score": 0.8908,
+              "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+              "matched_evidence_numbers": []
+            }
+          ]
+        },
+        {
+          "id": "low-score-03",
+          "category": "low_score",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "expected_evidence": [
+            {
+              "evidence_number": 1,
+              "filename": "data_retention.txt",
+              "page_number": null,
+              "snippet": "Finance records are retained for seven years."
+            }
+          ],
+          "results": [
+            {
+              "rank": 1,
+              "filename": "data_retention.txt",
+              "page_number": null,
+              "score": 0.9919,
+              "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 2,
+              "filename": "vendor_management.txt",
+              "page_number": null,
+              "score": 0.9541,
+              "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 3,
+              "filename": "expense_policy.txt",
+              "page_number": null,
+              "score": 0.9385,
+              "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 4,
+              "filename": "data_retention.txt",
+              "page_number": null,
+              "score": 0.9262,
+              "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 5,
+              "filename": "access_policy.txt",
+              "page_number": null,
+              "score": 0.8978,
+              "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+              "matched_evidence_numbers": []
+            }
+          ]
+        },
+        {
+          "id": "low-score-04",
+          "category": "low_score",
+          "failures": [
+            "no_expected_evidence_in_top_k"
+          ],
+          "expected_evidence": [
+            {
+              "evidence_number": 1,
+              "filename": "leave_policy.txt",
+              "page_number": null,
+              "snippet": "Full-time employees receive 20 days of annual leave each year."
+            }
+          ],
+          "results": [
+            {
+              "rank": 1,
+              "filename": "leave_policy.txt",
+              "page_number": null,
+              "score": 0.9541,
+              "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 2,
+              "filename": "expense_policy.txt",
+              "page_number": null,
+              "score": 0.9531,
+              "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 3,
+              "filename": "vendor_management.txt",
+              "page_number": null,
+              "score": 0.9296,
+              "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 4,
+              "filename": "access_policy.txt",
+              "page_number": null,
+              "score": 0.9178,
+              "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+              "matched_evidence_numbers": []
+            },
+            {
+              "rank": 5,
+              "filename": "data_retention.txt",
+              "page_number": null,
+              "score": 0.9173,
+              "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+              "matched_evidence_numbers": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": {
+    "embedding_provider": "openai:text-embedding-3-small",
+    "retrieval_strategy": "semantic-dense",
+    "hybrid_promoted": false,
+    "hybrid_decision": "rejected_due_to_recall_and_mrr_regression",
+    "production_refusal_threshold_changed": false,
+    "synthetic_threshold_candidate_interval": [
+      0.37,
+      0.41
+    ],
+    "clarification_behavior": "planned_not_implemented"
+  }
+}

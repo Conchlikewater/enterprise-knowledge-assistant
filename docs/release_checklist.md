@@ -1,4 +1,4 @@
-# Portfolio Release Checklist
+# V2 Portfolio Release Checklist
 
 This checklist separates implemented functionality from final release proof.
 An item is complete only when its evidence was observed in the current worktree.
@@ -13,7 +13,14 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] OpenAI embedding and grounded-answer adapters
 - [x] application-built structured citations
 - [x] stable error contract and privacy-safe event fields
-- [x] deterministic 10-document / 20-question evaluation
+- [x] deterministic 10-document / 50-question evaluation
+- [x] typed evidence contracts with category-level Hit@K, Recall@K, and MRR
+- [x] isolated chunk-size, overlap, and Top-K experiments
+- [x] opt-in real semantic embedding comparison on synthetic data only
+- [x] refusal-threshold sweep without extra provider calls
+- [x] BM25/RRF Hybrid prototype evaluated and rejected after measured regression
+- [x] structured bad-case catalogue with failure-stage ownership
+- [x] local retrieval and answer-orchestration P50/P95 benchmark
 
 ## Test Evidence
 
@@ -25,6 +32,10 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] tracked evaluation report matches a fresh evaluator run
 - [x] synthetic live OpenAI upload-to-delete flow has passed
 - [x] corpus and report regenerate byte-for-byte
+- [x] 143 tests and 34 subtests pass
+- [x] branch coverage remains 88.20% with an enforced 85% floor
+- [x] semantic Dense records 100% Recall@5 and 0.9833 MRR on the synthetic set
+- [x] semantic Hybrid regression is tracked rather than hidden
 
 ## Release Documentation
 
@@ -37,7 +48,12 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] final tracked-file secret and runtime-data audit is complete
 - [x] MIT license is selected by the owner
 - [x] standalone-repository GitHub Actions workflow is tracked
+- [x] V2 release decision and claim boundaries are documented
+- [ ] create and publish the standalone GitHub repository
 
 The standalone repository target was selected by the owner. While this project
 still lives inside a larger local Git repository, GitHub will discover the
 tracked workflow after this directory becomes the root of its own repository.
+
+V2 code and evidence are frozen locally. Publishing the separate repository is
+an external release step and is intentionally not marked complete here.

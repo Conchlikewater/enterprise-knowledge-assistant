@@ -3,7 +3,7 @@
 - Product: Enterprise Knowledge Assistant
 - Version: 0.1.0
 - Runtime: Python 3.12, FastAPI, SQLite, local Qdrant, OpenAI API
-- Scope status: implemented; final portfolio release audit in progress
+- Scope status: V1 implemented; V2 evaluation and portfolio audit frozen
 
 ## Goal
 
@@ -32,14 +32,14 @@ whose metadata comes from stored chunks rather than the language model.
 | Ingest at least five documents | Offline evaluation ingests 10 tracked fixtures | Passed |
 | Support TXT and PDF | 6 TXT and 4 PDF fixtures, including two multi-page PDFs | Passed |
 | Produce searchable non-empty chunks | Domain invariants and evaluation gate | Passed |
-| Retrieve only selected documents | Service/API tests and two isolation questions | Passed |
+| Retrieve only selected documents | Service/API tests and four isolation questions | Passed |
 | Generate evidence-grounded answers | Answer service/API tests and live synthetic smoke check | Passed |
 | Return traceable citations | Citation unit/API tests and evaluation integrity gate | Passed |
-| Handle unanswerable questions | Four evaluation questions require no-evidence behavior | Passed |
+| Handle unanswerable questions | Eight evaluation questions require no-evidence behavior | Passed |
 | Delete files, records, and vectors | Unit, API, and evaluation deletion checks | Passed |
 | Expose the workflow through FastAPI | Seven operations across five OpenAPI paths | Passed |
 | Use stable privacy-safe errors and logs | Exception, API, and log-content tests | Passed |
-| Evaluate 20 prepared questions | Tracked deterministic report | Passed |
+| Evaluate 50 typed questions | Tracked deterministic report and category metrics | Passed |
 
 The current evaluation report is `evaluation/latest_report.json`. The release
 checklist records the final installation and repository checks separately.
@@ -51,8 +51,13 @@ checklist records the final installation and repository checks separately.
 - authentication, authorization, multi-tenancy, or public deployment
 - OCR, scanned PDFs, Markdown, DOCX, spreadsheets, or presentations
 - several active model or vector-store providers
-- reranking, hybrid search, fine-tuning, agents, tools, MCP, or frontend UI
+- production reranking or hybrid search, fine-tuning, agents, tools, MCP, or frontend UI
 - large-scale or highly available production storage
 
 Deferred features should be added only after a measured limitation justifies
 their cost and the security boundary is redesigned for shared deployment.
+
+The V2 evaluation directory contains a dependency-light BM25/RRF prototype,
+but it is not connected to the production API. A same-corpus semantic comparison
+showed lower Recall@5 and MRR than Dense retrieval, so the prototype was rejected
+rather than promoted.

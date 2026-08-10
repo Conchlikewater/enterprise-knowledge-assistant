@@ -93,6 +93,54 @@ class HashingEmbeddingProvider(EmbeddingProvider):
         return [value / magnitude for value in vector]
 
 
+class CachingEmbeddingProvider(EmbeddingProvider):
+    """Cache exact inputs so evaluation does not pay for duplicate embeddings."""
+
+    def __init__(self, wrapped: EmbeddingProvider) -> None:
+        self._wrapped = wrapped
+        self._cache: dict[str, tuple[float, ...]] = {}
+
+    @property
+    def name(self) -> str:
+        return self._wrapped.name
+
+    @property
+    def model(self) -> str | None:
+        model = getattr(self._wrapped, "model", None)
+        return model if isinstance(model, str) else None
+
+    @property
+    def dimensions(self) -> int:
+        return self._wrapped.dimensions
+
+    def embed_documents(self, texts: Sequence[str]) -> list[list[float]]:
+        requested = list(texts)
+        missing = list(
+            dict.fromkeys(text for text in requested if text not in self._cache)
+        )
+        if missing:
+            embedded = self._wrapped.embed_documents(missing)
+            if len(embedded) != len(missing):
+                raise ValueError(
+                    "wrapped provider returned an unexpected embedding count"
+                )
+            self._cache.update(
+                (text, tuple(vector))
+                for text, vector in zip(missing, embedded, strict=True)
+            )
+        return [list(self._cache[text]) for text in requested]
+
+    def embed_query(self, text: str) -> list[float]:
+        cached = self._cache.get(text)
+        if cached is None:
+            cached = tuple(self._wrapped.embed_query(text))
+            self._cache[text] = cached
+        return list(cached)
+
+    def close(self) -> None:
+        self._wrapped.close()
+
+
 def _normalize_token(token: str) -> str:
     if len(token) > 4 and token.endswith("ies"):
         return f"{token[:-3]}y"

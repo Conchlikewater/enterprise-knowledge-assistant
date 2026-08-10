@@ -3,6 +3,8 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
+from evaluation.contracts import load_question_contracts
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -12,26 +14,43 @@ def test_evaluation_dataset_matches_architecture_requirements() -> None:
             encoding="utf-8"
         )
     )["documents"]
-    questions = json.loads(
-        (PROJECT_ROOT / "evaluation" / "questions.json").read_text(encoding="utf-8")
-    )["questions"]
+    questions = load_question_contracts(PROJECT_ROOT / "evaluation" / "questions.json")
 
     assert len(corpus) == 10
     assert sum(item["media_type"] == "text/plain" for item in corpus) >= 4
     assert sum(item["media_type"] == "application/pdf" for item in corpus) >= 4
     assert sum(len(item["pages"]) > 1 for item in corpus) >= 2
-    assert len(questions) == 20
+    assert len(questions) == 50
 
     category_counts = {
-        category: sum(item["category"] == category for item in questions)
-        for category in {item["category"] for item in questions}
+        category: sum(item.category == category for item in questions)
+        for category in {item.category for item in questions}
     }
     assert category_counts == {
-        "direct": 10,
-        "multi_chunk": 4,
-        "scope_isolation": 2,
-        "unanswerable": 4,
+        "direct": 14,
+        "multi_chunk": 6,
+        "scope_isolation": 4,
+        "unanswerable": 8,
+        "paraphrase": 6,
+        "distractor": 6,
+        "low_score": 4,
+        "ambiguous": 2,
     }
+    assert all(
+        question.expected_answer and question.expected_evidence
+        for question in questions
+        if question.expected_behavior == "answer"
+    )
+    assert all(
+        question.expected_answer is None and not question.expected_evidence
+        for question in questions
+        if question.expected_behavior == "refuse"
+    )
+    assert all(
+        question.expected_answer is None and len(question.expected_evidence) >= 2
+        for question in questions
+        if question.expected_behavior == "clarify"
+    )
 
 
 def test_generated_documents_exist_and_pdf_pages_are_extractable() -> None:

@@ -1,31 +1,151 @@
 {
   "passed": true,
+  "profile": {
+    "name": "baseline",
+    "corpus": "tracked-synthetic-policy-corpus",
+    "embedding_provider": "offline-hashing",
+    "embedding_model": null,
+    "embedding_dimensions": 1024,
+    "llm_provider": "offline-evaluation",
+    "llm_model": "deterministic-grounded-answer",
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "top_k": 5,
+    "answerable_score_threshold": null,
+    "unanswerable_score_threshold": 0.25,
+    "ambiguity_score_margin": 0.05,
+    "minimum_evidence_hit_rate": 0.8,
+    "minimum_evidence_recall": 0.8,
+    "minimum_evidence_mrr": 0.75,
+    "minimum_unanswerable_rejection_rate": 0.85
+  },
   "document_count": 10,
   "txt_count": 6,
   "pdf_count": 4,
   "multi_page_document_count": 2,
-  "question_count": 20,
+  "question_count": 50,
   "category_counts": {
-    "direct": 10,
-    "multi_chunk": 4,
-    "scope_isolation": 2,
-    "unanswerable": 4
+    "direct": 14,
+    "multi_chunk": 6,
+    "scope_isolation": 4,
+    "unanswerable": 8,
+    "paraphrase": 6,
+    "distractor": 6,
+    "low_score": 4,
+    "ambiguous": 2
+  },
+  "category_metrics": {
+    "direct": {
+      "question_count": 14,
+      "answerable_count": 14,
+      "clarification_count": 0,
+      "pass_rate": 1.0,
+      "evidence_hit_rate_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "mean_reciprocal_rank": 0.9643
+    },
+    "multi_chunk": {
+      "question_count": 6,
+      "answerable_count": 6,
+      "clarification_count": 0,
+      "pass_rate": 1.0,
+      "evidence_hit_rate_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "mean_reciprocal_rank": 1.0
+    },
+    "scope_isolation": {
+      "question_count": 4,
+      "answerable_count": 4,
+      "clarification_count": 0,
+      "pass_rate": 1.0,
+      "evidence_hit_rate_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "mean_reciprocal_rank": 1.0
+    },
+    "unanswerable": {
+      "question_count": 8,
+      "answerable_count": 0,
+      "clarification_count": 0,
+      "pass_rate": 0.875,
+      "evidence_hit_rate_at_k": null,
+      "evidence_recall_at_k": null,
+      "mean_reciprocal_rank": null
+    },
+    "paraphrase": {
+      "question_count": 6,
+      "answerable_count": 6,
+      "clarification_count": 0,
+      "pass_rate": 0.5,
+      "evidence_hit_rate_at_k": 0.5,
+      "evidence_recall_at_k": 0.5,
+      "mean_reciprocal_rank": 0.375
+    },
+    "distractor": {
+      "question_count": 6,
+      "answerable_count": 6,
+      "clarification_count": 0,
+      "pass_rate": 1.0,
+      "evidence_hit_rate_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "mean_reciprocal_rank": 1.0
+    },
+    "low_score": {
+      "question_count": 4,
+      "answerable_count": 4,
+      "clarification_count": 0,
+      "pass_rate": 0.0,
+      "evidence_hit_rate_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "mean_reciprocal_rank": 0.0
+    },
+    "ambiguous": {
+      "question_count": 2,
+      "answerable_count": 0,
+      "clarification_count": 2,
+      "pass_rate": 0.0,
+      "evidence_hit_rate_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "mean_reciprocal_rank": 1.0
+    }
   },
   "ingested_document_count": 10,
-  "top5_source_accuracy": 1.0,
+  "source_hit_rate_at_k": 0.9,
+  "evidence_hit_rate_at_k": 0.825,
+  "evidence_recall_at_k": 0.825,
+  "evidence_mean_reciprocal_rank": 0.7937,
+  "clarification_candidate_recall_at_k": 1.0,
+  "clarification_response_rate": 0.0,
   "multi_chunk_pass_rate": 1.0,
   "scope_isolation_pass_rate": 1.0,
-  "unanswerable_rejection_rate": 1.0,
+  "unanswerable_rejection_rate": 0.875,
   "citation_integrity_pass_rate": 1.0,
   "pdf_page_metadata_pass_rate": 1.0,
   "empty_chunk_invariant_passed": true,
   "deletion_passed": true,
+  "bad_case_count": 10,
   "failed_checks": [],
   "question_results": [
     {
       "id": "direct-01",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Privileged access recertification is performed every quarter.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2635,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "access_policy.txt",
         "business_continuity.pdf",
@@ -34,29 +154,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.4376
+          "score": 0.4376,
+          "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.1741
+          "score": 0.1741,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.1017
+          "score": 0.1017,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.0599
+          "score": 0.0599,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.0563
+          "score": 0.0563,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -64,7 +201,24 @@
     {
       "id": "direct-02",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A Severity 1 incident must reach the incident commander within 15 minutes of confirmation.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3777,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "access_policy.txt",
         "change_management.pdf",
@@ -74,29 +228,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.533
+          "score": 0.533,
+          "excerpt": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. The commander opens the incident channel, assigns an owner, and records major de",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "change_management.pdf",
           "page_number": 1,
-          "score": 0.1553
+          "score": 0.1553,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.1515
+          "score": 0.1515,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.0844
+          "score": 0.0844,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.074
+          "score": 0.074,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -104,7 +275,24 @@
     {
       "id": "direct-03",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Critical vendors are reassessed annually.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Critical vendors are reassessed annually."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3709,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "access_policy.txt",
         "data_retention.txt",
@@ -113,29 +301,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.4411
+          "score": 0.4411,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.0702
+          "score": 0.0702,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.0658
+          "score": 0.0658,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.0658
+          "score": 0.0658,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.0639
+          "score": 0.0639,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -143,7 +348,24 @@
     {
       "id": "direct-04",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3946,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "change_management.pdf",
         "data_retention.txt",
@@ -153,29 +375,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.5803
+          "score": 0.5803,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.1857
+          "score": 0.1857,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.1529
+          "score": 0.1529,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.1238
+          "score": 0.1238,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "change_management.pdf",
           "page_number": 1,
-          "score": 0.1068
+          "score": 0.1068,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -183,7 +422,24 @@
     {
       "id": "direct-05",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Company devices automatically lock after ten minutes of inactivity.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Company devices automatically lock after ten minutes of inactivity."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2147,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "business_continuity.pdf",
         "remote_work.pdf",
@@ -192,29 +448,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "remote_work.pdf",
           "page_number": 1,
-          "score": 0.3596
+          "score": 0.3596,
+          "excerpt": "PN is active. Company devices automatically lock after ten minutes of inactivity. Confidential calls must not be conducted where unauthorized people can hear them. Lost devices mus",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "remote_work.pdf",
           "page_number": 1,
-          "score": 0.1448
+          "score": 0.1448,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.1083
+          "score": 0.1083,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.1083
+          "score": 0.1083,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "security_awareness.pdf",
           "page_number": 1,
-          "score": 0.0899
+          "score": 0.0899,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -222,7 +495,24 @@
     {
       "id": "direct-06",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A normal production change requires documented test evidence and peer review, together with a change ticket and service-owner approval before deployment.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "snippet": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3311,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "business_continuity.pdf",
         "change_management.pdf",
@@ -232,29 +522,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "change_management.pdf",
           "page_number": 1,
-          "score": 0.4724
+          "score": 0.4724,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.1413
+          "score": 0.1413,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.1383
+          "score": 0.1383,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.1083
+          "score": 0.1083,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.105
+          "score": 0.105,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -262,7 +569,24 @@
     {
       "id": "direct-07",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "The customer portal recovery time objective is two hours.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.5282,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "business_continuity.pdf",
         "data_retention.txt",
@@ -271,29 +595,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "business_continuity.pdf",
           "page_number": 1,
-          "score": 0.6181
+          "score": 0.6181,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "leave_policy.txt",
           "page_number": null,
-          "score": 0.0899
+          "score": 0.0899,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "business_continuity.pdf",
           "page_number": 1,
-          "score": 0.0727
+          "score": 0.0727,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.0619
+          "score": 0.0619,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.0599
+          "score": 0.0599,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -301,7 +642,24 @@
     {
       "id": "direct-08",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "New starters must complete security awareness training within 30 days of joining.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3462,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "access_policy.txt",
         "leave_policy.txt",
@@ -311,29 +669,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "security_awareness.pdf",
           "page_number": 1,
-          "score": 0.5394
+          "score": 0.5394,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "security_awareness.pdf",
           "page_number": 2,
-          "score": 0.1931
+          "score": 0.1931,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "remote_work.pdf",
           "page_number": 1,
-          "score": 0.1448
+          "score": 0.1448,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "leave_policy.txt",
           "page_number": null,
-          "score": 0.1158
+          "score": 0.1158,
+          "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.092
+          "score": 0.092,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -341,7 +716,24 @@
     {
       "id": "direct-09",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "An itemized receipt is required for any expense above 75 dollars.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "An itemized receipt is required for any expense above 75 dollars."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2026,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "data_retention.txt",
         "expense_policy.txt",
@@ -351,29 +743,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "expense_policy.txt",
           "page_number": null,
-          "score": 0.3146
+          "score": 0.3146,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.112
+          "score": 0.112,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.105
+          "score": 0.105,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.0692
+          "score": 0.0692,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.056
+          "score": 0.056,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -381,7 +790,24 @@
     {
       "id": "direct-10",
       "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.256,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "business_continuity.pdf",
         "expense_policy.txt",
@@ -390,29 +816,46 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "leave_policy.txt",
           "page_number": null,
-          "score": 0.4874
+          "score": 0.4874,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "leave_policy.txt",
           "page_number": null,
-          "score": 0.2314
+          "score": 0.2314,
+          "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.1391
+          "score": 0.1391,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.1391
+          "score": 0.1391,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "expense_policy.txt",
           "page_number": null,
-          "score": 0.1155
+          "score": 0.1155,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -420,7 +863,30 @@
     {
       "id": "multi-01",
       "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Privileged access is recertified every quarter, and a terminated worker's access must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0299,
+      "near_top_candidate_count": 2,
       "retrieved_sources": [
         "access_policy.txt",
         "data_retention.txt",
@@ -429,29 +895,48 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.2182
+          "score": 0.2182,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": [
+            2
+          ]
         },
         {
+          "rank": 2,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.1883
+          "score": 0.1883,
+          "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 3,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.0787
+          "score": 0.0787,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "expense_policy.txt",
           "page_number": null,
-          "score": 0.0787
+          "score": 0.0787,
+          "excerpt": "nce processes reimbursement. Air travel must use economy class unless an executive approves an exception. Personal purchases, commuting costs, and minibar charges are not reimbursa",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.0449
+          "score": 0.0449,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -459,7 +944,30 @@
     {
       "id": "multi-02",
       "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A Severity 1 incident must reach the incident commander within 15 minutes of confirmation, and its post-incident review must be completed within five business days after service restoration.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A post-incident review must be completed within five business days after service restoration."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0242,
+      "near_top_candidate_count": 2,
       "retrieved_sources": [
         "business_continuity.pdf",
         "change_management.pdf",
@@ -469,29 +977,48 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.3466
+          "score": 0.3466,
+          "excerpt": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. The commander opens the incident channel, assigns an owner, and records major de",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.3225
+          "score": 0.3225,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": [
+            2
+          ]
         },
         {
+          "rank": 3,
           "filename": "vendor_management.txt",
           "page_number": null,
-          "score": 0.1004
+          "score": 0.1004,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.0824
+          "score": 0.0824,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "change_management.pdf",
           "page_number": 1,
-          "score": 0.0735
+          "score": 0.0735,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -499,7 +1026,30 @@
     {
       "id": "multi-03",
       "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "The customer portal recovery time objective is two hours, and restore tests are performed every quarter.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "snippet": "Restore tests are performed every quarter."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1808,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "business_continuity.pdf",
         "expense_policy.txt"
@@ -507,29 +1057,48 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "business_continuity.pdf",
           "page_number": 1,
-          "score": 0.2736
+          "score": 0.2736,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.0927
+          "score": 0.0927,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": [
+            2
+          ]
         },
         {
+          "rank": 3,
           "filename": "business_continuity.pdf",
           "page_number": 2,
-          "score": 0.0927
+          "score": 0.0927,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "expense_policy.txt",
           "page_number": null,
-          "score": 0.0787
+          "score": 0.0787,
+          "excerpt": "nce processes reimbursement. Air travel must use economy class unless an executive approves an exception. Personal purchases, commuting costs, and minibar charges are not reimbursa",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "business_continuity.pdf",
           "page_number": 1,
-          "score": 0.0563
+          "score": 0.0563,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -537,7 +1106,30 @@
     {
       "id": "multi-04",
       "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "New starters must complete security awareness training within 30 days of joining, and suspected phishing messages must be reported within one hour.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "snippet": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0134,
+      "near_top_candidate_count": 2,
       "retrieved_sources": [
         "incident_response.txt",
         "remote_work.pdf",
@@ -546,29 +1138,48 @@
       "result_count": 5,
       "results": [
         {
+          "rank": 1,
           "filename": "security_awareness.pdf",
           "page_number": 2,
-          "score": 0.1942
+          "score": 0.1942,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": [
+            2
+          ]
         },
         {
+          "rank": 2,
           "filename": "security_awareness.pdf",
           "page_number": 1,
-          "score": 0.1808
+          "score": 0.1808,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 3,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.1136
+          "score": 0.1136,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "incident_response.txt",
           "page_number": null,
-          "score": 0.0999
+          "score": 0.0999,
+          "excerpt": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. The commander opens the incident channel, assigns an owner, and records major de",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 5,
           "filename": "remote_work.pdf",
           "page_number": 1,
-          "score": 0.0777
+          "score": 0.0777,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -576,26 +1187,54 @@
     {
       "id": "scope-01",
       "category": "scope_isolation",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Privileged access recertification is performed every quarter.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2354,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "access_policy.txt"
       ],
       "result_count": 3,
       "results": [
         {
+          "rank": 1,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.2917
+          "score": 0.2917,
+          "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.0563
+          "score": 0.0563,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "access_policy.txt",
           "page_number": null,
-          "score": 0.0508
+          "score": 0.0508,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -603,31 +1242,62 @@
     {
       "id": "scope-02",
       "category": "scope_isolation",
+      "answerable": true,
+      "expected_behavior": "answer",
       "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1083,
+      "near_top_candidate_count": 1,
       "retrieved_sources": [
         "data_retention.txt"
       ],
       "result_count": 4,
       "results": [
         {
+          "rank": 1,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.2321
+          "score": 0.2321,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": [
+            1
+          ]
         },
         {
+          "rank": 2,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.1238
+          "score": 0.1238,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 3,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.058
+          "score": 0.058,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": []
         },
         {
+          "rank": 4,
           "filename": "data_retention.txt",
           "page_number": null,
-          "score": 0.0563
+          "score": 0.0563,
+          "excerpt": "ntil Legal releases the hold. Automated deletion jobs run every quarter, and record owners review purge exceptions within ten business days.",
+          "matched_evidence_numbers": []
         }
       ],
       "failures": []
@@ -635,7 +1305,17 @@
     {
       "id": "unanswerable-01",
       "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
       "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
       "retrieved_sources": [],
       "result_count": 0,
       "results": [],
@@ -644,7 +1324,17 @@
     {
       "id": "unanswerable-02",
       "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
       "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
       "retrieved_sources": [],
       "result_count": 0,
       "results": [],
@@ -653,7 +1343,17 @@
     {
       "id": "unanswerable-03",
       "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
       "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
       "retrieved_sources": [],
       "result_count": 0,
       "results": [],
@@ -662,11 +1362,1997 @@
     {
       "id": "unanswerable-04",
       "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
       "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
       "retrieved_sources": [],
       "result_count": 0,
       "results": [],
       "failures": []
+    },
+    {
+      "id": "direct-11",
+      "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.3537,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "data_retention.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.4587,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.105,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.056,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.056,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0525,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-12",
+      "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Vendor contracts must require notification of a confirmed data breach within 48 hours.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1399,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.3079,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.168,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.112,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1083,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.105,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-13",
+      "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "A legal hold suspends normal deletion for affected records until Legal releases the hold."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2969,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "data_retention.txt",
+        "incident_response.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.5222,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.2254,
+          "excerpt": "ntil Legal releases the hold. Automated deletion jobs run every quarter, and record owners review purge exceptions within ten business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1161,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.1068,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0916,
+          "excerpt": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. The commander opens the incident channel, assigns an owner, and records major de",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "direct-14",
+      "category": "direct",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "An emergency production change requires a retrospective review within two business days.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "snippet": "Emergency changes require incident-commander approval and a retrospective review within two business days."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 0.5,
+      "top_score_gap": 0.021,
+      "near_top_candidate_count": 2,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "incident_response.txt",
+        "remote_work.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.2624,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.2414,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1625,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0942,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-05",
+      "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Procurement and Security must approve a critical vendor, and its contract must require confirmed breach notification within 48 hours.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Critical vendors require approval from Procurement and Security."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1309,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "expense_policy.txt",
+        "remote_work.pdf",
+        "security_awareness.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.2677,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": [
+            1,
+            2
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1368,
+          "excerpt": "PN is active. Company devices automatically lock after ten minutes of inactivity. Confidential calls must not be conducted where unauthorized people can hear them. Lost devices mus",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.1198,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.0735,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.0684,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "multi-06",
+      "category": "multi_chunk",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Planned leave of at least five days should be requested two weeks in advance, and up to five unused annual-leave days may be carried into the next year.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Planned leave of five days or more should be requested at least two weeks in advance."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Up to five unused annual-leave days may be carried into the next year; additional unused days expire."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0812,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "leave_policy.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.3566,
+          "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+          "matched_evidence_numbers": [
+            2
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.2754,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.1216,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.1001,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.069,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "scope-03",
+      "category": "scope_isolation",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A lost company device must be reported to the service desk within one hour.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Lost devices must be reported to the service desk within one hour."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.022,
+      "near_top_candidate_count": 2,
+      "retrieved_sources": [
+        "remote_work.pdf"
+      ],
+      "result_count": 3,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.3698,
+          "excerpt": "Lost devices must be reported to the service desk within one hour.",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.3478,
+          "excerpt": "PN is active. Company devices automatically lock after ten minutes of inactivity. Confidential calls must not be conducted where unauthorized people can hear them. Lost devices mus",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.2135,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "scope-04",
+      "category": "scope_isolation",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Personal purchases, commuting costs, and minibar charges are not reimbursable.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "Personal purchases, commuting costs, and minibar charges are not reimbursable."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1179,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "expense_policy.txt"
+      ],
+      "result_count": 2,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.2306,
+          "excerpt": "nce processes reimbursement. Air travel must use economy class unless an executive approves an exception. Personal purchases, commuting costs, and minibar charges are not reimbursa",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.1127,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-05",
+      "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
+      "passed": false,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "data_retention.txt"
+      ],
+      "result_count": 1,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.2632,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "unsupported_answer"
+      ]
+    },
+    {
+      "id": "unanswerable-06",
+      "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
+      "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-07",
+      "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
+      "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "unanswerable-08",
+      "category": "unanswerable",
+      "answerable": false,
+      "expected_behavior": "refuse",
+      "passed": true,
+      "score_threshold": 0.25,
+      "expected_answer": null,
+      "expected_evidence": [],
+      "evidence_hit_at_k": null,
+      "evidence_recall_at_k": null,
+      "reciprocal_rank": null,
+      "top_score_gap": null,
+      "near_top_candidate_count": 0,
+      "retrieved_sources": [],
+      "result_count": 0,
+      "results": [],
+      "failures": []
+    },
+    {
+      "id": "paraphrase-01",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "Privileged access is checked every quarter.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.0054,
+      "near_top_candidate_count": 5,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "expense_policy.txt",
+        "remote_work.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1019,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.0899,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0836,
+          "excerpt": "Lost devices must be reported to the service desk within one hour.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0525,
+          "excerpt": "Every vendor receives a documented risk assessment before onboarding. The assessment covers data access, service criticality, security controls, and subcontractors.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "paraphrase-02",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "A confirmed Severity 1 incident must reach the incident commander within 15 minutes.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.0092,
+      "near_top_candidate_count": 5,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "expense_policy.txt",
+        "leave_policy.txt",
+        "remote_work.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1332,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.124,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.1122,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.1102,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "expected_source_missing",
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "paraphrase-03",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0449,
+      "near_top_candidate_count": 2,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1316,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0867,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0702,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0702,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0679,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "paraphrase-04",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.1135,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "expense_policy.txt",
+        "leave_policy.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.187,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0735,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0515,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0444,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.0423,
+          "excerpt": "nce processes reimbursement. Air travel must use economy class unless an executive approves an exception. Personal purchases, commuting costs, and minibar charges are not reimbursa",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "paraphrase-05",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "A company device locks after ten minutes of inactivity.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "snippet": "Company devices automatically lock after ten minutes of inactivity."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.0284,
+      "near_top_candidate_count": 2,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "leave_policy.txt",
+        "remote_work.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1406,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.1122,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0888,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0605,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0444,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "paraphrase-06",
+      "category": "paraphrase",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Suspected phishing messages must be reported to Security within one hour.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "snippet": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 0.25,
+      "top_score_gap": 0.0678,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "change_management.pdf",
+        "data_retention.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.1798,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.112,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1019,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.0966,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 5,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "owner before deployment. The implementer records the outcome and any rollback action in the ticket. Emergency changes require incident-commander approval and a retrospective review",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-01",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "The customer portal recovery time objective is two hours; four hours applies to payroll.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.4116,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "remote_work.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.5461,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1345,
+          "excerpt": "Lost devices must be reported to the service desk within one hour.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0901,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.0901,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.082,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-02",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Restore tests are performed every quarter; monthly review applies to crisis contact lists.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "snippet": "Restore tests are performed every quarter."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0599,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "data_retention.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.2993,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.2395,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.1161,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0972,
+          "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.058,
+          "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-03",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "A confirmed data breach must be notified within 48 hours; annual timing applies to vendor reassessment.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "snippet": "Contracts must require notification of a confirmed data breach within 48 hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.243,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "change_management.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.4456,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.2026,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0867,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.076,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0738,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-04",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Finance records are retained for seven years; Human Resources records use the six-year period.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.4811,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "incident_response.txt",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.639,
+          "excerpt": "Finance records are retained for seven years. Human Resources records are retained for six years after employment ends.",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1579,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1278,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.1278,
+          "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.1001,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-05",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "The itemized receipt threshold is an expense above 75 dollars; ten calendar days is the submission deadline.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "snippet": "An itemized receipt is required for any expense above 75 dollars."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.2857,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "data_retention.txt",
+        "expense_policy.txt",
+        "incident_response.txt",
+        "leave_policy.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.3849,
+          "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.0992,
+          "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0873,
+          "excerpt": "ntil Legal releases the hold. Automated deletion jobs run every quarter, and record owners review purge exceptions within ten business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.0827,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0806,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "distractor-06",
+      "category": "distractor",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": true,
+      "score_threshold": null,
+      "expected_answer": "Employee security awareness training repeats annually; phishing simulations occur quarterly.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "snippet": "New starters must complete security awareness training within 30 days of joining and repeat it annually."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0799,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "leave_policy.txt",
+        "remote_work.pdf",
+        "security_awareness.pdf",
+        "vendor_management.txt"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.2247,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.1448,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "vendor_management.txt",
+          "page_number": null,
+          "score": 0.088,
+          "excerpt": "controls, and subcontractors. Critical vendors require approval from Procurement and Security. Critical vendors are reassessed annually. Contracts must require notification of a co",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.0813,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "low-score-01",
+      "category": "low_score",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "A terminated worker's access must be disabled within 24 hours of the separation notice.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.0092,
+      "near_top_candidate_count": 5,
+      "retrieved_sources": [
+        "change_management.pdf",
+        "incident_response.txt",
+        "leave_policy.txt",
+        "remote_work.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.1332,
+          "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "remote_work.pdf",
+          "page_number": 1,
+          "score": 0.124,
+          "excerpt": "PN is active. Company devices automatically lock after ten minutes of inactivity. Confidential calls must not be conducted where unauthorized people can hear them. Lost devices mus",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.1122,
+          "excerpt": "Full-time employees receive 20 days of annual leave each year. Planned leave of five days or more should be requested at least two weeks in advance. Managers consider team coverage",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "change_management.pdf",
+          "page_number": 1,
+          "score": 0.0966,
+          "excerpt": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment. The",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.0866,
+          "excerpt": "ns in the incident timeline. A post-incident review must be completed within five business days after service restoration. The review records root cause, corrective actions, and ow",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "expected_source_missing",
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "low-score-02",
+      "category": "low_score",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "A Severity 1 incident must be reported within 15 minutes of confirmation.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "snippet": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.0453,
+      "near_top_candidate_count": 3,
+      "retrieved_sources": [
+        "access_policy.txt",
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "expense_policy.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "expense_policy.txt",
+          "page_number": null,
+          "score": 0.1017,
+          "excerpt": "nce processes reimbursement. Air travel must use economy class unless an executive approves an exception. Personal purchases, commuting costs, and minibar charges are not reimbursa",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.0563,
+          "excerpt": "ntil Legal releases the hold. Automated deletion jobs run every quarter, and record owners review purge exceptions within ten business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0563,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.0497,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "expected_source_missing",
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "low-score-03",
+      "category": "low_score",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "Finance records are retained for seven years.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "snippet": "Finance records are retained for seven years."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.1088,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "data_retention.txt",
+        "leave_policy.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "data_retention.txt",
+          "page_number": null,
+          "score": 0.1661,
+          "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "score": 0.0573,
+          "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "low-score-04",
+      "category": "low_score",
+      "answerable": true,
+      "expected_behavior": "answer",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": "Full-time employees receive 20 days of annual leave each year.",
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "leave_policy.txt",
+          "page_number": null,
+          "snippet": "Full-time employees receive 20 days of annual leave each year."
+        }
+      ],
+      "evidence_hit_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "reciprocal_rank": 0.0,
+      "top_score_gap": 0.1026,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf",
+        "incident_response.txt",
+        "security_awareness.pdf"
+      ],
+      "result_count": 5,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "incident_response.txt",
+          "page_number": null,
+          "score": 0.1026,
+          "excerpt": "rrective actions, and owners. Investigation evidence and the final review are retained for two years.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 2,
+          "filename": "security_awareness.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "Suspected phishing messages must be reported to Security within one hour and must not be opened or forwarded. Anyone who fails a simulation completes remedial training within ten b",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "security_awareness.pdf",
+          "page_number": 1,
+          "score": 0.0,
+          "excerpt": "New starters must complete security awareness training within 30 days of joining and repeat it annually. The Security team conducts phishing simulations every quarter and reports a",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 5,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "expected_source_missing",
+        "no_expected_evidence_in_top_k"
+      ]
+    },
+    {
+      "id": "ambiguous-01",
+      "category": "ambiguous",
+      "answerable": false,
+      "expected_behavior": "clarify",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": null,
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "The customer portal has a recovery time objective of two hours."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "snippet": "Payroll has a recovery time objective of four hours."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.554,
+      "near_top_candidate_count": 1,
+      "retrieved_sources": [
+        "business_continuity.pdf"
+      ],
+      "result_count": 4,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.6516,
+          "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+          "matched_evidence_numbers": [
+            1,
+            2
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "business_continuity.pdf",
+          "page_number": 1,
+          "score": 0.0976,
+          "excerpt": "ness owners validate recovery priorities during continuity exercises, which are conducted twice each year.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 3,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0803,
+          "excerpt": "ter. Crisis contact lists are reviewed monthly, and failed restore tests require a corrective-action owner within three business days.",
+          "matched_evidence_numbers": []
+        },
+        {
+          "rank": 4,
+          "filename": "business_continuity.pdf",
+          "page_number": 2,
+          "score": 0.0,
+          "excerpt": "Production backups run daily and are encrypted before leaving the primary environment. Restore tests are performed every quarter. Crisis contact lists are",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "clarification_not_supported"
+      ]
+    },
+    {
+      "id": "ambiguous-02",
+      "category": "ambiguous",
+      "answerable": false,
+      "expected_behavior": "clarify",
+      "passed": false,
+      "score_threshold": null,
+      "expected_answer": null,
+      "expected_evidence": [
+        {
+          "evidence_number": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Privileged access recertification is performed every quarter."
+        },
+        {
+          "evidence_number": 2,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "snippet": "Security Operations reviews overdue removals each week."
+        }
+      ],
+      "evidence_hit_at_k": 1.0,
+      "evidence_recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "top_score_gap": 0.0207,
+      "near_top_candidate_count": 2,
+      "retrieved_sources": [
+        "access_policy.txt"
+      ],
+      "result_count": 3,
+      "results": [
+        {
+          "rank": 1,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1512,
+          "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+          "matched_evidence_numbers": [
+            2
+          ]
+        },
+        {
+          "rank": 2,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.1305,
+          "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+          "matched_evidence_numbers": [
+            1
+          ]
+        },
+        {
+          "rank": 3,
+          "filename": "access_policy.txt",
+          "page_number": null,
+          "score": 0.0,
+          "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+          "matched_evidence_numbers": []
+        }
+      ],
+      "failures": [
+        "clarification_not_supported"
+      ]
     }
   ]
 }

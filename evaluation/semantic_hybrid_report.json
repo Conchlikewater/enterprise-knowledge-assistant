@@ -1,0 +1,1361 @@
+{
+  "comparison_completed": true,
+  "question_count": 50,
+  "dense": {
+    "strategy": "dense",
+    "profile": {
+      "name": "dense-control-for-hybrid-openai-220-30-k5",
+      "corpus": "tracked-synthetic-policy-corpus",
+      "embedding_provider": "openai",
+      "embedding_model": "text-embedding-3-small",
+      "embedding_dimensions": 1536,
+      "llm_provider": "offline-evaluation",
+      "llm_model": "deterministic-grounded-answer",
+      "chunk_size": 220,
+      "chunk_overlap": 30,
+      "top_k": 5,
+      "answerable_score_threshold": null,
+      "unanswerable_score_threshold": 0.0,
+      "ambiguity_score_margin": 0.05,
+      "minimum_evidence_hit_rate": 0.8,
+      "minimum_evidence_recall": 0.8,
+      "minimum_evidence_mrr": 0.75,
+      "minimum_unanswerable_rejection_rate": 0.85
+    },
+    "quality_gates_passed_at_configured_threshold": false,
+    "source_hit_rate_at_k": 1.0,
+    "evidence_hit_rate_at_k": 1.0,
+    "evidence_recall_at_k": 1.0,
+    "evidence_mean_reciprocal_rank": 0.9833,
+    "unanswerable_rejection_rate": 0.0,
+    "clarification_candidate_recall_at_k": 1.0,
+    "retrieval_bad_case_count": 0,
+    "retrieval_bad_case_ids": [],
+    "retrieval_bad_cases": [],
+    "bad_case_count": 10,
+    "bad_case_ids": [
+      "unanswerable-01",
+      "unanswerable-02",
+      "unanswerable-03",
+      "unanswerable-04",
+      "unanswerable-05",
+      "unanswerable-06",
+      "unanswerable-07",
+      "unanswerable-08",
+      "ambiguous-01",
+      "ambiguous-02"
+    ],
+    "category_metrics": {
+      "direct": {
+        "question_count": 14,
+        "answerable_count": 14,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "multi_chunk": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "scope_isolation": {
+        "question_count": 4,
+        "answerable_count": 4,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "unanswerable": {
+        "question_count": 8,
+        "answerable_count": 0,
+        "clarification_count": 0,
+        "pass_rate": 0.0,
+        "evidence_hit_rate_at_k": null,
+        "evidence_recall_at_k": null,
+        "mean_reciprocal_rank": null
+      },
+      "paraphrase": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "distractor": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "low_score": {
+        "question_count": 4,
+        "answerable_count": 4,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 0.8333
+      },
+      "ambiguous": {
+        "question_count": 2,
+        "answerable_count": 0,
+        "clarification_count": 2,
+        "pass_rate": 0.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      }
+    }
+  },
+  "hybrid": {
+    "strategy": "hybrid-bm25-dense-rrf",
+    "profile": {
+      "name": "hybrid-openai-220-30-k5",
+      "corpus": "tracked-synthetic-policy-corpus",
+      "embedding_provider": "openai",
+      "embedding_model": "text-embedding-3-small",
+      "embedding_dimensions": 1536,
+      "llm_provider": "offline-evaluation",
+      "llm_model": "deterministic-grounded-answer",
+      "chunk_size": 220,
+      "chunk_overlap": 30,
+      "top_k": 5,
+      "answerable_score_threshold": null,
+      "unanswerable_score_threshold": 0.0,
+      "ambiguity_score_margin": 0.05,
+      "minimum_evidence_hit_rate": 0.8,
+      "minimum_evidence_recall": 0.8,
+      "minimum_evidence_mrr": 0.75,
+      "minimum_unanswerable_rejection_rate": 0.85
+    },
+    "quality_gates_passed_at_configured_threshold": false,
+    "source_hit_rate_at_k": 1.0,
+    "evidence_hit_rate_at_k": 0.925,
+    "evidence_recall_at_k": 0.925,
+    "evidence_mean_reciprocal_rank": 0.8438,
+    "unanswerable_rejection_rate": 0.0,
+    "clarification_candidate_recall_at_k": 1.0,
+    "retrieval_bad_case_count": 3,
+    "retrieval_bad_case_ids": [
+      "paraphrase-05",
+      "low-score-03",
+      "low-score-04"
+    ],
+    "retrieval_bad_cases": [
+      {
+        "id": "paraphrase-05",
+        "category": "paraphrase",
+        "failures": [
+          "no_expected_evidence_in_top_k"
+        ],
+        "expected_evidence": [
+          {
+            "evidence_number": 1,
+            "filename": "remote_work.pdf",
+            "page_number": 1,
+            "snippet": "Company devices automatically lock after ten minutes of inactivity."
+          }
+        ],
+        "results": [
+          {
+            "rank": 1,
+            "filename": "remote_work.pdf",
+            "page_number": 1,
+            "score": 0.9841,
+            "excerpt": "Remote workers must connect through the corporate VPN before accessing internal systems. Public Wi-Fi may be used only when the VPN is active. Company devices",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 2,
+            "filename": "access_policy.txt",
+            "page_number": null,
+            "score": 0.9387,
+            "excerpt": "has a valid business purpose. Multi-factor authentication is mandatory for all privileged sessions. New access requires a ticket, manager approval, and system-owner approval before",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 3,
+            "filename": "access_policy.txt",
+            "page_number": null,
+            "score": 0.9276,
+            "excerpt": "r approval before activation. Access belonging to a terminated worker must be disabled within 24 hours of the separation notice. Security Operations reviews overdue removals each w",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 4,
+            "filename": "access_policy.txt",
+            "page_number": null,
+            "score": 0.8973,
+            "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 5,
+            "filename": "business_continuity.pdf",
+            "page_number": 1,
+            "score": 0.8908,
+            "excerpt": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. Business owners validate recovery",
+            "matched_evidence_numbers": []
+          }
+        ]
+      },
+      {
+        "id": "low-score-03",
+        "category": "low_score",
+        "failures": [
+          "no_expected_evidence_in_top_k"
+        ],
+        "expected_evidence": [
+          {
+            "evidence_number": 1,
+            "filename": "data_retention.txt",
+            "page_number": null,
+            "snippet": "Finance records are retained for seven years."
+          }
+        ],
+        "results": [
+          {
+            "rank": 1,
+            "filename": "data_retention.txt",
+            "page_number": null,
+            "score": 0.9919,
+            "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 2,
+            "filename": "vendor_management.txt",
+            "page_number": null,
+            "score": 0.9541,
+            "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 3,
+            "filename": "expense_policy.txt",
+            "page_number": null,
+            "score": 0.9385,
+            "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 4,
+            "filename": "data_retention.txt",
+            "page_number": null,
+            "score": 0.9262,
+            "excerpt": "iod is required by contract. A legal hold suspends normal deletion for affected records until Legal releases the hold.",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 5,
+            "filename": "access_policy.txt",
+            "page_number": null,
+            "score": 0.8978,
+            "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+            "matched_evidence_numbers": []
+          }
+        ]
+      },
+      {
+        "id": "low-score-04",
+        "category": "low_score",
+        "failures": [
+          "no_expected_evidence_in_top_k"
+        ],
+        "expected_evidence": [
+          {
+            "evidence_number": 1,
+            "filename": "leave_policy.txt",
+            "page_number": null,
+            "snippet": "Full-time employees receive 20 days of annual leave each year."
+          }
+        ],
+        "results": [
+          {
+            "rank": 1,
+            "filename": "leave_policy.txt",
+            "page_number": null,
+            "score": 0.9541,
+            "excerpt": "am coverage before approval. A medical certificate is required after more than two consecutive sick days. Up to five unused annual-leave days may be carried into the next year; add",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 2,
+            "filename": "expense_policy.txt",
+            "page_number": null,
+            "score": 0.9531,
+            "excerpt": "An itemized receipt is required for any expense above 75 dollars. Employees submit expenses within ten calendar days, and the direct manager approves the business purpose before Fi",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 3,
+            "filename": "vendor_management.txt",
+            "page_number": null,
+            "score": 0.9296,
+            "excerpt": "data breach within 48 hours. Evidence of assessments, approvals, and remediation is retained for the life of the contract plus three years.",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 4,
+            "filename": "access_policy.txt",
+            "page_number": null,
+            "score": 0.9178,
+            "excerpt": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid busine",
+            "matched_evidence_numbers": []
+          },
+          {
+            "rank": 5,
+            "filename": "data_retention.txt",
+            "page_number": null,
+            "score": 0.9173,
+            "excerpt": "years after employment ends. Customer support recordings are retained for 18 months unless a longer period is required by contract.",
+            "matched_evidence_numbers": []
+          }
+        ]
+      }
+    ],
+    "bad_case_count": 13,
+    "bad_case_ids": [
+      "unanswerable-01",
+      "unanswerable-02",
+      "unanswerable-03",
+      "unanswerable-04",
+      "unanswerable-05",
+      "unanswerable-06",
+      "unanswerable-07",
+      "unanswerable-08",
+      "paraphrase-05",
+      "low-score-03",
+      "low-score-04",
+      "ambiguous-01",
+      "ambiguous-02"
+    ],
+    "category_metrics": {
+      "direct": {
+        "question_count": 14,
+        "answerable_count": 14,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 0.9643
+      },
+      "multi_chunk": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "scope_isolation": {
+        "question_count": 4,
+        "answerable_count": 4,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "unanswerable": {
+        "question_count": 8,
+        "answerable_count": 0,
+        "clarification_count": 0,
+        "pass_rate": 0.0,
+        "evidence_hit_rate_at_k": null,
+        "evidence_recall_at_k": null,
+        "mean_reciprocal_rank": null
+      },
+      "paraphrase": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 0.8333,
+        "evidence_hit_rate_at_k": 0.8333,
+        "evidence_recall_at_k": 0.8333,
+        "mean_reciprocal_rank": 0.5833
+      },
+      "distractor": {
+        "question_count": 6,
+        "answerable_count": 6,
+        "clarification_count": 0,
+        "pass_rate": 1.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      },
+      "low_score": {
+        "question_count": 4,
+        "answerable_count": 4,
+        "clarification_count": 0,
+        "pass_rate": 0.5,
+        "evidence_hit_rate_at_k": 0.5,
+        "evidence_recall_at_k": 0.5,
+        "mean_reciprocal_rank": 0.1875
+      },
+      "ambiguous": {
+        "question_count": 2,
+        "answerable_count": 0,
+        "clarification_count": 2,
+        "pass_rate": 0.0,
+        "evidence_hit_rate_at_k": 1.0,
+        "evidence_recall_at_k": 1.0,
+        "mean_reciprocal_rank": 1.0
+      }
+    }
+  },
+  "delta_vs_dense": {
+    "source_hit_rate_at_k": 0.0,
+    "evidence_recall_at_k": -0.075,
+    "evidence_mean_reciprocal_rank": -0.1395,
+    "retrieval_bad_case_count": 3,
+    "bad_case_count": 3
+  },
+  "threshold_analysis": {
+    "method": "offline-score-sweep",
+    "minimum_observable_threshold": 0.0,
+    "answerable_question_count": 40,
+    "unanswerable_question_count": 8,
+    "recommended_threshold_on_this_dataset": 0.98,
+    "recommended_metrics": {
+      "threshold": 0.98,
+      "evidence_hit_rate": 0.825,
+      "evidence_recall": 0.825,
+      "answerable_retention_rate": 0.925,
+      "answerable_false_refusal_rate": 0.075,
+      "unanswerable_rejection_rate": 0.875,
+      "balanced_score": 0.8493
+    },
+    "sweep": [
+      {
+        "threshold": 0.0,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.01,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.02,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.03,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.04,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.05,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.06,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.07,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.08,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.09,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.11,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.12,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.13,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.14,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.15,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.16,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.17,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.18,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.19,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.2,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.21,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.22,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.23,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.24,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.25,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.26,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.27,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.28,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.29,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.3,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.31,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.32,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.33,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.34,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.35,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.36,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.37,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.38,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.39,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.4,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.41,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.42,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.43,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.44,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.45,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.46,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.47,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.48,
+        "evidence_hit_rate": 0.925,
+        "evidence_recall": 0.925,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.49,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.5,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.51,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.52,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.53,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.54,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.55,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.56,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.57,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.58,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.59,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.6,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.61,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.62,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.63,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.64,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.65,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.66,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.67,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.68,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.69,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.71,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.72,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.73,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.74,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.75,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.76,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.77,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.78,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.79,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.8,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.81,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.82,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.83,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.84,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.85,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.86,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.87,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.88,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 1.0,
+        "answerable_false_refusal_rate": 0.0,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.89,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.9,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.91,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.0,
+        "balanced_score": 0.0
+      },
+      {
+        "threshold": 0.92,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.125,
+        "balanced_score": 0.2195
+      },
+      {
+        "threshold": 0.93,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.375,
+        "balanced_score": 0.5294
+      },
+      {
+        "threshold": 0.94,
+        "evidence_hit_rate": 0.9,
+        "evidence_recall": 0.9,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.375,
+        "balanced_score": 0.5294
+      },
+      {
+        "threshold": 0.95,
+        "evidence_hit_rate": 0.875,
+        "evidence_recall": 0.875,
+        "answerable_retention_rate": 0.975,
+        "answerable_false_refusal_rate": 0.025,
+        "unanswerable_rejection_rate": 0.375,
+        "balanced_score": 0.525
+      },
+      {
+        "threshold": 0.96,
+        "evidence_hit_rate": 0.875,
+        "evidence_recall": 0.875,
+        "answerable_retention_rate": 0.95,
+        "answerable_false_refusal_rate": 0.05,
+        "unanswerable_rejection_rate": 0.5,
+        "balanced_score": 0.6364
+      },
+      {
+        "threshold": 0.97,
+        "evidence_hit_rate": 0.85,
+        "evidence_recall": 0.85,
+        "answerable_retention_rate": 0.95,
+        "answerable_false_refusal_rate": 0.05,
+        "unanswerable_rejection_rate": 0.75,
+        "balanced_score": 0.7969
+      },
+      {
+        "threshold": 0.98,
+        "evidence_hit_rate": 0.825,
+        "evidence_recall": 0.825,
+        "answerable_retention_rate": 0.925,
+        "answerable_false_refusal_rate": 0.075,
+        "unanswerable_rejection_rate": 0.875,
+        "balanced_score": 0.8493
+      },
+      {
+        "threshold": 0.99,
+        "evidence_hit_rate": 0.825,
+        "evidence_recall": 0.8,
+        "answerable_retention_rate": 0.9,
+        "answerable_false_refusal_rate": 0.1,
+        "unanswerable_rejection_rate": 0.875,
+        "balanced_score": 0.8358
+      },
+      {
+        "threshold": 1.0,
+        "evidence_hit_rate": 0.65,
+        "evidence_recall": 0.625,
+        "answerable_retention_rate": 0.65,
+        "answerable_false_refusal_rate": 0.35,
+        "unanswerable_rejection_rate": 0.875,
+        "balanced_score": 0.7292
+      }
+    ]
+  },
+  "production_change_recommended": false,
+  "decision_reasons": [
+    "hybrid_did_not_improve_evidence_recall",
+    "hybrid_reduced_mrr",
+    "candidate_threshold_rejects_too_many_answerable_questions"
+  ]
+}

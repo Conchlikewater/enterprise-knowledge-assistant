@@ -1,0 +1,35 @@
+{
+  "benchmark": "offline-local-request-latency",
+  "rounds": 3,
+  "warmup_questions_per_round": 5,
+  "measured_samples": 135,
+  "profile": {
+    "embedding_provider": "offline-hashing",
+    "embedding_dimensions": 1024,
+    "vector_store": "qdrant-local-temporary",
+    "llm_provider": "offline-evaluation",
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "top_k": 5
+  },
+  "retrieval_only_ms": {
+    "mean": 6.8846,
+    "p50": 7.64,
+    "p95": 7.9261,
+    "minimum": 1.5963,
+    "maximum": 8.3851
+  },
+  "answer_pipeline_ms": {
+    "mean": 7.0714,
+    "p50": 7.6006,
+    "p95": 7.9745,
+    "minimum": 1.6569,
+    "maximum": 35.0265
+  },
+  "limitations": [
+    "Uses deterministic hashing embeddings rather than a network API.",
+    "Uses temporary local Qdrant and SQLite stores with a synthetic corpus.",
+    "Answer timing uses the deterministic evaluation LLM provider.",
+    "Results describe this machine and workload, not production capacity."
+  ]
+}

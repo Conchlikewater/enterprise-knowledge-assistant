@@ -10,6 +10,10 @@ htmlcov/
 .venv/
 venv/
 
+# Local scratch and rendered verification artifacts
+.tmp/
+tmp/
+
 # Local configuration and secrets
 .env
 !.env.example

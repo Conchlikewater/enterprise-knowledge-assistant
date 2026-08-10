@@ -1223,4 +1223,38 @@ No vector database, embedding model, or LLM dependency should be installed until
 - Secondary reference: https://github.com/zylon-ai/private-gpt
 - Enterprise boundary reference: https://github.com/infiniflow/ragflow
 - Educational reference: https://github.com/bakrianoo/mini-rag
+
+---
+
+## 20. V2 Evaluation and Portfolio Decisions (2026-08-10)
+
+V2 did not expand the production API boundary. It strengthened the evidence for
+the existing architecture through a typed 50-question evaluation set, retrieval
+metrics, isolated experiments, bad-case analysis, and local latency measurement.
+
+Adopted evaluation decisions:
+
+- keep V1 document-scoped semantic Dense retrieval in the production service
+- use exact evidence snippets rather than filenames alone as retrieval ground truth
+- report Hit@K, Recall@K, and MRR separately
+- isolate every chunk, Top-K, provider, and ranking experiment in fresh stores
+- treat `0.37` through `0.41` only as a synthetic semantic-threshold candidate interval
+- keep production threshold configuration unchanged until broader validation
+- retain ambiguous questions as a visible clarification-product gap
+- store latency separately from deterministic quality reports
+
+Measured retrieval decisions:
+
+- hashing baseline: Recall@5 `82.50%`, MRR `0.7937`
+- OpenAI `text-embedding-3-small`: Recall@5 `100%`, MRR `0.9833`
+- equal-weight semantic Dense + BM25/RRF: Recall@5 `92.50%`, MRR `0.8438`
+- reject the Hybrid prototype because it introduces three answerable retrieval regressions
+
+The negative Hybrid result is part of the portfolio evidence. Complexity is not
+promoted merely because it is available; a candidate must improve the measured
+quality boundary without creating unacceptable refusal or ranking regressions.
+
+V2 remains local and single-user. Authentication, multi-tenancy, asynchronous
+ingestion, OCR, frontend work, managed databases, and public deployment remain
+outside the frozen release.
 - Qdrant local-mode documentation: https://qdrant.tech/documentation/frameworks/langchain/

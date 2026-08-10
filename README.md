@@ -4,8 +4,9 @@
 FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant，
 并通过 OpenAI embedding 和 LLM 生成限定文档范围的回答与结构化引用。
 
-> 当前状态：V1 功能闭环已完成，面向本地单用户演示。它展示企业 RAG
-> 的工程边界，但尚未提供认证、多租户或公网生产部署能力。
+> 当前状态：V1 应用闭环已完成；V2 评测与作品集增强已冻结。生产 API
+> 保持语义 Dense 检索，Hybrid 仅作为被评测并拒绝上线的实验原型。项目
+> 面向本地单用户演示，尚未提供认证、多租户或公网生产部署能力。
 
 ## 项目亮点
 
@@ -14,7 +15,9 @@ FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant
 - 范围检索：请求必须显式选择文档，检索前后均验证 `document_id`。
 - 可信引用：文件名、页码、chunk ID 和分数由应用从真实检索结果构造。
 - 隐私边界：不记录问题、文档内容、prompt、回答、向量、密钥或本地路径。
-- 可重复评估：10 份合成文档、20 道题，不使用 API Key 即可运行。
+- 可重复评估：10 份合成文档、50 道题；离线门槛不使用 API Key。
+- 证据化取舍：参数消融、真实语义对照、阈值扫描、Hybrid负向实验和坏案例目录。
+- 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
 
 ## 架构
@@ -178,15 +181,18 @@ quality_gate_passed=true
 .\.venv\Scripts\python.exe scripts\run_evaluation.py
 ```
 
-评估集包含 10 份合成文档和 20 道题，覆盖直接命中、多 chunk 证据、文档
-范围隔离、不可回答问题、引用完整性、PDF 页码和删除一致性。当前已验证结果：
+评估集包含 10 份合成文档和 50 道题，覆盖直接命中、多 chunk 证据、文档
+范围隔离、不可回答、改写、相似事实干扰、低词法重叠和歧义问题。当前离线
+Hashing 基线用于工程回归，不代表线上真实语义效果：
 
 | 指标 | 结果 |
 |---|---:|
-| Top-5 来源命中率 | 100% |
+| Top-5 来源命中率 | 90.00% |
+| Evidence Recall@5 | 82.50% |
+| MRR | 0.7937 |
 | 多 chunk 通过率 | 100% |
 | 文档范围隔离 | 100% |
-| 不可回答问题拒答率 | 100% |
+| 不可回答问题拒答率 | 87.50% |
 | 引用完整性 | 100% |
 | PDF 页码准确率 | 100% |
 | 删除一致性 | 通过 |
@@ -195,6 +201,20 @@ quality_gate_passed=true
 OpenAI embedding/LLM 的语义质量。完整方法和逐题结果见
 [evaluation/README.md](evaluation/README.md) 与
 [evaluation/latest_report.json](evaluation/latest_report.json)。
+
+V2 还包含参数消融、真实语义 Embedding 对照、阈值扫描和 Hybrid
+（Dense + BM25 + RRF）离线原型。当前 Hybrid Hashing 对照没有提升
+Evidence Recall@5，也没有减少检索失败案例；虽然 MRR 小幅增加 0.0063，
+仍不足以修改生产检索策略。进一步使用真实语义 Embedding 对照后，Hybrid
+Recall 从 100% 降至 92.50%，MRR 从 0.9833 降至 0.8438，并新增3个检索
+失败案例，因此当前明确保留 Dense 检索。完整实验边界与结果见
+[evaluation/README.md](evaluation/README.md)。
+
+本地离线性能基准使用135个预热后样本：检索P50/P95约为
+`7.64/7.93 ms`，完整回答编排约为`7.60/7.97 ms`。这些数字只描述当前
+机器上的Hashing、临时本地Qdrant/SQLite和合成语料，不代表OpenAI网络
+延迟或生产并发能力。已知失败按检索、阈值、回答策略和排序阶段记录在
+`evaluation/bad_case_report.json`。
 
 ## 项目结构
 
