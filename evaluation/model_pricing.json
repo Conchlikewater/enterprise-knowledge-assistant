@@ -1,0 +1,20 @@
+{
+  "as_of": "2026-08-11",
+  "currency": "USD",
+  "models": [
+    {
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "input_per_million": 5.0,
+      "cached_input_per_million": 0.5,
+      "output_per_million": 30.0
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "input_per_million": 0.14,
+      "cached_input_per_million": 0.0028,
+      "output_per_million": 0.28
+    }
+  ]
+}

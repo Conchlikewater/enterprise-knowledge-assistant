@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from app.providers.embedding_provider import EmbeddingProvider
-from app.providers.llm_provider import LLMProvider
+from app.providers.llm_provider import LLMGenerationResult, LLMProvider
 
 
 class DeterministicEmbeddingProvider(EmbeddingProvider):
@@ -62,9 +62,9 @@ class DeterministicLLMProvider(LLMProvider):
         self,
         question: str,
         context_blocks: Sequence[str],
-    ) -> str:
+    ) -> LLMGenerationResult:
         self.calls.append((question, tuple(context_blocks)))
-        return self.answer
+        return LLMGenerationResult(text=self.answer)
 
     def close(self) -> None:
         self.closed = True

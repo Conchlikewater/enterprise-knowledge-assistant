@@ -8,7 +8,12 @@ from typing import Any, Final
 from openai import OpenAI
 
 from app.core.exceptions import AnswerProviderError
-from app.providers.llm_provider import INSUFFICIENT_EVIDENCE_MARKER, LLMProvider
+from app.providers.llm_provider import (
+    INSUFFICIENT_EVIDENCE_MARKER,
+    LLMGenerationResult,
+    LLMProvider,
+    LLMTokenUsage,
+)
 
 _INSTRUCTIONS: Final = f"""You are a grounded enterprise knowledge assistant.
 Answer the question using only the supplied evidence blocks.
@@ -31,6 +36,7 @@ class OpenAILLMProvider(LLMProvider):
         verbosity: str = "low",
         max_output_tokens: int = 800,
         timeout_seconds: float = 60.0,
+        base_url: str | None = None,
         client: Any | None = None,
     ) -> None:
         if not api_key.strip():
@@ -45,17 +51,22 @@ class OpenAILLMProvider(LLMProvider):
             raise ValueError("max_output_tokens must be positive")
         if timeout_seconds <= 0:
             raise ValueError("timeout_seconds must be positive")
+        if base_url is not None and not base_url.strip():
+            raise ValueError("base_url must not be empty")
 
         self._model = model
         self._reasoning_effort = reasoning_effort
         self._verbosity = verbosity
         self._max_output_tokens = max_output_tokens
         self._owns_client = client is None
-        self._client = client or OpenAI(
-            api_key=api_key,
-            timeout=timeout_seconds,
-            max_retries=2,
-        )
+        client_options: dict[str, Any] = {
+            "api_key": api_key,
+            "timeout": timeout_seconds,
+            "max_retries": 2,
+        }
+        if base_url is not None:
+            client_options["base_url"] = base_url.rstrip("/")
+        self._client = client or OpenAI(**client_options)
 
     @property
     def name(self) -> str:
@@ -69,7 +80,7 @@ class OpenAILLMProvider(LLMProvider):
         self,
         question: str,
         context_blocks: Sequence[str],
-    ) -> str:
+    ) -> LLMGenerationResult:
         normalized_question = question.strip()
         normalized_blocks = [block.strip() for block in context_blocks]
         if not normalized_question:
@@ -94,7 +105,10 @@ class OpenAILLMProvider(LLMProvider):
             answer = response.output_text.strip()
             if not answer:
                 raise AnswerProviderError()
-            return answer
+            return LLMGenerationResult(
+                text=answer,
+                usage=_extract_token_usage(response),
+            )
         except AnswerProviderError:
             raise
         except Exception as exc:
@@ -103,3 +117,30 @@ class OpenAILLMProvider(LLMProvider):
     def close(self) -> None:
         if self._owns_client:
             self._client.close()
+
+
+def _extract_token_usage(response: Any) -> LLMTokenUsage | None:
+    usage = getattr(response, "usage", None)
+    if usage is None:
+        return None
+    input_tokens = _optional_integer(usage, "input_tokens")
+    output_tokens = _optional_integer(usage, "output_tokens")
+    if input_tokens is None or output_tokens is None:
+        return None
+    input_details = getattr(usage, "input_tokens_details", None)
+    output_details = getattr(usage, "output_tokens_details", None)
+    return LLMTokenUsage(
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+        cached_input_tokens=_optional_integer(input_details, "cached_tokens") or 0,
+        reasoning_tokens=_optional_integer(output_details, "reasoning_tokens") or 0,
+    )
+
+
+def _optional_integer(source: Any, name: str) -> int | None:
+    if source is None:
+        return None
+    value = (
+        source.get(name) if isinstance(source, dict) else getattr(source, name, None)
+    )
+    return value if isinstance(value, int) and not isinstance(value, bool) else None

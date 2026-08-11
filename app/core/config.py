@@ -11,6 +11,7 @@ from dotenv import dotenv_values
 
 _LLM_REASONING_EFFORTS = frozenset({"none", "low", "medium", "high", "xhigh", "max"})
 _LLM_VERBOSITY_LEVELS = frozenset({"low", "medium", "high"})
+_LLM_PROVIDERS = frozenset({"openai", "deepseek"})
 _LOG_LEVELS = frozenset({"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"})
 
 
@@ -50,10 +51,13 @@ class Settings:
     qdrant_path: Path = Path("data/qdrant")
     qdrant_collection: str = "knowledge_chunks"
     openai_api_key: str | None = field(default=None, repr=False, compare=False)
+    deepseek_api_key: str | None = field(default=None, repr=False, compare=False)
+    deepseek_base_url: str = "https://api.deepseek.com"
     embedding_model: str = "text-embedding-3-small"
     embedding_dimensions: int = 1536
     embedding_batch_size: int = 64
     openai_timeout_seconds: float = 30.0
+    llm_provider: str = "openai"
     llm_model: str = "gpt-5.6-sol"
     llm_reasoning_effort: str = "low"
     llm_verbosity: str = "low"
@@ -80,6 +84,10 @@ class Settings:
             raise ValueError("embedding_batch_size must be positive")
         if self.openai_timeout_seconds <= 0:
             raise ValueError("openai_timeout_seconds must be positive")
+        if self.llm_provider not in _LLM_PROVIDERS:
+            raise ValueError("llm_provider is not supported")
+        if not self.deepseek_base_url.strip():
+            raise ValueError("deepseek_base_url must not be empty")
         if not self.llm_model.strip():
             raise ValueError("llm_model must not be empty")
         if self.llm_reasoning_effort not in _LLM_REASONING_EFFORTS:
@@ -113,6 +121,12 @@ class Settings:
         else:
             env = environment
         api_key = env.get("OPENAI_API_KEY")
+        deepseek_api_key = env.get("DEEPSEEK_API_KEY")
+        llm_provider = env.get("RAG_LLM_PROVIDER", "openai").strip().lower()
+        default_llm_model = (
+            "deepseek-v4-flash" if llm_provider == "deepseek" else "gpt-5.6-sol"
+        )
+        default_reasoning_effort = "none" if llm_provider == "deepseek" else "low"
         return cls(
             environment=env.get("RAG_ENVIRONMENT", "development"),
             host=env.get("RAG_HOST", "127.0.0.1"),
@@ -123,12 +137,23 @@ class Settings:
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
             qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
             openai_api_key=api_key.strip() if api_key and api_key.strip() else None,
+            deepseek_api_key=(
+                deepseek_api_key.strip()
+                if deepseek_api_key and deepseek_api_key.strip()
+                else None
+            ),
+            deepseek_base_url=env.get(
+                "RAG_DEEPSEEK_BASE_URL", "https://api.deepseek.com"
+            ).rstrip("/"),
             embedding_model=env.get("RAG_EMBEDDING_MODEL", "text-embedding-3-small"),
             embedding_dimensions=_read_int(env, "RAG_EMBEDDING_DIMENSIONS", 1536),
             embedding_batch_size=_read_int(env, "RAG_EMBEDDING_BATCH_SIZE", 64),
             openai_timeout_seconds=_read_float(env, "RAG_OPENAI_TIMEOUT_SECONDS", 30.0),
-            llm_model=env.get("RAG_LLM_MODEL", "gpt-5.6-sol"),
-            llm_reasoning_effort=env.get("RAG_LLM_REASONING_EFFORT", "low").lower(),
+            llm_provider=llm_provider,
+            llm_model=env.get("RAG_LLM_MODEL", default_llm_model),
+            llm_reasoning_effort=env.get(
+                "RAG_LLM_REASONING_EFFORT", default_reasoning_effort
+            ).lower(),
             llm_verbosity=env.get("RAG_LLM_VERBOSITY", "low").lower(),
             llm_max_output_tokens=_read_int(env, "RAG_LLM_MAX_OUTPUT_TOKENS", 800),
             llm_timeout_seconds=_read_float(env, "RAG_LLM_TIMEOUT_SECONDS", 60.0),

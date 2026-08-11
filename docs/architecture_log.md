@@ -1258,3 +1258,28 @@ V2 remains local and single-user. Authentication, multi-tenancy, asynchronous
 ingestion, OCR, frontend work, managed databases, and public deployment remain
 outside the frozen release.
 - Qdrant local-mode documentation: https://qdrant.tech/documentation/frameworks/langchain/
+
+---
+
+## 21. Multi-LLM Generation Enhancement (2026-08-11)
+
+This bounded enhancement supersedes only the earlier single-LLM-implementation
+constraint. The service still activates one LLM backend at a time, but the
+existing `LLMProvider` port can now select OpenAI or DeepSeek through typed
+configuration. OpenAI embedding, chunking, Qdrant retrieval, document scope,
+the grounded prompt, refusal marker, and application-built citations remain
+unchanged.
+
+DeepSeek uses the existing OpenAI Python SDK against the official
+OpenAI-compatible Responses API. The selected model is
+`deepseek-v4-flash`; legacy `deepseek-chat` and `deepseek-reasoner` identifiers
+are not used. Provider results now include optional normalized token usage so
+the same application contract supports latency and cost reporting without
+leaking credentials or prompts into logs.
+
+The comparison experiment reuses the tracked 10-document, 50-question corpus.
+Retrieval runs once per question, and both generation providers receive the
+same evidence blocks. Automatic answer quality is reported as a limited
+reference-answer token-F1 proxy, not as production accuracy. Real API calls
+remain opt-in, require both credentials, use only synthetic data, and are never
+part of CI.

@@ -16,8 +16,8 @@ from app.core.error_handlers import register_error_handlers
 from app.core.logging import configure_logging
 from app.providers.embedding_provider import EmbeddingProvider
 from app.providers.llm_provider import LLMProvider
+from app.providers.llm_provider_factory import create_llm_provider
 from app.providers.openai_embedding_provider import OpenAIEmbeddingProvider
-from app.providers.openai_llm_provider import OpenAILLMProvider
 from app.services.answer_service import AnswerService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
@@ -64,18 +64,8 @@ def create_app(
                     batch_size=resolved_settings.embedding_batch_size,
                     timeout_seconds=resolved_settings.openai_timeout_seconds,
                 )
-            if (
-                runtime_llm_provider is None
-                and resolved_settings.openai_api_key is not None
-            ):
-                runtime_llm_provider = OpenAILLMProvider(
-                    api_key=resolved_settings.openai_api_key,
-                    model=resolved_settings.llm_model,
-                    reasoning_effort=resolved_settings.llm_reasoning_effort,
-                    verbosity=resolved_settings.llm_verbosity,
-                    max_output_tokens=resolved_settings.llm_max_output_tokens,
-                    timeout_seconds=resolved_settings.llm_timeout_seconds,
-                )
+            if runtime_llm_provider is None:
+                runtime_llm_provider = create_llm_provider(resolved_settings)
 
             application.state.document_repository = resolved_repository
             application.state.vector_store = resolved_vector_store

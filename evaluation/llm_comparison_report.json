@@ -1,0 +1,2376 @@
+{
+  "corpus": "tracked-synthetic-policy-corpus",
+  "document_count": 10,
+  "question_count": 50,
+  "category_counts": {
+    "direct": 14,
+    "multi_chunk": 6,
+    "scope_isolation": 4,
+    "unanswerable": 8,
+    "paraphrase": 6,
+    "distractor": 6,
+    "low_score": 4,
+    "ambiguous": 2
+  },
+  "retrieval_profile": {
+    "embedding_provider": "openai",
+    "embedding_model": "text-embedding-3-small",
+    "embedding_dimensions": 1536,
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "top_k": 5,
+    "score_threshold": null
+  },
+  "pricing_as_of": "2026-08-11",
+  "provider_summaries": [
+    {
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "model_call_count": 50,
+      "quality_scored_question_count": 40,
+      "behavior_scored_question_count": 48,
+      "reference_answer_token_f1": 0.7515352416183431,
+      "behavior_accuracy": 1.0,
+      "citation_marker_validity": 1.0,
+      "application_citation_integrity": 1.0,
+      "average_latency_ms": 1771.4480979998916,
+      "p50_latency_ms": 1558.1911999997828,
+      "p95_latency_ms": 3430.6425949995164,
+      "token_usage_complete": true,
+      "input_tokens": 14546,
+      "cached_input_tokens": 0,
+      "output_tokens": 1118,
+      "reasoning_tokens": 0,
+      "estimated_cost_usd": 0.10627
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "model_call_count": 50,
+      "quality_scored_question_count": 36,
+      "behavior_scored_question_count": 48,
+      "reference_answer_token_f1": 0.725845541871567,
+      "behavior_accuracy": 0.9166666666666666,
+      "citation_marker_validity": 1.0,
+      "application_citation_integrity": 1.0,
+      "average_latency_ms": 912.8377399999954,
+      "p50_latency_ms": 932.4199999991833,
+      "p95_latency_ms": 1143.5578599999644,
+      "token_usage_complete": true,
+      "input_tokens": 14372,
+      "cached_input_tokens": 512,
+      "output_tokens": 905,
+      "reasoning_tokens": 0,
+      "estimated_cost_usd": 0.0021952336
+    }
+  ],
+  "question_results": [
+    {
+      "question_id": "direct-01",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 302.29899999903864,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Privileged access recertification is performed quarterly. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7692307692307692,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2471.392999999807,
+          "usage": {
+            "input_tokens": 307,
+            "output_tokens": 17,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Privileged access recertification is performed every quarter. System owners review the privileged account inventory, and managers certify that each account still has a valid business purpose. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.42424242424242425,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1144.8679000004631,
+          "usage": {
+            "input_tokens": 305,
+            "output_tokens": 37,
+            "cached_input_tokens": 256,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-02",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 113.81989999972575,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Within 15 minutes of confirmation. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5263157894736842,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2111.66779999985,
+          "usage": {
+            "input_tokens": 310,
+            "output_tokens": 14,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8666666666666666,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 795.1112000009743,
+          "usage": {
+            "input_tokens": 308,
+            "output_tokens": 22,
+            "cached_input_tokens": 256,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-03",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 222.94140000121843,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Critical vendors are reassessed annually. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1722.9012999996485,
+          "usage": {
+            "input_tokens": 291,
+            "output_tokens": 14,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Critical vendors are reassessed annually. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 817.0859000001656,
+          "usage": {
+            "input_tokens": 288,
+            "output_tokens": 10,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-04",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 131.60640000023704,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1455.7026000002224,
+          "usage": {
+            "input_tokens": 266,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 673.4362000006513,
+          "usage": {
+            "input_tokens": 262,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-05",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 303.652399999919,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Company devices lock after 10 minutes of inactivity. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.823529411764706,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2352.6364999997895,
+          "usage": {
+            "input_tokens": 292,
+            "output_tokens": 17,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "After ten minutes of inactivity. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7142857142857143,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1030.2998999995907,
+          "usage": {
+            "input_tokens": 289,
+            "output_tokens": 9,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-06",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 296.0469000008743,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A normal production change requires a change ticket, documented test evidence, peer review, and service-owner approval before deployment.[1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9268292682926829,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1783.4297000008519,
+          "usage": {
+            "input_tokens": 299,
+            "output_tokens": 29,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A normal production change requires a change ticket, documented test evidence, peer review, and approval from the service owner before deployment [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8837209302325582,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1059.6100999991904,
+          "usage": {
+            "input_tokens": 298,
+            "output_tokens": 27,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-07",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 288.07419999975536,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The customer portal’s recovery time objective is two hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9473684210526316,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1704.2075999997905,
+          "usage": {
+            "input_tokens": 296,
+            "output_tokens": 18,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The customer portal recovery time objective is two hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1007.0978000003379,
+          "usage": {
+            "input_tokens": 293,
+            "output_tokens": 13,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-08",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 424.0277999997488,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "New starters must complete security awareness training within 30 days of joining. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1389.0478999983316,
+          "usage": {
+            "input_tokens": 319,
+            "output_tokens": 21,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "New starters must complete security awareness training within 30 days of joining and repeat it annually [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8571428571428571,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 662.4479999991308,
+          "usage": {
+            "input_tokens": 314,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-09",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 418.5637999999017,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "An itemized receipt is required for any expense above $75. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9523809523809523,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1146.9314999994822,
+          "usage": {
+            "input_tokens": 330,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "75 dollars [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.3076923076923077,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 937.8585000013118,
+          "usage": {
+            "input_tokens": 325,
+            "output_tokens": 5,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-10",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 211.64859999953478,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Full-time employees receive 20 days of annual leave each year. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1333.1367999999202,
+          "usage": {
+            "input_tokens": 306,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Full-time employees receive 20 days of annual leave each year. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1089.0734000004159,
+          "usage": {
+            "input_tokens": 301,
+            "output_tokens": 16,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-01",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 306.14690000038536,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "- **Privileged recertification:** Quarterly; system owners review the privileged-account inventory, and managers certify each account still has a valid business purpose.[1]\n- **Terminated-worker access:** Disable access within 24 hours of the separation notice. Security Operations reviews overdue removals weekly.[2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.459016393442623,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2496.5415999995457,
+          "usage": {
+            "input_tokens": 314,
+            "output_tokens": 64,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Quarterly privileged recertification has system owners review the privileged account inventory, and managers certify that each account still has a valid business purpose [1]. Terminated-worker access must be disabled within 24 hours of the separation notice; Security Operations reviews overdue removals each week [2].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.49230769230769234,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1385.486499999388,
+          "usage": {
+            "input_tokens": 313,
+            "output_tokens": 57,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-02",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 335.845600000539,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "- **Severity 1 notification:** Within **15 minutes of confirmation**. [1]\n- **Post-incident review:** Within **five business days after service restoration**. [2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7234042553191489,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1573.770399998466,
+          "usage": {
+            "input_tokens": 338,
+            "output_tokens": 42,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The Severity 1 notification deadline is within 15 minutes of confirmation [1]. The post-incident review deadline is within five business days after service restoration [2].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.679245283018868,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1112.6322000000073,
+          "usage": {
+            "input_tokens": 336,
+            "output_tokens": 34,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-03",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 276.14549999998417,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The customer portal’s recovery time objective is **two hours**, and backup restore tests are conducted **quarterly**. [1][2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.787878787878788,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1990.5987000001915,
+          "usage": {
+            "input_tokens": 288,
+            "output_tokens": 32,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The customer portal recovery objective is two hours [1]. Restore tests are performed every quarter [2].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9333333333333333,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 998.2736000001751,
+          "usage": {
+            "input_tokens": 287,
+            "output_tokens": 21,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-04",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 340.4054999991786,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "- New-starter security awareness training: within 30 days of joining [2].\n- Suspected phishing: report to Security within one hour [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7000000000000001,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1489.584000000832,
+          "usage": {
+            "input_tokens": 306,
+            "output_tokens": 35,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The new-starter training deadline is to complete security awareness training within 30 days of joining [2]. The suspected phishing reporting deadline is to report to Security within one hour [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5882352941176471,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 875.8742000009079,
+          "usage": {
+            "input_tokens": 301,
+            "output_tokens": 37,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "scope-01",
+      "category": "scope_isolation",
+      "expected_behavior": "answer",
+      "retrieval_count": 3,
+      "retrieval_latency_ms": 342.78029999950377,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The quarterly review is **privileged access recertification**. System owners review the privileged account inventory, and managers certify each account’s valid business purpose. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.26666666666666666,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1045.8220999989862,
+          "usage": {
+            "input_tokens": 230,
+            "output_tokens": 38,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Quarterly review applies to privileged accounts, where privileged access recertification is performed every quarter [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.6666666666666666,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 798.944100000881,
+          "usage": {
+            "input_tokens": 228,
+            "output_tokens": 21,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "scope-02",
+      "category": "scope_isolation",
+      "expected_behavior": "answer",
+      "retrieval_count": 4,
+      "retrieval_latency_ms": 308.20589999893855,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1351.294500000222,
+          "usage": {
+            "input_tokens": 232,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 692.8968000011082,
+          "usage": {
+            "input_tokens": 228,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-01",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 382.88619999912044,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1613.6597000004258,
+          "usage": {
+            "input_tokens": 288,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 662.3322999985248,
+          "usage": {
+            "input_tokens": 282,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-02",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 139.21130000017,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1327.5942000000214,
+          "usage": {
+            "input_tokens": 322,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 791.2054999997054,
+          "usage": {
+            "input_tokens": 318,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-03",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 316.9932999990124,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1179.9508000003698,
+          "usage": {
+            "input_tokens": 294,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 886.864300000525,
+          "usage": {
+            "input_tokens": 289,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-04",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 291.2195000008069,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1642.9769999995187,
+          "usage": {
+            "input_tokens": 277,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 724.8994000001403,
+          "usage": {
+            "input_tokens": 276,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-11",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 296.0824000001594,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Access must be disabled within 24 hours of the separation notice. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8148148148148148,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1826.959200001511,
+          "usage": {
+            "input_tokens": 294,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Access belonging to a terminated worker must be disabled within 24 hours of the separation notice [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 797.3449999990407,
+          "usage": {
+            "input_tokens": 291,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-12",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 646.8914999986737,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A vendor must report a confirmed data breach within 48 hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7500000000000001,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1245.8134999997128,
+          "usage": {
+            "input_tokens": 296,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Within 48 hours. [1][2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.375,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 932.8048999996099,
+          "usage": {
+            "input_tokens": 291,
+            "output_tokens": 10,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-13",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 417.79500000120606,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A legal hold suspends normal deletion for affected records until Legal releases the hold. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1310.9994999995251,
+          "usage": {
+            "input_tokens": 264,
+            "output_tokens": 23,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A legal hold suspends normal deletion for affected records until Legal releases the hold. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 784.7617999996146,
+          "usage": {
+            "input_tokens": 260,
+            "output_tokens": 19,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "direct-14",
+      "category": "direct",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 318.2574000002205,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "An emergency production change must receive retrospective review within two business days. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8333333333333334,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1483.637199999066,
+          "usage": {
+            "input_tokens": 299,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "An emergency production change must receive a retrospective review within two business days. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8799999999999999,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 714.8973000003025,
+          "usage": {
+            "input_tokens": 295,
+            "output_tokens": 17,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-05",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 317.05500000134634,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Procurement and Security must approve a critical vendor before onboarding. A confirmed data breach must be reported within 48 hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.717948717948718,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 3626.731000000291,
+          "usage": {
+            "input_tokens": 324,
+            "output_tokens": 31,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Critical vendors require approval from Procurement and Security, and their contracts must require notification of a confirmed data breach within 48 hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.6829268292682926,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1015.4480999990483,
+          "usage": {
+            "input_tokens": 320,
+            "output_tokens": 28,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "multi-06",
+      "category": "multi_chunk",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 225.4371999988507,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Planned leave of five days or more requires at least two weeks’ advance notice. Up to five unused annual-leave days may be carried into the next year.[1][2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8421052631578947,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1788.9398000006622,
+          "usage": {
+            "input_tokens": 317,
+            "output_tokens": 41,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Long planned leave of five days or more should be requested at least two weeks in advance [1]. Up to five unused annual-leave days may be carried into the next year [2].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9333333333333333,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1134.8856999993586,
+          "usage": {
+            "input_tokens": 312,
+            "output_tokens": 38,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "scope-03",
+      "category": "scope_isolation",
+      "expected_behavior": "answer",
+      "retrieval_count": 3,
+      "retrieval_latency_ms": 274.7158000001946,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A lost company device must be reported to the service desk within one hour. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1412.8633000000264,
+          "usage": {
+            "input_tokens": 217,
+            "output_tokens": 22,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A lost company device must be reported to the service desk within one hour. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1116.5498999998817,
+          "usage": {
+            "input_tokens": 212,
+            "output_tokens": 18,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "scope-04",
+      "category": "scope_isolation",
+      "expected_behavior": "answer",
+      "retrieval_count": 2,
+      "retrieval_latency_ms": 283.50959999988845,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Personal purchases, commuting costs, and minibar charges are not reimbursable. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1306.0129999994388,
+          "usage": {
+            "input_tokens": 194,
+            "output_tokens": 22,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Personal purchases, commuting costs, and minibar charges are explicitly not reimbursable. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9523809523809523,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1033.2987000001594,
+          "usage": {
+            "input_tokens": 187,
+            "output_tokens": 19,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-05",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 339.60060000026715,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1305.1305000008142,
+          "usage": {
+            "input_tokens": 324,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 656.9674000002124,
+          "usage": {
+            "input_tokens": 319,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-06",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 296.72279999977036,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 933.1105999990541,
+          "usage": {
+            "input_tokens": 289,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 688.5559999991528,
+          "usage": {
+            "input_tokens": 285,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-07",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 284.08540000054927,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1176.5942000001814,
+          "usage": {
+            "input_tokens": 274,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 896.8380000005709,
+          "usage": {
+            "input_tokens": 272,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "unanswerable-08",
+      "category": "unanswerable",
+      "expected_behavior": "refuse",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 284.9781000004441,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1072.9664999998931,
+          "usage": {
+            "input_tokens": 318,
+            "output_tokens": 11,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": true,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 958.1446000011056,
+          "usage": {
+            "input_tokens": 317,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-01",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 299.2238999995607,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Administrators’ privileged access must be recertified quarterly. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.30769230769230765,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1225.5208999995375,
+          "usage": {
+            "input_tokens": 313,
+            "output_tokens": 19,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Administrators' special access must be checked again every quarter. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5333333333333333,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 754.4959000006202,
+          "usage": {
+            "input_tokens": 311,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-02",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 427.5874000013573,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A confirmed top-priority (Severity 1) outage must be escalated within **15 minutes**.[1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.6153846153846154,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1293.0150000011054,
+          "usage": {
+            "input_tokens": 324,
+            "output_tokens": 27,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The maximum time to escalate a confirmed top-priority outage is 15 minutes of confirmation [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.3571428571428571,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 685.9399999993911,
+          "usage": {
+            "input_tokens": 322,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-03",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 423.9254999993136,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Accounting documents are kept for seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5714285714285714,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1261.9543000000704,
+          "usage": {
+            "input_tokens": 265,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": false,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1075.5552999999054,
+          "usage": {
+            "input_tokens": 261,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-04",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 286.46000000117056,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Full-time staff receive 20 days of paid annual leave each year. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8695652173913043,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 3562.2148999991623,
+          "usage": {
+            "input_tokens": 323,
+            "output_tokens": 21,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Full-time employees receive 20 days of annual leave each year. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 1.0,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 807.9536999994161,
+          "usage": {
+            "input_tokens": 319,
+            "output_tokens": 16,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-05",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 115.89219999950728,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A remote company laptop automatically locks after 10 minutes of inactivity. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7000000000000001,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1653.9487000009103,
+          "usage": {
+            "input_tokens": 303,
+            "output_tokens": 20,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": false,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 664.4109000008029,
+          "usage": {
+            "input_tokens": 298,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "paraphrase-06",
+      "category": "paraphrase",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 444.9471000007179,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A suspicious email must be reported to the Security team within one hour. Do not open or forward it. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5333333333333333,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1523.293599999306,
+          "usage": {
+            "input_tokens": 313,
+            "output_tokens": 28,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A suspicious email must be reported to the security team within one hour and must not be opened or forwarded. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5161290322580645,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 944.7049999998853,
+          "usage": {
+            "input_tokens": 309,
+            "output_tokens": 24,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-01",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 324.3255000015779,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The customer portal recovery time objective is **two hours**. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.782608695652174,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 3269.831999999951,
+          "usage": {
+            "input_tokens": 279,
+            "output_tokens": 19,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The customer portal recovery objective is two hours. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7272727272727273,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1020.5794999983482,
+          "usage": {
+            "input_tokens": 275,
+            "output_tokens": 12,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-02",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 292.83290000057605,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Restore tests are performed quarterly. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.4444444444444444,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1768.0350999999064,
+          "usage": {
+            "input_tokens": 278,
+            "output_tokens": 13,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Restore tests are performed quarterly. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.4444444444444444,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 851.1487000014313,
+          "usage": {
+            "input_tokens": 277,
+            "output_tokens": 10,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-03",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 454.64869999887014,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The breach rule requires notification within 48 hours. Annual review applies to critical-vendor reassessment, not breach notification. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5294117647058824,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1870.119799999884,
+          "usage": {
+            "input_tokens": 308,
+            "output_tokens": 31,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The critical-vendor breach rule requires notification of a confirmed data breach within 48 hours [1][2].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5161290322580646,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1042.907799999739,
+          "usage": {
+            "input_tokens": 305,
+            "output_tokens": 22,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-04",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 294.7714999991149,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years, rather than the six-year retention period for Human Resources records after employment ends. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7777777777777778,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2007.343999999648,
+          "usage": {
+            "input_tokens": 270,
+            "output_tokens": 30,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Finance records are retained for seven years rather than six years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.6153846153846153,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1091.765099999975,
+          "usage": {
+            "input_tokens": 266,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-05",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 415.459899999405,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The receipt threshold is **above $75**. Ten calendar days is the expense submission deadline. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9032258064516129,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1551.76179999944,
+          "usage": {
+            "input_tokens": 286,
+            "output_tokens": 26,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The receipt threshold concerns 75 dollars, not ten calendar days. The threshold is stated as \"any expense above 75 dollars\" [1]. The ten calendar days refers to the timeframe for employee expense submission, not a receipt threshold [1].",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.490566037735849,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1003.052399999433,
+          "usage": {
+            "input_tokens": 282,
+            "output_tokens": 49,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "distractor-06",
+      "category": "distractor",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 298.94419999982347,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Employee security awareness training recurs **annually**. Phishing simulations occur quarterly. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.9,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 3012.4672000001738,
+          "usage": {
+            "input_tokens": 306,
+            "output_tokens": 24,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The training recurs annually. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.28571428571428575,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 789.2346000007819,
+          "usage": {
+            "input_tokens": 303,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "low-score-01",
+      "category": "low_score",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 291.8386000001192,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Former staff credentials must be disabled within 24 hours of the separation notice.[3]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7142857142857142,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1579.4511000003695,
+          "usage": {
+            "input_tokens": 287,
+            "output_tokens": 21,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": false,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 1141.956699999355,
+          "usage": {
+            "input_tokens": 284,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "low-score-02",
+      "category": "low_score",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 217.28040000016335,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "A Severity 1 incident must be escalated to the incident commander within 15 minutes of confirmation. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.7857142857142857,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1564.6206000001257,
+          "usage": {
+            "input_tokens": 306,
+            "output_tokens": 27,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "A Severity 1 incident must be reported to the incident commander within 15 minutes of confirmation. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.8571428571428571,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1059.8446000003605,
+          "usage": {
+            "input_tokens": 302,
+            "output_tokens": 23,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "low-score-03",
+      "category": "low_score",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 292.7254999995057,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The bookkeeping archive period is seven years. [1]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.2857142857142857,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 2822.904999999082,
+          "usage": {
+            "input_tokens": 273,
+            "output_tokens": 15,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "I could not find enough evidence in the selected documents to answer this question.",
+          "refused": true,
+          "behavior_correct": false,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": null,
+          "application_citations_valid": null,
+          "latency_ms": 773.4713999998348,
+          "usage": {
+            "input_tokens": 270,
+            "output_tokens": 8,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "low-score-04",
+      "category": "low_score",
+      "expected_behavior": "answer",
+      "retrieval_count": 5,
+      "retrieval_latency_ms": 436.373000000458,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "Full-time employees are entitled to 20 days of paid annual leave each year. Up to five unused days may be carried into the next year; additional days expire. [1][2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5000000000000001,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1526.1506999995618,
+          "usage": {
+            "input_tokens": 327,
+            "output_tokens": 42,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "Full-time employees receive 20 days of annual leave each year. Up to five unused annual-leave days may be carried into the next year; additional unused days expire. [1][2]",
+          "refused": false,
+          "behavior_correct": true,
+          "reference_answer_token_f1": 0.5499999999999999,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 949.8886000001221,
+          "usage": {
+            "input_tokens": 321,
+            "output_tokens": 39,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "ambiguous-01",
+      "category": "ambiguous",
+      "expected_behavior": "clarify",
+      "retrieval_count": 4,
+      "retrieval_latency_ms": 890.4222000001027,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The customer portal’s recovery time objective is two hours; payroll’s is four hours. [1]",
+          "refused": false,
+          "behavior_correct": null,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1540.962799999761,
+          "usage": {
+            "input_tokens": 241,
+            "output_tokens": 24,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The customer portal has a recovery time objective of two hours. Payroll has a recovery time objective of four hours. [1]",
+          "refused": false,
+          "behavior_correct": null,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 1176.146499999959,
+          "usage": {
+            "input_tokens": 238,
+            "output_tokens": 26,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "ambiguous-02",
+      "category": "ambiguous",
+      "expected_behavior": "clarify",
+      "retrieval_count": 3,
+      "retrieval_latency_ms": 275.7118999998056,
+      "expected_evidence_complete": true,
+      "providers": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-sol",
+          "model_called": true,
+          "answer": "The privileged access recertification review is performed quarterly. [1]",
+          "refused": false,
+          "behavior_correct": null,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 3866.2014000001363,
+          "usage": {
+            "input_tokens": 229,
+            "output_tokens": 18,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "model_called": true,
+          "answer": "The review is performed every quarter. [1]",
+          "refused": false,
+          "behavior_correct": null,
+          "reference_answer_token_f1": null,
+          "citation_markers_valid": true,
+          "application_citations_valid": true,
+          "latency_ms": 932.0350999987568,
+          "usage": {
+            "input_tokens": 227,
+            "output_tokens": 10,
+            "cached_input_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The corpus and questions are synthetic and do not establish production accuracy.",
+    "Reference-answer token F1 is a deterministic proxy and may penalize valid paraphrases.",
+    "Only answer/refuse behavior is scored; the current production prompt has no clarification response.",
+    "Application citations are constructed from retrieved chunks; citation-marker validity separately checks the model text.",
+    "Latency measures sequential provider calls on this machine and is not a concurrency benchmark."
+  ]
+}

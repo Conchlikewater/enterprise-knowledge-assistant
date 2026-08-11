@@ -9,7 +9,7 @@ from itertools import pairwise
 from math import sqrt
 
 from app.providers.embedding_provider import EmbeddingProvider
-from app.providers.llm_provider import LLMProvider
+from app.providers.llm_provider import LLMGenerationResult, LLMProvider
 
 _TOKEN_PATTERN = re.compile(r"[a-z0-9]+")
 _STOP_WORDS = frozenset(
@@ -164,10 +164,12 @@ class EvaluationLLMProvider(LLMProvider):
         self,
         question: str,
         context_blocks: Sequence[str],
-    ) -> str:
+    ) -> LLMGenerationResult:
         if not question.strip() or not context_blocks:
             raise ValueError("evaluation answer requires a question and evidence")
-        return "Evaluation answer grounded in the retrieved evidence [1]."
+        return LLMGenerationResult(
+            text="Evaluation answer grounded in the retrieved evidence [1]."
+        )
 
     def close(self) -> None:
         pass

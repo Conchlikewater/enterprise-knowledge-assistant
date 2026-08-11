@@ -324,3 +324,38 @@ Run it without an API key:
 
 The latest measurement and its limitations are stored in
 `evaluation/latency_report.json`.
+
+## Optional OpenAI vs DeepSeek generation comparison
+
+`scripts/run_llm_comparison.py` adds a deliberately small generation-backend
+experiment. It does not change chunking, embeddings, Qdrant retrieval, the
+grounded prompt, or citation construction. The 10 tracked documents are
+ingested once, each of the 50 questions is retrieved once, and the identical
+evidence blocks are then sent to OpenAI and DeepSeek.
+
+The report records:
+
+- answer/refusal behavior accuracy (clarification remains explicitly unscored);
+- reference-answer token F1 only when all annotated evidence was retrieved;
+- model-written citation-marker validity and application citation integrity;
+- average, P50, and P95 LLM call latency;
+- input, cached-input, output, and reasoning token usage;
+- estimated USD cost using `model_pricing.json` and its dated price snapshot.
+
+Reference-answer token F1 is only a deterministic proxy. It can penalize a
+valid paraphrase and must not be presented as production answer accuracy. The
+JSON report retains per-question generated answers so a human can review the
+small synthetic comparison.
+
+The command requires both `OPENAI_API_KEY` and `DEEPSEEK_API_KEY` and refuses to
+run without explicit opt-in:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_llm_comparison.py --confirm-online
+```
+
+For a lower-cost smoke test, add `--max-questions 2`. The normal offline test
+suite uses fake providers and never calls either external API. No verified
+online comparison is tracked yet because this machine does not currently have
+a DeepSeek API key; unavailable metrics must remain unavailable rather than be
+filled with synthetic values.

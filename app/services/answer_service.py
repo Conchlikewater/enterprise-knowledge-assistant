@@ -56,10 +56,11 @@ class AnswerService:
                     retrieval_count=0,
                 )
             else:
-                generated_answer = self._llm_provider.generate_answer(
+                generation = self._llm_provider.generate_answer(
                     question=question.strip(),
                     context_blocks=self._build_context_blocks(results),
                 )
+                generated_answer = generation.text
                 if self._is_insufficient_evidence(generated_answer):
                     answer_result = AnswerResult(
                         answer=NO_EVIDENCE_ANSWER,

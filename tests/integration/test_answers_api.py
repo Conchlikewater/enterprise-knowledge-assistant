@@ -11,7 +11,7 @@ from app.core.exceptions import AnswerProviderError
 from app.document_processing.file_validation import build_storage_path
 from app.domain.models import Document, DocumentStatus
 from app.main import create_app
-from app.providers.llm_provider import LLMProvider
+from app.providers.llm_provider import LLMGenerationResult, LLMProvider
 from app.services.answer_service import NO_EVIDENCE_ANSWER
 from tests.fakes import DeterministicEmbeddingProvider, DeterministicLLMProvider
 
@@ -29,7 +29,7 @@ class FailingLLMProvider(LLMProvider):
         self,
         question: str,
         context_blocks: Sequence[str],
-    ) -> str:
+    ) -> LLMGenerationResult:
         raise AnswerProviderError()
 
     def close(self) -> None:
