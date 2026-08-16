@@ -1,8 +1,8 @@
 # RAG V2 Evaluation Release
 
-- Release state: frozen locally on 2026-08-10
+- Release state: evaluation frozen locally on 2026-08-10; Multi-LLM comparison completed on 2026-08-11
 - Product API: V1 modular FastAPI application, version `0.1.0`
-- V2 scope: evaluation, retrieval experiments, observability, and portfolio evidence
+- V2 scope: evaluation, retrieval experiments, observability, Multi-LLM comparison, and portfolio evidence
 - Production retrieval decision: OpenAI semantic Dense through local Qdrant
 - Publication state: published at
   `https://github.com/2932451552-beep/enterprise-knowledge-assistant`
@@ -20,6 +20,8 @@ V2 keeps the application boundary small and adds evidence around its behavior:
 - BM25 and RRF Hybrid prototype using the exact chunks stored in Qdrant
 - same-provider Dense-versus-Hybrid comparison
 - local retrieval and answer-orchestration P50/P95 benchmark
+- shared LLM Provider abstraction for OpenAI and DeepSeek
+- controlled generation comparison using the same retrieval evidence and Prompt
 
 ## Final Evidence
 
@@ -27,14 +29,18 @@ V2 keeps the application boundary small and adds evidence around its behavior:
 |---|---:|
 | Documents | 10 synthetic fixtures: 6 TXT, 4 PDF, 2 multi-page |
 | Questions | 50 typed contracts across 8 categories |
-| Tests | 143 passed plus 34 subtests |
-| Branch coverage | 88.20% with 85% enforced floor |
+| Tests | 152 passed plus 34 subtests |
+| Branch coverage | 88.29% with 85% enforced floor |
 | Hashing Recall@5 / MRR | 82.50% / 0.7937 |
 | Semantic Dense Recall@5 / MRR | 100% / 0.9833 |
 | Semantic Hybrid Recall@5 / MRR | 92.50% / 0.8438 |
 | Hybrid answerable regressions | 3 |
 | Local retrieval P50 / P95 | 7.6400 / 7.9261 ms |
 | Local answer orchestration P50 / P95 | 7.6006 / 7.9745 ms |
+| OpenAI behavior accuracy / token F1 | 100.00% / 75.15% |
+| DeepSeek behavior accuracy / token F1 | 91.67% / 72.58% |
+| OpenAI / DeepSeek average LLM latency | 1771.45 / 912.84 ms |
+| OpenAI / DeepSeek estimated comparison cost | $0.106270 / $0.002195 |
 
 The semantic scores describe the tracked synthetic set, not production accuracy.
 The latency numbers describe one local Windows machine using hashing embeddings,
@@ -51,7 +57,9 @@ network latency, concurrency, large documents, and server load.
    synthetic candidate, not a production guarantee.
 4. Keep the two ambiguity cases. Returning several candidates or a clarification
    request remains a visible next product step.
-5. Preserve V1 boundaries. No Agent, MCP, OCR, authentication, multi-tenancy,
+5. Keep OpenAI as the default generation backend for the verified quality profile;
+   retain DeepSeek as an optional lower-cost backend through the shared interface.
+6. Preserve V1 boundaries. No Agent, MCP, OCR, authentication, multi-tenancy,
    background queue, frontend, or public deployment is claimed.
 
 ## Reproduce Locally
@@ -72,6 +80,7 @@ a small embedding charge:
 ```powershell
 .\.venv\Scripts\python.exe scripts\run_semantic_evaluation.py --confirm-online
 .\.venv\Scripts\python.exe scripts\run_semantic_hybrid_evaluation.py --confirm-online
+.\.venv\Scripts\python.exe scripts\run_llm_comparison.py --confirm-online
 ```
 
 ## Portfolio Claim Boundary
@@ -82,7 +91,8 @@ Safe claims:
 - designed a 50-question typed evaluation and evidence-level retrieval metrics
 - improved the hashing baseline by evaluating a real semantic embedding model
 - tested Hybrid retrieval and rejected it after a measured regression
-- maintained 88.20% branch coverage and a complete local quality gate
+- maintained 88.29% branch-aware total coverage and a complete local quality gate
+- abstracted OpenAI and DeepSeek behind a shared LLM interface and compared them under the same evidence and Prompt
 
 Claims that are not supported:
 
@@ -91,6 +101,10 @@ Claims that are not supported:
 - online latency below 8 ms
 - a production Hybrid or reranking system
 - model training, fine-tuning, Agent, or multi-tenant capabilities
+
+The Multi-LLM results are a controlled small-sample comparison on the tracked
+synthetic corpus. They are not a universal quality or price ranking of the two
+providers.
 
 ## Publication
 

@@ -16,7 +16,7 @@ def test_primary_documentation_uses_current_v2_evidence() -> None:
     assert "10 份合成文档、50 道题" in readme
     assert "Recall 从 100% 降至 92.50%" in readme
     assert "Evaluate 50 typed questions" in scope
-    assert "143 passed plus 34 subtests" in release
+    assert "152 passed plus 34 subtests" in release
     assert "Semantic Dense Recall@5 / MRR | 100% / 0.9833" in release
     assert "Semantic Hybrid Recall@5 / MRR | 92.50% / 0.8438" in release
     assert "- [x] create and publish the standalone GitHub repository" in checklist

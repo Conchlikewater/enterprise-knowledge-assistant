@@ -1,4 +1,4 @@
-# Enterprise Knowledge Assistant（RAG V1）
+# Enterprise Knowledge Assistant（RAG V1 应用 + V2 评测）
 
 一个可运行、可测试、可解释的企业知识库问答后端作品集。它使用
 FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant，

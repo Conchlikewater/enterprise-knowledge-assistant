@@ -1,4 +1,4 @@
-# RAG V1 Offline Evaluation
+# RAG V2 Evaluation and Model Comparison
 
 This directory contains a synthetic, reproducible evaluation for the complete
 local RAG pipeline. It requires no API key and sends no data to an external
@@ -355,7 +355,13 @@ run without explicit opt-in:
 ```
 
 For a lower-cost smoke test, add `--max-questions 2`. The normal offline test
-suite uses fake providers and never calls either external API. No verified
-online comparison is tracked yet because this machine does not currently have
-a DeepSeek API key; unavailable metrics must remain unavailable rather than be
-filled with synthetic values.
+suite uses fake providers and never calls either external API.
+
+The tracked formal comparison was completed on 2026-08-11 with the same 10
+documents, 50 questions, retrieved evidence, and grounded prompt for both
+providers. OpenAI recorded 100% answer/refusal behavior accuracy, while
+DeepSeek recorded 91.67%; DeepSeek was faster and lower-cost in this small
+synthetic run. Full latency, token, cost, citation, and per-question evidence
+are stored in `llm_comparison_report.json` and summarized in
+`llm_comparison_report.md`. These results do not establish production model
+quality.
