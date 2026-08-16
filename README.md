@@ -1,10 +1,12 @@
-# Enterprise Knowledge Assistant（RAG V1）
+# Enterprise Knowledge Assistant（RAG V1 应用 + V2 评测）
 
 一个可运行、可测试、可解释的企业知识库问答后端作品集。它使用
 FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant，
-并通过 OpenAI embedding 和 LLM 生成限定文档范围的回答与结构化引用。
+通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek 生成限定
+文档范围的回答与结构化引用。
 
-> 当前状态：V1 应用闭环已完成；V2 评测与作品集增强已冻结。生产 API
+> 当前状态：V1 应用闭环和 V2 评测增强已完成，并增加了轻量 Multi-LLM
+> Provider。生产 API
 > 保持语义 Dense 检索，Hybrid 仅作为被评测并拒绝上线的实验原型。项目
 > 面向本地单用户演示，尚未提供认证、多租户或公网生产部署能力。
 
@@ -19,6 +21,8 @@ FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant
 - 证据化取舍：参数消融、真实语义对照、阈值扫描、Hybrid负向实验和坏案例目录。
 - 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
+- 多模型后端：OpenAI/DeepSeek 通过同一 `LLMProvider` 接口切换，业务服务
+  不依赖具体厂商；在线对比使用相同检索证据、Prompt 和评测问题。
 
 ## 架构
 
@@ -37,7 +41,7 @@ flowchart LR
     RET --> EMB
     RET --> QD
     RET -->|"retrieved evidence"| ANS
-    ANS --> LLM["OpenAI Responses API"]
+    ANS --> LLM["OpenAI / DeepSeek Responses API"]
     ANS --> CIT["application-built citations"]
     LLM --> OUT["answer + citations"]
     CIT --> OUT
@@ -68,7 +72,9 @@ py -3.12 -m venv .venv
 
 ### 3. 配置本地环境
 
-复制安全模板后，在 `.env` 的 `OPENAI_API_KEY=` 后填入自己的 Key：
+复制安全模板后，在 `.env` 的 `OPENAI_API_KEY=` 后填入自己的 Key。默认
+OpenAI 同时负责 embedding 和回答；切换 DeepSeek 回答时再配置
+`DEEPSEEK_API_KEY`：
 
 ```powershell
 Copy-Item .env.example .env
@@ -157,15 +163,76 @@ quality_gate_passed=true
 
 | 变量 | 默认值 | 说明 |
 |---|---|---|
-| `OPENAI_API_KEY` | 空 | 在线 embedding 和回答所需，永不提交 |
+| `OPENAI_API_KEY` | 空 | 在线 embedding 和默认 OpenAI 回答所需，永不提交 |
+| `DEEPSEEK_API_KEY` | 空 | 选择 DeepSeek 回答或运行模型对比时所需，永不提交 |
 | `RAG_EMBEDDING_MODEL` | `text-embedding-3-small` | 单一 embedding provider |
-| `RAG_LLM_MODEL` | `gpt-5.6-sol` | 单一回答 provider |
+| `RAG_LLM_PROVIDER` | `openai` | 回答后端：`openai` 或 `deepseek` |
+| `RAG_LLM_MODEL` | `gpt-5.6-sol` | 当前回答后端的模型；DeepSeek 使用 `deepseek-v4-flash` |
+| `RAG_DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | DeepSeek 官方 OpenAI-compatible API |
 | `RAG_QDRANT_PATH` | `data/qdrant` | 本地向量持久化目录 |
 | `RAG_SQLITE_PATH` | `data/app.db` | 文档记录数据库 |
 | `RAG_MAX_UPLOAD_BYTES` | `10485760` | 单文件最大 10 MiB |
 | `RAG_CHUNK_SIZE` | `1000` | chunk 字符目标大小 |
 | `RAG_CHUNK_OVERLAP` | `150` | 相邻 chunk 重叠字符数 |
 | `RAG_LOG_LEVEL` | `INFO` | `DEBUG/INFO/WARNING/ERROR/CRITICAL` |
+
+## Multi-LLM Backend
+
+项目保留 OpenAI embedding 和 Dense Qdrant 检索，只允许切换最后的回答模型。
+DeepSeek 通过现有 `openai` Python SDK 访问官方 Responses API，不需要安装
+DeepSeek SDK、Ollama 或本地模型。
+
+默认 OpenAI 回答配置：
+
+```dotenv
+RAG_LLM_PROVIDER=openai
+RAG_LLM_MODEL=gpt-5.6-sol
+RAG_LLM_REASONING_EFFORT=low
+```
+
+DeepSeek V4 Flash 回答配置：
+
+```dotenv
+RAG_LLM_PROVIDER=deepseek
+RAG_LLM_MODEL=deepseek-v4-flash
+RAG_LLM_REASONING_EFFORT=none
+```
+
+两个后端复用相同的 grounded prompt、无证据标记和应用侧 Citation 构造。
+Provider 返回统一的输入、缓存输入、输出和 reasoning token 统计，便于记录
+延迟和估算成本。DeepSeek Responses API 当前采用 `deepseek-v4-flash`；旧的
+`deepseek-chat`/`deepseek-reasoner` 不作为配置示例。
+
+可选的在线对比会把已跟踪的合成语料发送到 OpenAI 和 DeepSeek，并产生 API
+费用，因此必须显式确认：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_llm_comparison.py --confirm-online
+```
+
+对比程序先用 OpenAI embedding 完成一次共享检索，再把完全相同的证据分别
+交给两个 LLM。结果包含参考答案 Token F1、回答/拒答行为、引用编号、LLM
+延迟、Token usage 和价格快照估算费用，并写入 JSON 与 Markdown 报告。没有
+两个 API Key 或没有 `--confirm-online` 时不会发送网络请求。
+
+2026-08-11 使用10份合成文档和50道题完成正式在线对比：
+
+| 指标 | OpenAI `gpt-5.6-sol` | DeepSeek `deepseek-v4-flash` |
+|---|---:|---:|
+| 参考答案 Token F1 | 75.15% | 72.58% |
+| 回答/拒答行为准确率 | 100.00% | 91.67% |
+| 引用编号有效率 | 100.00% | 100.00% |
+| 应用侧 Citation 完整率 | 100.00% | 100.00% |
+| 平均 LLM 延迟 | 1771.45 ms | 912.84 ms |
+| P95 LLM 延迟 | 3430.64 ms | 1143.56 ms |
+| 估算 API 费用 | $0.106270 | $0.002195 |
+
+结果表明：当前提示词下 OpenAI 的回答/拒答行为更稳定；DeepSeek 平均延迟更低、
+估算成本显著更低，但在4道改写或低分证据题上过早拒答。因此默认后端仍保留
+OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合成评测宣称模型
+整体优劣。完整逐题结果见
+[`evaluation/llm_comparison_report.md`](evaluation/llm_comparison_report.md) 和
+[`evaluation/llm_comparison_report.json`](evaluation/llm_comparison_report.json)。
 
 ## 测试与离线评估
 
@@ -174,6 +241,9 @@ quality_gate_passed=true
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
+
+最新本地质量门槛为152项自动化测试通过，启用分支统计后的总覆盖率为88.29%，
+并持续强制85%的最低覆盖率要求。
 
 仅运行评估：
 
@@ -240,7 +310,8 @@ docs                    调研、架构、provider 和发布记录
 - V1 没有身份认证、权限控制、多租户隔离、限流或生产密钥管理。
 - 只支持 UTF-8 TXT 和文本型 PDF；扫描件与 OCR 明确不支持。
 - SQLite 和 Qdrant local 适合小型本地数据集，不是大规模生产方案。
-- LLM 请求使用 `store=False`，不启用工具、Web 搜索或会话状态。
+- LLM 请求不启用持久会话、工具或 Web 搜索；DeepSeek/OpenAI Key 均只从
+  本地环境读取。
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。
 
 更多安全说明见 [SECURITY.md](SECURITY.md)。

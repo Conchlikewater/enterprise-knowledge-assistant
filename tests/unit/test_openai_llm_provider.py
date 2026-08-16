@@ -9,13 +9,19 @@ class _FakeResponsesResource:
     def __init__(self) -> None:
         self.calls: list[dict[str, object]] = []
         self.output_text = "Grounded answer [1]."
+        self.usage = SimpleNamespace(
+            input_tokens=120,
+            output_tokens=30,
+            input_tokens_details=SimpleNamespace(cached_tokens=20),
+            output_tokens_details=SimpleNamespace(reasoning_tokens=10),
+        )
         self.raise_error = False
 
     def create(self, **kwargs):
         self.calls.append(kwargs)
         if self.raise_error:
             raise RuntimeError("sensitive upstream response")
-        return SimpleNamespace(output_text=self.output_text)
+        return SimpleNamespace(output_text=self.output_text, usage=self.usage)
 
 
 class _FakeClient:
@@ -36,12 +42,18 @@ class OpenAILLMProviderTests(unittest.TestCase):
         )
 
     def test_responses_api_receives_grounded_privacy_safe_configuration(self) -> None:
-        answer = self.provider.generate_answer(
+        result = self.provider.generate_answer(
             "What is the control?",
             ['<source id="1">\nApproved evidence.\n</source>'],
         )
 
-        self.assertEqual(answer, "Grounded answer [1].")
+        self.assertEqual(result.text, "Grounded answer [1].")
+        self.assertIsNotNone(result.usage)
+        self.assertEqual(result.usage.input_tokens, 120)
+        self.assertEqual(result.usage.cached_input_tokens, 20)
+        self.assertEqual(result.usage.output_tokens, 30)
+        self.assertEqual(result.usage.reasoning_tokens, 10)
+        self.assertEqual(result.usage.total_tokens, 150)
         call = self.client.responses.calls[0]
         self.assertEqual(call["model"], "gpt-5.6-sol")
         self.assertEqual(call["reasoning"], {"effort": "low"})

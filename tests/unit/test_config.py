@@ -15,6 +15,7 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.upload_dir, Path("data/uploads"))
         self.assertEqual(settings.qdrant_path, Path("data/qdrant"))
         self.assertEqual(settings.qdrant_collection, "knowledge_chunks")
+        self.assertEqual(settings.llm_provider, "openai")
         self.assertEqual(settings.llm_model, "gpt-5.6-sol")
         self.assertEqual(settings.llm_reasoning_effort, "low")
 
@@ -35,6 +36,21 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.llm_reasoning_effort, "medium")
         self.assertEqual(settings.llm_max_output_tokens, 500)
 
+    def test_deepseek_provider_uses_safe_defaults_and_hides_key(self) -> None:
+        secret = "deepseek-test-secret"
+        settings = Settings.from_env(
+            {
+                "RAG_LLM_PROVIDER": "DEEPSEEK",
+                "DEEPSEEK_API_KEY": secret,
+            }
+        )
+
+        self.assertEqual(settings.llm_provider, "deepseek")
+        self.assertEqual(settings.llm_model, "deepseek-v4-flash")
+        self.assertEqual(settings.llm_reasoning_effort, "none")
+        self.assertEqual(settings.deepseek_api_key, secret)
+        self.assertNotIn(secret, repr(settings))
+
     def test_invalid_overlap_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             Settings(chunk_size=100, chunk_overlap=100)
@@ -44,6 +60,8 @@ class SettingsTests(unittest.TestCase):
             Settings(llm_reasoning_effort="extreme")
         with self.assertRaises(ValueError):
             Settings(llm_max_output_tokens=0)
+        with self.assertRaises(ValueError):
+            Settings(llm_provider="unsupported")
 
     def test_invalid_log_level_is_rejected(self) -> None:
         with self.assertRaises(ValueError):

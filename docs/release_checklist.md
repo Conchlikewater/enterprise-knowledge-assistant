@@ -32,8 +32,8 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] tracked evaluation report matches a fresh evaluator run
 - [x] synthetic live OpenAI upload-to-delete flow has passed
 - [x] corpus and report regenerate byte-for-byte
-- [x] 143 tests and 34 subtests pass
-- [x] branch coverage remains 88.20% with an enforced 85% floor
+- [x] 152 automated tests pass
+- [x] branch-aware total coverage remains 88.29% with an enforced 85% floor
 - [x] semantic Dense records 100% Recall@5 and 0.9833 MRR on the synthetic set
 - [x] semantic Hybrid regression is tracked rather than hidden
 
