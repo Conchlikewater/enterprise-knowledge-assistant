@@ -2,7 +2,7 @@
 
 - Decision date: 2026-08-03
 - Enhancement date: 2026-08-11
-- Status: OpenAI runtime-verified; DeepSeek adapter offline-tested, live comparison pending
+- Status: OpenAI and DeepSeek runtime-verified; formal comparison completed
 - Scope: one active embedding provider and one selectable LLM provider at runtime
 
 ## Embedding provider
@@ -75,9 +75,15 @@ used only synthetic content and confirmed:
 - every returned citation resolves to a retrieved chunk
 - uploaded files and vectors can be deleted after the request lifecycle
 
-DeepSeek has not yet been live-run on this machine because no
-`DEEPSEEK_API_KEY` is configured. No DeepSeek quality, latency, token, or cost
-result is claimed until the explicit online comparison is completed.
+The formal 10-document / 50-question OpenAI-versus-DeepSeek comparison was
+completed on 2026-08-11. Both providers received the same retrieved evidence
+and grounded prompt. OpenAI recorded 100.00% answer/refusal behavior accuracy
+and 75.15% reference-answer token F1; DeepSeek recorded 91.67% and 72.58%.
+DeepSeek was faster and lower-cost in this small synthetic run, but it refused
+four answerable paraphrase or low-score questions, so OpenAI remains the
+default. Full results and limitations are tracked in
+`evaluation/llm_comparison_report.md` and
+`evaluation/llm_comparison_report.json`.
 
 ## Official references
 

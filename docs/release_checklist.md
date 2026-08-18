@@ -51,7 +51,8 @@ An item is complete only when its evidence was observed in the current worktree.
 - [x] V2 release decision and claim boundaries are documented
 - [x] create and publish the standalone GitHub repository
 
-The local project still lives inside a larger Git repository, but its filtered
-history has been published as the standalone public repository
-`2932451552-beep/enterprise-knowledge-assistant`. GitHub recognizes `main` as
-the default branch and the MIT license from the repository root.
+The maintained local project now lives in its own Git repository at
+`D:\AI_Internship_2026\projects\enterprise-knowledge-assistant`. Its standalone
+history is published as `2932451552-beep/enterprise-knowledge-assistant`.
+GitHub recognizes `main` as the default branch and the MIT license from the
+repository root.

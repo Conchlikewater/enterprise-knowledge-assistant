@@ -108,7 +108,8 @@ providers.
 
 ## Publication
 
-The working copy remains a subdirectory of the larger `ai-internship-prep`
-repository. Its filtered project history is published independently at
+The maintained working copy is an independent Git repository at
+`D:\AI_Internship_2026\projects\enterprise-knowledge-assistant`. Its standalone
+history is published at
 `https://github.com/2932451552-beep/enterprise-knowledge-assistant`, without
-the parent repository's unrelated projects or local runtime data.
+unrelated projects or local runtime data.
