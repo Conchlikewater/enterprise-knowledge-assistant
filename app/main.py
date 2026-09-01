@@ -41,9 +41,16 @@ def create_app(
         resolved_settings.sqlite_path
     )
     resolved_vector_store = vector_store or QdrantVectorStore(
-        storage_path=resolved_settings.qdrant_path,
+        storage_path=(
+            None
+            if resolved_settings.qdrant_url is not None
+            else resolved_settings.qdrant_path
+        ),
         collection_name=resolved_settings.qdrant_collection,
         vector_size=resolved_settings.embedding_dimensions,
+        url=resolved_settings.qdrant_url,
+        api_key=resolved_settings.qdrant_api_key,
+        timeout_seconds=resolved_settings.qdrant_timeout_seconds,
     )
 
     @asynccontextmanager

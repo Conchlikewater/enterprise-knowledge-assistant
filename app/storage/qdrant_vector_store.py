@@ -1,4 +1,4 @@
-"""Local persistent Qdrant implementation of the vector store port."""
+"""Qdrant vector store adapter for local tests and a remote server."""
 
 from __future__ import annotations
 
@@ -17,15 +17,27 @@ from app.storage.vector_store import VectorStore
 class QdrantVectorStore(VectorStore):
     def __init__(
         self,
-        storage_path: Path,
+        storage_path: Path | None,
         collection_name: str,
         vector_size: int,
+        *,
+        url: str | None = None,
+        api_key: str | None = None,
+        timeout_seconds: float = 5.0,
     ) -> None:
+        normalized_url = url.rstrip("/") if url else None
+        if (storage_path is None) == (normalized_url is None):
+            raise ValueError("exactly one of storage_path or url must be configured")
         if not collection_name.strip():
             raise ValueError("collection_name must not be empty")
         if vector_size <= 0:
             raise ValueError("vector_size must be positive")
+        if timeout_seconds <= 0:
+            raise ValueError("timeout_seconds must be positive")
         self._storage_path = storage_path
+        self._url = normalized_url
+        self._api_key = api_key
+        self._timeout_seconds = timeout_seconds
         self._collection_name = collection_name
         self._vector_size = vector_size
         self._client: QdrantClient | None = None
@@ -39,8 +51,15 @@ class QdrantVectorStore(VectorStore):
             self._validate_collection(self._client)
             return
         try:
-            self._storage_path.mkdir(parents=True, exist_ok=True)
-            client = QdrantClient(path=str(self._storage_path))
+            if self._storage_path is not None:
+                self._storage_path.mkdir(parents=True, exist_ok=True)
+                client = QdrantClient(path=str(self._storage_path))
+            else:
+                client = QdrantClient(
+                    url=self._url,
+                    api_key=self._api_key,
+                    timeout=self._timeout_seconds,
+                )
             self._client = client
             if client.collection_exists(self._collection_name):
                 self._validate_collection(client)

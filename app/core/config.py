@@ -35,6 +35,14 @@ def _read_float(environment: Mapping[str, str], name: str, default: float) -> fl
         raise ValueError(f"{name} must be a number") from exc
 
 
+def _read_optional(environment: Mapping[str, str], name: str) -> str | None:
+    raw_value = environment.get(name)
+    if raw_value is None:
+        return None
+    normalized = raw_value.strip()
+    return normalized or None
+
+
 @dataclass(frozen=True, slots=True)
 class Settings:
     """Typed V1 settings with credentials excluded from repr and comparisons."""
@@ -49,6 +57,9 @@ class Settings:
     upload_dir: Path = Path("data/uploads")
     sqlite_path: Path = Path("data/app.db")
     qdrant_path: Path = Path("data/qdrant")
+    qdrant_url: str | None = None
+    qdrant_api_key: str | None = field(default=None, repr=False, compare=False)
+    qdrant_timeout_seconds: float = 5.0
     qdrant_collection: str = "knowledge_chunks"
     openai_api_key: str | None = field(default=None, repr=False, compare=False)
     deepseek_api_key: str | None = field(default=None, repr=False, compare=False)
@@ -76,6 +87,12 @@ class Settings:
             raise ValueError("max_upload_bytes must be positive")
         if not self.qdrant_collection.strip():
             raise ValueError("qdrant_collection must not be empty")
+        if self.qdrant_url is not None and not self.qdrant_url.startswith(
+            ("http://", "https://")
+        ):
+            raise ValueError("qdrant_url must use http or https")
+        if self.qdrant_timeout_seconds <= 0:
+            raise ValueError("qdrant_timeout_seconds must be positive")
         if not self.embedding_model.strip():
             raise ValueError("embedding_model must not be empty")
         if self.embedding_dimensions <= 0:
@@ -120,8 +137,8 @@ class Settings:
             env: Mapping[str, str] = {**file_values, **os.environ}
         else:
             env = environment
-        api_key = env.get("OPENAI_API_KEY")
-        deepseek_api_key = env.get("DEEPSEEK_API_KEY")
+        api_key = _read_optional(env, "OPENAI_API_KEY")
+        deepseek_api_key = _read_optional(env, "DEEPSEEK_API_KEY")
         llm_provider = env.get("RAG_LLM_PROVIDER", "openai").strip().lower()
         default_llm_model = (
             "deepseek-v4-flash" if llm_provider == "deepseek" else "gpt-5.6-sol"
@@ -135,13 +152,16 @@ class Settings:
             upload_dir=Path(env.get("RAG_UPLOAD_DIR", "data/uploads")),
             sqlite_path=Path(env.get("RAG_SQLITE_PATH", "data/app.db")),
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
-            qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
-            openai_api_key=api_key.strip() if api_key and api_key.strip() else None,
-            deepseek_api_key=(
-                deepseek_api_key.strip()
-                if deepseek_api_key and deepseek_api_key.strip()
+            qdrant_url=(
+                qdrant_url.rstrip("/")
+                if (qdrant_url := _read_optional(env, "RAG_QDRANT_URL"))
                 else None
             ),
+            qdrant_api_key=_read_optional(env, "RAG_QDRANT_API_KEY"),
+            qdrant_timeout_seconds=_read_float(env, "RAG_QDRANT_TIMEOUT_SECONDS", 5.0),
+            qdrant_collection=env.get("RAG_QDRANT_COLLECTION", "knowledge_chunks"),
+            openai_api_key=api_key,
+            deepseek_api_key=deepseek_api_key,
             deepseek_base_url=env.get(
                 "RAG_DEEPSEEK_BASE_URL", "https://api.deepseek.com"
             ).rstrip("/"),

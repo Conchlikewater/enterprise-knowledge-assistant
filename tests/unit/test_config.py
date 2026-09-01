@@ -14,6 +14,7 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.host, "127.0.0.1")
         self.assertEqual(settings.upload_dir, Path("data/uploads"))
         self.assertEqual(settings.qdrant_path, Path("data/qdrant"))
+        self.assertIsNone(settings.qdrant_url)
         self.assertEqual(settings.qdrant_collection, "knowledge_chunks")
         self.assertEqual(settings.llm_provider, "openai")
         self.assertEqual(settings.llm_model, "gpt-5.6-sol")
@@ -35,6 +36,21 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.chunk_overlap, 60)
         self.assertEqual(settings.llm_reasoning_effort, "medium")
         self.assertEqual(settings.llm_max_output_tokens, 500)
+
+    def test_qdrant_server_configuration_is_typed_and_hides_key(self) -> None:
+        secret = "qdrant-test-secret"
+        settings = Settings.from_env(
+            {
+                "RAG_QDRANT_URL": "http://qdrant:6333/",
+                "RAG_QDRANT_API_KEY": secret,
+                "RAG_QDRANT_TIMEOUT_SECONDS": "7.5",
+            }
+        )
+
+        self.assertEqual(settings.qdrant_url, "http://qdrant:6333")
+        self.assertEqual(settings.qdrant_api_key, secret)
+        self.assertEqual(settings.qdrant_timeout_seconds, 7.5)
+        self.assertNotIn(secret, repr(settings))
 
     def test_deepseek_provider_uses_safe_defaults_and_hides_key(self) -> None:
         secret = "deepseek-test-secret"
@@ -66,6 +82,12 @@ class SettingsTests(unittest.TestCase):
     def test_invalid_log_level_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             Settings(log_level="TRACE")
+
+    def test_invalid_qdrant_server_configuration_is_rejected(self) -> None:
+        with self.assertRaises(ValueError):
+            Settings(qdrant_url="qdrant:6333")
+        with self.assertRaises(ValueError):
+            Settings(qdrant_timeout_seconds=0)
 
     def test_env_file_loads_key_without_exposing_it_in_repr(self) -> None:
         secret = "test-secret-value"
