@@ -150,3 +150,15 @@ R0 的简化版⑤拥有权验证已完成。用户能够区分：
 R1 的代码、运行、测试与知识问答已经完成。用户于 2026-09-01 明确要求取消以后各阶段的本人手动代码修改，只保留知识点和有就业价值的源码问题；该裁决已同步到 `docs/r_protocol.md`。
 
 用户随后明确指示“继续下个阶段”，因此 R23 获得启动授权。R23 完成后仍必须停止，⑤状态保持“未完成”，直到知识讲解与高价值问题验收结束；R4 不得提前开始。
+
+## 10. R23 实现前设计冻结（2026-09-01）
+
+- 兼容 API：V1 同步 `201` 保留；V2 异步 `202` 返回 `document_id + job_id`；
+- Job 状态：`pending / running / ready / failed`；Document 继续使用 `processing / ready / failed`；
+- SQLite：兼容新增 Job 表，启用 WAL、默认 5000 ms `busy_timeout` 和短事务；
+- Worker：单机单 Worker、原子领取；启动时把遗留 `running` 恢复为 `pending`；
+- 共享核心：V1 与 Worker 复用既有 Document 的 parse/chunk/embed/upsert 流程；
+- 崩溃点：Qdrant upsert 成功后、SQLite 终态提交前强制结束 Worker；
+- 恢复幂等：重放前按 `document_id` 清理残留 Point；不声称处理仍存活旧 Worker；
+- 删除语义：Document 为 `processing` 时返回 `409 DOCUMENT_PROCESSING`，P0 不提供取消；
+- 详细契约：`docs/r23_design.md`；当前仅为设计证据，尚未证明实现完成。
