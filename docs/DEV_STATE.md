@@ -7,15 +7,15 @@
 - 上位协议：`D:\AI_Internship_2026\求职材料\2026-09_双项目升级计划_评审版.md`
 - 协议版本：**《2026 年 9 月 双项目升级执行协议 v6》定稿版**
 - RAG 九月升级真实开工日期：**2026-08-31**（Australia/Sydney）
-- 当前阶段：**R0 协议对齐——已完成**
-- 已正式完成阶段：R0
-- 下一阶段：R1；用户已于 2026-08-31 指示“继续开发”，在本次 R0 验收提交后启动
-- ⑤拥有权验证：**已完成（2026-08-31）**
+- 当前阶段：**R1 Qdrant Server 与最小 Docker Compose——实现和测试已完成，⑤拥有权验证未完成**
+- 已正式完成阶段：R0；R1 尚未通过用户拥有权门禁，因此尚未正式关闭
+- 下一阶段：R23；**尚未开始**，必须等 R1 拥有权验证完成并由用户明确批准
+- ⑤拥有权验证：R0 已完成（2026-08-31）；R1 **未完成**
 - 工作区基线：R0 开工时 `main` 与 `origin/main` 无领先/落后，HEAD 为 `11449b22e5df9181ecb7952f034da2f6b4875143`
 
 ## 2. R0 接手上下文
 
-### 当前生产代码能够证明的事实
+### R0 开工时生产代码能够证明的事实
 
 - V1 上传是同步摄取，`POST /api/v1/documents` 返回 `201 Created`；
 - Document 状态为 `processing / ready / failed`，没有 Job 表；
@@ -53,30 +53,78 @@ R0 将它们整体归档到 `docs/archive/rag_v3_pre_v6/`，保留历史证据�
 - 不修改 `app/`、配置、依赖、测试逻辑或生产 API；
 - 不启动容器，不调用真实 Provider，不运行付费评测。
 
-## 5. 未决问题
+## 5. R1 实施记录
+
+### 已冻结的工程决策
+
+| 决策 | R1 结论 | 边界与理由 |
+| --- | --- | --- |
+| Compose 拓扑 | FastAPI `api` + Qdrant `qdrant` 两个服务 | 形成一条可复现启动命令；Worker 尚未实现，不能称三服务 |
+| SQLite/上传持久化 | `app_data` named volume | FastAPI 进入容器后，容器重建不能丢失 SQLite 和上传文件 |
+| Qdrant 持久化 | `qdrant_data` named volume | collection、向量和 payload 独立于容器生命周期 |
+| Qdrant 连接模式 | `RAG_QDRANT_URL` 与 Local path 二选一 | Compose 使用 Server；URL 为空时保留 V1 单进程 Local 兼容路径 |
+| 对外端口 | 只绑定 `127.0.0.1` | 当前没有认证/TLS，不允许包装成公网部署能力 |
+| Qdrant telemetry | Compose 中显式关闭 | 本地作品集不需要向外发送匿名使用统计 |
+| 健康语义 | Qdrant 不可用时 API `/health` 返回 503 | 防止容器仍运行时把依赖故障误报成健康 |
+| CI | 无 API Key 的 Qdrant Server service | 验证真实 Server 写入/检索/删除，同时不产生 Provider 费用 |
+
+R1 没有修改现有生产 API：`POST /api/v1/documents` 仍同步完成摄取后返回
+`201 Created`。没有新增 Job、Worker、异步接口、崩溃恢复或 Agent。
+
+### 实际修改
+
+- Server 连接与测试提交：`52585ce85ff02b4e348f4398f6982fb9b46147ef`；
+- 两服务运行与 CI 提交：`00d8605fcf2fe15387aef6e27934b7df59454615`；
+- `app/core/config.py`：增加类型化的 Qdrant Server URL、可选 API Key 和超时；密钥不进入 `repr`；
+- `app/main.py`：根据 URL 是否存在装配 Qdrant Server 或 Local adapter；
+- `app/storage/qdrant_vector_store.py`：同一存储端口支持互斥的 Local/Server 连接模式；
+- `Dockerfile`、`.dockerignore`、`compose.yaml`：非 root API 镜像、两服务拓扑、健康检查和两个 named volume；
+- `.github/workflows/ci.yml`：加入固定版本 Qdrant Server service；
+- `tests/integration/test_qdrant_server.py`：真实 Server 临时 collection 往返和清理；
+- `tests/unit/test_config.py`、`tests/unit/test_qdrant_vector_store.py`：配置、秘密隐藏、连接互斥和超时测试；
+- `README.md`、`.env.example`、`requirements.txt`：运行边界、配置与兼容方式。
+
+### 本次验证证据（2026-09-01）
+
+- Docker Desktop 4.88.1 使用 WSL2 后端，`api` 与 `qdrant` 均达到 `healthy`；
+- `/health` 正常时返回 200，组件包括 SQLite、Qdrant 和 Provider 配置状态；
+- 临时停止 Qdrant 后 `/health` 返回 503 + `VECTOR_STORE_ERROR`，恢复后回到 200；
+- Qdrant 容器重建后 `knowledge_chunks` collection 仍存在，验证 named volume 持久化；
+- Qdrant 重建日志明确显示 `Telemetry reporting disabled`；
+- 真实 Server 集成测试验证 upsert、文档范围检索、按文档删除及测试 collection 清理；
+- 完整质量门禁：158 项测试通过、34 个参数化子测试通过、branch-aware 覆盖率 88.67%，Ruff、依赖、字节码与离线评测全部通过；
+- 测试和离线评测未调用 OpenAI、DeepSeek 或其他真实 Provider。
+
+### 本机 Docker 故障与数据边界
+
+- 用户在故障排查前曾点过一次 Docker Desktop factory reset；随后只读盘点确认旧 Docker volume/容器为空，旧 named-volume 数据不能假定仍存在；
+- 仓库宿主机 `data/app.db`、`data/qdrant` 与 `data/uploads` 未被 factory reset 删除；R1 没有直接迁移或删除这些 Local 数据；
+- Docker 4.88.1 启动失败的直接原因是两个遗留 AF_UNIX socket 目录。采用可恢复的目录改名后启动成功，没有再次 factory reset；
+- R1 新建 `enterprise-knowledge-assistant_app_data` 与 `enterprise-knowledge-assistant_qdrant_data`，当前两服务保持运行且健康；
+- factory reset 或 `docker compose down --volumes` 会清空 named volume，README 已明确警告。
+
+## 6. 未决问题
 
 以下问题不在 R0 猜答案，必须在对应阶段检查现状、设计、测试后记录：
 
-1. R1：FastAPI 进入 Compose，还是保留在宿主机而只容器化 Qdrant？
-2. R1：若 FastAPI 进入 Compose，SQLite named volume、Qdrant volume 和健康检查如何落地？
-3. R23：Job 的最终状态名、表字段、迁移方式和兼容 API 路径是什么？
-4. R23：用于演示恢复的唯一明确崩溃点选在哪里，如何保证可重复？
-5. R23：SQLite `busy_timeout`、锁冲突有限重试次数和退避值，经什么测试冻结？
-6. R23：现有同步 `IngestionService` 抽取出的共享摄取核心边界是什么，如何避免同步/异步两套逻辑漂移？
-7. R4：测量结果是否支持把异步接口作为演示主路径，还是只作为新增可选能力？
-8. R5：到条件检查日时，前序质量和剩余时间是否允许启动协议设计？
+1. R23：Job 的最终状态名、表字段、迁移方式和兼容 API 路径是什么？
+2. R23：用于演示恢复的唯一明确崩溃点选在哪里，如何保证可重复？
+3. R23：SQLite `busy_timeout`、锁冲突有限重试次数和退避值，经什么测试冻结？
+4. R23：现有同步 `IngestionService` 抽取出的共享摄取核心边界是什么，如何避免同步/异步两套逻辑漂移？
+5. R4：测量结果是否支持把异步接口作为演示主路径，还是只作为新增可选能力？
+6. R5：到条件检查日时，前序质量和剩余时间是否允许启动协议设计？
 
-## 6. 最容易误改或误报的位置
+## 7. 最容易误改或误报的位置
 
-- `README.md` 当前正确描述 Qdrant Local 和同步摄取；R1/R23 完成前不要提前改成 Server/异步已完成。
+- `README.md` 已把 Qdrant Server 两服务作为 R1 推荐运行方式，但同步 `201` 摄取没有改变；不能据此宣称异步摄取已实现。
 - `app/api/routers/documents.py` 的现有 `201` 同步边界受保护；新增异步能力不能无意破坏它。
 - `app/services/ingestion_service.py` 当前是完整同步流程；R23 应抽取可复用核心，不应复制一套漂移实现。
 - `app/storage/sqlite_document_repository.py` 当前没有 Job 双进程并发协议；不能只加一张表就宣称恢复可靠。
-- Qdrant 当前按本地路径初始化；R1 必须先完成连接适配和回归，独立 Worker 才能安全共享 Server。
+- Qdrant Server 已可由 API 访问；Local 模式仍仅供宿主机单进程开发/测试，不能让未来 API 与 Worker 共享 Local 内部文件。
 - 当前删除逻辑不理解活动 Job；R23 必须按 `409 DOCUMENT_PROCESSING` 规则补齐竞态测试。
 - 归档里的 Agent API、Approval、Lease/Fencing 只是历史设计，不能复制到九月主线。
 
-## 7. 环境与安全记录
+## 8. 环境与安全记录
 
 - R0 未安装或升级依赖；
 - R0 未启动 Docker 或 Qdrant；
@@ -84,8 +132,12 @@ R0 将它们整体归档到 `docs/archive/rag_v3_pre_v6/`，保留历史证据�
 - `.env` 仍只作为本地配置使用，不读取、不记录、不提交；
 - R0 未删除旧资料，只做仓库内可追溯归档；
 - R0 未修改业务代码。
+- R1 只安装了构建镜像所需的公开依赖并拉取固定的 `qdrant/qdrant:v1.19.0` 镜像；
+- R1 未读取、打印、修改或提交 `.env` 内容，启动日志检查未发现密钥；
+- R1 未调用真实 Provider，也未执行付费评测；
+- R1 没有删除 Docker volume、D 盘 Local 数据或恢复目录。
 
-## 8. 阶段门禁
+## 9. 阶段门禁
 
 R0 的简化版⑤拥有权验证已完成。用户能够区分：
 
@@ -95,4 +147,4 @@ R0 的简化版⑤拥有权验证已完成。用户能够区分：
 
 根据用户最新要求，后续问题以就业和面试价值为准：先讲本阶段知识点，再提出少量、与刚完成阶段直接相关的问题；不为凑数量设置低价值验证。
 
-用户已在完成验证后明确指示“继续开发”。本提交只记录 R0 验收，不混入 R1 代码；R1 从下一笔变更开始，仍不得越界进入 R23。
+R1 的代码、运行和测试工作已经完成，但 ⑤拥有权验证仍为**未完成**。在用户完成本阶段问答/实践门禁并明确批准前，R23 不得开始。

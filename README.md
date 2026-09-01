@@ -1,14 +1,16 @@
-# Enterprise Knowledge Assistant（RAG V1 应用 + V2 评测）
+# Enterprise Knowledge Assistant（RAG V1 应用 + V2 评测 + R1 Server 运行）
 
 一个可运行、可测试、可解释的企业知识库问答后端作品集。它使用
-FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant，
-通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek 生成限定
-文档范围的回答与结构化引用。
+FastAPI 接收 TXT/PDF 文档，将文档元数据写入 SQLite、将 chunk 与向量写入
+Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
+生成限定文档范围的回答与结构化引用。
 
-> 当前状态：V1 应用闭环和 V2 评测增强已完成，并增加了轻量 Multi-LLM
-> Provider。生产 API
-> 保持语义 Dense 检索，Hybrid 仅作为被评测并拒绝上线的实验原型。项目
-> 面向本地单用户演示，尚未提供认证、多租户或公网生产部署能力。
+> 当前状态：V1 应用闭环、V2 评测增强和 R1 两服务运行方式已完成。推荐用
+> Docker Compose 启动 FastAPI 与 Qdrant Server；Qdrant Local 只保留给宿主机
+> 单进程开发和离线测试。现有 `POST /api/v1/documents` 仍是同步摄取并返回
+> `201 Created`；项目还没有 Job、独立 Worker 或异步摄取。生产 API 保持
+> Dense 检索，Hybrid 仅是被评测并拒绝上线的实验原型。项目面向本地单用户
+> 演示，尚未提供认证、多租户或公网生产部署能力。
 
 ## 项目亮点
 
@@ -21,6 +23,8 @@ FastAPI 接收 TXT/PDF 文档，将文档切块后写入本地 SQLite 与 Qdrant
 - 证据化取舍：参数消融、真实语义对照、阈值扫描、Hybrid负向实验和坏案例目录。
 - 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
+- 可复现运行：Compose 明确包含 FastAPI 与 Qdrant Server 两个服务，并用独立
+  named volume 保存 SQLite/上传文件与 Qdrant 数据。
 - 多模型后端：OpenAI/DeepSeek 通过同一 `LLMProvider` 接口切换，业务服务
   不依赖具体厂商；在线对比使用相同检索证据、Prompt 和评测问题。
 
@@ -33,7 +37,7 @@ flowchart LR
     ING --> DOC["validate / parse / chunk"]
     ING --> EMB["OpenAI embeddings"]
     ING --> SQL["SQLite document records"]
-    EMB --> QD["local Qdrant vectors"]
+    EMB --> QD["Qdrant Server vectors<br/>(Local only for dev/tests)"]
 
     Q["scoped question"] --> API
     API --> ANS["AnswerService"]
@@ -51,7 +55,53 @@ flowchart LR
 限定文档检索 → 基于证据回答 → 结构化引用。摄取失败时会补偿删除已经写入的
 向量和文件，并保留安全的失败状态记录。
 
-## 快速开始（Windows / Python 3.12）
+## 推荐启动（Docker Compose / R1 两服务）
+
+R1 选择把 FastAPI 也放进 Compose，因此运行拓扑固定为两个服务：`api` 与
+`qdrant`。这里没有 Worker；独立 Worker 和异步摄取属于尚未开始的 R23。
+
+### 1. 准备配置
+
+```powershell
+Copy-Item .env.example .env
+```
+
+`.env` 已被 Git 忽略。完整 `/health` 和在线上传/问答需要配置对应 Provider
+Key；构建镜像、启动 Qdrant 和运行离线测试不会调用 Provider。不要把 Key
+写入镜像、提交、日志、聊天或截图；在线调用可能产生费用。
+
+### 2. 构建并启动
+
+```powershell
+docker compose up -d --build
+docker compose ps
+```
+
+正常时应看到且只看到 `api`、`qdrant` 两个服务为 `healthy`。Qdrant 匿名
+telemetry 在 Compose 中显式关闭。端口仅绑定到
+宿主机 `127.0.0.1`：API 默认是 <http://127.0.0.1:8000>，Qdrant 默认是
+<http://127.0.0.1:6333>。
+
+### 3. 数据持久化与停止
+
+- `app_data` 保存容器内的 SQLite 和上传文件；
+- `qdrant_data` 保存 Qdrant Server collection、向量和 payload；
+- `docker compose down` 会移除容器和网络，但保留这两个 named volume；
+- `docker compose down --volumes` 或 Docker Desktop factory reset 会删除
+  named volume，除非明确准备清空数据，否则不要使用；
+- 旧的宿主机 `data/qdrant` 是 Qdrant Local 内部数据，R1 不直接复制其内部
+  文件到 Server；需要时应通过受控重新摄取重建索引。
+
+停止服务但保留数据：
+
+```powershell
+docker compose down
+```
+
+## 兼容启动（Windows / Python 3.12 / Qdrant Local）
+
+这种方式用于单进程开发和离线测试。保持 `RAG_QDRANT_URL` 为空时，应用继续
+使用 `RAG_QDRANT_PATH` 下的 Local 数据，不需要启动 Docker。
 
 ### 1. 创建项目专用虚拟环境
 
@@ -63,8 +113,8 @@ py -3.12 -m venv .venv
 
 ### 2. 安装依赖
 
-开发依赖包含运行依赖和 pytest。Qdrant 在 Python 进程内使用本地模式，
-不需要另外安装 Docker、Qdrant 客户端、Ollama 或本地模型：
+开发依赖包含运行依赖和 pytest。该兼容模式的 Qdrant 在 Python 进程内运行，
+不需要另外启动 Qdrant Server、Ollama 或本地模型：
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
@@ -169,7 +219,11 @@ quality_gate_passed=true
 | `RAG_LLM_PROVIDER` | `openai` | 回答后端：`openai` 或 `deepseek` |
 | `RAG_LLM_MODEL` | `gpt-5.6-sol` | 当前回答后端的模型；DeepSeek 使用 `deepseek-v4-flash` |
 | `RAG_DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | DeepSeek 官方 OpenAI-compatible API |
-| `RAG_QDRANT_PATH` | `data/qdrant` | 本地向量持久化目录 |
+| `RAG_QDRANT_PATH` | `data/qdrant` | `RAG_QDRANT_URL` 为空时使用的 Local 数据目录 |
+| `RAG_QDRANT_URL` | 空 | Qdrant Server 地址；设置后不再打开 Local path |
+| `RAG_QDRANT_API_KEY` | 空 | 受保护的远程 Qdrant 可选密钥，不进入日志或 Git |
+| `RAG_QDRANT_TIMEOUT_SECONDS` | `5` | Qdrant Server 客户端超时秒数 |
+| `RAG_QDRANT_PORT` | `6333` | Compose 暴露到本机回环地址的 Qdrant 端口 |
 | `RAG_SQLITE_PATH` | `data/app.db` | 文档记录数据库 |
 | `RAG_MAX_UPLOAD_BYTES` | `10485760` | 单文件最大 10 MiB |
 | `RAG_CHUNK_SIZE` | `1000` | chunk 字符目标大小 |
@@ -242,8 +296,10 @@ OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合�
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
 
-最新本地质量门槛为152项自动化测试通过，启用分支统计后的总覆盖率为88.29%，
-并持续强制85%的最低覆盖率要求。
+R1 最新完整质量门槛为 158 项自动化测试和 34 个参数化子测试通过，启用
+分支统计后的总覆盖率为 88.67%，并持续强制 85% 的最低覆盖率要求。本次还
+连接真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理；
+CI 使用无 API Key 的 Qdrant Server service，不调用真实 LLM/Embedding。
 
 仅运行评估：
 
@@ -295,8 +351,10 @@ app/document_processing 文件校验、持久化、TXT/PDF 解析和切块
 app/domain              框架无关的文档、chunk、检索和引用模型
 app/providers           OpenAI embedding/LLM 接口与适配器
 app/services            摄取、检索、回答和文档生命周期
-app/storage             SQLite repository 与本地 Qdrant adapter
-.github/workflows       独立仓库的 GitHub Actions 质量门槛
+app/storage             SQLite repository 与 Qdrant Local/Server adapter
+.github/workflows       GitHub Actions 质量门槛与 Qdrant Server 集成测试
+Dockerfile              FastAPI 非 root 运行镜像
+compose.yaml            FastAPI + Qdrant Server 两服务与 named volumes
 evaluation              可重复语料、问题、provider 和评估报告
 scripts                 语料生成、评估和质量门槛入口
 tests                   单元、集成和评估测试
@@ -309,7 +367,11 @@ docs                    调研、架构、provider 和发布记录
 - 只绑定 `127.0.0.1`；不要直接暴露到公网或共享网络。
 - V1 没有身份认证、权限控制、多租户隔离、限流或生产密钥管理。
 - 只支持 UTF-8 TXT 和文本型 PDF；扫描件与 OCR 明确不支持。
-- SQLite 和 Qdrant local 适合小型本地数据集，不是大规模生产方案。
+- Compose 只绑定本机回环地址，Qdrant 未配置 TLS/认证；不要暴露到公网。
+- SQLite 与当前单节点 Qdrant Server 仍面向本地小规模作品集，不是经真实流量
+  验证的生产集群。
+- R1 只有 FastAPI + Qdrant 两个服务；没有独立 Worker、异步 Job、崩溃恢复
+  或三服务 Compose，这些能力不能写进简历的“已实现”部分。
 - LLM 请求不启用持久会话、工具或 Web 搜索；DeepSeek/OpenAI Key 均只从
   本地环境读取。
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。
