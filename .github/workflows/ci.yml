@@ -19,6 +19,12 @@ jobs:
     timeout-minutes: 15
     env:
       OPENAI_API_KEY: ""
+      RAG_TEST_QDRANT_URL: http://127.0.0.1:6333
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.19.0
+        ports:
+          - 6333:6333
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
