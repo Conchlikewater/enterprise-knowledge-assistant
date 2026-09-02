@@ -30,6 +30,7 @@ services:
       RAG_LOG_LEVEL: ${RAG_LOG_LEVEL:-INFO}
       RAG_UPLOAD_DIR: /app/data/uploads
       RAG_SQLITE_PATH: /app/data/app.db
+      RAG_SQLITE_BUSY_TIMEOUT_MS: ${RAG_SQLITE_BUSY_TIMEOUT_MS:-5000}
       RAG_QDRANT_URL: http://qdrant:6333
       RAG_QDRANT_COLLECTION: ${RAG_QDRANT_COLLECTION:-knowledge_chunks}
       RAG_QDRANT_TIMEOUT_SECONDS: ${RAG_QDRANT_TIMEOUT_SECONDS:-5}
@@ -63,6 +64,36 @@ services:
       timeout: 4s
       retries: 12
       start_period: 10s
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    environment:
+      RAG_ENVIRONMENT: ${RAG_ENVIRONMENT:-development}
+      RAG_LOG_LEVEL: ${RAG_LOG_LEVEL:-INFO}
+      RAG_UPLOAD_DIR: /app/data/uploads
+      RAG_SQLITE_PATH: /app/data/app.db
+      RAG_SQLITE_BUSY_TIMEOUT_MS: ${RAG_SQLITE_BUSY_TIMEOUT_MS:-5000}
+      RAG_WORKER_POLL_INTERVAL_SECONDS: ${RAG_WORKER_POLL_INTERVAL_SECONDS:-0.5}
+      RAG_QDRANT_URL: http://qdrant:6333
+      RAG_QDRANT_COLLECTION: ${RAG_QDRANT_COLLECTION:-knowledge_chunks}
+      RAG_QDRANT_TIMEOUT_SECONDS: ${RAG_QDRANT_TIMEOUT_SECONDS:-5}
+      RAG_QDRANT_API_KEY: ${RAG_QDRANT_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      RAG_EMBEDDING_MODEL: ${RAG_EMBEDDING_MODEL:-text-embedding-3-small}
+      RAG_EMBEDDING_DIMENSIONS: ${RAG_EMBEDDING_DIMENSIONS:-1536}
+      RAG_EMBEDDING_BATCH_SIZE: ${RAG_EMBEDDING_BATCH_SIZE:-64}
+      RAG_OPENAI_TIMEOUT_SECONDS: ${RAG_OPENAI_TIMEOUT_SECONDS:-30}
+      RAG_CHUNK_SIZE: ${RAG_CHUNK_SIZE:-1000}
+      RAG_CHUNK_OVERLAP: ${RAG_CHUNK_OVERLAP:-150}
+    volumes:
+      - app_data:/app/data
+    restart: "on-failure:3"
 
 volumes:
   app_data:
