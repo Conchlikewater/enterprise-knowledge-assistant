@@ -1,21 +1,25 @@
-# Enterprise Knowledge Assistant（RAG V1 应用 + V2 评测 + R1 Server 运行）
+# Enterprise Knowledge Assistant（RAG 应用 + 检索评测 + R23 异步摄取）
 
 一个可运行、可测试、可解释的企业知识库问答后端作品集。它使用
 FastAPI 接收 TXT/PDF 文档，将文档元数据写入 SQLite、将 chunk 与向量写入
 Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 生成限定文档范围的回答与结构化引用。
 
-> 当前状态：V1 应用闭环、V2 评测增强和 R1 两服务运行方式已完成。推荐用
-> Docker Compose 启动 FastAPI 与 Qdrant Server；Qdrant Local 只保留给宿主机
-> 单进程开发和离线测试。现有 `POST /api/v1/documents` 仍是同步摄取并返回
-> `201 Created`；项目还没有 Job、独立 Worker 或异步摄取。生产 API 保持
-> Dense 检索，Hybrid 仅是被评测并拒绝上线的实验原型。项目面向本地单用户
-> 演示，尚未提供认证、多租户或公网生产部署能力。
+> 当前状态：V1 应用闭环、V2 评测增强、R1 Qdrant Server 和 R23 最小异步
+> 摄取闭环已完成。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
+> `201 Created`；新增 `POST /api/v2/documents` 返回 `202 Accepted + job_id`，
+> 由一个独立 Worker 处理，并支持状态查询和一个固定崩溃点的启动恢复。推荐用
+> Docker Compose 启动 FastAPI、Worker 与 Qdrant Server。当前只保证本机单
+> Worker，不是分布式任务平台。应用检索仍使用 Dense；Hybrid 仅是被评测并
+> 拒绝上线的实验原型，Agent 尚未实现。项目面向本地单用户演示，尚未提供
+> 认证、多租户或公网生产部署能力。
 
 ## 项目亮点
 
 - 模块化单体：HTTP、业务服务、领域模型、provider 和存储适配器分层。
 - 安全摄取：扩展名与媒体类型双重校验、大小限制、安全路径和失败回滚。
+- 最小可靠异步摄取：持久化 Job、独立 Worker、原子领取、可查询状态、固定
+  崩溃点恢复和删除竞态保护，同时保留 V1 同步接口。
 - 范围检索：请求必须显式选择文档，检索前后均验证 `document_id`。
 - 可信引用：文件名、页码、chunk ID 和分数由应用从真实检索结果构造。
 - 隐私边界：不记录问题、文档内容、prompt、回答、向量、密钥或本地路径。
@@ -23,8 +27,8 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 - 证据化取舍：参数消融、真实语义对照、阈值扫描、Hybrid负向实验和坏案例目录。
 - 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
-- 可复现运行：Compose 明确包含 FastAPI 与 Qdrant Server 两个服务，并用独立
-  named volume 保存 SQLite/上传文件与 Qdrant 数据。
+- 可复现运行：Compose 包含 FastAPI、Worker 与 Qdrant Server 三个服务，并用
+  独立 named volume 保存 SQLite/上传文件与 Qdrant 数据。
 - 多模型后端：OpenAI/DeepSeek 通过同一 `LLMProvider` 接口切换，业务服务
   不依赖具体厂商；在线对比使用相同检索证据、Prompt 和评测问题。
 
@@ -33,11 +37,17 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 ```mermaid
 flowchart LR
     U["TXT / text PDF"] --> API["FastAPI"]
-    API --> ING["IngestionService"]
-    ING --> DOC["validate / parse / chunk"]
-    ING --> EMB["OpenAI embeddings"]
-    ING --> SQL["SQLite document records"]
-    EMB --> QD["Qdrant Server vectors<br/>(Local only for dev/tests)"]
+    API -->|"V1 sync / 201"| SYNC["IngestionService"]
+    API -->|"V2 accept / 202"| ASYNC["AsyncIngestionService"]
+    ASYNC -->|"Document processing + Job pending"| SQL["SQLite documents + jobs"]
+    WORKER["independent Worker"] -->|"atomic claim: pending → running"| SQL
+    SYNC --> CORE["shared IngestionProcessor"]
+    WORKER --> CORE
+    CORE --> DOC["safe path / parse / chunk"]
+    CORE --> EMB["OpenAI embeddings"]
+    EMB --> QD["Qdrant Server vectors<br/>(Local only for sync dev/tests)"]
+    SYNC -->|"Document terminal state"| SQL
+    WORKER -->|"Job + Document terminal transaction"| SQL
 
     Q["scoped question"] --> API
     API --> ANS["AnswerService"]
@@ -51,14 +61,16 @@ flowchart LR
     CIT --> OUT
 ```
 
-主要数据流是：上传 → 校验 → 解析 → 切块 → embedding → 持久化 →
-限定文档检索 → 基于证据回答 → 结构化引用。摄取失败时会补偿删除已经写入的
-向量和文件，并保留安全的失败状态记录。
+V1 同步路径在请求内调用共享摄取核心；V2 路径先保存文件并原子创建
+Document/Job，再由独立 Worker 领取、解析、切块、embedding 和写入 Qdrant。
+摄取失败时会补偿清理向量和文件，并把 Job/Document 共同收敛到失败状态。
+检索与回答仍是：限定文档检索 → 基于证据回答 → 应用侧结构化引用。
 
-## 推荐启动（Docker Compose / R1 两服务）
+## 推荐启动（Docker Compose / R23 三服务）
 
-R1 选择把 FastAPI 也放进 Compose，因此运行拓扑固定为两个服务：`api` 与
-`qdrant`。这里没有 Worker；独立 Worker 和异步摄取属于尚未开始的 R23。
+R23 的运行拓扑是 `api`、`worker` 与 `qdrant`。API 和 Worker 共享
+`app_data` 中的 SQLite/上传文件，但各自持有独立 SQLite 连接；两者都通过
+网络访问 Qdrant Server，不共享 Qdrant Local 内部文件。
 
 ### 1. 准备配置
 
@@ -66,9 +78,11 @@ R1 选择把 FastAPI 也放进 Compose，因此运行拓扑固定为两个服务
 Copy-Item .env.example .env
 ```
 
-`.env` 已被 Git 忽略。完整 `/health` 和在线上传/问答需要配置对应 Provider
-Key；构建镜像、启动 Qdrant 和运行离线测试不会调用 Provider。不要把 Key
-写入镜像、提交、日志、聊天或截图；在线调用可能产生费用。
+`.env` 已被 Git 忽略。独立 Worker 需要 `OPENAI_API_KEY` 才能启动处理任务；
+仅启动容器不会调用 Provider，真正上传文档后才会生成 embedding。完整
+`/health`、在线上传和问答也需要对应 Key。构建镜像、启动 Qdrant 和运行离线
+测试不会调用 Provider。不要把 Key 写入镜像、提交、日志、聊天或截图；在线
+调用可能产生费用。
 
 ### 2. 构建并启动
 
@@ -77,8 +91,8 @@ docker compose up -d --build
 docker compose ps
 ```
 
-正常时应看到且只看到 `api`、`qdrant` 两个服务为 `healthy`。Qdrant 匿名
-telemetry 在 Compose 中显式关闭。端口仅绑定到
+正常时 `api`、`qdrant` 为 `healthy`，`worker` 为 `Up`（Worker 当前没有单独
+health endpoint）。Qdrant 匿名 telemetry 在 Compose 中显式关闭。端口仅绑定到
 宿主机 `127.0.0.1`：API 默认是 <http://127.0.0.1:8000>，Qdrant 默认是
 <http://127.0.0.1:6333>。
 
@@ -100,8 +114,10 @@ docker compose down
 
 ## 兼容启动（Windows / Python 3.12 / Qdrant Local）
 
-这种方式用于单进程开发和离线测试。保持 `RAG_QDRANT_URL` 为空时，应用继续
-使用 `RAG_QDRANT_PATH` 下的 Local 数据，不需要启动 Docker。
+这种方式用于 V1 同步单进程开发和离线测试。保持 `RAG_QDRANT_URL` 为空时，
+应用继续使用 `RAG_QDRANT_PATH` 下的 Local 数据，不需要启动 Docker。不要让
+API 与独立 Worker 两个进程同时打开同一 Qdrant Local 目录；R23 异步运行和
+进程恢复必须使用 Qdrant Server。
 
 ### 1. 创建项目专用虚拟环境
 
@@ -162,10 +178,12 @@ quality_gate_passed=true
 ## 五分钟演示流程
 
 1. 调用 `GET /health`；配置有效时返回所有组件状态。
-2. 调用 `POST /api/v1/documents`，上传
+2. 调用 `POST /api/v2/documents`，上传
    `evaluation/documents/access_policy.txt`。
-3. 从响应中复制 `document_id`。
-4. 调用 `POST /api/v1/answers`，提交下面的 JSON，并替换占位 ID：
+3. 从 `202` 响应中复制 `job_id` 和 `document_id`，调用
+   `GET /api/v2/jobs/{job_id}`，观察 `pending → running → ready`。
+4. 调用 `GET /api/v1/documents/{document_id}`，确认 Document 为 `ready`；再调用
+   `POST /api/v1/answers`，提交下面的 JSON，并替换占位 ID：
 
 ```json
 {
@@ -178,7 +196,9 @@ quality_gate_passed=true
 
 5. 检查回答中的 `citations`：每条引用都包含真实的文档、chunk、文件名、
    页码（PDF 可用时）、摘要和检索分数。
-6. 调用 `DELETE /api/v1/documents/{document_id}` 清理文件、向量和记录。
+6. 调用 `DELETE /api/v1/documents/{document_id}` 清理文件、向量、Job 和文档
+   记录。若摄取仍在进行，接口会返回 `409 DOCUMENT_PROCESSING`，不会与 Worker
+   竞争删除。
 
 这个在线演示会调用 OpenAI API 并产生少量费用。若只想验证本地工程链路，
 运行离线评估即可。
@@ -189,6 +209,8 @@ quality_gate_passed=true
 |---|---|
 | `GET /health` | 检查 SQLite、Qdrant、embedding 和 LLM provider |
 | `POST /api/v1/documents` | 同步上传并摄取 UTF-8 TXT 或文本型 PDF |
+| `POST /api/v2/documents` | 保存文件并创建异步 Job，返回 `202 + job_id` |
+| `GET /api/v2/jobs/{job_id}` | 查询 Job 状态、尝试次数、时间戳和安全错误码 |
 | `GET /api/v1/documents` | 列出不含本地路径的文档元数据 |
 | `GET /api/v1/documents/{document_id}` | 获取单个文档记录 |
 | `DELETE /api/v1/documents/{document_id}` | 删除文件、向量和文档记录 |
@@ -225,6 +247,8 @@ quality_gate_passed=true
 | `RAG_QDRANT_TIMEOUT_SECONDS` | `5` | Qdrant Server 客户端超时秒数 |
 | `RAG_QDRANT_PORT` | `6333` | Compose 暴露到本机回环地址的 Qdrant 端口 |
 | `RAG_SQLITE_PATH` | `data/app.db` | 文档记录数据库 |
+| `RAG_SQLITE_BUSY_TIMEOUT_MS` | `5000` | API/Worker 遇到 SQLite 写锁时的有限等待时间 |
+| `RAG_WORKER_POLL_INTERVAL_SECONDS` | `0.5` | 单 Worker 无待处理 Job 时的轮询间隔 |
 | `RAG_MAX_UPLOAD_BYTES` | `10485760` | 单文件最大 10 MiB |
 | `RAG_CHUNK_SIZE` | `1000` | chunk 字符目标大小 |
 | `RAG_CHUNK_OVERLAP` | `150` | 相邻 chunk 重叠字符数 |
@@ -296,10 +320,12 @@ OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合�
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
 
-R1 最新完整质量门槛为 158 项自动化测试和 34 个参数化子测试通过，启用
-分支统计后的总覆盖率为 88.67%，并持续强制 85% 的最低覆盖率要求。本次还
-连接真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理；
-CI 使用无 API Key 的 Qdrant Server service，不调用真实 LLM/Embedding。
+R23 最新完整质量门槛为 182 项自动化测试和 34 个参数化子测试通过，启用
+分支统计后的总覆盖率为 87.59%，并持续强制 85% 的最低覆盖率要求。本次连接
+真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理，也
+用两个独立 Python 进程验证 Worker 在“Qdrant 已写入、SQLite 尚未提交 ready”
+处退出后可恢复且没有重复可见 Chunk。CI 使用 Fake/确定性 Provider 和无 API
+Key 的 Qdrant Server service，不调用真实 LLM/Embedding。
 
 仅运行评估：
 
@@ -348,13 +374,13 @@ Recall 从 100% 降至 92.50%，MRR 从 0.9833 降至 0.8438，并新增3个检�
 app/api                 HTTP 路由和依赖解析
 app/core                类型化配置、日志、异常和错误处理
 app/document_processing 文件校验、持久化、TXT/PDF 解析和切块
-app/domain              框架无关的文档、chunk、检索和引用模型
+app/domain              框架无关的文档、Job、chunk、检索和引用模型
 app/providers           OpenAI embedding/LLM 接口与适配器
-app/services            摄取、检索、回答和文档生命周期
-app/storage             SQLite repository 与 Qdrant Local/Server adapter
+app/services            同步/异步摄取、Worker、检索、回答和文档生命周期
+app/storage             SQLite Document/Job repository 与 Qdrant adapter
 .github/workflows       GitHub Actions 质量门槛与 Qdrant Server 集成测试
-Dockerfile              FastAPI 非 root 运行镜像
-compose.yaml            FastAPI + Qdrant Server 两服务与 named volumes
+Dockerfile              API/Worker 共用的非 root Python 运行镜像
+compose.yaml            FastAPI + Worker + Qdrant 三服务与 named volumes
 evaluation              可重复语料、问题、provider 和评估报告
 scripts                 语料生成、评估和质量门槛入口
 tests                   单元、集成和评估测试
@@ -370,8 +396,12 @@ docs                    调研、架构、provider 和发布记录
 - Compose 只绑定本机回环地址，Qdrant 未配置 TLS/认证；不要暴露到公网。
 - SQLite 与当前单节点 Qdrant Server 仍面向本地小规模作品集，不是经真实流量
   验证的生产集群。
-- R1 只有 FastAPI + Qdrant 两个服务；没有独立 Worker、异步 Job、崩溃恢复
-  或三服务 Compose，这些能力不能写进简历的“已实现”部分。
+- R23 只实现单机、单 Worker 的最小闭环；没有业务自动重试队列、取消、背压、
+  多 Worker、Lease/Fencing 或网络分区处理，不能包装成分布式任务平台。
+- 活动摄取期间删除返回 `409 DOCUMENT_PROCESSING`；失败补偿是尽力而为，当前
+  没有长期后台 reconciler。
+- Agent 尚未实现或接入 API；R5 即使获批也只设计受限 Agentic Retrieval 的
+  评测协议，不能写成“已实现 Agent”。
 - LLM 请求不启用持久会话、工具或 Web 搜索；DeepSeek/OpenAI Key 均只从
   本地环境读取。
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。

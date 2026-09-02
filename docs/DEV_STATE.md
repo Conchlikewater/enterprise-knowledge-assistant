@@ -7,9 +7,9 @@
 - 上位协议：`D:\AI_Internship_2026\求职材料\2026-09_双项目升级计划_评审版.md`
 - 协议版本：**《2026 年 9 月 双项目升级执行协议 v6》定稿版**
 - RAG 九月升级真实开工日期：**2026-08-31**（Australia/Sydney）
-- 当前阶段：**R23 异步摄取最小完整闭环——已于 2026-09-01 获得明确批准，正在现状检查与设计冻结**
-- 已正式完成阶段：R0、R1
-- 下一阶段：R4；**尚未开始**，必须等 R23 实现、测试、知识问答完成并由用户明确批准
+- 当前阶段：**R23 异步摄取最小完整闭环——实现与工程验收已于 2026-09-02 完成，正在等待⑤拥有权问答**
+- 已正式完成阶段：R0、R1；R23 的代码和测试已完成，但阶段门禁尚未关闭
+- 下一阶段：R4；**尚未开始**，必须等 R23 知识问答完成并由用户明确批准
 - ⑤拥有权验证：R0 已完成（2026-08-31）；R1 已完成（2026-09-01）；R23 **未完成**
 - 工作区基线：R0 开工时 `main` 与 `origin/main` 无领先/落后，HEAD 为 `11449b22e5df9181ecb7952f034da2f6b4875143`
 
@@ -100,29 +100,32 @@ R1 没有修改现有生产 API：`POST /api/v1/documents` 仍同步完成摄取
 - 用户在故障排查前曾点过一次 Docker Desktop factory reset；随后只读盘点确认旧 Docker volume/容器为空，旧 named-volume 数据不能假定仍存在；
 - 仓库宿主机 `data/app.db`、`data/qdrant` 与 `data/uploads` 未被 factory reset 删除；R1 没有直接迁移或删除这些 Local 数据；
 - Docker 4.88.1 启动失败的直接原因是两个遗留 AF_UNIX socket 目录。采用可恢复的目录改名后启动成功，没有再次 factory reset；
-- R1 新建 `enterprise-knowledge-assistant_app_data` 与 `enterprise-knowledge-assistant_qdrant_data`，当前两服务保持运行且健康；
+- R1 新建 `enterprise-knowledge-assistant_app_data` 与 `enterprise-knowledge-assistant_qdrant_data`，R1 验收时两个服务均运行且健康；
 - factory reset 或 `docker compose down --volumes` 会清空 named volume，README 已明确警告。
 
-## 6. 未决问题
+## 6. R23 已决问题与后续未决问题
 
-以下问题不在 R0 猜答案，必须在对应阶段检查现状、设计、测试后记录：
+R23 已通过源码和测试冻结：
 
-1. R23：Job 的最终状态名、表字段、迁移方式和兼容 API 路径是什么？
-2. R23：用于演示恢复的唯一明确崩溃点选在哪里，如何保证可重复？
-3. R23：SQLite `busy_timeout`、锁冲突有限重试次数和退避值，经什么测试冻结？
-4. R23：现有同步 `IngestionService` 抽取出的共享摄取核心边界是什么，如何避免同步/异步两套逻辑漂移？
-5. R4：测量结果是否支持把异步接口作为演示主路径，还是只作为新增可选能力？
-6. R5：到条件检查日时，前序质量和剩余时间是否允许启动协议设计？
+1. Job 使用 `pending / running / ready / failed`，表随 `PRAGMA user_version=2` 兼容新增；V1 同步 `201` 保留，V2 异步接口使用 `/api/v2/documents` 和 `/api/v2/jobs/{job_id}`。
+2. 唯一强制崩溃点是 Qdrant upsert 成功后、SQLite ready 事务前；测试用两个独立 Python 进程和真实 Qdrant Server 可重复验证。
+3. SQLite 默认 `busy_timeout=5000 ms`，同时使用 WAL 和短事务。有限等待由 SQLite 内部完成，不叠加应用层事务重试；测试覆盖短锁释放后成功、锁超时安全失败和并发条件领取。
+4. `IngestionProcessor` 只接收既有 `Document`，负责安全路径校验、parse/chunk/embed/upsert；V1 编排与 Worker 各自负责状态和补偿，避免复制两套处理算法。
+
+后续仍未决：
+
+1. R4：测量结果是否支持把异步接口作为演示主路径，还是只作为新增可选能力？
+2. R5：到条件检查日时，前序质量和剩余时间是否允许启动协议设计？
 
 ## 7. 最容易误改或误报的位置
 
-- `README.md` 已把 Qdrant Server 两服务作为 R1 推荐运行方式，但同步 `201` 摄取没有改变；不能据此宣称异步摄取已实现。
-- `app/api/routers/documents.py` 的现有 `201` 同步边界受保护；新增异步能力不能无意破坏它。
-- `app/services/ingestion_service.py` 当前是完整同步流程；R23 应抽取可复用核心，不应复制一套漂移实现。
-- `app/storage/sqlite_document_repository.py` 当前没有 Job 双进程并发协议；不能只加一张表就宣称恢复可靠。
-- Qdrant Server 已可由 API 访问；Local 模式仍仅供宿主机单进程开发/测试，不能让未来 API 与 Worker 共享 Local 内部文件。
-- 当前删除逻辑不理解活动 Job；R23 必须按 `409 DOCUMENT_PROCESSING` 规则补齐竞态测试。
-- 归档里的 Agent API、Approval、Lease/Fencing 只是历史设计，不能复制到九月主线。
+- `POST /api/v1/documents` 仍是同步 `201`；异步能力只在新增 V2 `202` 接口，不能把两者说成一次破坏性替换。
+- `app/services/ingestion_service.py` 与 Worker 共用 `IngestionProcessor`，但状态编排不同；不能把 processing core 误说成任务队列。
+- Qdrant Local 只供 V1 同步单进程开发和单进程测试；API + Worker 的真实双进程运行必须使用 Qdrant Server。
+- Job 的 `ready` 和 Document 的 `ready` 在一个 SQLite 事务中提交；Qdrant 本身不参与事务，跨存储仍是补偿式一致性。
+- 当前只按部署拓扑保证一个 Worker；不要启动第二个 Worker，也不要宣称已解决 Lease、Fencing、网络分区或旧 Worker 晚到写入。
+- `processing` 文档删除固定返回 `409 DOCUMENT_PROCESSING`；P0 没有取消，不要顺手增加另一套状态转换。
+- 归档里的 Agent API、Approval、Lease/Fencing 只是历史设计；R5 也只设计实验评测协议，不实现 Agent。
 
 ## 8. 环境与安全记录
 
@@ -136,6 +139,10 @@ R1 没有修改现有生产 API：`POST /api/v1/documents` 仍同步完成摄取
 - R1 未读取、打印、修改或提交 `.env` 内容，启动日志检查未发现密钥；
 - R1 未调用真实 Provider，也未执行付费评测；
 - R1 没有删除 Docker volume、D 盘 Local 数据或恢复目录。
+- R23 未安装或升级依赖，未读取、打印或修改 `.env`，全部新增测试使用 Fake/确定性 Provider；
+- R23 没有调用 OpenAI、DeepSeek 或运行付费评测；
+- 2026-09-02 Docker Desktop 再次受遗留 AF_UNIX socket 影响。只将当前 `run` 和 `docker-secrets-engine` 目录可恢复地改名，没有 factory reset、删除 volume 或清理镜像；
+- 修复后 `enterprise-knowledge-assistant_app_data` 与 `enterprise-knowledge-assistant_qdrant_data` 均仍存在，API/Qdrant healthy、Worker Up。
 
 ## 9. 阶段门禁
 
@@ -151,6 +158,8 @@ R1 的代码、运行、测试与知识问答已经完成。用户于 2026-09-01
 
 用户随后明确指示“继续下个阶段”，因此 R23 获得启动授权。R23 完成后仍必须停止，⑤状态保持“未完成”，直到知识讲解与高价值问题验收结束；R4 不得提前开始。
 
+R23 的实现、完整工程测试和事实文档已于 2026-09-02 完成。当前停在学习交接与⑤问答入口；本文件顶部的 R23 ⑤状态仍为“未完成”。用户回答并完成纠错后，才能单独更新为“已完成”。即使⑤完成，R4 也必须等待用户明确的新阶段指令。
+
 ## 10. R23 实现前设计冻结（2026-09-01）
 
 - 兼容 API：V1 同步 `201` 保留；V2 异步 `202` 返回 `document_id + job_id`；
@@ -161,4 +170,49 @@ R1 的代码、运行、测试与知识问答已经完成。用户于 2026-09-01
 - 崩溃点：Qdrant upsert 成功后、SQLite 终态提交前强制结束 Worker；
 - 恢复幂等：重放前按 `document_id` 清理残留 Point；不声称处理仍存活旧 Worker；
 - 删除语义：Document 为 `processing` 时返回 `409 DOCUMENT_PROCESSING`，P0 不提供取消；
-- 详细契约：`docs/r23_design.md`；当前仅为设计证据，尚未证明实现完成。
+- 详细契约和验收证据：`docs/r23_design.md`；实现、测试与边界现已互相映射。
+
+## 11. R23 实施与验证记录（2026-09-02）
+
+### 当前新增能力
+
+- 保留 V1 同步 `POST /api/v1/documents → 201`；
+- 新增 V2 `POST /api/v2/documents → 202`，返回 `document_id`、`job_id` 和 `status_url`；
+- 新增 `GET /api/v2/jobs/{job_id}`，只暴露稳定状态、时间戳、尝试次数和安全错误码；
+- 独立 `python -m app.worker` 进程原子领取持久化 Job，并推进 Job/Document 状态；
+- Worker 启动时把遗留 `running` Job 恢复到 `pending`，重放前按 `document_id` 清理残留向量；
+- 活动摄取文档删除返回 `409 DOCUMENT_PROCESSING`；终态文档沿用 V1 文件、向量、SQLite 删除编排；
+- Compose 已从 R1 的 API + Qdrant 扩展为 API + Worker + Qdrant 三服务。
+
+### 数据与状态证据
+
+- SQLite schema 版本：2；新增 `ingestion_jobs`，一个 Document 最多关联一个 Job；
+- Job：`pending → running → ready/failed`，Worker 进程消失时下次启动执行 `running → pending`；
+- Document：`processing → ready/failed`；
+- 领取使用 `BEGIN IMMEDIATE` + 条件更新，`attempt_count` 每次真实领取增加；
+- Job/Document 成功或失败终态在同一 SQLite 短事务更新；
+- WAL、默认 5000 ms `busy_timeout` 和短事务构成当前双进程 SQLite 并发策略。
+
+### 故障与恢复证据
+
+- 固定崩溃点：Qdrant upsert 成功后、SQLite ready 提交前，测试进程以退出码 91 结束；
+- 第二个独立进程启动后恢复同一 Job，最终 `attempt_count=2`、Document/Job 都为 ready，Qdrant 没有重复可见 Chunk；
+- Qdrant 部分写入后抛错会触发向量/文件补偿并把两个业务对象共同置为 failed；
+- SQLite ready 提交结果不确定时先回读：确认 ready 则保留数据，否则 Worker 退出并走启动恢复，避免误删已经成功的数据；
+- 失败状态无法写入时 Worker 也退出，避免一个 live Worker 永久遗留 running Job。
+
+### 最终质量结果
+
+- 完整质量门禁：182 项自动化测试通过、34 个参数化子测试通过；
+- branch-aware 覆盖率：87.59%，门槛 85%；
+- Ruff lint/format、依赖、字节码和固定离线评测通过；
+- 离线评测仍为 10 份合成文档、50 道题，指标口径与 R1 前一致；
+- 真实 Qdrant Server 测试只验证存储和进程边界，Embedding/LLM 仍使用 Fake/确定性 Provider，无付费调用。
+
+### 已知边界
+
+- 不支持取消、Idempotency-Key、业务自动重试队列、背压或长期 reconciler；
+- 不支持多 Worker、Lease/Fencing、旧 Worker 晚到竞争或网络分区；
+- 处理失败会清理源文件，P0 没有失败 Job 重试接口；
+- R4 尚未实测同步/异步延迟与复杂度，因此不能提前宣称异步“更快”或已经取代同步主路径；
+- Agent 未实现；R5 尚未开始。

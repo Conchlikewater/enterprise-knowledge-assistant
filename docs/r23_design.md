@@ -1,6 +1,6 @@
 # R23 异步摄取最小完整设计
 
-> 状态：2026-09-01 设计冻结，尚未证明实现完成。能力是否可用必须以后续源码、测试和 Git 证据为准。
+> 状态：2026-09-02 已按本设计完成实现和工程验收；⑤拥有权验证仍未完成，R4 尚未开始。能力边界以本文件、源码、测试和 Git 证据共同为准。
 
 ## 1. 范围与兼容边界
 
@@ -123,3 +123,35 @@ Qdrant upsert 已成功
 - Compose 三服务可启动；
 - CI 不依赖真实 Provider Key，不产生费用；
 - branch-aware 覆盖率不低于 85%，README 不把 R23 写成高并发生产任务系统。
+
+## 9. 实现与验收记录（2026-09-02）
+
+关键实现映射：
+
+- `app/api/routers/ingestion_jobs.py`：V2 `202` 接收与 Job 查询；
+- `app/services/async_ingestion_service.py`：有界文件保存和 Document/Job 原子创建；
+- `app/services/ingestion_processor.py`：V1 与 Worker 共用的解析、切块、Embedding 和向量写入核心；
+- `app/services/ingestion_worker.py`：原子领取、成功/失败收敛、启动恢复及补偿；
+- `app/storage/sqlite_document_repository.py`：schema v2、WAL、5000 ms `busy_timeout`、短事务和条件更新；
+- `app/worker.py`：独立 Worker 进程入口；
+- `compose.yaml`：API + Worker + Qdrant 三服务，共享 `app_data`、独立 `qdrant_data`。
+
+SQLite 锁冲突采用 SQLite 自带的 `busy_timeout` 做有限等待，不在应用层盲目重放整个事务。这样既覆盖短锁竞争，又避免在“提交结果不确定”时重复业务操作；超过 5000 ms 后返回安全存储错误或让 Worker 退出，由进程重启恢复遗留 `running` Job。
+
+除固定强制崩溃点外，Worker 还处理两类终态边界：
+
+- 若 `complete_job()` 报错但回读确认 Job/Document 已共同成为 `ready`，保留文件和向量，按已成功处理；
+- 若无法确认 ready，不执行破坏性补偿，Worker 退出，保留 `running/processing` 供启动恢复；
+- 若处理失败后的失败状态写入也失败，Worker 不继续空转，而是退出并让启动恢复收敛。
+
+最终完整质量门禁结果：
+
+- 182 项自动化测试通过，另有 34 个参数化子测试通过；
+- branch-aware 总覆盖率 87.59%，高于 85% 门槛；
+- Ruff lint/format、依赖检查、字节码检查和固定离线评测全部通过；
+- 真实 Qdrant Server 临时 collection 集成测试通过；
+- 两个独立 Python 进程完成“第一次在固定点退出、第二次恢复”的测试，最终 `attempt_count=2` 且无重复可见 Chunk；
+- 10 份合成文档、50 道题的离线评测口径和结果未改变；
+- 全部测试使用 Fake/确定性 Provider，没有调用 OpenAI、DeepSeek 或产生费用。
+
+未覆盖边界保持不变：部署只声明一个 Worker；若人为启动第二个 Worker，启动恢复可能把仍在执行的 Job 重新排队。多 Worker 所有权、Lease/Fencing、业务重试队列、取消和长期 reconciler 均不属于 R23。

@@ -44,7 +44,7 @@ R1 必须在实施时二选一并记录依据：
 1. FastAPI 进入 Compose：Compose 中是 FastAPI + Qdrant 两个服务；SQLite 必须使用 named volume 保证持久化。
 2. FastAPI 留在宿主机：Compose 中只有 Qdrant 服务；应用通过端口连接 Qdrant。
 
-R1 不能声称“FastAPI + Worker + Qdrant 三服务完整 Compose”，因为独立 Worker 尚未在 R23 实现。R1 不实现异步 Job、Worker 或 Agent。
+R1 验收时不能声称“FastAPI + Worker + Qdrant 三服务完整 Compose”，因为独立 Worker 属于后续 R23。R1 本身不实现异步 Job、Worker 或 Agent。
 
 ### R23：异步摄取最小完整闭环
 
