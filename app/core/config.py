@@ -54,8 +54,11 @@ class Settings:
     port: int = 8000
     log_level: str = "INFO"
     api_v1_prefix: str = "/api/v1"
+    api_v2_prefix: str = "/api/v2"
     upload_dir: Path = Path("data/uploads")
     sqlite_path: Path = Path("data/app.db")
+    sqlite_busy_timeout_ms: int = 5000
+    worker_poll_interval_seconds: float = 0.5
     qdrant_path: Path = Path("data/qdrant")
     qdrant_url: str | None = None
     qdrant_api_key: str | None = field(default=None, repr=False, compare=False)
@@ -85,6 +88,10 @@ class Settings:
             raise ValueError("log_level is not supported")
         if self.max_upload_bytes <= 0:
             raise ValueError("max_upload_bytes must be positive")
+        if self.sqlite_busy_timeout_ms <= 0:
+            raise ValueError("sqlite_busy_timeout_ms must be positive")
+        if self.worker_poll_interval_seconds <= 0:
+            raise ValueError("worker_poll_interval_seconds must be positive")
         if not self.qdrant_collection.strip():
             raise ValueError("qdrant_collection must not be empty")
         if self.qdrant_url is not None and not self.qdrant_url.startswith(
@@ -151,6 +158,16 @@ class Settings:
             log_level=env.get("RAG_LOG_LEVEL", "INFO").upper(),
             upload_dir=Path(env.get("RAG_UPLOAD_DIR", "data/uploads")),
             sqlite_path=Path(env.get("RAG_SQLITE_PATH", "data/app.db")),
+            sqlite_busy_timeout_ms=_read_int(
+                env,
+                "RAG_SQLITE_BUSY_TIMEOUT_MS",
+                5000,
+            ),
+            worker_poll_interval_seconds=_read_float(
+                env,
+                "RAG_WORKER_POLL_INTERVAL_SECONDS",
+                0.5,
+            ),
             qdrant_path=Path(env.get("RAG_QDRANT_PATH", "data/qdrant")),
             qdrant_url=(
                 qdrant_url.rstrip("/")

@@ -20,6 +20,13 @@ class DocumentStatus(StrEnum):
     FAILED = "failed"
 
 
+class IngestionJobStatus(StrEnum):
+    PENDING = "pending"
+    RUNNING = "running"
+    READY = "ready"
+    FAILED = "failed"
+
+
 @dataclass(frozen=True, slots=True)
 class Document:
     document_id: UUID
@@ -44,6 +51,45 @@ class Document:
             int(self.sha256, 16)
         except ValueError as exc:
             raise ValueError("sha256 must contain 64 hexadecimal characters") from exc
+
+
+@dataclass(frozen=True, slots=True)
+class IngestionJob:
+    job_id: UUID
+    document_id: UUID
+    status: IngestionJobStatus
+    attempt_count: int = 0
+    error_code: str | None = None
+    created_at: datetime = field(default_factory=utc_now)
+    updated_at: datetime = field(default_factory=utc_now)
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
+
+    def __post_init__(self) -> None:
+        if self.attempt_count < 0:
+            raise ValueError("attempt_count must not be negative")
+        if self.error_code is not None and not self.error_code.strip():
+            raise ValueError("error_code must not be blank")
+        if self.status is IngestionJobStatus.PENDING:
+            if self.started_at is not None or self.completed_at is not None:
+                raise ValueError("pending jobs cannot have processing timestamps")
+        if self.status is IngestionJobStatus.RUNNING:
+            if self.started_at is None:
+                raise ValueError("running jobs require a start timestamp")
+            if self.completed_at is not None:
+                raise ValueError("running jobs cannot have a completion timestamp")
+        if self.status in {IngestionJobStatus.READY, IngestionJobStatus.FAILED}:
+            if self.started_at is None:
+                raise ValueError("terminal jobs require a start timestamp")
+            if self.completed_at is None:
+                raise ValueError("terminal jobs require a completion timestamp")
+        if self.status is IngestionJobStatus.READY and self.error_code is not None:
+            raise ValueError("ready jobs cannot contain an error code")
+        if self.status is IngestionJobStatus.FAILED and self.error_code is None:
+            raise ValueError("failed jobs require an error code")
+        if self.status in {IngestionJobStatus.PENDING, IngestionJobStatus.RUNNING}:
+            if self.error_code is not None:
+                raise ValueError("active jobs cannot contain an error code")
 
 
 @dataclass(frozen=True, slots=True)

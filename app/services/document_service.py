@@ -8,8 +8,7 @@ from uuid import UUID
 
 from app.core.exceptions import DocumentNotFoundError, DocumentStorageError
 from app.document_processing.file_validation import (
-    SUPPORTED_MEDIA_TYPES,
-    build_storage_path,
+    validate_storage_path,
 )
 from app.domain.models import Document
 from app.storage.document_repository import DocumentRepository
@@ -37,32 +36,19 @@ class DocumentService:
         return document
 
     def delete_document(self, document_id: UUID) -> None:
-        document = self.get_document(document_id)
+        document = self._document_repository.get_for_deletion(document_id)
         stored_path = self._validated_storage_path(document)
         self._vector_store.delete_by_document(document_id)
         self._delete_stored_file(stored_path)
         self._document_repository.delete(document_id)
 
     def _validated_storage_path(self, document: Document) -> Path:
-        suffix = next(
-            (
-                extension
-                for extension, media_type in SUPPORTED_MEDIA_TYPES.items()
-                if media_type == document.media_type
-            ),
-            None,
-        )
-        if suffix is None:
-            raise DocumentStorageError()
-
-        expected_path = build_storage_path(
+        return validate_storage_path(
             self._upload_dir,
             document.document_id,
-            suffix,
+            document.media_type,
+            document.stored_path,
         )
-        if document.stored_path.resolve(strict=False) != expected_path:
-            raise DocumentStorageError()
-        return expected_path
 
     @staticmethod
     def _delete_stored_file(stored_path: Path) -> None:

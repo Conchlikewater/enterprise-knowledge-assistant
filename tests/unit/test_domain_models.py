@@ -1,11 +1,51 @@
 import unittest
+from datetime import UTC, datetime
 from math import nan
 from uuid import uuid4
 
-from app.domain.models import AnswerResult, Chunk, Citation, RetrievalResult
+from app.domain.models import (
+    AnswerResult,
+    Chunk,
+    Citation,
+    IngestionJob,
+    IngestionJobStatus,
+    RetrievalResult,
+)
 
 
 class DomainModelTests(unittest.TestCase):
+    def test_ingestion_job_requires_state_consistent_metadata(self) -> None:
+        now = datetime.now(UTC)
+        with self.assertRaises(ValueError):
+            IngestionJob(
+                job_id=uuid4(),
+                document_id=uuid4(),
+                status=IngestionJobStatus.RUNNING,
+            )
+        with self.assertRaises(ValueError):
+            IngestionJob(
+                job_id=uuid4(),
+                document_id=uuid4(),
+                status=IngestionJobStatus.PENDING,
+                started_at=now,
+            )
+        with self.assertRaises(ValueError):
+            IngestionJob(
+                job_id=uuid4(),
+                document_id=uuid4(),
+                status=IngestionJobStatus.RUNNING,
+                started_at=now,
+                completed_at=now,
+            )
+        with self.assertRaises(ValueError):
+            IngestionJob(
+                job_id=uuid4(),
+                document_id=uuid4(),
+                status=IngestionJobStatus.FAILED,
+                completed_at=now,
+                error_code="INGESTION_FAILED",
+            )
+
     def test_empty_chunk_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             Chunk(

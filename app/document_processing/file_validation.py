@@ -8,6 +8,7 @@ from typing import Final
 from uuid import UUID
 
 from app.core.exceptions import (
+    DocumentStorageError,
     EmptyFileError,
     FileTooLargeError,
     InvalidFilenameError,
@@ -105,3 +106,26 @@ def build_storage_path(upload_dir: Path, document_id: UUID, suffix: str) -> Path
     if storage_path.parent != resolved_upload_dir:
         raise InvalidFilenameError()
     return storage_path
+
+
+def validate_storage_path(
+    upload_dir: Path,
+    document_id: UUID,
+    media_type: str,
+    stored_path: Path,
+) -> Path:
+    """Return the canonical internal path or reject untrusted persisted metadata."""
+    suffix = next(
+        (
+            extension
+            for extension, supported_media_type in SUPPORTED_MEDIA_TYPES.items()
+            if supported_media_type == media_type
+        ),
+        None,
+    )
+    if suffix is None:
+        raise DocumentStorageError()
+    expected_path = build_storage_path(upload_dir, document_id, suffix)
+    if stored_path.resolve(strict=False) != expected_path:
+        raise DocumentStorageError()
+    return expected_path

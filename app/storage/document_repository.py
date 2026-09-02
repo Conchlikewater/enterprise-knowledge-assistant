@@ -27,6 +27,10 @@ class DocumentRepository(ABC):
         """Return one record, or None when it does not exist."""
 
     @abstractmethod
+    def get_for_deletion(self, document_id: UUID) -> Document:
+        """Atomically reject active ingestion and return a deletable record."""
+
+    @abstractmethod
     def list(self) -> Sequence[Document]:
         """Return document records without exposing stored paths to the API."""
 

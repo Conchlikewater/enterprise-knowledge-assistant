@@ -27,6 +27,24 @@ class DocumentNotReadyError(ApplicationError):
     status_code = 409
 
 
+class DocumentProcessingError(ApplicationError):
+    code = "DOCUMENT_PROCESSING"
+    message = "The document cannot be deleted while ingestion is active."
+    status_code = 409
+
+
+class IngestionJobNotFoundError(ApplicationError):
+    code = "JOB_NOT_FOUND"
+    message = "The requested ingestion job was not found."
+    status_code = 404
+
+
+class IngestionJobStateError(ApplicationError):
+    code = "JOB_STATE_CONFLICT"
+    message = "The ingestion job is not in the required state."
+    status_code = 409
+
+
 class UnsupportedFileTypeError(ApplicationError):
     code = "UNSUPPORTED_FILE_TYPE"
     message = "Only supported TXT and PDF files can be uploaded."

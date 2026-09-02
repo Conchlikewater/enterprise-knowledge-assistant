@@ -16,6 +16,8 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.qdrant_path, Path("data/qdrant"))
         self.assertIsNone(settings.qdrant_url)
         self.assertEqual(settings.qdrant_collection, "knowledge_chunks")
+        self.assertEqual(settings.sqlite_busy_timeout_ms, 5000)
+        self.assertEqual(settings.worker_poll_interval_seconds, 0.5)
         self.assertEqual(settings.llm_provider, "openai")
         self.assertEqual(settings.llm_model, "gpt-5.6-sol")
         self.assertEqual(settings.llm_reasoning_effort, "low")
@@ -28,6 +30,8 @@ class SettingsTests(unittest.TestCase):
                 "RAG_CHUNK_OVERLAP": "60",
                 "RAG_LLM_REASONING_EFFORT": "MEDIUM",
                 "RAG_LLM_MAX_OUTPUT_TOKENS": "500",
+                "RAG_SQLITE_BUSY_TIMEOUT_MS": "750",
+                "RAG_WORKER_POLL_INTERVAL_SECONDS": "0.25",
             }
         )
 
@@ -36,6 +40,8 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(settings.chunk_overlap, 60)
         self.assertEqual(settings.llm_reasoning_effort, "medium")
         self.assertEqual(settings.llm_max_output_tokens, 500)
+        self.assertEqual(settings.sqlite_busy_timeout_ms, 750)
+        self.assertEqual(settings.worker_poll_interval_seconds, 0.25)
 
     def test_qdrant_server_configuration_is_typed_and_hides_key(self) -> None:
         secret = "qdrant-test-secret"
@@ -70,6 +76,10 @@ class SettingsTests(unittest.TestCase):
     def test_invalid_overlap_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
             Settings(chunk_size=100, chunk_overlap=100)
+        with self.assertRaises(ValueError):
+            Settings(sqlite_busy_timeout_ms=0)
+        with self.assertRaises(ValueError):
+            Settings(worker_poll_interval_seconds=0)
 
     def test_invalid_llm_configuration_is_rejected(self) -> None:
         with self.assertRaises(ValueError):
