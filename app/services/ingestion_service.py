@@ -8,17 +8,16 @@ from time import monotonic
 from typing import BinaryIO
 from uuid import UUID, uuid4
 
-from app.core.exceptions import DocumentParseError, DocumentRepositoryError
-from app.document_processing.chunker import chunk_sections
+from app.core.exceptions import DocumentRepositoryError
 from app.document_processing.file_storage import save_upload_stream
 from app.document_processing.file_validation import (
     build_storage_path,
     validate_file,
     validate_file_identity,
 )
-from app.document_processing.loaders import load_document
 from app.domain.models import Document, DocumentStatus
 from app.providers.embedding_provider import EmbeddingProvider
+from app.services.ingestion_processor import IngestionProcessor
 from app.storage.document_repository import DocumentRepository
 from app.storage.vector_store import VectorStore
 
@@ -36,24 +35,20 @@ class IngestionService:
         chunk_size: int,
         chunk_overlap: int,
     ) -> None:
-        if embedding_provider.dimensions != vector_store.dimensions:
-            raise ValueError("embedding and vector store dimensions must match")
         if max_upload_bytes <= 0:
             raise ValueError("max_upload_bytes must be positive")
-        if chunk_size <= 0:
-            raise ValueError("chunk_size must be positive")
-        if not 0 <= chunk_overlap < chunk_size:
-            raise ValueError(
-                "chunk_overlap must be non-negative and smaller than chunk_size"
-            )
 
         self._document_repository = document_repository
         self._vector_store = vector_store
-        self._embedding_provider = embedding_provider
         self._upload_dir = upload_dir
         self._max_upload_bytes = max_upload_bytes
-        self._chunk_size = chunk_size
-        self._chunk_overlap = chunk_overlap
+        self._processor = IngestionProcessor(
+            vector_store=vector_store,
+            embedding_provider=embedding_provider,
+            upload_dir=upload_dir,
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+        )
 
     def ingest(
         self,
@@ -96,25 +91,11 @@ class IngestionService:
             self._document_repository.create(document)
             record_created = True
 
-            sections = load_document(stored_path, validated_file.media_type)
-            chunks = chunk_sections(
-                sections,
-                document_id=document_id,
-                filename=validated_file.filename,
-                chunk_size=self._chunk_size,
-                chunk_overlap=self._chunk_overlap,
-            )
-            if not chunks:
-                raise DocumentParseError()
-
-            vectors = self._embedding_provider.embed_documents(
-                [chunk.text for chunk in chunks]
-            )
-            self._vector_store.upsert(chunks, vectors)
+            chunk_count = self._processor.process(document)
             self._document_repository.update_status(
                 document_id,
                 DocumentStatus.READY,
-                len(chunks),
+                chunk_count,
             )
             ready_document = self._document_repository.get(document_id)
             if ready_document is None:
@@ -126,7 +107,7 @@ class IngestionService:
                 document_id,
                 validated_file.media_type,
                 validated_file.size_bytes,
-                len(chunks),
+                chunk_count,
                 int((monotonic() - started_at) * 1000),
             )
             return ready_document

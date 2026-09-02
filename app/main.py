@@ -10,6 +10,7 @@ from fastapi import FastAPI, Request
 from app.api.routers.answers import router as answers_router
 from app.api.routers.documents import router as documents_router
 from app.api.routers.health import router as health_router
+from app.api.routers.ingestion_jobs import router as ingestion_jobs_router
 from app.api.routers.retrieval import router as retrieval_router
 from app.core.config import Settings
 from app.core.error_handlers import register_error_handlers
@@ -19,10 +20,12 @@ from app.providers.llm_provider import LLMProvider
 from app.providers.llm_provider_factory import create_llm_provider
 from app.providers.openai_embedding_provider import OpenAIEmbeddingProvider
 from app.services.answer_service import AnswerService
+from app.services.async_ingestion_service import AsyncIngestionService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
 from app.services.retrieval_service import RetrievalService
 from app.storage.document_repository import DocumentRepository
+from app.storage.ingestion_job_repository import IngestionJobRepository
 from app.storage.qdrant_vector_store import QdrantVectorStore
 from app.storage.sqlite_document_repository import SQLiteDocumentRepository
 from app.storage.vector_store import VectorStore
@@ -31,6 +34,7 @@ from app.storage.vector_store import VectorStore
 def create_app(
     settings: Settings | None = None,
     document_repository: DocumentRepository | None = None,
+    ingestion_job_repository: IngestionJobRepository | None = None,
     vector_store: VectorStore | None = None,
     embedding_provider: EmbeddingProvider | None = None,
     llm_provider: LLMProvider | None = None,
@@ -38,8 +42,15 @@ def create_app(
     resolved_settings = settings or Settings.from_env()
     configure_logging(resolved_settings.log_level)
     resolved_repository = document_repository or SQLiteDocumentRepository(
-        resolved_settings.sqlite_path
+        resolved_settings.sqlite_path,
+        busy_timeout_ms=resolved_settings.sqlite_busy_timeout_ms,
     )
+    resolved_job_repository = ingestion_job_repository
+    if resolved_job_repository is None and isinstance(
+        resolved_repository,
+        IngestionJobRepository,
+    ):
+        resolved_job_repository = resolved_repository
     resolved_vector_store = vector_store or QdrantVectorStore(
         storage_path=(
             None
@@ -56,6 +67,11 @@ def create_app(
     @asynccontextmanager
     async def lifespan(application: FastAPI):
         resolved_repository.initialize()
+        if (
+            resolved_job_repository is not None
+            and resolved_job_repository is not resolved_repository
+        ):
+            resolved_job_repository.initialize()
         resolved_vector_store.initialize()
         runtime_provider = embedding_provider
         runtime_llm_provider = llm_provider
@@ -75,6 +91,7 @@ def create_app(
                 runtime_llm_provider = create_llm_provider(resolved_settings)
 
             application.state.document_repository = resolved_repository
+            application.state.ingestion_job_repository = resolved_job_repository
             application.state.vector_store = resolved_vector_store
             application.state.embedding_provider = runtime_provider
             application.state.llm_provider = runtime_llm_provider
@@ -82,6 +99,15 @@ def create_app(
                 document_repository=resolved_repository,
                 vector_store=resolved_vector_store,
                 upload_dir=resolved_settings.upload_dir,
+            )
+            application.state.async_ingestion_service = (
+                AsyncIngestionService(
+                    ingestion_job_repository=resolved_job_repository,
+                    upload_dir=resolved_settings.upload_dir,
+                    max_upload_bytes=resolved_settings.max_upload_bytes,
+                )
+                if resolved_job_repository is not None
+                else None
             )
             application.state.ingestion_service = (
                 IngestionService(
@@ -156,6 +182,10 @@ def create_app(
     application.include_router(
         answers_router,
         prefix=resolved_settings.api_v1_prefix,
+    )
+    application.include_router(
+        ingestion_jobs_router,
+        prefix=resolved_settings.api_v2_prefix,
     )
     return application
 
