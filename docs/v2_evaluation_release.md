@@ -5,7 +5,7 @@
 - V2 scope: evaluation, retrieval experiments, observability, Multi-LLM comparison, and portfolio evidence
 - Production retrieval decision: OpenAI semantic Dense through local Qdrant
 - Publication state: published at
-  `https://github.com/2932451552-beep/enterprise-knowledge-assistant`
+  `https://github.com/Conchlikewater/enterprise-knowledge-assistant`
 
 ## What V2 Adds
 
@@ -111,5 +111,5 @@ providers.
 The maintained working copy is an independent Git repository at
 `D:\AI_Internship_2026\projects\enterprise-knowledge-assistant`. Its standalone
 history is published at
-`https://github.com/2932451552-beep/enterprise-knowledge-assistant`, without
+`https://github.com/Conchlikewater/enterprise-knowledge-assistant`, without
 unrelated projects or local runtime data.

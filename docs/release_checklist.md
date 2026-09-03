@@ -53,6 +53,6 @@ An item is complete only when its evidence was observed in the current worktree.
 
 The maintained local project now lives in its own Git repository at
 `D:\AI_Internship_2026\projects\enterprise-knowledge-assistant`. Its standalone
-history is published as `2932451552-beep/enterprise-knowledge-assistant`.
+history is published as `Conchlikewater/enterprise-knowledge-assistant`.
 GitHub recognizes `main` as the default branch and the MIT license from the
 repository root.

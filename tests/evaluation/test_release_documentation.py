@@ -21,8 +21,8 @@ def test_primary_documentation_uses_current_v2_evidence() -> None:
     assert "Semantic Hybrid Recall@5 / MRR | 92.50% / 0.8438" in release
     assert "- [x] create and publish the standalone GitHub repository" in checklist
     assert "152 automated tests pass" in checklist
-    assert "2932451552-beep/enterprise-knowledge-assistant" in release
-    assert "2932451552-beep/enterprise-knowledge-assistant" in checklist
+    assert "Conchlikewater/enterprise-knowledge-assistant" in release
+    assert "Conchlikewater/enterprise-knowledge-assistant" in checklist
 
 
 def test_interview_guide_no_longer_presents_v1_counts_as_current() -> None:
