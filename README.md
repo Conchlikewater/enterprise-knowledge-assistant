@@ -1,12 +1,12 @@
-# Enterprise Knowledge Assistant（RAG 应用 + 检索评测 + R23 异步摄取）
+# Enterprise Knowledge Assistant（RAG 应用 + 异步摄取 + 工程评测）
 
 一个可运行、可测试、可解释的企业知识库问答后端作品集。它使用
 FastAPI 接收 TXT/PDF 文档，将文档元数据写入 SQLite、将 chunk 与向量写入
 Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 生成限定文档范围的回答与结构化引用。
 
-> 当前状态：V1 应用闭环、V2 评测增强、R1 Qdrant Server 和 R23 最小异步
-> 摄取闭环已完成。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
+> 当前状态：V1 应用闭环、V2 评测增强、R1 Qdrant Server、R23 最小异步
+> 摄取闭环和 R4 同步/异步取舍实测已完成。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
 > `201 Created`；新增 `POST /api/v2/documents` 返回 `202 Accepted + job_id`，
 > 由一个独立 Worker 处理，并支持状态查询和一个固定崩溃点的启动恢复。推荐用
 > Docker Compose 启动 FastAPI、Worker 与 Qdrant Server。当前只保证本机单
@@ -26,6 +26,8 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 - 可重复评估：10 份合成文档、50 道题；离线门槛不使用 API Key。
 - 证据化取舍：参数消融、真实语义对照、阈值扫描、Hybrid负向实验和坏案例目录。
 - 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
+- 异步取舍实测：分别测量 API 接收、端到端、连续上传、响应性和崩溃恢复，
+  明确“更快返回”与“更快完成”不是同一件事。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
 - 可复现运行：Compose 包含 FastAPI、Worker 与 Qdrant Server 三个服务，并用
   独立 named volume 保存 SQLite/上传文件与 Qdrant 数据。
@@ -320,12 +322,31 @@ OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合�
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
 
-R23 最新完整质量门槛为 182 项自动化测试和 34 个参数化子测试通过，启用
+R4 最新完整质量门槛为 193 项自动化测试和 34 个参数化子测试通过，启用
 分支统计后的总覆盖率为 87.59%，并持续强制 85% 的最低覆盖率要求。本次连接
 真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理，也
 用两个独立 Python 进程验证 Worker 在“Qdrant 已写入、SQLite 尚未提交 ready”
 处退出后可恢复且没有重复可见 Chunk。CI 使用 Fake/确定性 Provider 和无 API
 Key 的 Qdrant Server service，不调用真实 LLM/Embedding。
+
+### R4 同步 / 异步摄取取舍
+
+R4 使用相同的 8 KiB 合成 TXT、`1000/150` Chunk、固定 200 ms 的确定性
+Embedding 和本机 Qdrant Server，对两条路径做预注册实测：
+
+| P95 指标 | 同步 V1 | 异步 V2 |
+| --- | ---: | ---: |
+| 单次 API 接收 | 340.65 ms | 49.32 ms |
+| 单次端到端 ready | 340.65 ms | 775.81 ms |
+| 连续 5 份全部响应 | 1559.06 ms | 121.00 ms |
+| 连续 5 份全部 ready | 1559.06 ms | 3192.49 ms |
+
+异步路径还在固定崩溃点恢复成功，`attempt_count=2`，11 个可见 Chunk 无重复。
+因此项目演示优先使用 V2 展示快速接收、状态查询和恢复，同时保留 V1 兼容；不能
+表述成“异步端到端更快”或生产性能结论。协议、完整七维度解释和原始样本分别见
+[`docs/r4_evaluation_protocol.md`](docs/r4_evaluation_protocol.md)、
+[`docs/r4_sync_async_evaluation.md`](docs/r4_sync_async_evaluation.md) 和
+[`evaluation/ingestion_benchmark_report.json`](evaluation/ingestion_benchmark_report.json)。
 
 仅运行评估：
 

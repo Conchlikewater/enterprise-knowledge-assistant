@@ -1,0 +1,376 @@
+{
+  "benchmark": "r4-sync-async-ingestion",
+  "schema_version": 1,
+  "generated_at": "2026-09-05T05:22:49.279225+00:00",
+  "duration_ms": 36324.6168,
+  "source_commit": "c5faa054b93e8053a1f0f3c62347dd95da7af8a3",
+  "quality_gate_evidence": "github-actions:33946956840",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "qdrant_server": "1.19.0",
+    "qdrant_endpoint": "http://127.0.0.1:6333",
+    "http_transport": "httpx-asgi-application-layer",
+    "worker_boundary": "independent-python-subprocess",
+    "embedding_provider": "r4-controlled-delay-no-network"
+  },
+  "configuration": {
+    "document_type": "synthetic-txt",
+    "document_size_bytes": 8192,
+    "embedding_delay_ms": 200,
+    "embedding_dimensions": 3,
+    "chunk_size": 1000,
+    "chunk_overlap": 150,
+    "warmup_samples_per_mode": 2,
+    "single_samples_per_mode": 20,
+    "batch_rounds": 3,
+    "batch_size": 5,
+    "health_probes_per_mode": 5,
+    "async_poll_interval_ms": 10,
+    "request_budget_ms": 100
+  },
+  "synchronous": {
+    "single": {
+      "acceptance_ms": {
+        "count": 20,
+        "mean_ms": 301.7898,
+        "p50_ms": 270.4422,
+        "p95_ms": 340.6526,
+        "minimum_ms": 262.3912,
+        "maximum_ms": 742.3475
+      },
+      "end_to_end_ms": {
+        "count": 20,
+        "mean_ms": 301.7898,
+        "p50_ms": 270.4422,
+        "p95_ms": 340.6526,
+        "minimum_ms": 262.3912,
+        "maximum_ms": 742.3475
+      },
+      "raw_acceptance_ms": [
+        262.3912,
+        742.3475,
+        301.0289,
+        264.7331,
+        267.6083,
+        281.8091,
+        265.5253,
+        272.0854,
+        267.719,
+        268.799,
+        275.7776,
+        319.5108,
+        294.3951,
+        267.3595,
+        265.5266,
+        278.0842,
+        265.1327,
+        264.3983,
+        308.9771,
+        302.5866
+      ],
+      "raw_end_to_end_ms": [
+        262.3912,
+        742.3475,
+        301.0289,
+        264.7331,
+        267.6083,
+        281.8091,
+        265.5253,
+        272.0854,
+        267.719,
+        268.799,
+        275.7776,
+        319.5108,
+        294.3951,
+        267.3595,
+        265.5266,
+        278.0842,
+        265.1327,
+        264.3983,
+        308.9771,
+        302.5866
+      ]
+    },
+    "responsiveness": {
+      "health_ms": {
+        "count": 5,
+        "mean_ms": 12.0903,
+        "p50_ms": 7.1581,
+        "p95_ms": 23.0824,
+        "minimum_ms": 5.0461,
+        "maximum_ms": 24.2344
+      },
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_probes_succeeded": true,
+      "raw_health_ms": [
+        7.1581,
+        5.5385,
+        18.4745,
+        5.0461,
+        24.2344
+      ]
+    },
+    "sequential_batch": {
+      "rounds": 3,
+      "documents_per_round": 5,
+      "per_request_acceptance_ms": {
+        "count": 15,
+        "mean_ms": 290.1667,
+        "p50_ms": 274.6654,
+        "p95_ms": 341.2222,
+        "minimum_ms": 265.8125,
+        "maximum_ms": 423.3086
+      },
+      "all_responses_ms": {
+        "count": 3,
+        "mean_ms": 1450.9254,
+        "p50_ms": 1394.204,
+        "p95_ms": 1559.062,
+        "minimum_ms": 1381.1927,
+        "maximum_ms": 1577.3796
+      },
+      "all_ready_ms": {
+        "count": 3,
+        "mean_ms": 1450.9254,
+        "p50_ms": 1394.204,
+        "p95_ms": 1559.062,
+        "minimum_ms": 1381.1927,
+        "maximum_ms": 1577.3796
+      },
+      "raw_all_responses_ms": [
+        1394.204,
+        1577.3796,
+        1381.1927
+      ],
+      "raw_all_ready_ms": [
+        1394.204,
+        1577.3796,
+        1381.1927
+      ]
+    },
+    "request_budget": {
+      "budget_ms": 100,
+      "acceptance_p95_exceeds_budget": true
+    }
+  },
+  "asynchronous": {
+    "single": {
+      "acceptance_ms": {
+        "count": 20,
+        "mean_ms": 32.7425,
+        "p50_ms": 18.1511,
+        "p95_ms": 49.3187,
+        "minimum_ms": 15.4264,
+        "maximum_ms": 234.3165
+      },
+      "end_to_end_ms": {
+        "count": 20,
+        "mean_ms": 376.6386,
+        "p50_ms": 308.7531,
+        "p95_ms": 775.8095,
+        "minimum_ms": 276.3128,
+        "maximum_ms": 1110.04
+      },
+      "raw_acceptance_ms": [
+        17.4576,
+        15.4264,
+        26.8228,
+        25.3641,
+        16.9762,
+        20.59,
+        16.04,
+        16.2741,
+        18.2714,
+        18.7063,
+        17.8632,
+        32.1465,
+        16.9173,
+        37.3086,
+        16.2099,
+        18.0308,
+        17.4265,
+        33.1191,
+        234.3165,
+        39.582
+      ],
+      "raw_end_to_end_ms": [
+        293.1679,
+        276.3128,
+        383.7469,
+        306.2122,
+        321.2106,
+        284.4381,
+        317.1876,
+        288.6056,
+        298.4777,
+        301.5981,
+        1110.04,
+        351.1297,
+        296.8937,
+        355.8024,
+        297.7397,
+        294.6653,
+        311.294,
+        325.3099,
+        758.2184,
+        360.7211
+      ]
+    },
+    "responsiveness": {
+      "health_ms": {
+        "count": 5,
+        "mean_ms": 16.1915,
+        "p50_ms": 21.2116,
+        "p95_ms": 23.4286,
+        "minimum_ms": 6.0942,
+        "maximum_ms": 23.4464
+      },
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_probes_succeeded": true,
+      "raw_health_ms": [
+        23.3576,
+        21.2116,
+        6.0942,
+        23.4464,
+        6.8476
+      ]
+    },
+    "sequential_batch": {
+      "rounds": 3,
+      "documents_per_round": 5,
+      "per_request_acceptance_ms": {
+        "count": 15,
+        "mean_ms": 23.9813,
+        "p50_ms": 23.6798,
+        "p95_ms": 32.1591,
+        "minimum_ms": 16.2068,
+        "maximum_ms": 38.1301
+      },
+      "all_responses_ms": {
+        "count": 3,
+        "mean_ms": 120.0472,
+        "p50_ms": 120.1527,
+        "p95_ms": 120.9996,
+        "minimum_ms": 118.8952,
+        "maximum_ms": 121.0937
+      },
+      "all_ready_ms": {
+        "count": 3,
+        "mean_ms": 2552.5057,
+        "p50_ms": 3064.9529,
+        "p95_ms": 3192.4904,
+        "minimum_ms": 1385.9029,
+        "maximum_ms": 3206.6612
+      },
+      "raw_all_responses_ms": [
+        118.8952,
+        120.1527,
+        121.0937
+      ],
+      "raw_all_ready_ms": [
+        1385.9029,
+        3206.6612,
+        3064.9529
+      ]
+    },
+    "request_budget": {
+      "budget_ms": 100,
+      "acceptance_p95_exceeds_budget": false
+    }
+  },
+  "crash_recovery": {
+    "supported_by_synchronous_v1": false,
+    "passed": true,
+    "crash_exit_code": 91,
+    "state_after_crash": {
+      "job": "running",
+      "document": "processing"
+    },
+    "recovery_ms": 2645.3838,
+    "final_job_status": "ready",
+    "final_document_status": "ready",
+    "attempt_count": 2,
+    "visible_chunk_count": 11,
+    "unique_visible_chunk_count": 11
+  },
+  "complexity": {
+    "synchronous_v1": {
+      "runtime_services": 2,
+      "runtime_service_names": [
+        "api",
+        "qdrant"
+      ],
+      "persisted_lifecycle_objects": [
+        "Document"
+      ],
+      "completion_http_interactions": [
+        "POST /api/v1/documents"
+      ],
+      "recovery_responsibilities": [
+        "in-request compensating rollback"
+      ]
+    },
+    "asynchronous_v2": {
+      "runtime_services": 3,
+      "runtime_service_names": [
+        "api",
+        "worker",
+        "qdrant"
+      ],
+      "persisted_lifecycle_objects": [
+        "Document",
+        "IngestionJob"
+      ],
+      "completion_http_interactions": [
+        "POST /api/v2/documents",
+        "GET /api/v2/jobs/{job_id}"
+      ],
+      "recovery_responsibilities": [
+        "atomic claim",
+        "startup recovery",
+        "replay cleanup",
+        "status polling"
+      ]
+    },
+    "new_failure_surfaces": [
+      "API and Worker contend on SQLite",
+      "Worker lifecycle must be supervised",
+      "Qdrant success can precede SQLite readiness",
+      "clients must poll a second resource"
+    ]
+  },
+  "decision": {
+    "recommendation": "prefer_v2_for_long_running_ingestion_demo_keep_v1_compatible",
+    "eligible": true,
+    "criteria": {
+      "async_acceptance_p95_lower_than_sync": true,
+      "async_acceptance_within_request_budget": true,
+      "sync_acceptance_exceeds_request_budget": true,
+      "async_batch_response_p95_lower_than_sync": true,
+      "crash_recovery_passed": true,
+      "quality_gate_evidence_recorded": true
+    },
+    "scope": "portfolio demonstration only; not a production replacement"
+  },
+  "limitations": [
+    "Uses a fixed-delay deterministic embedding provider, not OpenAI.",
+    "Measures ASGI application latency without Uvicorn or network transit.",
+    "Uses synthetic 8 KiB TXT documents on one local machine.",
+    "Sequential batches are not concurrent load or capacity tests.",
+    "Covers one Worker and one fixed crash point, not distributed failure.",
+    "The 100 ms request budget is an experimental boundary, not an SLA."
+  ]
+}
