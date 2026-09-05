@@ -323,7 +323,7 @@ OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合�
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
 
-R4 最新完整质量门槛为 193 项自动化测试和 34 个参数化子测试通过，启用
+R5 最新完整质量门槛为 198 项自动化测试和 34 个参数化子测试通过，启用
 分支统计后的总覆盖率为 87.59%，并持续强制 85% 的最低覆盖率要求。本次连接
 真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理，也
 用两个独立 Python 进程验证 Worker 在“Qdrant 已写入、SQLite 尚未提交 ready”
