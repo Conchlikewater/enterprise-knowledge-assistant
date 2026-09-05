@@ -16,7 +16,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from statistics import fmean
-from typing import Any
+from typing import Any, TextIO
 from urllib.parse import urlsplit
 from urllib.request import urlopen
 from uuid import UUID, uuid4
@@ -128,6 +128,13 @@ class _AcceptedJob:
     document_id: UUID
     acceptance_ms: float
     started_at: float
+
+
+@dataclass(slots=True)
+class _RunningWorker:
+    process: subprocess.Popen[str]
+    log_path: Path
+    log_stream: TextIO
 
 
 @dataclass(frozen=True, slots=True)
@@ -279,7 +286,7 @@ async def _run_ingestion_benchmark(
     async_collection = f"r4_async_{suffix}"
     sync_samples = _ModeSamples()
     async_samples = _ModeSamples()
-    worker_process: subprocess.Popen[str] | None = None
+    worker_process: _RunningWorker | None = None
     cleanup_client = QdrantClient(
         url=config.qdrant_url,
         timeout=config.qdrant_timeout_seconds,
@@ -908,47 +915,70 @@ def _start_worker_process(
     collection: str,
     config: IngestionBenchmarkConfig,
     max_jobs: int,
-) -> subprocess.Popen[str]:
-    return subprocess.Popen(
-        _worker_command(
-            project_root,
-            mode,
-            root,
-            collection,
-            config,
-            max_jobs,
-        ),
-        cwd=project_root,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
+) -> _RunningWorker:
+    log_path = root / "worker-process.log"
+    log_stream = log_path.open("w", encoding="utf-8")
+    try:
+        process = subprocess.Popen(
+            _worker_command(
+                project_root,
+                mode,
+                root,
+                collection,
+                config,
+                max_jobs,
+            ),
+            cwd=project_root,
+            stdout=log_stream,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+    except BaseException:
+        log_stream.close()
+        raise
+    return _RunningWorker(
+        process=process,
+        log_path=log_path,
+        log_stream=log_stream,
     )
 
 
 def _wait_for_worker(
-    process: subprocess.Popen[str],
+    worker: _RunningWorker,
     timeout_seconds: float,
 ) -> None:
     try:
-        output, _ = process.communicate(timeout=timeout_seconds)
+        worker.process.wait(timeout=timeout_seconds)
     except subprocess.TimeoutExpired as exc:
-        _terminate_worker(process)
+        _terminate_worker(worker)
         raise RuntimeError("benchmark Worker did not finish") from exc
-    if process.returncode != 0:
+    worker.log_stream.close()
+    if worker.process.returncode != 0:
+        output = _read_worker_log_tail(worker.log_path)
         raise RuntimeError(
-            f"benchmark Worker exited with {process.returncode}: {output[-1000:]}"
+            f"benchmark Worker exited with {worker.process.returncode}: {output}"
         )
 
 
-def _terminate_worker(process: subprocess.Popen[str]) -> None:
-    if process.poll() is not None:
-        return
-    process.terminate()
+def _terminate_worker(worker: _RunningWorker) -> None:
     try:
-        process.wait(timeout=5)
-    except subprocess.TimeoutExpired:
-        process.kill()
-        process.wait(timeout=5)
+        if worker.process.poll() is None:
+            worker.process.terminate()
+            try:
+                worker.process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                worker.process.kill()
+                worker.process.wait(timeout=5)
+    finally:
+        if not worker.log_stream.closed:
+            worker.log_stream.close()
+
+
+def _read_worker_log_tail(log_path: Path, limit: int = 1000) -> str:
+    try:
+        return log_path.read_text(encoding="utf-8", errors="replace")[-limit:]
+    except OSError:
+        return "<worker log unavailable>"
 
 
 def _run_worker_once(

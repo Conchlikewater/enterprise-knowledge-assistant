@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import subprocess
+from pathlib import Path
+
 import pytest
 
+from evaluation import ingestion_benchmark as benchmark_module
 from evaluation.ingestion_benchmark import (
     IngestionBenchmarkConfig,
     evaluate_demo_decision,
@@ -69,3 +73,44 @@ def test_benchmark_config_rejects_unsafe_or_invalid_values(
 
     with pytest.raises(ValueError, match=message):
         IngestionBenchmarkConfig(**values)
+
+
+def test_long_running_worker_uses_a_file_instead_of_a_pipe(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    captured: dict[str, object] = {}
+
+    class FakeProcess:
+        returncode = 0
+
+        def poll(self) -> int:
+            return 0
+
+    def fake_popen(*args: object, **kwargs: object) -> FakeProcess:
+        captured.update(kwargs)
+        return FakeProcess()
+
+    monkeypatch.setattr(benchmark_module.subprocess, "Popen", fake_popen)
+    config = IngestionBenchmarkConfig(
+        qdrant_url="http://127.0.0.1:6333",
+        quality_gate_evidence="ci:test",
+        source_commit="abc123",
+    )
+
+    worker = benchmark_module._start_worker_process(
+        tmp_path,
+        mode="serve",
+        root=tmp_path,
+        collection="test_collection",
+        config=config,
+        max_jobs=1,
+    )
+
+    assert captured["stdout"] is worker.log_stream
+    assert captured["stdout"] is not subprocess.PIPE
+    assert captured["stderr"] is subprocess.STDOUT
+    assert worker.log_path == tmp_path / "worker-process.log"
+
+    benchmark_module._terminate_worker(worker)
+    assert worker.log_stream.closed is True
