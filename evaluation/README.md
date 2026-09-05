@@ -365,3 +365,20 @@ synthetic run. Full latency, token, cost, citation, and per-question evidence
 are stored in `llm_comparison_report.json` and summarized in
 `llm_comparison_report.md`. These results do not establish production model
 quality.
+
+## R5 bounded Agentic Retrieval protocol (design only)
+
+R5 preregisters a future three-arm comparison: the production-budget Dense
+Top-5 baseline, a Dense Top-10 budget control, and Agentic 5x2 with at most two
+retrieval calls and ten returned candidates. It also freezes step-level trace
+fields, second-round Jaccard/replacement attribution, stop reasons, failure
+taxonomy, and adversarial cases.
+
+This is a protocol artifact, not an Agent implementation or result. The current
+50 RAG questions do not yet contain Agent-specific second-round and stop-reason
+annotations. Future R6/R7 work must create and freeze those annotations before
+executing any comparison, and requires separate approval because those stages
+are outside the September branch commitment.
+
+See `docs/r5_agentic_retrieval_evaluation_protocol.md` for the complete method
+and `agentic_retrieval_protocol.json` for the machine-checked invariant list.

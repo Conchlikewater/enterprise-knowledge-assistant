@@ -6,7 +6,8 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 生成限定文档范围的回答与结构化引用。
 
 > 当前状态：V1 应用闭环、V2 评测增强、R1 Qdrant Server、R23 最小异步
-> 摄取闭环和 R4 同步/异步取舍实测已完成。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
+> 摄取闭环和 R4 同步/异步取舍实测已完成；R5 只冻结了受限 Agentic
+> Retrieval 评测协议，没有实现或运行 Agent。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
 > `201 Created`；新增 `POST /api/v2/documents` 返回 `202 Accepted + job_id`，
 > 由一个独立 Worker 处理，并支持状态查询和一个固定崩溃点的启动恢复。推荐用
 > Docker Compose 启动 FastAPI、Worker 与 Qdrant Server。当前只保证本机单
@@ -348,6 +349,20 @@ Embedding 和本机 Qdrant Server，对两条路径做预注册实测：
 [`docs/r4_sync_async_evaluation.md`](docs/r4_sync_async_evaluation.md) 和
 [`evaluation/ingestion_benchmark_report.json`](evaluation/ingestion_benchmark_report.json)。
 
+### R5 Agentic Retrieval 评测协议（无实现、无结果）
+
+R5 只预注册未来实验的方法：Dense Top-5、预算匹配的 Dense Top-10 和最多
+两轮的 Agentic 5×2。Top-10 用来控制“只是多取证据”的混杂因素；未来轨迹
+还必须记录第二轮 Evidence 的 Jaccard/替换率、停止原因、失败分类、成本和
+延迟。当前 10 份文档、50 道 RAG 题尚未具备 Agent 专用轨迹标注，因此不能
+称为已完成 Agent 数据集或 Agent 结果。
+
+完整协议见
+[`docs/r5_agentic_retrieval_evaluation_protocol.md`](docs/r5_agentic_retrieval_evaluation_protocol.md)，
+机器可校验清单见
+[`evaluation/agentic_retrieval_protocol.json`](evaluation/agentic_retrieval_protocol.json)。
+Agent 实现与实验执行属于九月范围外的 R6/R7，仍需以后单独批准。
+
 仅运行评估：
 
 ```powershell
@@ -421,8 +436,8 @@ docs                    调研、架构、provider 和发布记录
   多 Worker、Lease/Fencing 或网络分区处理，不能包装成分布式任务平台。
 - 活动摄取期间删除返回 `409 DOCUMENT_PROCESSING`；失败补偿是尽力而为，当前
   没有长期后台 reconciler。
-- Agent 尚未实现或接入 API；R5 即使获批也只设计受限 Agentic Retrieval 的
-  评测协议，不能写成“已实现 Agent”。
+- Agent 尚未实现或接入 API；R5 已完成的只是受限 Agentic Retrieval 评测
+  协议设计，没有 Agent 代码、轨迹运行或实验结果，不能写成“已实现 Agent”。
 - LLM 请求不启用持久会话、工具或 Web 搜索；DeepSeek/OpenAI Key 均只从
   本地环境读取。
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。
@@ -441,3 +456,5 @@ docs                    调研、架构、provider 和发布记录
 - [docs/provider_decisions.md](docs/provider_decisions.md)：OpenAI provider 与隐私配置。
 - [docs/mvp_scope.md](docs/mvp_scope.md)：最终 V1 范围与验收状态。
 - [docs/release_checklist.md](docs/release_checklist.md)：发布前证据清单。
+- [docs/r5_agentic_retrieval_evaluation_protocol.md](docs/r5_agentic_retrieval_evaluation_protocol.md)：
+  受限 Agentic Retrieval 的三组对照、轨迹与失败分类协议；无实现、无结果。

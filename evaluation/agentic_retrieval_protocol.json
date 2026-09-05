@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "protocol_version": "r5-agentic-retrieval-v1",
+  "created_at": "2026-09-05",
+  "status": "preregistered_protocol_only",
+  "agent_implemented": false,
+  "experiment_executed": false,
+  "production_api_integrated": false,
+  "current_assets": {
+    "corpus_document_count": 10,
+    "rag_question_count": 50,
+    "agent_annotation_status": "not_created",
+    "reuse_rule": "candidate_source_only"
+  },
+  "comparison_arms": [
+    {
+      "id": "dense_top_5",
+      "strategy": "dense_single_round",
+      "max_rounds": 1,
+      "per_round_result_limit": 5,
+      "max_retrieval_calls": 1,
+      "total_return_budget": 5
+    },
+    {
+      "id": "dense_top_10",
+      "strategy": "dense_single_round_budget_control",
+      "max_rounds": 1,
+      "per_round_result_limit": 10,
+      "max_retrieval_calls": 1,
+      "total_return_budget": 10
+    },
+    {
+      "id": "agentic_5x2",
+      "strategy": "bounded_agentic_retrieval",
+      "max_rounds": 2,
+      "per_round_result_limit": 5,
+      "max_retrieval_calls": 2,
+      "total_return_budget": 10
+    }
+  ],
+  "frozen_across_arms": [
+    "corpus_and_document_scope",
+    "question_manifest",
+    "embedding_provider_model_and_config",
+    "final_generation_provider_and_model",
+    "temperature_and_sampling_config",
+    "final_answer_prompt_version_and_hash",
+    "evidence_format_version"
+  ],
+  "allowed_arm_differences": [
+    "retrieval_strategy",
+    "retrieval_candidate_budget",
+    "agentic_planning_prompt",
+    "agentic_planning_cost_and_latency"
+  ],
+  "candidate_accounting": {
+    "within_round_order": "score_desc_then_chunk_id_asc",
+    "cross_round_order": "round_1_then_round_2_first_occurrences",
+    "deduplication_key": "chunk_id",
+    "duplicate_policy": "duplicates_consume_the_originating_call_slot_and_are_not_refilled",
+    "gold_relevance_must_not_reorder_results": true
+  },
+  "required_trajectory_sections": [
+    "run_identity",
+    "frozen_config_hashes",
+    "question_and_allowed_document_ids",
+    "round_queries",
+    "requested_document_ids",
+    "ranked_retrieval_results",
+    "round_latency_and_result_status",
+    "second_round_decision",
+    "stop_reason",
+    "final_unique_evidence",
+    "response_behavior",
+    "citations_and_claim_mapping",
+    "failures",
+    "tokens_cost_and_latency"
+  ],
+  "stop_reasons": [
+    "BASELINE_SINGLE_ROUND",
+    "SUFFICIENT_EVIDENCE",
+    "NO_NEW_EVIDENCE",
+    "MAX_ROUNDS_REACHED",
+    "RETRIEVAL_EMPTY",
+    "EVIDENCE_CONFLICT",
+    "TOOL_TIMEOUT",
+    "TOOL_OUTPUT_INVALID",
+    "SCOPE_VIOLATION",
+    "PLANNER_OUTPUT_INVALID"
+  ],
+  "failure_taxonomy": [
+    "WRONG_TOOL_SELECTION",
+    "PARAMETER_EXTRACTION_ERROR",
+    "SCOPE_VIOLATION",
+    "LOOP_LIMIT_BREACH",
+    "PREMATURE_TERMINATION",
+    "UNSUPPORTED_SUMMARY",
+    "CONFLICT_SUPPRESSION",
+    "UNHANDLED_TOOL_ERROR"
+  ],
+  "adversarial_cases": [
+    "EMPTY_TOOL_RESULT",
+    "CONTRADICTORY_EVIDENCE",
+    "TOOL_TIMEOUT",
+    "INVALID_TOOL_OUTPUT"
+  ],
+  "required_metrics": [
+    "evidence_recall_at_budget",
+    "mrr",
+    "unique_candidate_count",
+    "retrieval_call_count",
+    "round_2_jaccard_similarity",
+    "round_2_replacement_ratio",
+    "round_2_new_gold_evidence",
+    "second_round_trigger_confusion_matrix",
+    "stop_reason_accuracy",
+    "failure_counts_and_rates",
+    "scope_violation_count",
+    "response_behavior_confusion_matrix",
+    "citation_correctness",
+    "tokens_cost_and_latency"
+  ],
+  "future_agent_annotation_fields": [
+    "question_id",
+    "allowed_document_ids",
+    "gold_evidence",
+    "expected_response_behavior",
+    "should_run_second_round",
+    "expected_stop_reason",
+    "acceptable_second_round_intent",
+    "adversarial_case"
+  ],
+  "execution_boundaries": {
+    "r5_ci_mode": "protocol_validation_only",
+    "offline_replay_available": false,
+    "real_provider_authorized": false,
+    "future_experiment_code_roots": [
+      "evaluation",
+      "experiments"
+    ],
+    "forbidden_production_code_root": "app",
+    "implementation_stage": "R6_not_in_september",
+    "experiment_stage": "R7_not_in_september"
+  }
+}
