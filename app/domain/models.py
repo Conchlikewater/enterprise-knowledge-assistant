@@ -27,6 +27,34 @@ class IngestionJobStatus(StrEnum):
     FAILED = "failed"
 
 
+class AnswerRoute(StrEnum):
+    RETRIEVE = "retrieve"
+    DIRECT_ANSWER = "direct_answer"
+    REFUSE = "refuse"
+
+
+class RouteReason(StrEnum):
+    RETRIEVE_DEFAULT = "retrieve_default"
+    GREETING = "greeting"
+    CAPABILITY_HELP = "capability_help"
+    USAGE_HELP = "usage_help"
+    EVIDENCE_BYPASS = "evidence_bypass"
+    SECRET_REQUEST = "secret_request"
+    UNSUPPORTED_ACTION = "unsupported_action"
+    SCOPE_BYPASS = "scope_bypass"
+
+
+class RoutingStopReason(StrEnum):
+    DIRECT_ANSWER = "direct_answer"
+    ROUTER_REFUSAL = "router_refusal"
+    NO_DOCUMENT_SCOPE = "no_document_scope"
+    SUFFICIENT_EVIDENCE_FIRST_PASS = "sufficient_evidence_first_pass"
+    NO_SAFE_REWRITE = "no_safe_rewrite"
+    RETRY_SUCCEEDED = "retry_succeeded"
+    RETRY_EXHAUSTED = "retry_exhausted"
+    GENERATOR_REFUSAL = "generator_refusal"
+
+
 @dataclass(frozen=True, slots=True)
 class Document:
     document_id: UUID
@@ -186,3 +214,66 @@ class AnswerResult:
             raise ValueError("retrieval_count must not be negative")
         if len(self.citations) > self.retrieval_count:
             raise ValueError("citations cannot exceed retrieval_count")
+
+
+@dataclass(frozen=True, slots=True)
+class RoutingDecision:
+    route: AnswerRoute
+    reason: RouteReason
+
+    def __post_init__(self) -> None:
+        direct_reasons = {
+            RouteReason.GREETING,
+            RouteReason.CAPABILITY_HELP,
+            RouteReason.USAGE_HELP,
+        }
+        refusal_reasons = {
+            RouteReason.EVIDENCE_BYPASS,
+            RouteReason.SECRET_REQUEST,
+            RouteReason.UNSUPPORTED_ACTION,
+            RouteReason.SCOPE_BYPASS,
+        }
+        if (
+            self.route is AnswerRoute.DIRECT_ANSWER
+            and self.reason not in direct_reasons
+        ):
+            raise ValueError("direct answers require a direct-answer reason")
+        if self.route is AnswerRoute.REFUSE and self.reason not in refusal_reasons:
+            raise ValueError("refusals require a refusal reason")
+        if (
+            self.route is AnswerRoute.RETRIEVE
+            and self.reason is not RouteReason.RETRIEVE_DEFAULT
+        ):
+            raise ValueError("retrieval requires the default retrieval reason")
+
+
+@dataclass(frozen=True, slots=True)
+class RoutedAnswerResult:
+    answer: str
+    citations: tuple[Citation, ...]
+    retrieval_count: int
+    route: AnswerRoute
+    route_reason: RouteReason
+    retrieval_attempts: int
+    stop_reason: RoutingStopReason
+    rewritten_query: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.answer.strip():
+            raise ValueError("answer must not be empty")
+        if self.retrieval_count < 0:
+            raise ValueError("retrieval_count must not be negative")
+        if len(self.citations) > self.retrieval_count:
+            raise ValueError("citations cannot exceed retrieval_count")
+        if not 0 <= self.retrieval_attempts <= 2:
+            raise ValueError("retrieval_attempts must be between zero and two")
+        if self.route is not AnswerRoute.RETRIEVE:
+            if self.retrieval_count or self.retrieval_attempts or self.citations:
+                raise ValueError("non-retrieval routes cannot contain retrieval data")
+            if self.rewritten_query is not None:
+                raise ValueError("non-retrieval routes cannot contain a rewrite")
+        if self.rewritten_query is not None:
+            if not self.rewritten_query.strip():
+                raise ValueError("rewritten_query must not be blank")
+            if self.retrieval_attempts != 2:
+                raise ValueError("a rewritten query requires exactly two retrievals")

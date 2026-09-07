@@ -49,38 +49,7 @@ class AnswerService:
                 top_k=top_k,
                 score_threshold=score_threshold,
             )
-            if not results:
-                answer_result = AnswerResult(
-                    answer=NO_EVIDENCE_ANSWER,
-                    citations=(),
-                    retrieval_count=0,
-                )
-            else:
-                generation = self._llm_provider.generate_answer(
-                    question=question.strip(),
-                    context_blocks=self._build_context_blocks(results),
-                )
-                generated_answer = generation.text
-                if self._is_insufficient_evidence(generated_answer):
-                    answer_result = AnswerResult(
-                        answer=NO_EVIDENCE_ANSWER,
-                        citations=(),
-                        retrieval_count=len(results),
-                    )
-                else:
-                    citations = tuple(
-                        Citation.from_result(
-                            result,
-                            citation_number=index,
-                            excerpt_limit=self._citation_excerpt_limit,
-                        )
-                        for index, result in enumerate(results, start=1)
-                    )
-                    answer_result = AnswerResult(
-                        answer=generated_answer.strip(),
-                        citations=citations,
-                        retrieval_count=len(results),
-                    )
+            answer_result = self._answer_from_evidence(question, results)
 
             logger.info(
                 "event=answer_succeeded provider=%s model=%s retrieval_count=%d "
@@ -101,6 +70,77 @@ class AnswerService:
                 int((monotonic() - started_at) * 1000),
             )
             raise
+
+    def answer_from_evidence(
+        self,
+        question: str,
+        results: Sequence[RetrievalResult],
+    ) -> AnswerResult:
+        """Generate once from already-retrieved evidence without searching again."""
+
+        started_at = monotonic()
+        try:
+            answer_result = self._answer_from_evidence(question, results)
+            logger.info(
+                "event=answer_from_evidence_succeeded provider=%s model=%s "
+                "retrieval_count=%d citation_count=%d elapsed_ms=%d",
+                self._llm_provider.name,
+                self._llm_provider.model,
+                answer_result.retrieval_count,
+                len(answer_result.citations),
+                int((monotonic() - started_at) * 1000),
+            )
+            return answer_result
+        except Exception as exc:
+            logger.warning(
+                "event=answer_from_evidence_failed provider=%s model=%s "
+                "error_type=%s elapsed_ms=%d",
+                self._llm_provider.name,
+                self._llm_provider.model,
+                type(exc).__name__,
+                int((monotonic() - started_at) * 1000),
+            )
+            raise
+
+    def _answer_from_evidence(
+        self,
+        question: str,
+        results: Sequence[RetrievalResult],
+    ) -> AnswerResult:
+        if not isinstance(question, str) or not question.strip():
+            raise ValueError("question must not be empty")
+        if not results:
+            return AnswerResult(
+                answer=NO_EVIDENCE_ANSWER,
+                citations=(),
+                retrieval_count=0,
+            )
+
+        generation = self._llm_provider.generate_answer(
+            question=question.strip(),
+            context_blocks=self._build_context_blocks(results),
+        )
+        generated_answer = generation.text
+        if self._is_insufficient_evidence(generated_answer):
+            return AnswerResult(
+                answer=NO_EVIDENCE_ANSWER,
+                citations=(),
+                retrieval_count=len(results),
+            )
+
+        citations = tuple(
+            Citation.from_result(
+                result,
+                citation_number=index,
+                excerpt_limit=self._citation_excerpt_limit,
+            )
+            for index, result in enumerate(results, start=1)
+        )
+        return AnswerResult(
+            answer=generated_answer.strip(),
+            citations=citations,
+            retrieval_count=len(results),
+        )
 
     @staticmethod
     def _build_context_blocks(results: Sequence[RetrievalResult]) -> list[str]:

@@ -8,6 +8,7 @@ from app.services.async_ingestion_service import AsyncIngestionService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
 from app.services.retrieval_service import RetrievalService
+from app.services.routed_answer_service import RoutedAnswerService
 
 
 def get_document_service(request: Request) -> DocumentService:
@@ -40,3 +41,7 @@ def get_answer_service(request: Request) -> AnswerService:
     if service is None:
         raise ProviderConfigurationError()
     return service
+
+
+def get_routed_answer_service(request: Request) -> RoutedAnswerService:
+    return request.app.state.routed_answer_service

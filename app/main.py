@@ -12,6 +12,7 @@ from app.api.routers.documents import router as documents_router
 from app.api.routers.health import router as health_router
 from app.api.routers.ingestion_jobs import router as ingestion_jobs_router
 from app.api.routers.retrieval import router as retrieval_router
+from app.api.routers.routed_answers import router as routed_answers_router
 from app.core.config import Settings
 from app.core.error_handlers import register_error_handlers
 from app.core.logging import configure_logging
@@ -24,6 +25,7 @@ from app.services.async_ingestion_service import AsyncIngestionService
 from app.services.document_service import DocumentService
 from app.services.ingestion_service import IngestionService
 from app.services.retrieval_service import RetrievalService
+from app.services.routed_answer_service import RoutedAnswerService
 from app.storage.document_repository import DocumentRepository
 from app.storage.ingestion_job_repository import IngestionJobRepository
 from app.storage.qdrant_vector_store import QdrantVectorStore
@@ -132,7 +134,7 @@ def create_app(
                 else None
             )
             application.state.retrieval_service = runtime_retrieval_service
-            application.state.answer_service = (
+            runtime_answer_service = (
                 AnswerService(
                     retrieval_service=runtime_retrieval_service,
                     llm_provider=runtime_llm_provider,
@@ -140,6 +142,11 @@ def create_app(
                 if runtime_retrieval_service is not None
                 and runtime_llm_provider is not None
                 else None
+            )
+            application.state.answer_service = runtime_answer_service
+            application.state.routed_answer_service = RoutedAnswerService(
+                retrieval_service=runtime_retrieval_service,
+                answer_service=runtime_answer_service,
             )
             yield
         finally:
@@ -185,6 +192,10 @@ def create_app(
     )
     application.include_router(
         ingestion_jobs_router,
+        prefix=resolved_settings.api_v2_prefix,
+    )
+    application.include_router(
+        routed_answers_router,
         prefix=resolved_settings.api_v2_prefix,
     )
     return application
