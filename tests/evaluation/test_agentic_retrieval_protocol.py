@@ -95,13 +95,15 @@ def test_r5_assets_are_not_claimed_as_agent_annotations() -> None:
     assert assets["reuse_rule"] == "candidate_source_only"
 
 
-def test_r5_public_docs_do_not_claim_an_agent_implementation_or_result() -> None:
+def test_public_docs_separate_r5_protocol_from_r6_bounded_routing() -> None:
     readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
     protocol_doc = (
         PROJECT_ROOT / "docs" / "r5_agentic_retrieval_evaluation_protocol.md"
     ).read_text(encoding="utf-8")
 
     assert "R5 Agentic Retrieval 评测协议（无实现、无结果）" in readme
-    assert "Agent 尚未实现或接入 API" in readme
+    assert "R6 受限路由控制器（已实现并完成离线边界评测）" in readme
+    assert "它不是通用" in readme
+    assert "R7 图检索实验尚未开始" in readme
     assert "未实现、未运行 Agent，也没有实验结果" in protocol_doc
     assert "不能表述为“实现了 Agent”" in protocol_doc

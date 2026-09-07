@@ -374,11 +374,63 @@ retrieval calls and ten returned candidates. It also freezes step-level trace
 fields, second-round Jaccard/replacement attribution, stop reasons, failure
 taxonomy, and adversarial cases.
 
-This is a protocol artifact, not an Agent implementation or result. The current
-50 RAG questions do not yet contain Agent-specific second-round and stop-reason
-annotations. Future R6/R7 work must create and freeze those annotations before
-executing any comparison, and requires separate approval because those stages
-are outside the September branch commitment.
+This remains a protocol artifact, not an Agentic 5x2 implementation or result.
+The current 50 RAG questions do not contain the required second-round and
+stop-reason annotations. R6 was later authorized as a separate bounded-routing
+stage with its own 36 routing samples and 12 retry cases; it does not execute
+the R5 three-arm comparison. R7 must still create and freeze its school corpus,
+50 annotated questions, and paired comparison protocol before any graph code or
+experiment is run.
 
 See `docs/r5_agentic_retrieval_evaluation_protocol.md` for the complete method
 and `agentic_retrieval_protocol.json` for the machine-checked invariant list.
+
+## R6 bounded routing evaluation
+
+R6 adds a deterministic three-way controller in front of the versioned V2
+answer endpoint:
+
+- `retrieve` for every factual question;
+- `direct_answer` only for greetings, capability explanations, and usage help;
+- `refuse` for high-confidence evidence bypass, secret extraction, scope bypass,
+  and unsupported actions.
+
+When Dense evidence is insufficient, the controller may perform one
+deterministic rewrite and one additional retrieval. The top-level document
+scope cannot change, and a third retrieval is unreachable. This is a bounded
+application control flow, not a general-purpose Agent.
+
+The frozen assets were committed before implementation:
+
+- `r6_routing_questions.json`: 36 samples, 12 per route;
+- `r6_retry_cases.json`: 12 evidence-sufficiency decisions;
+- `r6_routing_protocol.json`: hashes, budgets, metrics, and acceptance gates.
+
+The first formal offline run records:
+
+| Check | Result |
+|---|---:|
+| Routing accuracy / macro F1 | 100.00% / 1.0000 |
+| Retry accuracy / positive-class precision / recall | 100.00% / 1.0000 / 1.0000 |
+| Business-fact direct-answer violations | 0 |
+| Retrieval-call-limit breaches | 0 |
+| Document-scope violations | 0 |
+| Network / embedding / LLM calls | 0 / 0 / 0 |
+| Estimated provider cost | USD 0.00 |
+
+These are small, hand-authored boundary fixtures. They demonstrate conformance
+to the frozen R6 rules, not open-domain classification quality, production
+traffic safety, or Agent generalization. The complete per-case result and
+latency-method caveat are in `r6_routing_report.json`.
+
+The evaluator requires the caller to identify a completed V1 regression gate
+instead of silently claiming that gate passed:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_r6_routing_evaluation.py `
+  --legacy-v1-regressions 0 `
+  --quality-gate-evidence "local_full_gate:240_passed,3_skipped,65_subtests"
+```
+
+This command is offline and read-only unless `--output` is explicitly supplied.
+R7 is not started or authorized by an R6 report alone.

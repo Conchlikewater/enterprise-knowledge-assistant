@@ -6,14 +6,17 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 生成限定文档范围的回答与结构化引用。
 
 > 当前状态：V1 应用闭环、V2 评测增强、R1 Qdrant Server、R23 最小异步
-> 摄取闭环和 R4 同步/异步取舍实测已完成；R5 只冻结了受限 Agentic
-> Retrieval 评测协议，没有实现或运行 Agent。现有 `POST /api/v1/documents` 仍同步完成摄取并返回
+> 摄取闭环和 R4 同步/异步取舍实测已完成；R5 冻结了受限 Agentic
+> Retrieval 对照协议，R6 随后实现了一个三分类、有界、可解释的路由控制器。
+> 现有 `POST /api/v1/documents` 仍同步完成摄取并返回
 > `201 Created`；新增 `POST /api/v2/documents` 返回 `202 Accepted + job_id`，
 > 由一个独立 Worker 处理，并支持状态查询和一个固定崩溃点的启动恢复。推荐用
 > Docker Compose 启动 FastAPI、Worker 与 Qdrant Server。当前只保证本机单
 > Worker，不是分布式任务平台。应用检索仍使用 Dense；Hybrid 仅是被评测并
-> 拒绝上线的实验原型，Agent 尚未实现。项目面向本地单用户演示，尚未提供
-> 认证、多租户或公网生产部署能力。
+> 拒绝上线的实验原型。R6 的 `POST /api/v2/answers` 只会路由到检索、固定模板
+> 直接回答或安全拒答，Evidence 不足时最多确定性改写并再检索一次；它不是通用
+> Agent，也不是 GraphRAG。R7 图检索实验尚未开始。项目面向本地单用户演示，
+> 尚未提供认证、多租户或公网生产部署能力。
 
 ## 项目亮点
 
@@ -29,6 +32,8 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 - 性能观测：独立记录本机离线检索与回答编排P50/P95，不冒充线上延迟。
 - 异步取舍实测：分别测量 API 接收、端到端、连续上传、响应性和崩溃恢复，
   明确“更快返回”与“更快完成”不是同一件事。
+- 受限路由：新增兼容的 V2 Answer 入口，使用拒答优先、事实问题默认检索和至多
+  一次确定性改写；问候/帮助与拒答路径不调用 Retrieval 或 LLM。
 - 自动质量门槛：Ruff、85% 分支覆盖率、全量测试和离线评估进入 CI。
 - 可复现运行：Compose 包含 FastAPI、Worker 与 Qdrant Server 三个服务，并用
   独立 named volume 保存 SQLite/上传文件与 Qdrant 数据。
@@ -52,8 +57,11 @@ flowchart LR
     SYNC -->|"Document terminal state"| SQL
     WORKER -->|"Job + Document terminal transaction"| SQL
 
-    Q["scoped question"] --> API
-    API --> ANS["AnswerService"]
+    Q["question"] --> API
+    API -->|"V1 answer"| ANS["AnswerService"]
+    API -->|"V2 routed answer"| ROUTER["bounded router"]
+    ROUTER -->|"direct / refuse"| TEMPLATE["fixed safe template"]
+    ROUTER -->|"retrieve; optional one rewrite"| RET
     ANS --> RET["RetrievalService"]
     RET --> EMB
     RET --> QD
@@ -62,6 +70,7 @@ flowchart LR
     ANS --> CIT["application-built citations"]
     LLM --> OUT["answer + citations"]
     CIT --> OUT
+    TEMPLATE --> OUT
 ```
 
 V1 同步路径在请求内调用共享摄取核心；V2 路径先保存文件并原子创建
@@ -219,6 +228,7 @@ quality_gate_passed=true
 | `DELETE /api/v1/documents/{document_id}` | 删除文件、向量和文档记录 |
 | `POST /api/v1/search` | 在明确选择的文档中检索 Top-K chunks |
 | `POST /api/v1/answers` | 返回基于检索证据的回答和结构化引用 |
+| `POST /api/v2/answers` | 三分类路由；事实问题检索，Evidence 不足时至多改写重试一次 |
 
 所有应用错误使用稳定结构，并通过 `X-Request-ID` 关联请求：
 
@@ -323,8 +333,9 @@ OpenAI，DeepSeek 作为可切换的低成本后端，不依据一次小型合�
 .\.venv\Scripts\python.exe -m pytest -q -W error
 ```
 
-R5 最新完整质量门槛为 198 项自动化测试和 34 个参数化子测试通过，启用
-分支统计后的总覆盖率为 87.59%，并持续强制 85% 的最低覆盖率要求。本次连接
+截至 R6 收口前的本地完整质量门槛为 240 项自动化测试通过、3 项需要
+Qdrant Server 的集成测试按当前环境跳过，另有 65 个参数化子测试通过；启用
+分支统计后的总覆盖率为 88.90%，并持续强制 85% 的最低覆盖率要求。本项目连接
 真实 Qdrant Server 验证了临时 collection 的写入、范围检索、删除和清理，也
 用两个独立 Python 进程验证 Worker 在“Qdrant 已写入、SQLite 尚未提交 ready”
 处退出后可恢复且没有重复可见 Chunk。CI 使用 Fake/确定性 Provider 和无 API
@@ -361,7 +372,25 @@ R5 只预注册未来实验的方法：Dense Top-5、预算匹配的 Dense Top-1
 [`docs/r5_agentic_retrieval_evaluation_protocol.md`](docs/r5_agentic_retrieval_evaluation_protocol.md)，
 机器可校验清单见
 [`evaluation/agentic_retrieval_protocol.json`](evaluation/agentic_retrieval_protocol.json)。
-Agent 实现与实验执行属于九月范围外的 R6/R7，仍需以后单独批准。
+这段仍准确描述 R5 当时的交付：R5 没有实现或运行 Agentic 5×2。之后获得的
+窄范围授权只允许 R6 实现受限路由控制器；它没有执行这组三臂检索实验。
+
+### R6 受限路由控制器（已实现并完成离线边界评测）
+
+R6 新增 `POST /api/v2/answers`，但保留 V1 Answer 行为不变。控制器先按
+`refuse → direct_answer → retrieve` 的保守顺序分类：只有问候、系统能力和
+使用方法能走固定模板直接回答，所有事实问题默认要求所选文档 Evidence。
+第一轮结果不足时最多执行一次确定性查询改写，并保持相同 `document_ids`；总
+检索调用上限为 2，不使用 LangGraph、Memory、Multi-Agent 或循环规划。
+
+在实现前冻结的 36 条路由样例和 12 条重试样例上，首次离线运行分别为
+36/36 和 12/12；事实问题误走直接回答、超过调用上限和文档范围越界均为 0。
+该结果没有网络、Embedding/LLM 调用、token 或费用，只验证人工构造的边界
+fixture，不能写成开放域 Agent 准确率或生产流量结论。设计、冻结协议和完整
+逐题报告见 [`docs/r6_routing_agent_design.md`](docs/r6_routing_agent_design.md)、
+[`evaluation/r6_routing_protocol.json`](evaluation/r6_routing_protocol.json) 和
+[`evaluation/r6_routing_report.json`](evaluation/r6_routing_report.json)。R7
+学校语料与 Graph Retrieval 对照尚未开始。
 
 仅运行评估：
 
@@ -436,8 +465,9 @@ docs                    调研、架构、provider 和发布记录
   多 Worker、Lease/Fencing 或网络分区处理，不能包装成分布式任务平台。
 - 活动摄取期间删除返回 `409 DOCUMENT_PROCESSING`；失败补偿是尽力而为，当前
   没有长期后台 reconciler。
-- Agent 尚未实现或接入 API；R5 已完成的只是受限 Agentic Retrieval 评测
-  协议设计，没有 Agent 代码、轨迹运行或实验结果，不能写成“已实现 Agent”。
+- R6 只实现了进入 V2 Answer API 的受限规则路由和一次检索重试；R5 的
+  Agentic 5×2、多步规划、Memory、Multi-Agent 和 R7 Graph Retrieval 都没有
+  接入主链路，不能写成“完整 Agent 系统”或“生产级 GraphRAG”。
 - LLM 请求不启用持久会话、工具或 Web 搜索；DeepSeek/OpenAI Key 均只从
   本地环境读取。
 - 模型可能出错；结构化引用可追溯来源，但不等于事实保证。

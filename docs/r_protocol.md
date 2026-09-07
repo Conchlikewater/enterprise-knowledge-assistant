@@ -5,7 +5,7 @@
 - 上位协议：`D:\AI_Internship_2026\求职材料\2026-09_双项目升级计划_评审版.md`
 - 已读取版本：**《2026 年 9 月 双项目升级执行协议 v6》定稿版**
 - 本文件用途：把 v6 映射为 Enterprise Knowledge Assistant 仓库内可核对的阶段边界。
-- 冲突顺序：v6 上位协议 > 本文件 > 当前阶段专项设计 > 历史文档和聊天记录。
+- 冲突顺序：用户在 v6 之后的明确补充裁决 > v6 上位协议 > 本文件 > 当前阶段专项设计 > 历史文档和旧聊天记录。
 - 本文件只冻结边界，不证明 R1、R23、R4 或 R5 已经完成。
 
 ## 2. 当前生产基线与九月计划必须分开
@@ -23,15 +23,19 @@
 
 因此，README、简历、演示和阶段报告不得把右栏内容写成现有能力。
 
-## 3. Agent 的唯一定位
+## 3. v6 冻结时的 Agent 定位（历史基线）
 
-九月的 Agent 仅定位为 `experiments/` 或 `evaluation/` 下的**受限 Agentic Retrieval 对照实验对象**：
+v6 冻结时，Agent 仅定位为 `experiments/` 或 `evaluation/` 下的**受限 Agentic Retrieval 对照实验对象**：
 
 - R5 只完成 failure taxonomy、step-level evaluation protocol、三组公平对照、轨迹记录要求和 adversarial cases 设计；
 - 不进入 `app/`，不新增生产 Agent API，不改变既有生产回答链路；
 - 不把“设计了 Agent 评测协议”表述成“实现了 Agent”；
-- R6（Agent 实现）和 R7（Agent 实验）属于十月开发候选，不属于九月主分支承诺；
+- R6（Agent 实现）和 R7（Agent 实验）原属于十月开发候选，不属于 v6 的九月主分支承诺；
 - 旧 V3 文档里的 Investigation、Draft、Approval、归档、HITL 和 LangGraph 主链路不得直接恢复。
+
+2026-09-07 的补充授权仅按第 10 节窄范围覆盖上述 R6/R7 延期项。R6 受限
+路由可以进入版本化 V2 Answer API；这不把 R5 的 Agentic 5×2 协议、完整
+Agent 系统或 R7 Graph Retrieval 自动变为已实现能力。
 
 ## 4. 阶段边界
 
@@ -121,22 +125,23 @@ R23 采用最小、可验证的“活动摄取期间禁止删除”语义：
 
 选择该规则是为了在单 Worker P0 中把竞态压缩成清晰、可测试的状态约束。协作式取消、强制删除和更复杂的并发所有权进入后续阶段。
 
-## 7. 九月明确不做
+## 7. 当前仍明确不做
 
 - R2.5 的扩展重试、复杂去重和超出最小闭环的异步增强；
-- R6、R7 的 Agent 实现与 Agent 实验执行；
 - R8 的完整可观测性平台；
 - 生产 Agent API、Investigation 工作流、Draft、Approval、正式归档和 HITL；
 - Redis、Celery、RabbitMQ、多 Worker、分布式任务队列；
 - Lease、Heartbeat、Generation、Fencing、网络分区处理；
 - 完整认证、多租户、RBAC 和公网生产部署；
-- Reranker、GraphRAG、多智能体、通用工具调用平台；
+- 生产 Reranker、生产 GraphRAG、多智能体和通用工具调用平台；R7 只允许在
+  `evaluation/experiments/` 做预注册的学校领域 Graph Retrieval 对照；
 - Prometheus/Grafana 等监控仪表盘；
 - 未经授权的真实 Provider 调用和任何付费评测。
 
 ## 8. 阶段门禁与 Git 纪律
 
-- 顺序固定为 R0 → R1 → R23 → R4 → 条件启动 R5；不得顺手推进下一阶段。
+- 已完成主线顺序为 R0 → R1 → R23 → R4 → 条件启动 R5；补充授权后的顺序
+  是 R6 完成并通过⑤ → 用户单独批准 R7，仍不得顺手推进下一阶段。
 - 每阶段完成后更新 `docs/DEV_STATE.md`，将⑤拥有权验证保留为“未完成”，停止开发。
 - 用户完成该阶段约定的拥有权验证并明确批准后，才能进入下一阶段。
 - **2026-09-01 用户补充裁决**：从 R1 验收起，⑤只保留与就业/面试直接相关的知识点讲解和少量真实源码问题；取消“本人亲手修改真实实现”和必须产生 `git diff` 的要求。问题质量高于数量，不为凑满三题设置概念复述题。该裁决只改变学习验收形式，不降低代码测试、阶段停止或下一阶段显式授权门禁。
@@ -164,3 +169,8 @@ R23 采用最小、可验证的“活动摄取期间禁止删除”语义：
 - R8、R2.5、通用 Agent 平台和其他未重新授权能力仍不在范围内。
 
 R6 的详细冻结契约见 `docs/r6_routing_agent_design.md` 与 `evaluation/r6_routing_protocol.json`。旧 R5 协议保留为“实施前预注册”的历史证据，不回写成已经实现。
+
+截至 2026-09-07，R6 实现与首次冻结边界评测已经完成，结果见
+`evaluation/r6_routing_report.json`；⑤拥有权验证仍未完成。该工程结果不自动
+授权 R7，也不改变“R7 只能留在实验目录、结果通过后再决定是否接入主链路”的
+边界。
