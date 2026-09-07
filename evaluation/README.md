@@ -433,4 +433,29 @@ instead of silently claiming that gate passed:
 ```
 
 This command is offline and read-only unless `--output` is explicitly supplied.
-R7 is not started or authorized by an R6 report alone.
+The R6 report alone did not authorize R7. The user separately authorized R7 on
+2026-09-08; its preregistration status is described below.
+
+## R7 school Graph Retrieval preregistration
+
+R7 freezes a separate school-domain experiment under `evaluation/r7/`:
+
+- 12 two-page MIT OpenCourseWare historical syllabus fixtures with source,
+  attribution, page count, and SHA256;
+- 50 final questions split across ordinary facts, one-hop relationships,
+  multi-hop paths, scope isolation, and unsupported requests;
+- exact Evidence and assertion paths for every relationship and multi-hop case;
+- three comparison arms: Dense Top-5, Dense retry 5x2, and Graph+Dense retry
+  5x2;
+- paired metrics and precommitted negative-result/promotion gates.
+
+The OCW-derived evaluation data is separately licensed under CC BY-NC-SA 4.0;
+the application code remains under the repository MIT License. The fixtures are
+historical snapshots and cannot establish current MIT requirements.
+
+At this checkpoint, Graph Retrieval code and formal experiment results do not
+exist. The `text-embedding-3-small` development threshold is intentionally
+unset and needs a separately approved real-Provider development run before any
+graph implementation. An offline hashing run alone cannot justify production
+integration. See `docs/r7_graph_retrieval_protocol.md` and
+`evaluation/r7/protocol.json`.

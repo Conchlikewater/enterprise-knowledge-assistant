@@ -1,0 +1,1234 @@
+{
+  "schema_version": "r7-school-questions-v1",
+  "status": "frozen_before_graph_implementation",
+  "frozen_at": "2026-09-08",
+  "corpus_schema_version": "r7-school-corpus-v1",
+  "question_count": 50,
+  "category_counts": {
+    "ordinary_fact": 15,
+    "relationship": 17,
+    "multi_hop": 12,
+    "scope_isolation": 3,
+    "unanswerable": 3
+  },
+  "temporal_boundary": "Questions concern the cited historical OCW offerings. The corpus cannot establish current MIT requirements.",
+  "retry_gold_rule": {
+    "answerable": "A second retrieval is expected only when first-round gold-evidence coverage is below 1.0.",
+    "unanswerable": "One bounded second retrieval is expected before refusal when the first retrieval has no supported answer.",
+    "runtime_constraint": "The implementation must estimate sufficiency without reading gold annotations. Gold is used only by the evaluator after the decision."
+  },
+  "questions": [
+    {
+      "id": "ordinary-01",
+      "category": "ordinary_fact",
+      "question": "In which term was the historical OCW offering of 6.006 taught?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.006 offering was taught in Spring 2020.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "snippet": "Course 6.006, Introduction to Algorithms, was taught in Spring 2020."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.006", "semester:spring-2020"],
+          "assertion_ids": ["g-6006-offered"]
+        }
+      ]
+    },
+    {
+      "id": "ordinary-02",
+      "category": "ordinary_fact",
+      "question": "Was the Fall 2005 offering of 6.046J undergraduate or graduate level?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited Fall 2005 offering of 6.046J was undergraduate level.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 1,
+          "snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-03",
+      "category": "ordinary_fact",
+      "question": "Who taught the Spring 2011 OCW offering of 6.045J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "Scott Aaronson taught the cited Spring 2011 offering of 6.045J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-045j-spring-2011",
+          "filename": "mit_6_045j_spring_2011.pdf",
+          "page_number": 1,
+          "snippet": "The instructor was Scott Aaronson."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-04",
+      "category": "ordinary_fact",
+      "question": "What was the weekly lecture schedule for 6.854J in the cited offering?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.854J offering had three one-hour lectures each week.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 1,
+          "snippet": "The meeting pattern was three one-hour lectures each week."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-05",
+      "category": "ordinary_fact",
+      "question": "What optional weekly session accompanied the 6.851 lectures?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.851 offering included one optional two-hour open-problem session each week.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-851-spring-2012",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 1,
+          "snippet": "The meeting pattern was two ninety-minute lectures each week plus one optional two-hour open-problem session."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-06",
+      "category": "ordinary_fact",
+      "question": "How many units did the cited 6.830 offering carry?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.830 offering carried 3-0-9 units.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "snippet": "The course met for two ninety-minute lectures each week and carried 3-0-9 units."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "credit:3-0-9"],
+          "assertion_ids": ["g-6830-credit"]
+        }
+      ]
+    },
+    {
+      "id": "ordinary-07",
+      "category": "ordinary_fact",
+      "question": "What unit designation was recorded for 6.857?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.857 offering was a 12-unit, 3-0-9 course.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 1,
+          "snippet": "It was a 12-unit, 3-0-9 course."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "credit:3-0-9"],
+          "assertion_ids": ["g-6857-credit"]
+        }
+      ]
+    },
+    {
+      "id": "ordinary-08",
+      "category": "ordinary_fact",
+      "question": "Who taught the Fall 2012 offering of Operating System Engineering?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "Frans Kaashoek taught the cited Fall 2012 offering.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-828-fall-2012",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 1,
+          "snippet": "The instructor was Frans Kaashoek."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-09",
+      "category": "ordinary_fact",
+      "question": "Who taught the Fall 2009 offering of Distributed Algorithms?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "Nancy Lynch taught the cited Fall 2009 offering.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 1,
+          "snippet": "The instructor was Nancy Lynch."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-10",
+      "category": "ordinary_fact",
+      "question": "How many problem sets were listed for the historical 6.042J offering?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The historical 6.042J syllabus listed twelve problem sets.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-042j-fall-2010",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "The historical syllabus listed twelve problem sets, a two-hour evening midterm, and a three-hour final."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-11",
+      "category": "ordinary_fact",
+      "question": "What was the weekly meeting pattern for 6.006?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.006 offering had two one-hour lectures and two one-hour recitations each week.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "snippet": "The meeting pattern was two one-hour lectures and two one-hour recitations each week."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-12",
+      "category": "ordinary_fact",
+      "question": "In which term was the cited Network and Computer Security offering taught?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.857 offering was taught in Spring 2014.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 1,
+          "snippet": "Course 6.857, Network and Computer Security, was taught in Spring 2014."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "semester:spring-2014"],
+          "assertion_ids": ["g-6857-offered"]
+        }
+      ]
+    },
+    {
+      "id": "ordinary-13",
+      "category": "ordinary_fact",
+      "question": "At which academic levels was the cited 6.830 page listed?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.830 page listed the course at both graduate and undergraduate levels.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "snippet": "It belongs to Electrical Engineering and Computer Science and was listed at graduate and undergraduate levels."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-14",
+      "category": "ordinary_fact",
+      "question": "Was the Spring 2018 offering of 6.033 undergraduate or graduate level?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited Spring 2018 offering of 6.033 was undergraduate level.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 1,
+          "snippet": "It belongs to Electrical Engineering and Computer Science and is undergraduate level."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "ordinary-15",
+      "category": "ordinary_fact",
+      "question": "What operating-system material did the cited 6.828 fixture say the course studied?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "It studied operating-system design through UNIX, research papers, and implementation labs.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-828-fall-2012",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 1,
+          "snippet": "It studied operating-system design through UNIX, research papers, and implementation labs."
+        }
+      ],
+      "gold_graph_paths": []
+    },
+    {
+      "id": "relation-01",
+      "category": "relationship",
+      "question": "Which two courses were listed as prerequisites for 6.006?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.006 offering required 6.0001 and 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.006 required 6.0001, Introduction to Computer Science and Programming in Python."
+        },
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.006 also required 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.006", "course:6.0001"],
+          "assertion_ids": ["g-6006-req-60001"]
+        },
+        {
+          "nodes": ["course:6.006", "course:6.042j"],
+          "assertion_ids": ["g-6006-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-02",
+      "category": "relationship",
+      "question": "Which courses did the Fall 2005 6.046J page expect students to have completed?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "It expected 6.001 and 6.042J, with grades of C or higher in both.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J expected prior completion of 6.001, Structure and Interpretation of Computer Programs."
+        },
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J also expected prior completion of 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.046j", "course:6.001"],
+          "assertion_ids": ["g-6046j-req-6001"]
+        },
+        {
+          "nodes": ["course:6.046j", "course:6.042j"],
+          "assertion_ids": ["g-6046j-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-03",
+      "category": "relationship",
+      "question": "What mathematical course did 6.045J assume as prior preparation?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The historical page assumed 6.042 Mathematics for Computer Science or equivalent preparation; the fixture normalizes that entity to 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-045j-spring-2011",
+          "filename": "mit_6_045j_spring_2011.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.045J assumed prior completion of 6.042, Mathematics for Computer Science, or equivalent mathematical preparation."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.045j", "course:6.042j"],
+          "assertion_ids": ["g-6045j-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-04",
+      "category": "relationship",
+      "question": "Which undergraduate algorithms course was assumed for 6.854J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.854J page assumed an undergraduate algorithms course such as 6.046J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.854J assumed an undergraduate algorithms course such as 6.046J."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.854j", "course:6.046j"],
+          "assertion_ids": ["g-6854j-req-6046j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-05",
+      "category": "relationship",
+      "question": "Which MIT courses were described as more than sufficient probability preparation for 6.854J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page named either 6.041 or 6.042J as more than sufficient probability preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Some exposure to probability was also assumed; either 6.041 or 6.042J was described as more than sufficient preparation."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.854j", "requirement:6.854j-probability-exposure", "course:6.041"],
+          "assertion_ids": ["g-6854j-req-probability", "g-6041-satisfies-6854j-probability"]
+        },
+        {
+          "nodes": ["course:6.854j", "requirement:6.854j-probability-exposure", "course:6.042j"],
+          "assertion_ids": ["g-6854j-req-probability", "g-6042j-satisfies-6854j-probability"]
+        }
+      ]
+    },
+    {
+      "id": "relation-06",
+      "category": "relationship",
+      "question": "Was 6.045J a mandatory prerequisite or a bonus for 6.854J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page described 6.045J as a bonus, not a mandatory prerequisite.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.045J, Complexity Theory, was described as a bonus rather than a prerequisite."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.854j", "course:6.045j"],
+          "assertion_ids": ["g-6854j-rec-6045j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-07",
+      "category": "relationship",
+      "question": "Which algorithms course was the listed prerequisite for 6.851?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page listed 6.046, normalized in the fixture to 6.046J, or equivalent undergraduate algorithms preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-851-spring-2012",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.851 required 6.046, Design and Analysis of Algorithms, or an equivalently thorough undergraduate algorithms course."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.851", "course:6.046j"],
+          "assertion_ids": ["g-6851-req-6046j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-08",
+      "category": "relationship",
+      "question": "Which advanced algorithms course did the 6.851 page recommend taking first?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "It recommended taking 6.854, normalized to 6.854J in the fixture, before 6.851.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-851-spring-2012",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended taking 6.854, Advanced Algorithms, before this deeper graduate course."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.851", "course:6.854j"],
+          "assertion_ids": ["g-6851-rec-6854j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-09",
+      "category": "relationship",
+      "question": "What complete prerequisite logic did the Spring 2018 6.033 page state?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "It required 6.004 plus either 6.005 or 6.009; the latter pair was an any-of choice, not two simultaneous requirements.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033 required 6.004, Computation Structures."
+        },
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.033", "course:6.004"],
+          "assertion_ids": ["g-6033-req-6004"]
+        },
+        {
+          "nodes": ["course:6.033", "requirement:6.033-programming-alternative", "course:6.005"],
+          "assertion_ids": ["g-6033-req-programming", "g-6005-satisfies-6033-programming"]
+        },
+        {
+          "nodes": ["course:6.033", "requirement:6.033-programming-alternative", "course:6.009"],
+          "assertion_ids": ["g-6033-req-programming", "g-6009-satisfies-6033-programming"]
+        }
+      ]
+    },
+    {
+      "id": "relation-10",
+      "category": "relationship",
+      "question": "Which two subjects did 6.830 expect students to have studied?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.830 offering expected 6.033 and 6.006, or equivalent study.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent."
+        },
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "It also expected prior study of 6.006, Introduction to Algorithms, or equivalent."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "course:6.033"],
+          "assertion_ids": ["g-6830-req-6033"]
+        },
+        {
+          "nodes": ["course:6.830", "course:6.006"],
+          "assertion_ids": ["g-6830-req-6006"]
+        }
+      ]
+    },
+    {
+      "id": "relation-11",
+      "category": "relationship",
+      "question": "Which two courses were mandatory prerequisites for 6.857?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited 6.857 page required 6.033 and 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "course:6.033"],
+          "assertion_ids": ["g-6857-req-6033"]
+        },
+        {
+          "nodes": ["course:6.857", "course:6.042j"],
+          "assertion_ids": ["g-6857-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-12",
+      "category": "relationship",
+      "question": "Which algorithms courses were recommendations, rather than requirements, for 6.857?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page recommended either 6.006 or 6.046J; it did not list both as mandatory prerequisites.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "requirement:6.857-algorithms-preparation", "course:6.006"],
+          "assertion_ids": ["g-6857-rec-algorithms", "g-6006-satisfies-6857-algorithms"]
+        },
+        {
+          "nodes": ["course:6.857", "requirement:6.857-algorithms-preparation", "course:6.046j"],
+          "assertion_ids": ["g-6857-rec-algorithms", "g-6046j-satisfies-6857-algorithms"]
+        }
+      ]
+    },
+    {
+      "id": "relation-13",
+      "category": "relationship",
+      "question": "Which three course references appeared in the 6.828 prerequisite section?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The historical 6.828 page listed 6.033, 6.170, and 6.004.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-828-fall-2012",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.828 listed 6.033, Computer System Engineering, as a prerequisite."
+        },
+        {
+          "source_id": "mit-6-828-fall-2012",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 2,
+          "snippet": "It also listed 6.170, Software Studio, and 6.004, Computation Structures, as prerequisites."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.828", "course:6.033"],
+          "assertion_ids": ["g-6828-req-6033"]
+        },
+        {
+          "nodes": ["course:6.828", "course:6.170"],
+          "assertion_ids": ["g-6828-req-6170"]
+        },
+        {
+          "nodes": ["course:6.828", "course:6.004"],
+          "assertion_ids": ["g-6828-req-6004"]
+        }
+      ]
+    },
+    {
+      "id": "relation-14",
+      "category": "relationship",
+      "question": "Which systems course was described as good background for 6.852J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The historical page described 6.033 Computer System Engineering as good background.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033, Computer System Engineering, was described as good background for 6.852J."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.852j", "course:6.033"],
+          "assertion_ids": ["g-6852j-rec-6033"]
+        }
+      ]
+    },
+    {
+      "id": "relation-15",
+      "category": "relationship",
+      "question": "Which course was described as sufficient sequential-algorithms preparation for 6.852J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page described 6.046J as sufficient sequential-algorithms preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J, Design and Analysis of Algorithms, was described as sufficient sequential-algorithms preparation."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.852j", "course:6.046j"],
+          "assertion_ids": ["g-6852j-rec-6046j"]
+        }
+      ]
+    },
+    {
+      "id": "relation-16",
+      "category": "relationship",
+      "question": "Which courses were examples of desirable formal-model preparation for 6.852J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The page gave 6.045J or 18.404J/6.840J as examples, and said that preparation was desirable but not essential.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.852j", "requirement:6.852j-formal-models", "course:6.045j"],
+          "assertion_ids": ["g-6852j-rec-formal-models", "g-6045j-satisfies-6852j-formal-models"]
+        },
+        {
+          "nodes": ["course:6.852j", "requirement:6.852j-formal-models", "course:18.404j/6.840j"],
+          "assertion_ids": ["g-6852j-rec-formal-models", "g-18404j-satisfies-6852j-formal-models"]
+        }
+      ]
+    },
+    {
+      "id": "relation-17",
+      "category": "relationship",
+      "question": "What were the two official prerequisites for 6.895?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The cited page listed 6.046J and 6.170, or equivalent material.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-895-fall-2003",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "snippet": "The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.895", "course:6.046j"],
+          "assertion_ids": ["g-6895-req-6046j"]
+        },
+        {
+          "nodes": ["course:6.895", "course:6.170"],
+          "assertion_ids": ["g-6895-req-6170"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-01",
+      "category": "multi_hop",
+      "question": "Using the historical snapshots, what documented course chain links 6.830 back to 6.042J through 6.006?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.830 expected 6.006, and 6.006 required 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "It also expected prior study of 6.006, Introduction to Algorithms, or equivalent."
+        },
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.006 also required 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "course:6.006", "course:6.042j"],
+          "assertion_ids": ["g-6830-req-6006", "g-6006-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-02",
+      "category": "multi_hop",
+      "question": "What documented preparation chain connects 6.851 to 6.046J through 6.854J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "The 6.851 page recommended 6.854J first, and the 6.854J page assumed 6.046J-level undergraduate algorithms preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-851-spring-2012",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended taking 6.854, Advanced Algorithms, before this deeper graduate course."
+        },
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.854J assumed an undergraduate algorithms course such as 6.046J."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.851", "course:6.854j", "course:6.046j"],
+          "assertion_ids": ["g-6851-rec-6854j", "g-6854j-req-6046j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-03",
+      "category": "multi_hop",
+      "question": "What historical preparation chain connects 6.852J to 6.042J through 6.045J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.045J was an example of desirable formal-model preparation for 6.852J, and 6.045J assumed 6.042 Mathematics for Computer Science.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples."
+        },
+        {
+          "source_id": "mit-6-045j-spring-2011",
+          "filename": "mit_6_045j_spring_2011.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.045J assumed prior completion of 6.042, Mathematics for Computer Science, or equivalent mathematical preparation."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.852j", "requirement:6.852j-formal-models", "course:6.045j", "course:6.042j"],
+          "assertion_ids": ["g-6852j-rec-formal-models", "g-6045j-satisfies-6852j-formal-models", "g-6045j-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-04",
+      "category": "multi_hop",
+      "question": "What prerequisite chain links 6.830 to 6.004 through 6.033?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.830 expected 6.033, and 6.033 required 6.004.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent."
+        },
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033 required 6.004, Computation Structures."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "course:6.033", "course:6.004"],
+          "assertion_ids": ["g-6830-req-6033", "g-6033-req-6004"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-05",
+      "category": "multi_hop",
+      "question": "What prerequisite chain links 6.857 to 6.004 through 6.033?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.857 required 6.033, and 6.033 required 6.004.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        },
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033 required 6.004, Computation Structures."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "course:6.033", "course:6.004"],
+          "assertion_ids": ["g-6857-req-6033", "g-6033-req-6004"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-06",
+      "category": "multi_hop",
+      "question": "Following the 6.033 branch, what two-edge path connects 6.828 to 6.004?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.828 required 6.033, and 6.033 required 6.004. The 6.828 page also separately listed 6.004 directly.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-828-fall-2012",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.828 listed 6.033, Computer System Engineering, as a prerequisite."
+        },
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033 required 6.004, Computation Structures."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.828", "course:6.033", "course:6.004"],
+          "assertion_ids": ["g-6828-req-6033", "g-6033-req-6004"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-07",
+      "category": "multi_hop",
+      "question": "Using the 6.006 recommendation branch for 6.857, what chain reaches 6.042J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.006 was one recommended algorithms option for 6.857, and 6.006 required 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic."
+        },
+        {
+          "source_id": "mit-6-006-spring-2020",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.006 also required 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "requirement:6.857-algorithms-preparation", "course:6.006", "course:6.042j"],
+          "assertion_ids": ["g-6857-rec-algorithms", "g-6006-satisfies-6857-algorithms", "g-6006-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-08",
+      "category": "multi_hop",
+      "question": "What prerequisite chain links 6.895 to 6.042J through 6.046J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.895 required 6.046J, and 6.046J expected 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-895-fall-2003",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "snippet": "The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material."
+        },
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J also expected prior completion of 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.895", "course:6.046j", "course:6.042j"],
+          "assertion_ids": ["g-6895-req-6046j", "g-6046j-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-09",
+      "category": "multi_hop",
+      "question": "What documented preparation chain links 6.854J to 6.001 through 6.046J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.854J assumed 6.046J-level algorithms preparation, and 6.046J expected prior completion of 6.001.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.854J assumed an undergraduate algorithms course such as 6.046J."
+        },
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J expected prior completion of 6.001, Structure and Interpretation of Computer Programs."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.854j", "course:6.046j", "course:6.001"],
+          "assertion_ids": ["g-6854j-req-6046j", "g-6046j-req-6001"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-10",
+      "category": "multi_hop",
+      "question": "What historical preparation chain links 6.852J to 6.042J through 6.046J?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.046J was sufficient sequential-algorithms preparation for 6.852J, and 6.046J expected 6.042J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J, Design and Analysis of Algorithms, was described as sufficient sequential-algorithms preparation."
+        },
+        {
+          "source_id": "mit-6-046j-fall-2005",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J also expected prior completion of 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.852j", "course:6.046j", "course:6.042j"],
+          "assertion_ids": ["g-6852j-rec-6046j", "g-6046j-req-6042j"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-11",
+      "category": "multi_hop",
+      "question": "Which shared course connects 6.830 and 6.857 as a documented prerequisite?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.033 is the shared course: both historical pages list it as required or expected preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent."
+        },
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "course:6.033", "course:6.857"],
+          "assertion_ids": ["g-6830-req-6033", "g-6857-req-6033"]
+        }
+      ]
+    },
+    {
+      "id": "multi-hop-12",
+      "category": "multi_hop",
+      "question": "Which undergraduate algorithms course is linked as prerequisite or preparation to 6.854J, 6.851, 6.852J, and 6.895?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.046J is linked to all four, although the source strength differs: required or assumed for three and sufficient preparation for 6.852J.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-854j-fall-2005",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.854J assumed an undergraduate algorithms course such as 6.046J."
+        },
+        {
+          "source_id": "mit-6-851-spring-2012",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.851 required 6.046, Design and Analysis of Algorithms, or an equivalently thorough undergraduate algorithms course."
+        },
+        {
+          "source_id": "mit-6-852j-fall-2009",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.046J, Design and Analysis of Algorithms, was described as sufficient sequential-algorithms preparation."
+        },
+        {
+          "source_id": "mit-6-895-fall-2003",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "snippet": "The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.854j", "course:6.046j", "course:6.851"],
+          "assertion_ids": ["g-6854j-req-6046j", "g-6851-req-6046j"]
+        },
+        {
+          "nodes": ["course:6.852j", "course:6.046j", "course:6.895"],
+          "assertion_ids": ["g-6852j-rec-6046j", "g-6895-req-6046j"]
+        }
+      ]
+    },
+    {
+      "id": "scope-01",
+      "category": "scope_isolation",
+      "question": "Within the selected 6.830 document only, which two earlier courses were expected?",
+      "allowed_filenames": ["mit_6_830_fall_2010.pdf"],
+      "expected_behavior": "answer",
+      "expected_answer": "The selected document expected 6.033 and 6.006, or equivalent study.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent."
+        },
+        {
+          "source_id": "mit-6-830-fall-2010",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "It also expected prior study of 6.006, Introduction to Algorithms, or equivalent."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.830", "course:6.033"],
+          "assertion_ids": ["g-6830-req-6033"]
+        },
+        {
+          "nodes": ["course:6.830", "course:6.006"],
+          "assertion_ids": ["g-6830-req-6006"]
+        }
+      ]
+    },
+    {
+      "id": "scope-02",
+      "category": "scope_isolation",
+      "question": "Using only the selected 6.857 document, separate its mandatory courses from its recommended algorithms options.",
+      "allowed_filenames": ["mit_6_857_spring_2014.pdf"],
+      "expected_behavior": "answer",
+      "expected_answer": "6.033 and 6.042J were mandatory; either 6.006 or 6.046J was recommended algorithms preparation.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        },
+        {
+          "source_id": "mit-6-857-spring-2014",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.857", "course:6.033"],
+          "assertion_ids": ["g-6857-req-6033"]
+        },
+        {
+          "nodes": ["course:6.857", "course:6.042j"],
+          "assertion_ids": ["g-6857-req-6042j"]
+        },
+        {
+          "nodes": ["course:6.857", "requirement:6.857-algorithms-preparation"],
+          "assertion_ids": ["g-6857-rec-algorithms"]
+        }
+      ]
+    },
+    {
+      "id": "scope-03",
+      "category": "scope_isolation",
+      "question": "Using only the selected 6.033 document, did students need both 6.005 and 6.009?",
+      "allowed_filenames": ["mit_6_033_spring_2018.pdf"],
+      "expected_behavior": "answer",
+      "expected_answer": "No. The document required either 6.005 or 6.009, together with 6.004.",
+      "expected_evidence": [
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming."
+        },
+        {
+          "source_id": "mit-6-033-spring-2018",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.033 required 6.004, Computation Structures."
+        }
+      ],
+      "gold_graph_paths": [
+        {
+          "nodes": ["course:6.033", "requirement:6.033-programming-alternative", "course:6.005"],
+          "assertion_ids": ["g-6033-req-programming", "g-6005-satisfies-6033-programming"]
+        },
+        {
+          "nodes": ["course:6.033", "requirement:6.033-programming-alternative", "course:6.009"],
+          "assertion_ids": ["g-6033-req-programming", "g-6009-satisfies-6033-programming"]
+        }
+      ]
+    },
+    {
+      "id": "unanswerable-01",
+      "category": "unanswerable",
+      "question": "What are MIT's current 2026 prerequisites for 6.830?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "refuse",
+      "expected_answer": null,
+      "expected_evidence": [],
+      "gold_graph_paths": [],
+      "refusal_reason": "The corpus contains historical offerings and cannot establish current 2026 requirements."
+    },
+    {
+      "id": "unanswerable-02",
+      "category": "unanswerable",
+      "question": "How much tuition did MIT charge to enroll in each of these twelve courses?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "refuse",
+      "expected_answer": null,
+      "expected_evidence": [],
+      "gold_graph_paths": [],
+      "refusal_reason": "Tuition information is absent from the frozen corpus."
+    },
+    {
+      "id": "unanswerable-03",
+      "category": "unanswerable",
+      "question": "Does completing these OCW materials award an MIT degree or academic credit?",
+      "allowed_filenames": ["*"],
+      "expected_behavior": "refuse",
+      "expected_answer": null,
+      "expected_evidence": [],
+      "gold_graph_paths": [],
+      "refusal_reason": "The selected syllabus fixtures do not contain evidence about credentials or academic credit for OCW users."
+    }
+  ]
+}

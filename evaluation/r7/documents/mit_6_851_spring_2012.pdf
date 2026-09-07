@@ -1,0 +1,110 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (Enterprise Knowledge Assistant R7 fixture builder)
+/Title (mit\1376\137851\137spring\1372012)
+/Subject (CC BY\055NC\055SA 4\0560 noncommercial evaluation fixture)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 2
+/Kids [ 5 0 R 7 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 553
+>>
+stream
+BT /F1 10 Tf 72 730 Td 14 TL
+(R7 historical syllabus fixture. Course 6.851, Advanced Data Structures, was taught) Tj T*
+(in Spring 2012. It belongs to Electrical Engineering and Computer Science and is) Tj T*
+(graduate level. The instructor was Erik Demaine. The meeting pattern was two) Tj T*
+(ninety-minute lectures each week plus one optional two-hour open-problem session.) Tj T*
+(This concise evaluation adaptation was checked against the cited MIT) Tj T*
+(OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.) Tj T*
+ET
+endstream
+endobj
+7 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 780
+>>
+stream
+BT /F1 10 Tf 72 730 Td 14 TL
+(Preparation facts. Course 6.851 required 6.046, Design and Analysis of Algorithms,) Tj T*
+(or an equivalently thorough undergraduate algorithms course. The page recommended) Tj T*
+(taking 6.854, Advanced Algorithms, before this deeper graduate course. In this) Tj T*
+(fixture, 6.046 and 6.854 are normalized to graph entities 6.046J and 6.854J while) Tj T*
+(preserving the source wording. Adapted from MIT OpenCourseWare under CC BY-NC-SA) Tj T*
+(4.0; changes were made for a noncommercial retrieval fixture, and no MIT) Tj T*
+(endorsement is implied.) Tj T*
+() Tj T*
+(Source: https://ocw.mit.edu/courses/6-851-advanced-data-structures-) Tj T*
+(spring-2012/pages/syllabus/) Tj T*
+(License: https://creativecommons.org/licenses/by-nc-sa/4.0/) Tj T*
+ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000210 00000 n 
+0000000275 00000 n 
+0000000324 00000 n 
+0000000394 00000 n 
+0000000526 00000 n 
+0000001130 00000 n 
+0000001262 00000 n 
+trailer
+<<
+/Size 9
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+2093
+%%EOF

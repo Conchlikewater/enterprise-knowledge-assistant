@@ -1,0 +1,93 @@
+{
+  "schema_version": "r7-school-corpus-manifest-v1",
+  "status": "frozen_before_graph_implementation",
+  "frozen_at": "2026-09-08",
+  "source_manifest_sha256": "733d529005f5485007677c015ca3a875f53faeab67ef34f4457cc6f30aae48ef",
+  "document_count": 12,
+  "documents": [
+    {
+      "source_id": "mit-6-006-spring-2020",
+      "filename": "mit_6_006_spring_2020.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "583b0901c01b073609105965801abf216ed7c173996535966aebecbff9f4d7e5"
+    },
+    {
+      "source_id": "mit-6-046j-fall-2005",
+      "filename": "mit_6_046j_fall_2005.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "b1af28b08af861d662a99182c2e5dea31ce8a9111a5318df15c22a191b9b1650"
+    },
+    {
+      "source_id": "mit-6-045j-spring-2011",
+      "filename": "mit_6_045j_spring_2011.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "0d12978036ef927903b82e525cef133ff5fe6529fd669ea2cebb6748fda2e35c"
+    },
+    {
+      "source_id": "mit-6-854j-fall-2005",
+      "filename": "mit_6_854j_fall_2005.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-854j-advanced-algorithms-fall-2005/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "c4cbcb4eeb04b907b7693309afb7ba7fcd5b0b7718642a313562effae54af79d"
+    },
+    {
+      "source_id": "mit-6-851-spring-2012",
+      "filename": "mit_6_851_spring_2012.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-851-advanced-data-structures-spring-2012/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "0e028e9aa4b78e683f5fb6aa5bf4ba3c02e8d095309728f9c361aabdb2977c99"
+    },
+    {
+      "source_id": "mit-6-033-spring-2018",
+      "filename": "mit_6_033_spring_2018.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "946d6b8e429f9c67fd88ebcc072345dba191957451c8288dff85737aaaf7c44a"
+    },
+    {
+      "source_id": "mit-6-830-fall-2010",
+      "filename": "mit_6_830_fall_2010.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "a3a53d3a1b5ee32e385faf02d0d876340094094930dc6f933aeb3ff79e9800c6"
+    },
+    {
+      "source_id": "mit-6-857-spring-2014",
+      "filename": "mit_6_857_spring_2014.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-857-network-and-computer-security-spring-2014/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "0e7ea54468c180fbb4d3f8882ba802f796d81ff93ae960e4ab096b14acfadc5f"
+    },
+    {
+      "source_id": "mit-6-828-fall-2012",
+      "filename": "mit_6_828_fall_2012.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "23ceb4e988788f27fce9148a55151f0bcfce0068d003926c09e10ed7f17e23e9"
+    },
+    {
+      "source_id": "mit-6-852j-fall-2009",
+      "filename": "mit_6_852j_fall_2009.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-852j-distributed-algorithms-fall-2009/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "a0ea91bf0c0c54a32555359ca86a13e05635d0bdffa85843b027c3de89d414f5"
+    },
+    {
+      "source_id": "mit-6-895-fall-2003",
+      "filename": "mit_6_895_fall_2003.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-895-theory-of-parallel-systems-sma-5509-fall-2003/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "871441fcb1ad9a88ef3918655082bd8c610297376904c42d4efb3fd94bf7ca44"
+    },
+    {
+      "source_id": "mit-6-042j-fall-2010",
+      "filename": "mit_6_042j_fall_2010.pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/pages/syllabus/",
+      "page_count": 2,
+      "sha256": "65d0dd3e87cc3d73d57eabbd72ab533135d45436b19bf5cc4a46102117e6696a"
+    }
+  ]
+}

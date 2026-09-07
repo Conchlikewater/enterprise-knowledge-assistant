@@ -1,0 +1,108 @@
+{
+  "schema_version": "r7-school-development-questions-v1",
+  "status": "development_only_not_part_of_frozen_50",
+  "purpose": "Select the semantic score threshold and verify retry/fusion mechanics without tuning on the frozen 50 questions.",
+  "questions": [
+    {
+      "id": "dev-answerable-01",
+      "question": "Who were the instructors for the historical 6.006 offering?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "snippet": "The instructors were Erik Demaine, Jason Ku, and Justin Solomon."
+        }
+      ]
+    },
+    {
+      "id": "dev-answerable-02",
+      "question": "What single prerequisite did the historical 6.042J page list?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "The only listed prerequisite for course 6.042J was 18.01."
+        }
+      ]
+    },
+    {
+      "id": "dev-answerable-03",
+      "question": "When did the cited Theory of Parallel Systems course run?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 1,
+          "snippet": "Course 6.895, Theory of Parallel Systems (SMA 5509), was taught in Fall 2003."
+        }
+      ]
+    },
+    {
+      "id": "dev-answerable-04",
+      "question": "What required and recommended algorithms preparation did the 6.851 page distinguish?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "Course 6.851 required 6.046, Design and Analysis of Algorithms, or an equivalently thorough undergraduate algorithms course."
+        },
+        {
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "snippet": "The page recommended taking 6.854, Advanced Algorithms, before this deeper graduate course."
+        }
+      ]
+    },
+    {
+      "id": "dev-answerable-05",
+      "question": "How often did the 6.033 lectures, recitations, and tutorials meet?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 1,
+          "snippet": "Each week had two one-hour lectures, two one-hour recitations, and one one-hour tutorial."
+        }
+      ]
+    },
+    {
+      "id": "dev-answerable-06",
+      "question": "Did the historical 6.830 offering require prior database experience?",
+      "answerable": true,
+      "expected_evidence": [
+        {
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "snippet": "Prior database experience was not required."
+        }
+      ]
+    },
+    {
+      "id": "dev-unanswerable-01",
+      "question": "Which campus classroom hosted 6.857 every Tuesday?",
+      "answerable": false,
+      "expected_evidence": []
+    },
+    {
+      "id": "dev-unanswerable-02",
+      "question": "What was the registration deadline for the cited 6.828 offering?",
+      "answerable": false,
+      "expected_evidence": []
+    },
+    {
+      "id": "dev-unanswerable-03",
+      "question": "Which of these courses will definitely be offered in Spring 2027?",
+      "answerable": false,
+      "expected_evidence": []
+    },
+    {
+      "id": "dev-unanswerable-04",
+      "question": "How much did each required textbook cost at the MIT bookstore?",
+      "answerable": false,
+      "expected_evidence": []
+    }
+  ]
+}

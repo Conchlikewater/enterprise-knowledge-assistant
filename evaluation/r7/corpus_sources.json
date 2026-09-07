@@ -1,0 +1,791 @@
+{
+  "schema_version": "r7-school-corpus-v1",
+  "status": "frozen_before_graph_implementation",
+  "frozen_at": "2026-09-08",
+  "institution": "Massachusetts Institute of Technology",
+  "collection": "MIT OpenCourseWare historical syllabus snapshots",
+  "temporal_scope": "Historical course offerings from 2003 through 2020; not a current MIT curriculum or catalog",
+  "selection_rule": "Twelve MIT OpenCourseWare EECS or EECS/Mathematics syllabus pages with explicit course relationships and a common licensing framework",
+  "license": {
+    "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+    "spdx_like_label": "CC-BY-NC-SA-4.0",
+    "terms_url": "https://ocw.mit.edu/pages/privacy-and-terms-of-use/",
+    "citation_guidance_url": "https://mitocw.zendesk.com/hc/en-us/articles/5021398517019-How-do-I-properly-cite-my-reuse-of-MIT-OpenCourseWare-materials",
+    "scope": "Only the adapted R7 corpus, its source facts, and generated PDF fixtures; project code remains under the repository MIT License",
+    "restrictions": [
+      "noncommercial use only",
+      "attribution required",
+      "share adaptations under the same license",
+      "do not imply MIT endorsement"
+    ]
+  },
+  "source_capture": {
+    "checked_at": "2026-09-08",
+    "remote_html_committed": false,
+    "remote_content_sha256": null,
+    "note": "Official pages and license terms were checked directly. Raw HTML is not redistributed. Reproducible SHA256 values belong to the generated minimal PDF fixtures in corpus_manifest.json."
+  },
+  "documents": [
+    {
+      "source_id": "mit-6-006-spring-2020",
+      "filename": "mit_6_006_spring_2020.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/syllabus/",
+      "source_title": "Introduction to Algorithms",
+      "course_code": "6.006",
+      "as_taught_term": "Spring 2020",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Erik Demaine", "Jason Ku", "Justin Solomon"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.006, Introduction to Algorithms, was taught in Spring 2020. The course belongs to the Electrical Engineering and Computer Science department and is undergraduate level. The instructors were Erik Demaine, Jason Ku, and Justin Solomon. The meeting pattern was two one-hour lectures and two one-hour recitations each week. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite and topic facts. Course 6.006 required 6.0001, Introduction to Computer Science and Programming in Python. Course 6.006 also required 6.042J, Mathematics for Computer Science. The course covered elementary data structures and algorithmic approaches including sorting, graph searching, and dynamic programming. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6006-offered",
+          "subject": "course:6.006",
+          "predicate": "OFFERED_IN",
+          "object": "semester:spring-2020",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.006, Introduction to Algorithms, was taught in Spring 2020."
+        },
+        {
+          "id": "g-6006-program",
+          "subject": "course:6.006",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "The course belongs to the Electrical Engineering and Computer Science department and is undergraduate level."
+        },
+        {
+          "id": "g-6006-req-60001",
+          "subject": "course:6.006",
+          "predicate": "REQUIRES",
+          "object": "course:6.0001",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.006 required 6.0001, Introduction to Computer Science and Programming in Python."
+        },
+        {
+          "id": "g-6006-req-6042j",
+          "subject": "course:6.006",
+          "predicate": "REQUIRES",
+          "object": "course:6.042j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.006 also required 6.042J, Mathematics for Computer Science."
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-046j-fall-2005",
+      "filename": "mit_6_046j_fall_2005.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/pages/syllabus/",
+      "source_title": "Introduction to Algorithms (SMA 5503)",
+      "course_code": "6.046J",
+      "as_taught_term": "Fall 2005",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Charles Leiserson", "Erik Demaine"],
+      "departments": ["Electrical Engineering and Computer Science", "Mathematics"],
+      "levels": ["Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.046J, Introduction to Algorithms (SMA 5503), was taught in Fall 2005. It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level. The instructors were Charles Leiserson and Erik Demaine. The meeting pattern was two ninety-minute lectures and one one-hour recitation each week. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite facts. Course 6.046J expected prior completion of 6.001, Structure and Interpretation of Computer Programs. Course 6.046J also expected prior completion of 6.042J, Mathematics for Computer Science. The historical page expected a grade of C or higher in both courses. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6046j-offered",
+          "subject": "course:6.046j",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2005",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.046J, Introduction to Algorithms (SMA 5503), was taught in Fall 2005."
+        },
+        {
+          "id": "g-6046j-program",
+          "subject": "course:6.046j",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs-math",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level."
+        },
+        {
+          "id": "g-6046j-req-6001",
+          "subject": "course:6.046j",
+          "predicate": "REQUIRES",
+          "object": "course:6.001",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.046J expected prior completion of 6.001, Structure and Interpretation of Computer Programs.",
+          "qualifier": "grade C or higher"
+        },
+        {
+          "id": "g-6046j-req-6042j",
+          "subject": "course:6.046j",
+          "predicate": "REQUIRES",
+          "object": "course:6.042j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.046J also expected prior completion of 6.042J, Mathematics for Computer Science.",
+          "qualifier": "grade C or higher"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-045j-spring-2011",
+      "filename": "mit_6_045j_spring_2011.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-045j-automata-computability-and-complexity-spring-2011/pages/syllabus/",
+      "source_title": "Automata, Computability, and Complexity",
+      "course_code": "6.045J",
+      "as_taught_term": "Spring 2011",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Scott Aaronson"],
+      "departments": ["Electrical Engineering and Computer Science", "Mathematics"],
+      "levels": ["Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.045J, Automata, Computability, and Complexity, was taught in Spring 2011. It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level. The instructor was Scott Aaronson. The meeting pattern was two ninety-minute lectures and one one-hour recitation each week. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite and topic facts. Course 6.045J assumed prior completion of 6.042, Mathematics for Computer Science, or equivalent mathematical preparation. The course covered automata, computability, complexity, cryptography, learning theory, interactive proofs, and quantum computing. In this fixture, the historical 6.042 reference is normalized to course entity 6.042J while preserving the source wording. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6045j-offered",
+          "subject": "course:6.045j",
+          "predicate": "OFFERED_IN",
+          "object": "semester:spring-2011",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.045J, Automata, Computability, and Complexity, was taught in Spring 2011."
+        },
+        {
+          "id": "g-6045j-program",
+          "subject": "course:6.045j",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs-math",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level."
+        },
+        {
+          "id": "g-6045j-req-6042j",
+          "subject": "course:6.045j",
+          "predicate": "REQUIRES",
+          "object": "course:6.042j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.045J assumed prior completion of 6.042, Mathematics for Computer Science, or equivalent mathematical preparation.",
+          "qualifier": "6.042 normalized to 6.042J"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-854j-fall-2005",
+      "filename": "mit_6_854j_fall_2005.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-854j-advanced-algorithms-fall-2005/pages/syllabus/",
+      "source_title": "Advanced Algorithms",
+      "course_code": "6.854J",
+      "as_taught_term": "Fall 2005",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["David R. Karger"],
+      "departments": ["Electrical Engineering and Computer Science", "Mathematics"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.854J, Advanced Algorithms, was taught in Fall 2005. It belongs to Electrical Engineering and Computer Science and Mathematics and is graduate level. The instructor was David R. Karger. The meeting pattern was three one-hour lectures each week. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Preparation facts. Course 6.854J assumed an undergraduate algorithms course such as 6.046J. Some exposure to probability was also assumed; either 6.041 or 6.042J was described as more than sufficient preparation. Course 6.045J, Complexity Theory, was described as a bonus rather than a prerequisite. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6854j-offered",
+          "subject": "course:6.854j",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2005",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.854J, Advanced Algorithms, was taught in Fall 2005."
+        },
+        {
+          "id": "g-6854j-program",
+          "subject": "course:6.854j",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs-math",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is graduate level."
+        },
+        {
+          "id": "g-6854j-req-6046j",
+          "subject": "course:6.854j",
+          "predicate": "REQUIRES",
+          "object": "course:6.046j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.854J assumed an undergraduate algorithms course such as 6.046J."
+        },
+        {
+          "id": "g-6854j-req-probability",
+          "subject": "course:6.854j",
+          "predicate": "REQUIRES",
+          "object": "requirement:6.854j-probability-exposure",
+          "page_number": 2,
+          "evidence_snippet": "Some exposure to probability was also assumed; either 6.041 or 6.042J was described as more than sufficient preparation."
+        },
+        {
+          "id": "g-6041-satisfies-6854j-probability",
+          "subject": "course:6.041",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.854j-probability-exposure",
+          "page_number": 2,
+          "evidence_snippet": "Some exposure to probability was also assumed; either 6.041 or 6.042J was described as more than sufficient preparation."
+        },
+        {
+          "id": "g-6042j-satisfies-6854j-probability",
+          "subject": "course:6.042j",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.854j-probability-exposure",
+          "page_number": 2,
+          "evidence_snippet": "Some exposure to probability was also assumed; either 6.041 or 6.042J was described as more than sufficient preparation."
+        },
+        {
+          "id": "g-6854j-rec-6045j",
+          "subject": "course:6.854j",
+          "predicate": "RECOMMENDS",
+          "object": "course:6.045j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.045J, Complexity Theory, was described as a bonus rather than a prerequisite.",
+          "qualifier": "bonus"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-851-spring-2012",
+      "filename": "mit_6_851_spring_2012.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-851-advanced-data-structures-spring-2012/pages/syllabus/",
+      "source_title": "Advanced Data Structures",
+      "course_code": "6.851",
+      "as_taught_term": "Spring 2012",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Erik Demaine"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.851, Advanced Data Structures, was taught in Spring 2012. It belongs to Electrical Engineering and Computer Science and is graduate level. The instructor was Erik Demaine. The meeting pattern was two ninety-minute lectures each week plus one optional two-hour open-problem session. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Preparation facts. Course 6.851 required 6.046, Design and Analysis of Algorithms, or an equivalently thorough undergraduate algorithms course. The page recommended taking 6.854, Advanced Algorithms, before this deeper graduate course. In this fixture, 6.046 and 6.854 are normalized to graph entities 6.046J and 6.854J while preserving the source wording. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6851-offered",
+          "subject": "course:6.851",
+          "predicate": "OFFERED_IN",
+          "object": "semester:spring-2012",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.851, Advanced Data Structures, was taught in Spring 2012."
+        },
+        {
+          "id": "g-6851-program",
+          "subject": "course:6.851",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and is graduate level."
+        },
+        {
+          "id": "g-6851-req-6046j",
+          "subject": "course:6.851",
+          "predicate": "REQUIRES",
+          "object": "course:6.046j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.851 required 6.046, Design and Analysis of Algorithms, or an equivalently thorough undergraduate algorithms course.",
+          "qualifier": "6.046 normalized to 6.046J"
+        },
+        {
+          "id": "g-6851-rec-6854j",
+          "subject": "course:6.851",
+          "predicate": "RECOMMENDS",
+          "object": "course:6.854j",
+          "page_number": 2,
+          "evidence_snippet": "The page recommended taking 6.854, Advanced Algorithms, before this deeper graduate course.",
+          "qualifier": "6.854 normalized to 6.854J"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-033-spring-2018",
+      "filename": "mit_6_033_spring_2018.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/pages/syllabus/",
+      "source_title": "Computer System Engineering",
+      "course_code": "6.033",
+      "as_taught_term": "Spring 2018",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Katrina LaCurts"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.033, Computer System Engineering, was taught in Spring 2018. It belongs to Electrical Engineering and Computer Science and is undergraduate level. The instructor was Katrina LaCurts. Each week had two one-hour lectures, two one-hour recitations, and one one-hour tutorial. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite facts. Course 6.033 required 6.004, Computation Structures. It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming. The alternative is an any-of requirement and must not be flattened into a claim that both 6.005 and 6.009 were mandatory. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6033-offered",
+          "subject": "course:6.033",
+          "predicate": "OFFERED_IN",
+          "object": "semester:spring-2018",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.033, Computer System Engineering, was taught in Spring 2018."
+        },
+        {
+          "id": "g-6033-program",
+          "subject": "course:6.033",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and is undergraduate level."
+        },
+        {
+          "id": "g-6033-req-6004",
+          "subject": "course:6.033",
+          "predicate": "REQUIRES",
+          "object": "course:6.004",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.033 required 6.004, Computation Structures."
+        },
+        {
+          "id": "g-6033-req-programming",
+          "subject": "course:6.033",
+          "predicate": "REQUIRES",
+          "object": "requirement:6.033-programming-alternative",
+          "page_number": 2,
+          "evidence_snippet": "It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming.",
+          "qualifier": "any_of"
+        },
+        {
+          "id": "g-6005-satisfies-6033-programming",
+          "subject": "course:6.005",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.033-programming-alternative",
+          "page_number": 2,
+          "evidence_snippet": "It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming.",
+          "qualifier": "any_of"
+        },
+        {
+          "id": "g-6009-satisfies-6033-programming",
+          "subject": "course:6.009",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.033-programming-alternative",
+          "page_number": 2,
+          "evidence_snippet": "It also required either 6.005, Software Construction, or 6.009, Fundamentals of Programming.",
+          "qualifier": "any_of"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-830-fall-2010",
+      "filename": "mit_6_830_fall_2010.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/pages/syllabus/",
+      "source_title": "Database Systems",
+      "course_code": "6.830",
+      "as_taught_term": "Fall 2010",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Samuel Madden", "Robert Morris", "Michael Stonebraker", "Carlo Curino"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Graduate", "Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.830, Database Systems, was taught in Fall 2010. It belongs to Electrical Engineering and Computer Science and was listed at graduate and undergraduate levels. The instructors were Samuel Madden, Robert Morris, Michael Stonebraker, and Carlo Curino. The course met for two ninety-minute lectures each week and carried 3-0-9 units. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite facts. Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent. It also expected prior study of 6.006, Introduction to Algorithms, or equivalent. Prior database experience was not required. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6830-offered",
+          "subject": "course:6.830",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2010",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.830, Database Systems, was taught in Fall 2010."
+        },
+        {
+          "id": "g-6830-program",
+          "subject": "course:6.830",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and was listed at graduate and undergraduate levels."
+        },
+        {
+          "id": "g-6830-credit",
+          "subject": "course:6.830",
+          "predicate": "HAS_CREDIT",
+          "object": "credit:3-0-9",
+          "page_number": 1,
+          "evidence_snippet": "The course met for two ninety-minute lectures each week and carried 3-0-9 units."
+        },
+        {
+          "id": "g-6830-req-6033",
+          "subject": "course:6.830",
+          "predicate": "REQUIRES",
+          "object": "course:6.033",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.830 expected prior study of 6.033, Computer System Engineering, or equivalent."
+        },
+        {
+          "id": "g-6830-req-6006",
+          "subject": "course:6.830",
+          "predicate": "REQUIRES",
+          "object": "course:6.006",
+          "page_number": 2,
+          "evidence_snippet": "It also expected prior study of 6.006, Introduction to Algorithms, or equivalent."
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-857-spring-2014",
+      "filename": "mit_6_857_spring_2014.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-857-network-and-computer-security-spring-2014/pages/syllabus/",
+      "source_title": "Network and Computer Security",
+      "course_code": "6.857",
+      "as_taught_term": "Spring 2014",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Ronald Rivest"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.857, Network and Computer Security, was taught in Spring 2014. It belongs to Electrical Engineering and Computer Science and is graduate level. The instructor was Ronald Rivest. The course met for two ninety-minute lectures and one ninety-minute recitation each week. It was a 12-unit, 3-0-9 course. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Preparation facts. Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science. The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic. The two algorithms courses were recommendations, not mandatory prerequisites. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6857-offered",
+          "subject": "course:6.857",
+          "predicate": "OFFERED_IN",
+          "object": "semester:spring-2014",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.857, Network and Computer Security, was taught in Spring 2014."
+        },
+        {
+          "id": "g-6857-program",
+          "subject": "course:6.857",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and is graduate level."
+        },
+        {
+          "id": "g-6857-credit",
+          "subject": "course:6.857",
+          "predicate": "HAS_CREDIT",
+          "object": "credit:3-0-9",
+          "page_number": 1,
+          "evidence_snippet": "It was a 12-unit, 3-0-9 course."
+        },
+        {
+          "id": "g-6857-req-6033",
+          "subject": "course:6.857",
+          "predicate": "REQUIRES",
+          "object": "course:6.033",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        },
+        {
+          "id": "g-6857-req-6042j",
+          "subject": "course:6.857",
+          "predicate": "REQUIRES",
+          "object": "course:6.042j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.857 required 6.033, Computer System Engineering, and 6.042J, Mathematics for Computer Science."
+        },
+        {
+          "id": "g-6857-rec-algorithms",
+          "subject": "course:6.857",
+          "predicate": "RECOMMENDS",
+          "object": "requirement:6.857-algorithms-preparation",
+          "page_number": 2,
+          "evidence_snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic.",
+          "qualifier": "any_of"
+        },
+        {
+          "id": "g-6006-satisfies-6857-algorithms",
+          "subject": "course:6.006",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.857-algorithms-preparation",
+          "page_number": 2,
+          "evidence_snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic.",
+          "qualifier": "any_of"
+        },
+        {
+          "id": "g-6046j-satisfies-6857-algorithms",
+          "subject": "course:6.046j",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.857-algorithms-preparation",
+          "page_number": 2,
+          "evidence_snippet": "The page recommended prior study of either 6.006, Introduction to Algorithms, or 6.046J, Design and Analysis of Algorithms, plus experience with modular arithmetic.",
+          "qualifier": "any_of"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-828-fall-2012",
+      "filename": "mit_6_828_fall_2012.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-828-operating-system-engineering-fall-2012/pages/syllabus/",
+      "source_title": "Operating System Engineering",
+      "course_code": "6.828",
+      "as_taught_term": "Fall 2012",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Frans Kaashoek"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.828, Operating System Engineering, was taught in Fall 2012. It belongs to Electrical Engineering and Computer Science and is graduate level. The instructor was Frans Kaashoek. The course met for two ninety-minute lectures each week. It studied operating-system design through UNIX, research papers, and implementation labs. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite facts. Course 6.828 listed 6.033, Computer System Engineering, as a prerequisite. It also listed 6.170, Software Studio, and 6.004, Computation Structures, as prerequisites. All three course references appeared in the historical prerequisite section. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6828-offered",
+          "subject": "course:6.828",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2012",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.828, Operating System Engineering, was taught in Fall 2012."
+        },
+        {
+          "id": "g-6828-program",
+          "subject": "course:6.828",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and is graduate level."
+        },
+        {
+          "id": "g-6828-req-6033",
+          "subject": "course:6.828",
+          "predicate": "REQUIRES",
+          "object": "course:6.033",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.828 listed 6.033, Computer System Engineering, as a prerequisite."
+        },
+        {
+          "id": "g-6828-req-6170",
+          "subject": "course:6.828",
+          "predicate": "REQUIRES",
+          "object": "course:6.170",
+          "page_number": 2,
+          "evidence_snippet": "It also listed 6.170, Software Studio, and 6.004, Computation Structures, as prerequisites."
+        },
+        {
+          "id": "g-6828-req-6004",
+          "subject": "course:6.828",
+          "predicate": "REQUIRES",
+          "object": "course:6.004",
+          "page_number": 2,
+          "evidence_snippet": "It also listed 6.170, Software Studio, and 6.004, Computation Structures, as prerequisites."
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-852j-fall-2009",
+      "filename": "mit_6_852j_fall_2009.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-852j-distributed-algorithms-fall-2009/pages/syllabus/",
+      "source_title": "Distributed Algorithms",
+      "course_code": "6.852J",
+      "as_taught_term": "Fall 2009",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Nancy Lynch"],
+      "departments": ["Electrical Engineering and Computer Science", "Mathematics"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.852J, Distributed Algorithms, was taught in Fall 2009. It belongs to Electrical Engineering and Computer Science and Mathematics and is graduate level. The instructor was Nancy Lynch. The course met for two ninety-minute lectures each week. It covered distributed algorithms, impossibility results, fault tolerance, and concurrent programming. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Preparation facts. Course 6.033, Computer System Engineering, was described as good background for 6.852J. Course 6.046J, Design and Analysis of Algorithms, was described as sufficient sequential-algorithms preparation. Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples. These are preparation strengths, not one flat list of mandatory prerequisites. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6852j-offered",
+          "subject": "course:6.852j",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2009",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.852J, Distributed Algorithms, was taught in Fall 2009."
+        },
+        {
+          "id": "g-6852j-program",
+          "subject": "course:6.852j",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs-math",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is graduate level."
+        },
+        {
+          "id": "g-6852j-rec-6033",
+          "subject": "course:6.852j",
+          "predicate": "RECOMMENDS",
+          "object": "course:6.033",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.033, Computer System Engineering, was described as good background for 6.852J.",
+          "qualifier": "good background"
+        },
+        {
+          "id": "g-6852j-rec-6046j",
+          "subject": "course:6.852j",
+          "predicate": "RECOMMENDS",
+          "object": "course:6.046j",
+          "page_number": 2,
+          "evidence_snippet": "Course 6.046J, Design and Analysis of Algorithms, was described as sufficient sequential-algorithms preparation.",
+          "qualifier": "sufficient preparation"
+        },
+        {
+          "id": "g-6852j-rec-formal-models",
+          "subject": "course:6.852j",
+          "predicate": "RECOMMENDS",
+          "object": "requirement:6.852j-formal-models",
+          "page_number": 2,
+          "evidence_snippet": "Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples.",
+          "qualifier": "desirable_not_essential"
+        },
+        {
+          "id": "g-6045j-satisfies-6852j-formal-models",
+          "subject": "course:6.045j",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.852j-formal-models",
+          "page_number": 2,
+          "evidence_snippet": "Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples.",
+          "qualifier": "example"
+        },
+        {
+          "id": "g-18404j-satisfies-6852j-formal-models",
+          "subject": "course:18.404j/6.840j",
+          "predicate": "SATISFIES",
+          "object": "requirement:6.852j-formal-models",
+          "page_number": 2,
+          "evidence_snippet": "Formal-model experience was desirable but not essential; 6.045J or 18.404J/6.840J were examples.",
+          "qualifier": "example"
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-895-fall-2003",
+      "filename": "mit_6_895_fall_2003.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-895-theory-of-parallel-systems-sma-5509-fall-2003/pages/syllabus/",
+      "source_title": "Theory of Parallel Systems (SMA 5509)",
+      "course_code": "6.895",
+      "as_taught_term": "Fall 2003",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Bradley Kuszmaul", "Charles Leiserson", "Hsu Wen Jing", "Michael Bender"],
+      "departments": ["Electrical Engineering and Computer Science"],
+      "levels": ["Graduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.895, Theory of Parallel Systems (SMA 5509), was taught in Fall 2003. It belongs to Electrical Engineering and Computer Science and is graduate level. The instructors were Bradley Kuszmaul, Charles Leiserson, Hsu Wen Jing, and Michael Bender. It had two weekly lectures: one two-hour session and one ninety-minute session. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Prerequisite facts. The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material. The course focused on theoretical foundations and algorithmic underpinnings of parallel systems. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6895-offered",
+          "subject": "course:6.895",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2003",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.895, Theory of Parallel Systems (SMA 5509), was taught in Fall 2003."
+        },
+        {
+          "id": "g-6895-program",
+          "subject": "course:6.895",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and is graduate level."
+        },
+        {
+          "id": "g-6895-req-6046j",
+          "subject": "course:6.895",
+          "predicate": "REQUIRES",
+          "object": "course:6.046j",
+          "page_number": 2,
+          "evidence_snippet": "The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material."
+        },
+        {
+          "id": "g-6895-req-6170",
+          "subject": "course:6.895",
+          "predicate": "REQUIRES",
+          "object": "course:6.170",
+          "page_number": 2,
+          "evidence_snippet": "The official prerequisites for course 6.895 were 6.046J, Introduction to Algorithms, and 6.170, Laboratory in Software Engineering, or equivalent material."
+        }
+      ]
+    },
+    {
+      "source_id": "mit-6-042j-fall-2010",
+      "filename": "mit_6_042j_fall_2010.pdf",
+      "media_type": "application/pdf",
+      "source_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/pages/syllabus/",
+      "source_title": "Mathematics for Computer Science",
+      "course_code": "6.042J",
+      "as_taught_term": "Fall 2010",
+      "publication_date": null,
+      "publication_date_note": "The syllabus page gives the as-taught term but no separate publication date.",
+      "download_checked_at": "2026-09-08",
+      "fixture_page_count": 2,
+      "instructors": ["Tom Leighton", "Marten van Dijk"],
+      "departments": ["Electrical Engineering and Computer Science", "Mathematics"],
+      "levels": ["Undergraduate"],
+      "pages": [
+        "R7 historical syllabus fixture. Course 6.042J, Mathematics for Computer Science, was taught in Fall 2010. It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level. The instructors were Tom Leighton and Marten van Dijk. The meeting pattern was two ninety-minute lectures and two one-hour recitations each week. This concise evaluation adaptation was checked against the cited MIT OpenCourseWare syllabus on 2026-09-08 and is not a current MIT catalog statement.",
+        "Requirement facts. The only listed prerequisite for course 6.042J was 18.01. The historical syllabus listed twelve problem sets, a two-hour evening midterm, and a three-hour final. The course covered discrete mathematics for computer science, including proofs, sets, graph theory, counting, and probability. Adapted from MIT OpenCourseWare under CC BY-NC-SA 4.0; changes were made for a noncommercial retrieval fixture, and no MIT endorsement is implied."
+      ],
+      "graph_assertions": [
+        {
+          "id": "g-6042j-offered",
+          "subject": "course:6.042j",
+          "predicate": "OFFERED_IN",
+          "object": "semester:fall-2010",
+          "page_number": 1,
+          "evidence_snippet": "Course 6.042J, Mathematics for Computer Science, was taught in Fall 2010."
+        },
+        {
+          "id": "g-6042j-program",
+          "subject": "course:6.042j",
+          "predicate": "BELONGS_TO",
+          "object": "program:mit-eecs-math",
+          "page_number": 1,
+          "evidence_snippet": "It belongs to Electrical Engineering and Computer Science and Mathematics and is undergraduate level."
+        },
+        {
+          "id": "g-6042j-req-1801",
+          "subject": "course:6.042j",
+          "predicate": "REQUIRES",
+          "object": "course:18.01",
+          "page_number": 2,
+          "evidence_snippet": "The only listed prerequisite for course 6.042J was 18.01."
+        }
+      ]
+    }
+  ]
+}

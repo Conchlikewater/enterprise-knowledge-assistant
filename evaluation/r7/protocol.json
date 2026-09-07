@@ -1,0 +1,288 @@
+{
+  "schema_version": "r7-graph-retrieval-protocol-v1",
+  "status": "preregistered_before_graph_implementation",
+  "frozen_at": "2026-09-08",
+  "authorization": {
+    "r7_authorized": true,
+    "graph_retrieval_implementation_authorized_after_preregistration": true,
+    "real_provider_authorized": false,
+    "production_integration_authorized": false
+  },
+  "scope": {
+    "name": "bounded Graph Retrieval experiment",
+    "location": "evaluation/experiments/",
+    "app_changes_allowed": false,
+    "production_api_changes_allowed": false,
+    "langgraph_allowed": false,
+    "memory_allowed": false,
+    "multi_agent_allowed": false,
+    "neo4j_allowed": false,
+    "automatic_graph_extraction_claim_allowed": false,
+    "description": "A manually curated, provenance-bound Property Graph is compared with Dense retrieval. It is an experiment, not a production GraphRAG system."
+  },
+  "frozen_assets": {
+    "source_manifest": "evaluation/r7/corpus_sources.json",
+    "source_manifest_sha256": "733d529005f5485007677c015ca3a875f53faeab67ef34f4457cc6f30aae48ef",
+    "fixture_manifest": "evaluation/r7/corpus_manifest.json",
+    "fixture_manifest_sha256": "a4e1919178c449d62f0b9fc8413089605b3af5c8aadd801e89ebede10fa46144",
+    "document_count": 12,
+    "fixture_page_count": 24,
+    "question_set": "evaluation/r7/questions.json",
+    "question_set_sha256": "2d4a243d398d9a163c42c1b7b4224a0ae9a760b64f2d85626ad40e0c81d343f1",
+    "question_count": 50,
+    "development_set": "evaluation/r7/development_questions.json",
+    "development_set_sha256": "0534dfd214a17b410289a878355655ac09e85de9c846dab87781b51ceb4d5312",
+    "development_question_count": 10,
+    "development_questions_are_excluded_from_final_metrics": true
+  },
+  "corpus_boundary": {
+    "institution": "Massachusetts Institute of Technology",
+    "collection": "MIT OpenCourseWare historical syllabus snapshots",
+    "historical_offerings_only": true,
+    "current_curriculum_claims_allowed": false,
+    "raw_web_pages_committed": false,
+    "fixture_license": "CC-BY-NC-SA-4.0",
+    "repository_code_license_unchanged": "MIT"
+  },
+  "chunking": {
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "natural_boundaries_enabled": true,
+    "pdf_page_numbers_required": true,
+    "same_chunks_required_for_all_arms": true
+  },
+  "graph_contract": {
+    "model": "Property Graph",
+    "storage": "versioned JSON loaded into in-memory adjacency indexes",
+    "node_types": ["Course", "Program", "Requirement", "Credit", "Semester"],
+    "edge_types": [
+      "REQUIRES",
+      "SATISFIES",
+      "RECOMMENDS",
+      "BELONGS_TO",
+      "OFFERED_IN",
+      "HAS_CREDIT"
+    ],
+    "max_path_edges": 3,
+    "required_edge_provenance": ["document_id", "chunk_id", "page_number", "assertion_id"],
+    "source_assertions_are_manually_curated": true,
+    "llm_extraction_used": false,
+    "extraction_quality_is_out_of_scope": true,
+    "or_requirements_must_use_requirement_nodes": true,
+    "mandatory_and_recommended_edges_must_not_be_collapsed": true,
+    "document_scope_rule": "Every returned edge and evidence chunk must be backed by an allowed document_id; a node alone never authorizes evidence from another document."
+  },
+  "query_and_graph_ranking": {
+    "entity_recognition": "case-insensitive course-code regex plus aliases frozen from corpus metadata; no LLM",
+    "course_code_pattern": "(?i)(?:18\\.404J/6\\.840J|\\b(?:6|18)\\.\\d{3,4}J?\\b)",
+    "relation_cues": {
+      "REQUIRES": ["prerequisite", "prerequisites", "required", "require", "expected", "prior"],
+      "RECOMMENDS": ["recommended", "recommendation", "preparation", "background", "bonus"],
+      "OFFERED_IN": ["term", "taught", "offering", "when"],
+      "HAS_CREDIT": ["unit", "units", "credit", "credits"],
+      "BELONGS_TO": ["department", "program", "belongs"]
+    },
+    "path_order": [
+      "more exact query entity matches first",
+      "more relation-cue matches first",
+      "shorter path first",
+      "assertion_id sequence ascending"
+    ],
+    "evidence_order_within_path": "path traversal order, then assertion_id ascending",
+    "graph_candidate_limit_per_round": 5
+  },
+  "retrieval_arms": [
+    {
+      "id": "dense_top5",
+      "description": "Dense-only single retrieval",
+      "max_rounds": 1,
+      "dense_candidates_per_round": 5,
+      "graph_candidates_per_round": 0,
+      "final_candidates_per_round": 5,
+      "final_unique_candidate_budget": 5,
+      "retry_enabled": false
+    },
+    {
+      "id": "dense_retry_5x2",
+      "description": "Dense-only with the same bounded retry policy as the graph arm",
+      "max_rounds": 2,
+      "dense_candidates_per_round": 5,
+      "graph_candidates_per_round": 0,
+      "final_candidates_per_round": 5,
+      "final_unique_candidate_budget": 10,
+      "retry_enabled": true
+    },
+    {
+      "id": "graph_dense_retry_5x2",
+      "description": "Graph plus Dense fusion with the same bounded retry policy",
+      "max_rounds": 2,
+      "dense_candidates_per_round": 5,
+      "graph_candidates_per_round": 5,
+      "prefusion_pool_max_per_round": 10,
+      "final_candidates_per_round": 5,
+      "final_unique_candidate_budget": 10,
+      "retry_enabled": true,
+      "prefusion_pool_must_be_reported": true
+    }
+  ],
+  "fairness_controls": {
+    "same_for_all_arms": [
+      "corpus and document scope",
+      "PDF fixtures and chunk identities",
+      "50 frozen questions and gold evidence",
+      "Embedding provider, model, dimensions, and score threshold",
+      "chunking configuration",
+      "evidence matching and metric code"
+    ],
+    "same_for_retry_arms": [
+      "first query",
+      "R6 RuleBasedQueryRewriter implementation",
+      "retry trigger based only on Dense results",
+      "maximum two retrieval rounds",
+      "five final candidates per round",
+      "first-round-then-second-round unique merge"
+    ],
+    "allowed_graph_difference": "The graph arm may inspect up to five provenance-bound graph candidates per round before RRF, but only five fused candidates leave a round. The pre-fusion pool is reported so this cost is not hidden.",
+    "final_answer_llm_used": false,
+    "answer_refusal_metric_scope": "Deterministic evidence-gated behavior only; this experiment does not measure LLM prose quality."
+  },
+  "fusion": {
+    "algorithm": "reciprocal_rank_fusion",
+    "rrf_k": 60,
+    "dense_rank_input": "score descending, chunk_id ascending for ties",
+    "graph_rank_input": "query_and_graph_ranking.path_order",
+    "score_formula": "sum(1 / (60 + rank)) across available dense and graph rankings",
+    "tie_breakers": [
+      "higher dense score",
+      "shorter graph path",
+      "chunk_id ascending"
+    ],
+    "round_merge": "Keep fused first-round order, then append unseen second-round chunk_ids in fused second-round order.",
+    "duplicate_budget_rule": "Duplicates still consume their source retriever rank and do not trigger a third retrieval."
+  },
+  "retry_policy": {
+    "implementation": "R6 EvidenceSufficiencyPolicy and RuleBasedQueryRewriter",
+    "required_relevant_result_count": 2,
+    "decision_input": "Dense results only, before graph fusion, for both retry-enabled arms",
+    "max_retrieval_rounds": 2,
+    "max_rewrites": 1,
+    "document_scope_must_not_change": true,
+    "retry_on_exception": false,
+    "formal_semantic_score_threshold": null,
+    "threshold_status": "pending_real_provider_development_calibration",
+    "threshold_candidate_min": 0.2,
+    "threshold_candidate_max": 0.6,
+    "threshold_candidate_step": 0.01,
+    "selection_data": "evaluation/r7/development_questions.json only",
+    "selection_rule": [
+      "retain at least one gold-evidence chunk for every answerable development question",
+      "among eligible thresholds, maximize unsupported development questions with fewer than two retained results",
+      "then maximize mean reciprocal rank on answerable development questions",
+      "break remaining ties by choosing the lowest threshold"
+    ],
+    "frozen_50_must_not_be_used_for_threshold_selection": true,
+    "graph_code_gate": "Do not implement graph retrieval until the formal semantic threshold is recorded in a new preregistration-only commit after explicit Provider budget approval."
+  },
+  "provider_modes": {
+    "offline_engineering": {
+      "embedding_provider": "offline-hashing",
+      "dimensions": 1024,
+      "network_calls": 0,
+      "provider_cost_usd": 0,
+      "may_decide_production_integration": false
+    },
+    "formal_comparison": {
+      "embedding_provider": "OpenAI",
+      "model": "text-embedding-3-small",
+      "dimensions": 1536,
+      "status": "not_authorized_not_run",
+      "requires_explicit_user_budget_approval": true,
+      "same_embedding_cache_shared_across_arms": true,
+      "llm_generation_calls": 0
+    }
+  },
+  "evidence_scoring": {
+    "match_rule": "filename and page_number must match, and normalized chunk text must contain the exact frozen snippet",
+    "evidence_recall_at_5": "unique gold evidence matched by the five final candidates divided by total gold evidence",
+    "reciprocal_rank": "1 divided by the first rank that matches any gold evidence; zero when none matches",
+    "evidence_ndcg_at_5": "Each rank gains one only when it first covers a previously unmatched gold evidence item; divide DCG by the ideal placement of min(5, gold count) unit gains.",
+    "multi_hop_required_evidence_coverage": "matched required evidence across multi_hop questions divided by all required multi_hop evidence",
+    "citation_identity": "returned document_id and chunk_id must identify the retrieved chunk",
+    "citation_source_page": "returned filename and page_number must equal the source chunk metadata",
+    "citation_semantic_support": "the cited chunk must contain at least one frozen gold snippet supporting the expected answer",
+    "graph_path_correctness": "For each graph-scored question, report the fraction of frozen gold paths whose full assertion_id sequence is returned with connected nodes and complete edge provenance."
+  },
+  "primary_metrics": [
+    "Evidence Recall@5",
+    "MRR",
+    "Evidence nDCG@5",
+    "multi-hop required-evidence coverage",
+    "graph-path correctness"
+  ],
+  "auxiliary_metrics": [
+    "citation identity correctness",
+    "citation source/page correctness",
+    "citation semantic support",
+    "deterministic answer/refuse correctness",
+    "R6 routing accuracy on its separate fixture",
+    "retry-trigger precision and recall",
+    "second-round new gold evidence",
+    "round Jaccard similarity",
+    "round replacement ratio",
+    "document-scope violation rate",
+    "mean, P50, and P95 latency",
+    "retrieval rounds",
+    "dense, graph, pre-fusion, and final candidate counts",
+    "embedding request, token, and cost estimates"
+  ],
+  "paired_analysis": {
+    "unit": "same frozen question across all three arms",
+    "strata": ["ordinary_fact", "relationship", "multi_hop", "scope_isolation", "unanswerable"],
+    "delta_pairs": [
+      "dense_retry_5x2 minus dense_top5",
+      "graph_dense_retry_5x2 minus dense_top5",
+      "graph_dense_retry_5x2 minus dense_retry_5x2"
+    ],
+    "win_tie_loss_rule": "Report wins, ties, and losses separately for per-question Evidence Recall@5 and Evidence nDCG@5 using exact numeric deltas.",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260908,
+    "confidence_interval": "paired percentile bootstrap 95% interval",
+    "statistical_significance_claim_allowed": false
+  },
+  "promotion_thresholds": {
+    "comparison_target": "graph_dense_retry_5x2 versus dense_retry_5x2",
+    "relationship_and_multi_hop_mean_recall_delta_min": 0.05,
+    "relationship_and_multi_hop_mean_ndcg_delta_min": 0.03,
+    "multi_hop_required_evidence_coverage_delta_min": 0.05,
+    "relationship_and_multi_hop_recall_wins_minus_losses_min": 3,
+    "ordinary_fact_recall_delta_min": -0.05,
+    "ordinary_fact_recall_regressed_question_max": 1,
+    "scope_violation_max": 0,
+    "citation_identity_and_source_page_min": 1.0,
+    "deterministic_answer_refuse_delta_min": -0.02,
+    "graph_path_correctness_min": 0.9,
+    "p95_latency_ratio_max": 2.0,
+    "all_gates_required": true,
+    "passing_does_not_authorize_app_integration": true,
+    "failure_decision": "Record a negative or inconclusive experiment and keep Dense as the production path."
+  },
+  "reporting_boundaries": {
+    "must_report_denominators": true,
+    "must_report_per_question_results": true,
+    "must_report_win_tie_loss": true,
+    "must_report_prefusion_graph_cost": true,
+    "must_report_negative_results": true,
+    "must_not_mix_r6_routing_fixture_metrics_with_r7_retrieval_metrics": true,
+    "must_not_claim_current_mit_curriculum": true,
+    "must_not_claim_automatic_graph_extraction": true,
+    "must_not_claim_production_graphrag": true,
+    "must_not_change_thresholds_after_viewing_frozen_results": true
+  },
+  "git_sequence": [
+    "preregistration, corpus, and frozen questions",
+    "real-provider development calibration and threshold freeze after approval",
+    "graph implementation and tests",
+    "formal experiment results",
+    "fact documentation and DEV_STATE closeout"
+  ]
+}
