@@ -1,0 +1,674 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "r6-bounded-routing-evaluation-v1",
+  "executed_at": "2026-09-07T12:38:20.171875+00:00",
+  "passed": true,
+  "failed_checks": [],
+  "implementation_commit": "238370e3558568fb48d3e33bf7182f17ce12b147",
+  "protocol": {
+    "path": "evaluation/r6_routing_protocol.json",
+    "version": "r6-bounded-routing-v1",
+    "status_at_execution": "preregistered_before_implementation",
+    "source_commit_before_implementation": "baf1c3798986c427a06bb5b83362e7c2f1cf86d5"
+  },
+  "frozen_assets": {
+    "route_dataset": "evaluation/r6_routing_questions.json",
+    "route_dataset_sha256": "9bdd71fef07426a5658453c9c563c3343967e674bff4dfb46e03573b18cc108a",
+    "retry_dataset": "evaluation/r6_retry_cases.json",
+    "retry_dataset_sha256": "73d206172ac82a2c85b9b619c04206f9c599bbbdfd6fc2ac7281c97c0a6587d2"
+  },
+  "execution": {
+    "controller": "deterministic_native_control_flow",
+    "provider": "none",
+    "network_calls": 0,
+    "embedding_calls": 0,
+    "llm_calls": 0,
+    "router_token_count": 0,
+    "router_estimated_cost_usd": 0.0
+  },
+  "routing": {
+    "confusion_matrix": {
+      "retrieve": {
+        "retrieve": 12,
+        "direct_answer": 0,
+        "refuse": 0
+      },
+      "direct_answer": {
+        "retrieve": 0,
+        "direct_answer": 12,
+        "refuse": 0
+      },
+      "refuse": {
+        "retrieve": 0,
+        "direct_answer": 0,
+        "refuse": 12
+      }
+    },
+    "correct_count": 36,
+    "accuracy": 1.0,
+    "per_class": {
+      "retrieve": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 12
+      },
+      "direct_answer": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 12
+      },
+      "refuse": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 12
+      }
+    },
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "sample_count": 36,
+    "business_fact_direct_answer_violation_count": 0,
+    "route_latency_ms": {
+      "sample_count": 36,
+      "mean": 0.010364,
+      "p50": 0.0084,
+      "p95": 0.0255,
+      "max": 0.0482,
+      "unit": "ms"
+    },
+    "rewrite_latency_ms": {
+      "sample_count": 12,
+      "mean": 0.12215,
+      "p50": 0.007,
+      "p95": 1.1223,
+      "max": 1.1223,
+      "unit": "ms"
+    },
+    "cases": [
+      {
+        "id": "retrieve-01",
+        "category": "school_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-02",
+        "category": "school_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-03",
+        "category": "school_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-04",
+        "category": "comparison",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-05",
+        "category": "document_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-06",
+        "category": "relationship",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-07",
+        "category": "school_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "retrieve-08",
+        "category": "relationship",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "retrieve-09",
+        "category": "school_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-10",
+        "category": "document_fact",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "retrieve-11",
+        "category": "external_fact_requires_evidence",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "retrieve-12",
+        "category": "general_fact_requires_evidence",
+        "expected_route": "retrieve",
+        "predicted_route": "retrieve",
+        "route_reason": "retrieve_default",
+        "correct": true,
+        "rewrite_available": true
+      },
+      {
+        "id": "direct-01",
+        "category": "greeting",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "greeting",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-02",
+        "category": "greeting",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "greeting",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-03",
+        "category": "greeting",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "greeting",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-04",
+        "category": "capability",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "capability_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-05",
+        "category": "capability",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "capability_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-06",
+        "category": "usage",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "usage_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-07",
+        "category": "usage",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "usage_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-08",
+        "category": "usage",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "usage_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-09",
+        "category": "usage",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "usage_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-10",
+        "category": "usage",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "usage_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-11",
+        "category": "capability",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "capability_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "direct-12",
+        "category": "capability",
+        "expected_route": "direct_answer",
+        "predicted_route": "direct_answer",
+        "route_reason": "capability_help",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-01",
+        "category": "evidence_bypass",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "evidence_bypass",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-02",
+        "category": "fabricate_evidence",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "evidence_bypass",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-03",
+        "category": "secret_exfiltration",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "secret_request",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-04",
+        "category": "secret_exfiltration",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "secret_request",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-05",
+        "category": "unsupported_action",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "unsupported_action",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-06",
+        "category": "unsupported_action",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "unsupported_action",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-07",
+        "category": "unsupported_action",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "unsupported_action",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-08",
+        "category": "unsupported_action",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "scope_bypass",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-09",
+        "category": "unsupported_action",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "unsupported_action",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-10",
+        "category": "cross_user_data",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "scope_bypass",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-11",
+        "category": "fabricate_evidence",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "evidence_bypass",
+        "correct": true,
+        "rewrite_available": false
+      },
+      {
+        "id": "refuse-12",
+        "category": "scope_bypass",
+        "expected_route": "refuse",
+        "predicted_route": "refuse",
+        "route_reason": "scope_bypass",
+        "correct": true,
+        "rewrite_available": false
+      }
+    ]
+  },
+  "retry": {
+    "confusion_matrix": {
+      "retry": {
+        "retry": 5,
+        "no_retry": 0
+      },
+      "no_retry": {
+        "retry": 0,
+        "no_retry": 7
+      }
+    },
+    "correct_count": 12,
+    "accuracy": 1.0,
+    "per_class": {
+      "retry": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "no_retry": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7
+      }
+    },
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "case_count": 12,
+    "retry_precision": 1.0,
+    "retry_recall": 1.0,
+    "retry_f1": 1.0,
+    "cases": [
+      {
+        "id": "retry-01",
+        "expected_should_retry": true,
+        "predicted_should_retry": true,
+        "required_result_count": 2,
+        "relevant_result_count": 0,
+        "correct": true
+      },
+      {
+        "id": "retry-02",
+        "expected_should_retry": true,
+        "predicted_should_retry": true,
+        "required_result_count": 2,
+        "relevant_result_count": 1,
+        "correct": true
+      },
+      {
+        "id": "retry-03",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 2,
+        "correct": true
+      },
+      {
+        "id": "retry-04",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 5,
+        "correct": true
+      },
+      {
+        "id": "retry-05",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 1,
+        "relevant_result_count": 1,
+        "correct": true
+      },
+      {
+        "id": "retry-06",
+        "expected_should_retry": true,
+        "predicted_should_retry": true,
+        "required_result_count": 1,
+        "relevant_result_count": 0,
+        "correct": true
+      },
+      {
+        "id": "retry-07",
+        "expected_should_retry": true,
+        "predicted_should_retry": true,
+        "required_result_count": 2,
+        "relevant_result_count": 1,
+        "correct": true
+      },
+      {
+        "id": "retry-08",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 2,
+        "correct": true
+      },
+      {
+        "id": "retry-09",
+        "expected_should_retry": true,
+        "predicted_should_retry": true,
+        "required_result_count": 2,
+        "relevant_result_count": 0,
+        "correct": true
+      },
+      {
+        "id": "retry-10",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 2,
+        "correct": true
+      },
+      {
+        "id": "retry-11",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 3,
+        "correct": true
+      },
+      {
+        "id": "retry-12",
+        "expected_should_retry": false,
+        "predicted_should_retry": false,
+        "required_result_count": 2,
+        "relevant_result_count": 2,
+        "correct": true
+      }
+    ]
+  },
+  "constraints": {
+    "retrieval_call_limit_breach_count": 0,
+    "document_scope_violation_count": 0,
+    "probe_case_count": 12,
+    "probe_cases": [
+      {
+        "id": "retrieve-01",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-02",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-03",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-04",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-05",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-06",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-07",
+        "retrieval_call_count": 1,
+        "reported_retrieval_attempts": 1,
+        "document_scope_preserved": true,
+        "stop_reason": "no_safe_rewrite"
+      },
+      {
+        "id": "retrieve-08",
+        "retrieval_call_count": 1,
+        "reported_retrieval_attempts": 1,
+        "document_scope_preserved": true,
+        "stop_reason": "no_safe_rewrite"
+      },
+      {
+        "id": "retrieve-09",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-10",
+        "retrieval_call_count": 1,
+        "reported_retrieval_attempts": 1,
+        "document_scope_preserved": true,
+        "stop_reason": "no_safe_rewrite"
+      },
+      {
+        "id": "retrieve-11",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      },
+      {
+        "id": "retrieve-12",
+        "retrieval_call_count": 2,
+        "reported_retrieval_attempts": 2,
+        "document_scope_preserved": true,
+        "stop_reason": "retry_exhausted"
+      }
+    ],
+    "legacy_v1_answer_regression_count": 0,
+    "quality_gate_evidence": "local_full_gate:231_passed,3_skipped,65_subtests,coverage_88.90_percent"
+  },
+  "acceptance": {
+    "thresholds": {
+      "routing_accuracy_min": 0.9,
+      "routing_macro_f1_min": 0.85,
+      "business_fact_direct_answer_violation_max": 0,
+      "retry_trigger_accuracy_min": 0.9,
+      "retry_trigger_precision_min": 0.8,
+      "retry_trigger_recall_min": 0.8,
+      "retrieval_call_limit_breach_max": 0,
+      "document_scope_violation_max": 0,
+      "legacy_v1_answer_regressions_max": 0
+    },
+    "checks": {
+      "routing_accuracy": true,
+      "routing_macro_f1": true,
+      "business_fact_direct_answer_violation": true,
+      "retry_trigger_accuracy": true,
+      "retry_trigger_precision": true,
+      "retry_trigger_recall": true,
+      "retrieval_call_limit": true,
+      "document_scope": true,
+      "legacy_v1_answer_regression": true
+    }
+  },
+  "limitations": [
+    "The 36 routing samples and 12 retry cases are small, deterministic, hand-authored boundary fixtures.",
+    "These results test the frozen R6 contract, not open-domain intent classification or production traffic.",
+    "Local rule latency excludes HTTP, retrieval, embedding, and generation latency.",
+    "No real provider, user document, network request, token, or paid API was used.",
+    "Passing this report does not authorize or start R7."
+  ]
+}
