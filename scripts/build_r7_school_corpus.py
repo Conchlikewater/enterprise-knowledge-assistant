@@ -48,6 +48,7 @@ def build_corpus() -> list[Path]:
     MANIFEST_PATH.write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     return generated_paths
 

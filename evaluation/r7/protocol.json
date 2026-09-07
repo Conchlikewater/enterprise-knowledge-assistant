@@ -24,7 +24,7 @@
     "source_manifest": "evaluation/r7/corpus_sources.json",
     "source_manifest_sha256": "733d529005f5485007677c015ca3a875f53faeab67ef34f4457cc6f30aae48ef",
     "fixture_manifest": "evaluation/r7/corpus_manifest.json",
-    "fixture_manifest_sha256": "a4e1919178c449d62f0b9fc8413089605b3af5c8aadd801e89ebede10fa46144",
+    "fixture_manifest_sha256": "39c262a7671352ec32e6986199f72556504910a57ba20a8e78194be587861fc6",
     "document_count": 12,
     "fixture_page_count": 24,
     "question_set": "evaluation/r7/questions.json",
