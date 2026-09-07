@@ -149,3 +149,18 @@ R23 采用最小、可验证的“活动摄取期间禁止删除”语义：
 旧 V3 的 10 份设计文件整体移动到 `docs/archive/rag_v3_pre_v6/`。详细逐文件原因见该目录的 `README.md`。
 
 它们被归档而不是删除：历史取舍仍可追溯，但不会再与活动协议并列。任何被延期能力若未来重新进入范围，都必须重新设计、测试和批准，不能直接把旧文档恢复为执行契约。
+
+## 10. v6 之后的 R6/R7 补充授权（2026-09-07）
+
+用户在 R0–R5 完成后明确扩大后续范围。该裁决晚于 v6 和 R5，因而只在以下窄范围内覆盖“R6/R7 未授权”的旧状态：
+
+- R6 现在获准实现三分类 `retrieve / direct_answer / refuse` 的受限路由控制器；
+- Dense Evidence 不足时最多进行一次确定性查询改写和一次额外检索；
+- R6 不使用 LangGraph、Memory、Multi-Agent 或多轮循环；
+- `direct_answer` 只处理问候、系统能力和使用方法，事实问题必须检索或拒答；
+- R6 完成、测试、独立评测并通过拥有权验证前，R7 不得开始；
+- R7 未来只在 `evaluation/experiments/` 建设学校领域 Property Graph 和 Graph+Dense 对照，实验通过前不进入 `app/`；
+- 真实 Provider 仍需逐次提交调用量、token 上限和预算并另行获批；
+- R8、R2.5、通用 Agent 平台和其他未重新授权能力仍不在范围内。
+
+R6 的详细冻结契约见 `docs/r6_routing_agent_design.md` 与 `evaluation/r6_routing_protocol.json`。旧 R5 协议保留为“实施前预注册”的历史证据，不回写成已经实现。

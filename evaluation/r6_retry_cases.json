@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "r6-retry-policy-evaluation-v1",
+  "created_at": "2026-09-07",
+  "status": "frozen_before_implementation",
+  "purpose": "Held-out cases for the deterministic evidence-sufficiency and one-retry decision.",
+  "policy_note": "Relevance is defined by the caller's score_threshold. When it is null, the policy uses only result count and does not invent a provider-independent score cutoff.",
+  "cases": [
+    {
+      "id": "retry-01",
+      "top_k": 5,
+      "score_threshold": null,
+      "result_scores": [],
+      "expected_should_retry": true
+    },
+    {
+      "id": "retry-02",
+      "top_k": 5,
+      "score_threshold": null,
+      "result_scores": [0.91],
+      "expected_should_retry": true
+    },
+    {
+      "id": "retry-03",
+      "top_k": 5,
+      "score_threshold": null,
+      "result_scores": [0.91, 0.82],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-04",
+      "top_k": 5,
+      "score_threshold": null,
+      "result_scores": [0.91, 0.82, 0.73, 0.64, 0.55],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-05",
+      "top_k": 1,
+      "score_threshold": null,
+      "result_scores": [0.42],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-06",
+      "top_k": 1,
+      "score_threshold": null,
+      "result_scores": [],
+      "expected_should_retry": true
+    },
+    {
+      "id": "retry-07",
+      "top_k": 5,
+      "score_threshold": 0.5,
+      "result_scores": [0.9, 0.4],
+      "expected_should_retry": true
+    },
+    {
+      "id": "retry-08",
+      "top_k": 5,
+      "score_threshold": 0.5,
+      "result_scores": [0.9, 0.8, 0.1],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-09",
+      "top_k": 5,
+      "score_threshold": 0.5,
+      "result_scores": [0.49, 0.48],
+      "expected_should_retry": true
+    },
+    {
+      "id": "retry-10",
+      "top_k": 2,
+      "score_threshold": 0.5,
+      "result_scores": [0.5, 0.5],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-11",
+      "top_k": 5,
+      "score_threshold": null,
+      "result_scores": [-0.2, -0.3, -0.4],
+      "expected_should_retry": false
+    },
+    {
+      "id": "retry-12",
+      "top_k": 5,
+      "score_threshold": 0.0,
+      "result_scores": [0.2, 0.1],
+      "expected_should_retry": false
+    }
+  ]
+}

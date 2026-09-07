@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "protocol_version": "r6-bounded-routing-v1",
+  "frozen_at": "2026-09-07",
+  "source_commit": "baf1c3798986c427a06bb5b83362e7c2f1cf86d5",
+  "status": "preregistered_before_implementation",
+  "authorization": {
+    "r6_authorized": true,
+    "r7_authorized_before_r6_acceptance": false,
+    "latest_user_scope_supersedes_the_earlier_r6_r7_deferral": true
+  },
+  "implementation_at_freeze": {
+    "routing_controller_implemented": false,
+    "retry_controller_implemented": false,
+    "evaluation_executed": false,
+    "real_provider_called": false
+  },
+  "api_contract": {
+    "new_endpoint": "POST /api/v2/answers",
+    "legacy_endpoint_unchanged": "POST /api/v1/answers",
+    "response_observability": [
+      "route",
+      "route_reason",
+      "retrieval_attempts",
+      "rewritten_query",
+      "stop_reason"
+    ]
+  },
+  "routes": [
+    {
+      "id": "retrieve",
+      "allowed_for": "all factual questions, including school facts and general facts that require selected-document evidence",
+      "llm_may_be_called": true
+    },
+    {
+      "id": "direct_answer",
+      "allowed_for": "greetings, system capability explanations, and usage help only",
+      "llm_may_be_called": false
+    },
+    {
+      "id": "refuse",
+      "allowed_for": "evidence bypass, fabrication, secret exfiltration, scope bypass, and unsupported actions",
+      "llm_may_be_called": false
+    }
+  ],
+  "routing_order": [
+    "high_confidence_refuse",
+    "high_confidence_direct_answer",
+    "retrieve_by_default"
+  ],
+  "implementation_constraints": {
+    "controller": "deterministic_native_control_flow",
+    "langgraph_allowed": false,
+    "memory_allowed": false,
+    "multi_agent_allowed": false,
+    "arbitrary_tool_calling_allowed": false,
+    "business_fact_direct_answer_allowed": false
+  },
+  "retry_policy": {
+    "max_retrieval_calls": 2,
+    "per_round_result_limit_max": 5,
+    "total_raw_result_budget_max": 10,
+    "minimum_relevant_results": "min(2, requested_top_k)",
+    "relevance_cutoff": "the request score_threshold when supplied; count-only when null",
+    "invent_provider_independent_score_cutoff": false,
+    "query_rewriter": "deterministic_rule_based_once",
+    "retry_when_rewrite_is_unchanged": false,
+    "document_ids_must_equal_top_level_scope_on_every_call": true,
+    "merge_order": "round_1_score_desc_then_round_2_first_occurrences",
+    "deduplication_key": "chunk_id",
+    "retry_on_retrieval_exception": false
+  },
+  "frozen_evaluation_assets": {
+    "route_dataset": "evaluation/r6_routing_questions.json",
+    "route_dataset_sha256": "9bdd71fef07426a5658453c9c563c3343967e674bff4dfb46e03573b18cc108a",
+    "route_sample_count": 36,
+    "route_class_counts": {
+      "retrieve": 12,
+      "direct_answer": 12,
+      "refuse": 12
+    },
+    "retry_dataset": "evaluation/r6_retry_cases.json",
+    "retry_dataset_sha256": "73d206172ac82a2c85b9b619c04206f9c599bbbdfd6fc2ac7281c97c0a6587d2",
+    "retry_case_count": 12,
+    "r7_corpus_or_questions_reused": false
+  },
+  "required_metrics": [
+    "routing_confusion_matrix",
+    "routing_accuracy",
+    "routing_macro_precision_recall_f1",
+    "business_fact_direct_answer_violation_count",
+    "retry_trigger_confusion_matrix",
+    "retry_trigger_precision_recall_f1",
+    "retrieval_call_limit_breach_count",
+    "document_scope_violation_count",
+    "route_latency_ms",
+    "rewrite_latency_ms",
+    "router_token_count",
+    "router_estimated_cost_usd"
+  ],
+  "acceptance_thresholds": {
+    "routing_accuracy_min": 0.9,
+    "routing_macro_f1_min": 0.85,
+    "business_fact_direct_answer_violation_max": 0,
+    "retry_trigger_accuracy_min": 0.9,
+    "retry_trigger_precision_min": 0.8,
+    "retry_trigger_recall_min": 0.8,
+    "retrieval_call_limit_breach_max": 0,
+    "document_scope_violation_max": 0,
+    "legacy_v1_answer_regressions_max": 0
+  },
+  "reporting_rules": {
+    "deterministic_handwritten_dataset_limit_must_be_disclosed": true,
+    "failed_thresholds_block_r7": true,
+    "results_must_not_be_described_as_a_general_agent": true,
+    "results_and_implementation_use_separate_commits": true
+  },
+  "execution_boundaries": {
+    "real_provider_authorized": false,
+    "paid_calls_allowed": false,
+    "r7_graph_code_allowed": false,
+    "r7_school_corpus_collection_allowed": false,
+    "r7_question_authoring_allowed": false,
+    "r6_production_code_root": "app",
+    "r7_future_experiment_code_root": "evaluation/experiments"
+  }
+}
