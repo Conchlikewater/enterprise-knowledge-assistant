@@ -1,0 +1,824 @@
+{
+  "schema_version": "r7-development-calibration-v1",
+  "started_at": "2026-09-07T16:06:21.120978+00:00",
+  "plan": {
+    "model": "text-embedding-3-small",
+    "dimensions": 1536,
+    "document_count": 12,
+    "chunk_count": 92,
+    "development_question_count": 10,
+    "requests_planned": 3,
+    "sdk_retries": 0,
+    "input_token_upper_bound": 16026,
+    "estimated_cost_upper_bound_usd": 0.00032052,
+    "approved_budget_usd": 0.01,
+    "price_per_million_input_tokens_usd": 0.02,
+    "source_manifest_sha256": "733d529005f5485007677c015ca3a875f53faeab67ef34f4457cc6f30aae48ef",
+    "fixture_manifest_sha256": "39c262a7671352ec32e6986199f72556504910a57ba20a8e78194be587861fc6",
+    "development_set_sha256": "0534dfd214a17b410289a878355655ac09e85de9c846dab87781b51ceb4d5312",
+    "chunking": {
+      "chunk_size": 220,
+      "chunk_overlap": 30,
+      "natural_boundaries_enabled": true,
+      "pdf_page_numbers_required": true,
+      "same_chunks_required_for_all_arms": true
+    },
+    "final_question_set_loaded": false
+  },
+  "scope": "Existing 12-document corpus and 10 development questions only",
+  "corpus_expansion_requires_revalidation": true,
+  "formal_100_question_evaluation_run": false,
+  "requests": [
+    {
+      "request": 1,
+      "input_count": 64,
+      "status": "completed",
+      "response_model": "text-embedding-3-small",
+      "prompt_tokens": 2608,
+      "total_tokens": 2608,
+      "latency_ms": 7597.762
+    },
+    {
+      "request": 2,
+      "input_count": 28,
+      "status": "completed",
+      "response_model": "text-embedding-3-small",
+      "prompt_tokens": 1127,
+      "total_tokens": 1127,
+      "latency_ms": 842.958
+    },
+    {
+      "request": 3,
+      "input_count": 10,
+      "status": "completed",
+      "response_model": "text-embedding-3-small",
+      "prompt_tokens": 134,
+      "total_tokens": 134,
+      "latency_ms": 180.477
+    }
+  ],
+  "status": "completed",
+  "selection": {
+    "status": "no_eligible_threshold",
+    "selected_threshold": null,
+    "selected_row": null,
+    "candidate_scan": [
+      {
+        "threshold": 0.2,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.21,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.22,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.23,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.24,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.25,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.26,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.27,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.28,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.29,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.3,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.31,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.32,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.33,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.34,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.35,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.36,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.37,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.38,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.39,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 0,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.4,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 1,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.41,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 1,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.42,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 1,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.43,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 1,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.44,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 1,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.45,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 2,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.46,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 2,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.47,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 2,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.48,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 2,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.49,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 3,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.5,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 3,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.51,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 4,
+        "unsupported_with_fewer_than_two": 3,
+        "answerable_mrr": 0.5555555555555556
+      },
+      {
+        "threshold": 0.52,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 3,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.53,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.54,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.55,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.56,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.57,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.58,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.59,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      },
+      {
+        "threshold": 0.6,
+        "eligible": false,
+        "answerable_questions_retaining_gold": 3,
+        "unsupported_with_fewer_than_two": 4,
+        "answerable_mrr": 0.3888888888888889
+      }
+    ]
+  },
+  "rankings": [
+    {
+      "question_id": "dev-answerable-01",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "c8ce9d5e-f863-5973-b079-a62a2b07b44f",
+          "document_id": "53e030da-e2a0-58b0-ab5b-911e5484ba54",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "score": 0.5259343309002535,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "cbd1fadb-f90b-5740-b5fe-6cb68ce16355",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.524213305169085,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "0b3c8e1d-1334-5547-822d-7fb1ef2d6b90",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.52008380392126,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "3f741c00-05d6-536b-9d93-311533a21e1f",
+          "document_id": "27f712d5-685e-5b01-baab-e96d89573c7f",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 1,
+          "score": 0.5164945031627675,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "ab83a34b-0519-5736-be6b-80a30e82917c",
+          "document_id": "52baee68-60b8-5b22-b970-fcf4f31dc170",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 1,
+          "score": 0.5119113863823217,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-answerable-02",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "0b3c8e1d-1334-5547-822d-7fb1ef2d6b90",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.7659976655588269,
+          "matches_gold": true
+        },
+        {
+          "chunk_id": "3f708d49-4af1-5db3-bdf7-9ccf41afedcf",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "score": 0.6717063304366204,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "27a50c8c-37aa-5107-9601-28777b9099da",
+          "document_id": "b9019201-78d4-5436-9def-85e6e3b35a2c",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 2,
+          "score": 0.6627039141296202,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "b6a34092-05f4-5cce-a321-e19501dbf2a7",
+          "document_id": "72c17568-5455-5ccb-bb53-5bbac9cb5e1b",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 2,
+          "score": 0.6598757875570211,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "80c14e48-99df-58ca-86b3-98e5fb1d56a1",
+          "document_id": "275e5b68-5660-5284-befd-1bd182274154",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "score": 0.653274956292618,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-answerable-03",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "2a9c7593-984b-5a85-99f1-eddc2576bd95",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "score": 0.6592903772236585,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "5b6c1e8a-9de4-5ff7-b510-851c4d27c9f3",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "score": 0.6502173279811954,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "67786a95-fa0a-53cb-8fa2-3df4657183f4",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 1,
+          "score": 0.6448961181256662,
+          "matches_gold": true
+        },
+        {
+          "chunk_id": "f1ff58ca-1969-5445-a663-a8a33cc3e04b",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "score": 0.6116667164089833,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "34d0d46e-f9ce-5a8d-8267-03bcdd83cd7c",
+          "document_id": "72c17568-5455-5ccb-bb53-5bbac9cb5e1b",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 1,
+          "score": 0.5222543105121226,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-answerable-04",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "99bf5323-cd47-556d-9124-ce1876dfab19",
+          "document_id": "7549d76c-79eb-5ffe-ad6a-b4eea55369c7",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 2,
+          "score": 0.7538592790437955,
+          "matches_gold": true
+        },
+        {
+          "chunk_id": "a61f06e7-29a0-54db-bc8f-7a1077039af0",
+          "document_id": "40b0a992-cba7-5737-abb3-df9098ede6aa",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "score": 0.6546943342562455,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "e955d403-606c-5127-b160-2d1031a8e4d1",
+          "document_id": "40b0a992-cba7-5737-abb3-df9098ede6aa",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 2,
+          "score": 0.6536405560844334,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "d1a93caf-c594-57e3-b03c-ec1307884c8f",
+          "document_id": "27f712d5-685e-5b01-baab-e96d89573c7f",
+          "filename": "mit_6_854j_fall_2005.pdf",
+          "page_number": 2,
+          "score": 0.6522551080566037,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "701a556d-0521-5ba6-84b7-a6b6c02cfcdf",
+          "document_id": "275e5b68-5660-5284-befd-1bd182274154",
+          "filename": "mit_6_857_spring_2014.pdf",
+          "page_number": 2,
+          "score": 0.6491564113413584,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-answerable-05",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "7d53b115-1194-5317-b576-3bde41cda15b",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.6001181853309873,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "f685ab43-37df-56cb-a701-6ad279bb0a60",
+          "document_id": "53e030da-e2a0-58b0-ab5b-911e5484ba54",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "score": 0.5907781705882968,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "ea66c045-d3ad-5806-a3f3-cc1182d25389",
+          "document_id": "539d8b53-47de-5bc2-ac4c-08c4fe0744f1",
+          "filename": "mit_6_045j_spring_2011.pdf",
+          "page_number": 1,
+          "score": 0.5905979169339293,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "46830114-ed75-5910-b008-6c88050a14e0",
+          "document_id": "b9019201-78d4-5436-9def-85e6e3b35a2c",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 1,
+          "score": 0.5815709230898729,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "b97b1532-8ee1-5288-aba0-93dae6046c0b",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 1,
+          "score": 0.561788106431611,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-answerable-06",
+      "answerable": true,
+      "top5": [
+        {
+          "chunk_id": "a99a05ff-608a-58ab-bd52-044298f5a58c",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.5118254931046075,
+          "matches_gold": true
+        },
+        {
+          "chunk_id": "74f386c9-e694-554e-ada2-11ec0e2982ec",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.47458225405411825,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "bd5f264e-7991-5bb5-8fa2-cc0a2901c472",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.4724519794361142,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "3f708d49-4af1-5db3-bdf7-9ccf41afedcf",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 2,
+          "score": 0.4655249930328306,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "0b3c8e1d-1334-5547-822d-7fb1ef2d6b90",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.4603039323106107,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-unanswerable-01",
+      "answerable": false,
+      "top5": [
+        {
+          "chunk_id": "3d65dcba-1628-533c-9b59-bdcc343bc6ea",
+          "document_id": "7549d76c-79eb-5ffe-ad6a-b4eea55369c7",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 1,
+          "score": 0.5095543231132798,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "b97b1532-8ee1-5288-aba0-93dae6046c0b",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 1,
+          "score": 0.4843691396495261,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "74f386c9-e694-554e-ada2-11ec0e2982ec",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.47852026225908895,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "e67aef6a-5cc2-5fb9-94ed-d8f287c45a8d",
+          "document_id": "40b0a992-cba7-5737-abb3-df9098ede6aa",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 1,
+          "score": 0.4783790337481647,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "dd9d4ce4-943e-52ce-8c3e-d38443e19e61",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.47727022482086057,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-unanswerable-02",
+      "answerable": false,
+      "top5": [
+        {
+          "chunk_id": "96b91336-bf14-51dd-9a2e-faa1abd1ad44",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.3972339713785544,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "128b4cc5-d9f4-5ae2-9c45-c86074e18f4d",
+          "document_id": "53e030da-e2a0-58b0-ab5b-911e5484ba54",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "score": 0.3972101183617507,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "0b3c8e1d-1334-5547-822d-7fb1ef2d6b90",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 2,
+          "score": 0.3969551381659511,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "71bc97aa-ca58-5b37-bf18-6388668681e8",
+          "document_id": "1bea6751-b446-5331-8e10-4a6690be8cef",
+          "filename": "mit_6_895_fall_2003.pdf",
+          "page_number": 1,
+          "score": 0.3961010599691582,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "c92c769f-fbda-5567-977f-f642106578cd",
+          "document_id": "72c17568-5455-5ccb-bb53-5bbac9cb5e1b",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 1,
+          "score": 0.39606576411267375,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-unanswerable-03",
+      "answerable": false,
+      "top5": [
+        {
+          "chunk_id": "c8ce9d5e-f863-5973-b079-a62a2b07b44f",
+          "document_id": "53e030da-e2a0-58b0-ab5b-911e5484ba54",
+          "filename": "mit_6_006_spring_2020.pdf",
+          "page_number": 1,
+          "score": 0.5309959530512894,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "ab83a34b-0519-5736-be6b-80a30e82917c",
+          "document_id": "52baee68-60b8-5b22-b970-fcf4f31dc170",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 1,
+          "score": 0.5285851276745519,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "3d65dcba-1628-533c-9b59-bdcc343bc6ea",
+          "document_id": "7549d76c-79eb-5ffe-ad6a-b4eea55369c7",
+          "filename": "mit_6_851_spring_2012.pdf",
+          "page_number": 1,
+          "score": 0.515045076396444,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "74f386c9-e694-554e-ada2-11ec0e2982ec",
+          "document_id": "53386565-d74e-5985-af27-1ecac2b3d80d",
+          "filename": "mit_6_830_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.5016413929261603,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "dd9d4ce4-943e-52ce-8c3e-d38443e19e61",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.4959405218678452,
+          "matches_gold": false
+        }
+      ]
+    },
+    {
+      "question_id": "dev-unanswerable-04",
+      "answerable": false,
+      "top5": [
+        {
+          "chunk_id": "46830114-ed75-5910-b008-6c88050a14e0",
+          "document_id": "b9019201-78d4-5436-9def-85e6e3b35a2c",
+          "filename": "mit_6_046j_fall_2005.pdf",
+          "page_number": 1,
+          "score": 0.4721368581080793,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "7d53b115-1194-5317-b576-3bde41cda15b",
+          "document_id": "5028d047-ef5d-5f37-bcc1-bb1df3d4d5c7",
+          "filename": "mit_6_042j_fall_2010.pdf",
+          "page_number": 1,
+          "score": 0.4478616271430292,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "7657514b-73c3-5ae2-9c1c-1638da470443",
+          "document_id": "40b0a992-cba7-5737-abb3-df9098ede6aa",
+          "filename": "mit_6_852j_fall_2009.pdf",
+          "page_number": 1,
+          "score": 0.44751870732942134,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "a8c6245d-2dbd-5a4a-ba9d-09a547bb9c89",
+          "document_id": "52baee68-60b8-5b22-b970-fcf4f31dc170",
+          "filename": "mit_6_033_spring_2018.pdf",
+          "page_number": 2,
+          "score": 0.43794617746148884,
+          "matches_gold": false
+        },
+        {
+          "chunk_id": "83ef97f3-ef97-5e5b-a02d-4188828acfaa",
+          "document_id": "72c17568-5455-5ccb-bb53-5bbac9cb5e1b",
+          "filename": "mit_6_828_fall_2012.pdf",
+          "page_number": 2,
+          "score": 0.435625322093579,
+          "matches_gold": false
+        }
+      ]
+    }
+  ],
+  "vector_cache_sha256": "b37de606ec57d4cf493fad9fd8174534fb363361c565b1bea35cd85d4752e1f8",
+  "completed_at": "2026-09-07T16:06:30.005226+00:00",
+  "attempted_requests": 3,
+  "reported_total_tokens": 3869,
+  "reported_cost_usd": 7.738e-05,
+  "submitted_token_upper_bound": 16026,
+  "submitted_cost_upper_bound_usd": 0.00032052
+}
