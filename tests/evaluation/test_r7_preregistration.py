@@ -49,8 +49,9 @@ def test_r7_assets_are_hash_locked_before_graph_implementation() -> None:
 
 def test_r7_replacement_requires_review_before_freezing() -> None:
     review = _load("revision_review.json")
-    assert review["status"] == "awaiting_distribution_review"
-    assert review["distribution_approved"] is False
+    assert review["status"] == "distribution_approved_corpus_under_review"
+    assert review["distribution_approved"] is True
+    assert review["distribution_approved_at"] == "2026-09-08"
     assert review["new_question_file"] is None
     assert review["new_question_sha256"] is None
     assert review["superseded_questions_are_executable"] is False
@@ -94,6 +95,38 @@ def test_r7_corpus_has_twelve_attributed_deterministic_pdfs() -> None:
         )
         assert document["source_url"] in "".join(extracted.split())
         assert "creativecommons.org/licenses/by-nc-sa/4.0" in extracted
+
+
+def test_r7_domestic_source_lock_is_not_a_formal_dataset_or_open_license() -> None:
+    review = _load("revision_review.json")
+    source_lock = _load("neuq_2023_source_lock.json")
+    path = PROJECT_ROOT / review["source_candidate_lock"]
+    assert _sha256(path) == review["source_candidate_lock_sha256"]
+    assert source_lock["status"] == "source_bytes_pinned_pending_evidence_audit"
+    assert source_lock["official_corpus_and_100_questions_frozen"] is False
+    assert review["formal_corpus_frozen"] is False
+    assert review["replacement_development_provider_run_authorized"] is False
+    assert source_lock["reuse"]["open_redistribution_license_found"] is False
+    assert source_lock["reuse"]["external_provider_upload_authorized"] is False
+    assert source_lock["raw_files_committed"] is False
+    assert source_lock["verification"]["unique_question_capacity_verified"] is False
+    assert source_lock["verification"]["formal_metrics_produced"] is False
+    documents = source_lock["documents"]
+    assert len(documents) == 27
+    assert len({item["id"] for item in documents}) == 27
+    assert len({item["url"] for item in documents}) == 27
+    assert sum(item["pages"] for item in documents) == 370
+    assert sum(item["bytes"] for item in documents) == 13143060
+    assert Counter(item["catalogue_term"] for item in documents) == {
+        "spring": 15,
+        "autumn": 12,
+    }
+    for item in documents:
+        assert item["url"].startswith("https://sstc.neuq.edu.cn/__local/")
+        assert item["url"].endswith(".pdf")
+        assert len(item["sha256"]) == 64
+        assert set(item["sha256"]) <= set("0123456789abcdef")
+        assert item["index_publication_date"] == "2023-09-08"
 
 
 def test_r7_graph_assertions_have_valid_types_and_source_evidence() -> None:

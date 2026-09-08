@@ -2,10 +2,19 @@
 
 This directory is isolated from the production `app/` package. The user withdrew
 the 50-question preregistration before any formal experiment result and requested
-a fresh 100-question design. The proposed distribution is awaiting review;
+a fresh 100-question design. The 20/35/30/8/7 distribution is now approved;
 no 100-question file or hash has been frozen. See `revision_review.json` and
 `docs/r7_100_question_distribution_proposal.md`. Graph retrieval and automatic
 graph extraction are not implemented.
+
+The replacement source candidate is the 2023 CST syllabus collection at
+Northeastern University's Sydney Smart Technology College, Qinhuangdao.
+`neuq_2023_source_lock.json` records the URLs and actual downloaded-byte SHA256
+for 27 independent original PDFs (370 pages). They are historical listings,
+not current enrolment advice or the separate UTS handbook. Source-byte pinning
+does not freeze the formal corpus, graph assertions, development or final questions.
+Raw PDFs/full text remain in an ignored local directory and are not covered by
+the MIT OCW fixture license below; no open redistribution license was found.
 
 ## Historical assets retained for traceability
 
@@ -52,8 +61,9 @@ ranked 22 and 10, outside Top-5. No final questions were loaded.
 
 The original report is `calibration/20260908_12docs.json`. It is a development
 diagnostic, not a graph comparison or a threshold for expanded data. The
-100-question distribution and corpus expansion require review; the calibration
-blocker must be resolved before a replacement preregistration and graph code.
+question distribution is approved. Evidence capacity and publishable minimal
+fixtures still need review; separate Chinese development questions and the
+calibration blocker must be handled before replacement preregistration and graph code.
 The three arms, metrics, and promotion thresholds remain unchanged.
 
 The default calibration command is a no-network dry run:

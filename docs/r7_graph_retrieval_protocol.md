@@ -2,7 +2,8 @@
 
 > 状态：**历史首轮方案，50 题已由用户撤销正式执行资格。**
 > 当前入口：`docs/r7_100_question_distribution_proposal.md` 与
-> `evaluation/r7/revision_review.json`。100 题分布待审核，尚未冻结。
+> `evaluation/r7/revision_review.json`。100 题分布已批准，题目全文尚未冻结。
+> 国内替换候选为东北大学悉尼智能科技学院 2023 年 CST 大纲；原始字节锁定不等于正式数据冻结。
 > 0.01 美元开发集校准已获准并完成，但没有合格阈值；详见当前入口。
 > 以下正文保留原 50 题设计记录，不能据此开始图检索或正式评测。
 > 机器协议：`evaluation/r7/protocol.json`。

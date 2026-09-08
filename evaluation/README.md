@@ -454,7 +454,12 @@ historical snapshots and cannot establish current MIT requirements.
 
 The user requested a redesigned 100-question set. A distribution of 20 ordinary,
 35 relationship, 30 multi-hop, 8 scope-isolation, and 7 unsupported questions is
-proposed, not approved or frozen. The current short corpus needs expansion.
+approved; the question text is not yet written or frozen. The replacement source
+candidate is NEU's Sydney Smart Technology College CST syllabus listings for
+2023, not current UTS enrolment rules. The 27 original PDFs (370 pages) have
+downloaded-byte hashes in `r7/neuq_2023_source_lock.json`. Raw PDFs stay local
+and ignored because no open redistribution license was found. This source-byte
+lock is not a completed 100-question dataset or a retrieval result.
 
 The approved `text-embedding-3-small` development calibration made three requests
 and reported 3,869 tokens, estimated USD 0.00007738. It found no eligible
