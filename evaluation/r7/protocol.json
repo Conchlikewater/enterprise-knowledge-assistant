@@ -1,11 +1,19 @@
 {
   "schema_version": "r7-graph-retrieval-protocol-v1",
-  "status": "preregistered_before_graph_implementation",
+  "status": "superseded_pending_100_question_review",
   "frozen_at": "2026-09-08",
+  "supersession": {
+    "date": "2026-09-08",
+    "reason": "User withdrew the 50-question set before formal results and requested a redesigned 100-question set with distribution review before freezing.",
+    "review": "evaluation/r7/revision_review.json",
+    "old_question_set_executable": false
+  },
   "authorization": {
     "r7_authorized": true,
     "graph_retrieval_implementation_authorized_after_preregistration": true,
     "real_provider_authorized": false,
+    "development_calibration_authorized": true,
+    "development_calibration_budget_usd": 0.01,
     "production_integration_authorized": false
   },
   "scope": {

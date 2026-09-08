@@ -26,11 +26,14 @@ def test_r7_assets_are_hash_locked_before_graph_implementation() -> None:
     protocol = _load("protocol.json")
     assets = protocol["frozen_assets"]
 
-    assert protocol["status"] == "preregistered_before_graph_implementation"
+    assert protocol["status"] == "superseded_pending_100_question_review"
+    assert protocol["supersession"]["old_question_set_executable"] is False
     assert protocol["authorization"] == {
         "r7_authorized": True,
         "graph_retrieval_implementation_authorized_after_preregistration": True,
         "real_provider_authorized": False,
+        "development_calibration_authorized": True,
+        "development_calibration_budget_usd": 0.01,
         "production_integration_authorized": False,
     }
     for path_key, hash_key in (
@@ -42,6 +45,21 @@ def test_r7_assets_are_hash_locked_before_graph_implementation() -> None:
         path = PROJECT_ROOT / assets[path_key]
         assert path.is_file()
         assert _sha256(path) == assets[hash_key]
+
+
+def test_r7_replacement_requires_review_before_freezing() -> None:
+    review = _load("revision_review.json")
+    assert review["status"] == "awaiting_distribution_review"
+    assert review["distribution_approved"] is False
+    assert review["new_question_file"] is None
+    assert review["new_question_sha256"] is None
+    assert review["superseded_questions_are_executable"] is False
+    assert review["formal_experiment_authorized"] is False
+    distribution = review["distribution_proposal"]
+    assert sum(distribution.values()) == review["target_question_count"] == 100
+    assert distribution["relationship"] / 100 >= 17 / 50
+    assert distribution["multi_hop"] / 100 >= 12 / 50
+    assert review["development_questions_changed"] is False
 
 
 def test_r7_corpus_has_twelve_attributed_deterministic_pdfs() -> None:

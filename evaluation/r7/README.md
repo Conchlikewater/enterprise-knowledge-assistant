@@ -1,21 +1,24 @@
 # R7 school Graph Retrieval experiment
 
-This directory is isolated from the production `app/` package. It freezes the
-data and comparison rules for a bounded Graph Retrieval experiment; it does not
-claim that GraphRAG is available through a production API.
+This directory is isolated from the production `app/` package. The user withdrew
+the 50-question preregistration before any formal experiment result and requested
+a fresh 100-question design. The proposed distribution is awaiting review;
+no 100-question file or hash has been frozen. See `revision_review.json` and
+`docs/r7_100_question_distribution_proposal.md`. Graph retrieval and automatic
+graph extraction are not implemented.
 
-## Frozen assets
+## Historical assets retained for traceability
 
 - `corpus_sources.json`: canonical facts, official source URLs, license data,
   and 60 manually curated graph assertions;
 - `corpus_manifest.json`: SHA256 and page count for 12 deterministic PDFs;
 - `documents/`: 12 two-page historical syllabus fixtures;
-- `questions.json`: 50 final questions, frozen before graph implementation;
+- `questions.json`: superseded 50-question set, retained unchanged, not executable;
 - `development_questions.json`: 10 separate threshold-development questions,
   excluded from all final metrics;
 - `protocol.json`: three-arm comparison, fusion, metrics, and promotion gates.
 
-The final set contains 15 ordinary facts, 17 one-hop relationship questions,
+The superseded set contains 15 ordinary facts, 17 one-hop relationship questions,
 12 multi-hop questions, 3 scope-isolation questions, and 3 unsupported
 questions. Relationship and multi-hop questions contain exact Evidence and
 graph assertion paths.
@@ -41,11 +44,27 @@ produce identical hashes. It does not access the network.
 
 ## Current gate
 
-The formal comparison uses the existing `text-embedding-3-small` adapter, but
-no real Provider call is authorized yet. The semantic threshold must first be
-selected only on `development_questions.json` using the frozen rule in
-`protocol.json`, then recorded in a preregistration-only commit. Graph code may
-start only after that value is frozen.
+The USD 0.01 development-only calibration was authorized and ran against the
+existing 12-document corpus and 10 development questions. Three embedding
+requests used 3,869 reported tokens (estimated USD 0.00007738). The registered
+threshold rule found **no eligible threshold**: two required evidence chunks
+ranked 22 and 10, outside Top-5. No final questions were loaded.
+
+The original report is `calibration/20260908_12docs.json`. It is a development
+diagnostic, not a graph comparison or a threshold for expanded data. The
+100-question distribution and corpus expansion require review; the calibration
+blocker must be resolved before a replacement preregistration and graph code.
+The three arms, metrics, and promotion thresholds remain unchanged.
+
+The default calibration command is a no-network dry run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_r7_calibration.py
+```
+
+Real runs require explicit `--allow-paid`, new output/cache paths, and user
+authorization. Existing reports cannot be overwritten. Final three-arm
+evaluation and LLM graph extraction do not have paid-call authorization.
 
 An offline hashing run may later verify mechanics, but it cannot decide whether
 Graph Retrieval should enter the application. Even a positive formal result

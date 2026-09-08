@@ -1,0 +1,36 @@
+{
+  "schema_version": "r7-question-redesign-review-v1",
+  "status": "awaiting_distribution_review",
+  "requested_at": "2026-09-08",
+  "superseded_preregistration_commit": "a2186a5",
+  "superseded_question_sha256": "2d4a243d398d9a163c42c1b7b4224a0ae9a760b64f2d85626ad40e0c81d343f1",
+  "superseded_questions_are_executable": false,
+  "target_question_count": 100,
+  "distribution_approved": false,
+  "distribution_proposal": {
+    "ordinary_fact": 20,
+    "relationship": 35,
+    "multi_hop": 30,
+    "scope_isolation": 8,
+    "unanswerable": 7
+  },
+  "new_question_file": null,
+  "new_question_sha256": null,
+  "proposed_corpus_document_count": 24,
+  "proposed_additional_sources": 12,
+  "corpus_expansion_implemented": false,
+  "development_question_count": 10,
+  "development_questions_changed": false,
+  "development_calibration": {
+    "authorized": true,
+    "budget_usd": 0.01,
+    "report": "evaluation/r7/calibration/20260908_12docs.json",
+    "result": "no_eligible_threshold",
+    "threshold": null,
+    "valid_for_expanded_corpus": false
+  },
+  "retrieval_arms_metrics_and_promotion_thresholds_unchanged": true,
+  "formal_experiment_authorized": false,
+  "automatic_extraction": "proposal_only_not_implemented",
+  "proposal_document": "docs/r7_100_question_distribution_proposal.md"
+}

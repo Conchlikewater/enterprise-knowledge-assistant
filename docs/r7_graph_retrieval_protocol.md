@@ -1,6 +1,10 @@
 # R7 学校领域 Graph Retrieval 对照实验
 
-> 状态：**2026-09-08 完成首轮预注册；图检索代码未开始，真实 Provider 未获授权。**
+> 状态：**历史首轮方案，50 题已由用户撤销正式执行资格。**
+> 当前入口：`docs/r7_100_question_distribution_proposal.md` 与
+> `evaluation/r7/revision_review.json`。100 题分布待审核，尚未冻结。
+> 0.01 美元开发集校准已获准并完成，但没有合格阈值；详见当前入口。
+> 以下正文保留原 50 题设计记录，不能据此开始图检索或正式评测。
 > 机器协议：`evaluation/r7/protocol.json`。
 
 ## 1. 这个阶段要回答什么
