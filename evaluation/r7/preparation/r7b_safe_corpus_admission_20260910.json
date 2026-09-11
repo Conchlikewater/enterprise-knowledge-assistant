@@ -1,0 +1,81 @@
+{
+  "schema_version": "r7-safe-corpus-admission-v1",
+  "status": "approved_for_local_offline_chunking_only",
+  "created_at": "2026-09-10",
+  "source_scope": {
+    "documents": 44,
+    "pages": 605,
+    "kept_pages": 566,
+    "excluded_pages": 39,
+    "blocks": 761,
+    "characters": 727236,
+    "block_kinds": {
+      "course_information": 44,
+      "prerequisites": 44,
+      "learning_objectives": 112,
+      "teaching_content": 336,
+      "teaching_schedule": 66,
+      "teaching_method": 58,
+      "assessment": 101
+    }
+  },
+  "input_sha256": {
+    "cst_source_lock": "d6a658da53c17a106b5368ad073411db0ade5e2962c80912b09923a0cb63d087",
+    "ce_source_lock": "fb4667ad9b2cf8396b5faa529a970d857b7929279778ef5a270f12818abd6943",
+    "course_facts": "f89bd05155223289792a5c2796759c4d13845e1b3992758d86b01ccb9beb51cd",
+    "safe_corpus_implementation": "0c93491885fbf0cbe7249b8ff2137b1babcdb5663933f8f559d8b9b26ae02e22",
+    "formal_questions_coverage_check_only": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2",
+    "development_questions_coverage_check_only": "84a06eb6e1eaeebdb93505332e8d092cf6a9696c84d6f6f0702041542277444c"
+  },
+  "output_sha256": {
+    "local_candidate": "06b9f795a27e864c80f11cbb80d66b24cceb3a6508c3af84294cec13fb0d5fe0",
+    "candidate_corpus": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90"
+  },
+  "coverage_check": {
+    "formal_questions": 100,
+    "formal_evidence_locators": 125,
+    "formal_distinct_evidence_pages": 53,
+    "development_questions": 10,
+    "development_evidence_locators": 8,
+    "development_distinct_evidence_pages": 6,
+    "all_distinct_evidence_pages": 55,
+    "missing_evidence_pages": 0,
+    "used_for_parameter_selection": false
+  },
+  "safety_check": {
+    "redacted_lines": 463,
+    "pages_with_redaction": 145,
+    "maximum_redacted_lines_on_one_page": 10,
+    "remaining_personnel_marker_blocks": 0,
+    "remaining_local_sensitive_term_blocks": 0,
+    "page_one_structural_facts_visually_reviewed": 44,
+    "high_risk_assessment_pages_spot_checked": [
+      "neuq-ce-2023-spring-03:8",
+      "neuq-cst-2023-spring-03:8",
+      "neuq-cst-2023-spring-12:15"
+    ],
+    "assessment_labels_retained": [
+      "平时",
+      "实验",
+      "期中",
+      "期末"
+    ]
+  },
+  "execution_boundary": {
+    "question_files_loaded_by_corpus_builder": false,
+    "gold_loaded_by_corpus_builder": false,
+    "provider_calls": 0,
+    "raw_pdf_text_committed": false,
+    "safe_text_committed": false,
+    "safe_for_local_offline_chunking": true,
+    "external_provider_upload_authorized": false,
+    "privacy_completeness_claimed": false,
+    "graph_retrieval_implemented": false
+  },
+  "limitations": [
+    "This admission binds one deterministic local candidate by SHA256; it is not a proof that every possible personal name was detected.",
+    "The 100 formal questions were used only to verify that declared evidence pages survived corpus construction, never to select chunking or retrieval parameters.",
+    "The sanitized text remains in an ignored local file and cannot be sent to an external Provider without a separate review and user authorization.",
+    "No Gold chunk mapping, embedding calibration, graph construction or retrieval experiment has been completed."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "scope": "development_only_not_formal_100_results",
+  "model": "text-embedding-3-small",
+  "dimensions": 1536,
+  "candidate_corpus_sha256": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90",
+  "raw_local_report": ".tmp/r7b-neuq-calibration-real-20260910.json",
+  "raw_report_file_sha256": "bb990431dc32f148bbad051cf12b812f9a2c4d8b9d7deb53e88727fbc3056f95",
+  "attempted_requests": 21,
+  "reported_total_tokens": 355197,
+  "reported_cost_usd": 0.00710394,
+  "selected_threshold": 0.53,
+  "answerable_retaining_gold": 6,
+  "answerable_denominator": 6,
+  "unsupported_with_fewer_than_two": 2,
+  "unsupported_denominator": 4,
+  "answerable_mrr": 0.75,
+  "formal_questions_evaluated": 0,
+  "limitations": [
+    "Ten development questions only; these are not formal experiment metrics.",
+    "Two unsupported questions still retain at least two above-threshold chunks; similarity does not establish answer support.",
+    "Historical plan fields in the raw report describe the pre-approval dry run; the bound approval and actual request receipts establish execution authorization.",
+    "The first launch failed the approval hash gate before any network request; the whole-candidate hash was corrected to the admitted block-corpus hash."
+  ]
+}

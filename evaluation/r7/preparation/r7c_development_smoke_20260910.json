@@ -1,0 +1,24 @@
+{
+  "status": "development_retrieval_smoke_passed_not_full_r7c_acceptance",
+  "local_report": ".tmp/r7c-development-smoke-20260910.json",
+  "report_sha256": "2a3cb557e2f0177fe364aa9b240cf4b04451fc53ea23dd2e22308361c32f2a4c",
+  "chunks": 1241,
+  "graph_nodes": 86,
+  "graph_edges": 79,
+  "development_questions": 10,
+  "arm_runs": 30,
+  "dense_top5_second_rounds": 0,
+  "dense_retry_second_rounds": 1,
+  "graph_dense_retry_second_rounds": 1,
+  "formal_questions_run": 0,
+  "provider_requests": 1,
+  "reported_tokens": 34,
+  "reported_cost_usd": 0.00000068,
+  "cumulative_since_cny10_authorization_usd": 0.00710462,
+  "new_document_embedding_calls": 0,
+  "limitations": [
+    "These counts verify execution and budget boundaries, not retrieval superiority.",
+    "Full R7-C acceptance still needs paired aggregation, label-independent answer/refuse behavior and validation of all reporting gates.",
+    "Graph binding uses all registered assertions and source chunks, never formal expected paths or answers."
+  ]
+}

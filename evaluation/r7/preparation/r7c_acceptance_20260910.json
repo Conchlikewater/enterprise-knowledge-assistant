@@ -1,0 +1,26 @@
+{
+  "status": "engineering_acceptance_passed",
+  "formal_questions_executed": 0,
+  "development_arm_runs": 30,
+  "development_smoke_record": "evaluation/r7/preparation/r7c_development_smoke_20260910.json",
+  "full_tests_passed_before_last_gate_test": 397,
+  "full_subtests_passed": 65,
+  "server_integration_tests_skipped": 3,
+  "final_r7_tests_passed": 159,
+  "app_branch_coverage_percent": 88.90,
+  "promotion_checks": 11,
+  "response_rule": "Two unique in-scope final candidates offer evidence; otherwise refuse. No Gold in decision; no factual prose generation.",
+  "scope": "retrieval experiment only; not production integration",
+  "remaining_r7d_work": [
+    "Hash-bound formal query/cache runner and budget receipts",
+    "Run fixed 100 questions once across all three arms",
+    "Apply paired reporting and all promotion checks without post-hoc tuning",
+    "Report embedding latency separately from cached retrieval latency"
+  ],
+  "limitations": [
+    "Engineering acceptance is not a positive retrieval experiment result.",
+    "Answer/refuse is evidence availability, not entailment or factual answer quality.",
+    "Citation support is Gold chunk matching, not a generated-answer semantic evaluator.",
+    "Prior source and local-cache admission snapshots are retained unchanged."
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "schema_version": "r7-full-prerequisite-list-review-v1",
+  "status": "six_source_field_answers_checked_not_full_gold",
+  "reviewed_on": "2026-09-09",
+  "question_file_sha256": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2",
+  "ledger_file_sha256": "9d275d1dc67a4e8b31b068de2ff9aca1e35e60d0fc86ff18be406ac41fddc0ef",
+  "label_correction_recheck": {"previous_ledger_sha256": "dffe0a33213d2e5e9f2747092c8652f646743eeb71ed75c5531e7e75431adea4", "reason": "仅纠正Linux标题连接词；11份名单与6题交集重算不变。"},
+  "repair_history": [{
+    "date": "2026-09-09",
+    "previous_ledger_sha256": "a4e520e049102e1db6e0caaa99e5dee70b8378ad3bb51de3ad36b3f310ecae86",
+    "change": "基于既有完整原表审核新增2个来源限定名称节点和2条先修边；旧77边/84节点内容未改，6题交集答案未改。",
+    "new_raw_pdf_review_performed": false
+  }],
+  "method": "逐一校验11份本地PDF SHA256，重新渲染并查看完整第1页，将先修栏的中文结构标签人工列出，再对6题计算精确名称交集。未从候选图缺边推断原表缺项，未以教师/教材作者信息构题。",
+  "rendering_note": "Poppler提示Symbol/ArialUnicode替代字体警告；11页目标标题、课程编号、中文先修栏及边界目视可辨。通信原理先修标签换行，不能依赖连续字符串搜索定位。",
+  "normalization": "仅忽略标签首尾空白，原表逗号/顿号作分隔；双语同栏只比较中文名称。不做模糊匹配、翻译、简称或课程身份合并。",
+  "sources": [
+    {
+      "source_id": "neuq-cst-2023-spring-01",
+      "ledger_node_key": "CST-S01",
+      "course_code": "3100213005",
+      "source_sha256": "d6cc315b4b558612f7a5a7ff54dcd8a9b808053f9bf0bab8ef7f8a2f8b498624",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "业务需求建模"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-02",
+      "ledger_node_key": "CST-A02",
+      "course_code": "3100213008",
+      "source_sha256": "0388779807ae4f841a15037b4712681c9f2d5553e30e1dd35390636615e2a79d",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "C++程序设计基础",
+        "业务需求建模"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-01",
+      "ledger_node_key": "CE-S01",
+      "course_code": "3100112009",
+      "source_sha256": "1ae486533cfe1da8bcfd9f34fe8beba7cc745c71fa4c562132a1fc3373a5651e",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "集成电路系统设计",
+        "数字电子技术基础"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-05",
+      "ledger_node_key": "CE-A05",
+      "course_code": "UTS-CE-41092",
+      "source_sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "线性代数",
+        "概率论与数理统计",
+        "信号与系统分析",
+        "集成电路系统设计",
+        "数字电子技术基础"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-01",
+      "ledger_node_key": "CE-A01",
+      "course_code": "3100113012",
+      "source_sha256": "7bd8cc2589e83ed2e9338022a73b6c860239ac11626fd196ea118caf8201770e",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "高等数学",
+        "线性代数",
+        "复变函数与积分变换",
+        "电路原理"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-06",
+      "ledger_node_key": "CE-S06",
+      "course_code": "3100112008.01",
+      "source_sha256": "b1cfc8834a15983df34313189b4dee09311c2ad337644b6eb72c61fd33d725b3",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "高等数学",
+        "线性代数",
+        "复变函数与积分变换"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-11",
+      "ledger_node_key": "CE-S11",
+      "course_code": "3100113018",
+      "source_sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "线性代数",
+        "信号与系统",
+        "数字信号处理"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-12",
+      "ledger_node_key": "CE-S12",
+      "course_code": "3100113016",
+      "source_sha256": "405a0715b27dee71e02ab97e456e513c55a4eddcf09efeb776b1908b45ca7fdb",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "信号与线性系统分析",
+        "数字信号处理",
+        "单片机原理",
+        "微机原理"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-09",
+      "ledger_node_key": "CE-S09",
+      "course_code": "3100113022",
+      "source_sha256": "44d48d86fa16336c24f0667423e9d23fa64045f448251fd75fa19345dc5a9e0b",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "通信原理"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-10",
+      "ledger_node_key": "CE-S10",
+      "course_code": "3100113024",
+      "source_sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "通信原理",
+        "计算机网络",
+        "数字电子技术基础"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-10",
+      "ledger_node_key": "CST-A10",
+      "course_code": "3100212005",
+      "source_sha256": "babce1c20f0341a3ba7bd78c9cbcb6cacbf325a89804d723121c79b5bc7ed7f7",
+      "page_number": 1,
+      "field": "先修课程",
+      "labels": [
+        "C++程序设计基础"
+      ],
+      "source_page_visually_checked": true,
+      "full_field_review_passed": true
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "neuq-draft-014",
+      "source_ids": [
+        "neuq-cst-2023-spring-01",
+        "neuq-cst-2023-autumn-02"
+      ],
+      "intersection_labels": [
+        "业务需求建模"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-015",
+      "source_ids": [
+        "neuq-ce-2023-spring-01",
+        "neuq-ce-2023-autumn-05"
+      ],
+      "intersection_labels": [
+        "集成电路系统设计",
+        "数字电子技术基础"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-037",
+      "source_ids": [
+        "neuq-ce-2023-autumn-01",
+        "neuq-ce-2023-spring-06"
+      ],
+      "intersection_labels": [
+        "高等数学",
+        "线性代数",
+        "复变函数与积分变换"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-038",
+      "source_ids": [
+        "neuq-ce-2023-spring-11",
+        "neuq-ce-2023-spring-12"
+      ],
+      "intersection_labels": [
+        "数字信号处理"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-039",
+      "source_ids": [
+        "neuq-ce-2023-spring-09",
+        "neuq-ce-2023-spring-10"
+      ],
+      "intersection_labels": [
+        "通信原理"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-040",
+      "source_ids": [
+        "neuq-cst-2023-autumn-02",
+        "neuq-cst-2023-autumn-10"
+      ],
+      "intersection_labels": [
+        "C++程序设计基础"
+      ],
+      "comparison_mode": "exact_chinese_label_not_course_identity_merge",
+      "full_field_answer_review_passed": true,
+      "chunk_mapping_verified": false,
+      "full_gold_verified": false
+    }
+  ],
+  "ledger_completeness_findings": [
+    {
+      "source_id": "neuq-ce-2023-autumn-05",
+      "ledger_node_key": "CE-A05",
+      "full_field_count": 5,
+      "represented_count": 5,
+      "original_represented_count": 3,
+      "remaining_missing_labels": [],
+      "missing_labels": [
+        "线性代数",
+        "概率论与数理统计"
+      ],
+      "effect": "原漏项已补成来源限定提及，15的交集不变；本批11份已审先修栏表示齐全，不外推其他文档或全图完备。",
+      "resolved": true
+    }
+  ],
+  "boundaries": [
+    "信号与系统、信号与线性系统分析、信号与系统分析保持各自名称，不强行判为同一课程。",
+    "交集只说明指定2023来源栏目同名，不证明课程等价、抵认或当前选课规则。",
+    "已登记17项答案表示缺口收口只针对当时65题候选；本次发现的是全文名单未完全建模，不推翻6题交集答案，但禁止全图完备声称。",
+    "源字段答案6题已核对，不代表Chunk映射、实体解析、整套Gold/盲审/36条余量通过。"
+  ],
+  "identity_review": {
+    "reviewed_on": "2026-09-09",
+    "scope": "名称/编号与来源隔离检查，不是重新验证原32条已匹配课程边的语义身份",
+    "source_scoped_mentions": 30,
+    "repeated_name_groups": [
+      {
+        "name": "线性代数",
+        "keys": [
+          "CE-A05::prerequisite-mention-1",
+          "CE-S11::prerequisite-mention-1",
+          "CE-A01::prerequisite-mention-2",
+          "CE-S06::prerequisite-mention-2"
+        ],
+        "codes": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unresolved": 4
+      },
+      {
+        "name": "创新创业设计基础",
+        "keys": [
+          "CE-S03",
+          "CST-S03"
+        ],
+        "codes": [
+          "3100113007",
+          "3100213004"
+        ],
+        "unresolved": 0
+      },
+      {
+        "name": "C++程序设计基础",
+        "keys": [
+          "CST-A11",
+          "CE-S02::prerequisite-cpp"
+        ],
+        "codes": [
+          "3100212001",
+          null
+        ],
+        "unresolved": 1
+      },
+      {
+        "name": "C程序设计基础",
+        "keys": [
+          "CST-S04::prerequisite-c",
+          "CST-A09::prerequisite-mention-1",
+          "CST-A04::prerequisite-mention-1",
+          "CE-A04::prerequisite-mention-1"
+        ],
+        "codes": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unresolved": 4
+      },
+      {
+        "name": "计算机网络",
+        "keys": [
+          "CE-S10::prerequisite-mention-1",
+          "CST-S12::prerequisite-mention-1",
+          "CST-S15::prerequisite-mention-1"
+        ],
+        "codes": [
+          null,
+          null,
+          null
+        ],
+        "unresolved": 3
+      },
+      {
+        "name": "信号与系统",
+        "keys": [
+          "CE-S11::prerequisite-mention-2",
+          "CE-A08::prerequisite-mention-2"
+        ],
+        "codes": [
+          null,
+          null
+        ],
+        "unresolved": 2
+      },
+      {
+        "name": "高等数学",
+        "keys": [
+          "CE-A01::prerequisite-mention-1",
+          "CE-S06::prerequisite-mention-1"
+        ],
+        "codes": [
+          null,
+          null
+        ],
+        "unresolved": 2
+      },
+      {
+        "name": "高等数学建模",
+        "keys": [
+          "CE-S08::prerequisite-mention-1",
+          "CE-A07::prerequisite-mention-1"
+        ],
+        "codes": [
+          null,
+          null
+        ],
+        "unresolved": 2
+      }
+    ],
+    "automatic_merges_performed": 0,
+    "all_course_identity_verified": false
+  },
+  "provider_calls": 0,
+  "execution_authorized": false,
+  "question_content_changed": false,
+  "ledger_changed": true
+}

@@ -1,0 +1,2405 @@
+{
+  "schema_version": "r7a-source-review-v1",
+  "reviewed_on": "2026-09-10",
+  "status": "source_review_passed_not_formal_freeze",
+  "inputs": [
+    {
+      "path": "evaluation/r7/neuq_2023_questions_draft.json",
+      "sha256": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2"
+    },
+    {
+      "path": "evaluation/r7/neuq_2023_relation_candidates.json",
+      "sha256": "9d275d1dc67a4e8b31b068de2ff9aca1e35e60d0fc86ff18be406ac41fddc0ef"
+    },
+    {
+      "path": "evaluation/r7/neuq_2023_development_questions_draft.json",
+      "sha256": "84a06eb6e1eaeebdb93505332e8d092cf6a9696c84d6f6f0702041542277444c"
+    },
+    {
+      "path": "evaluation/r7/preparation/subtype_proposal_20260909.json",
+      "sha256": "fd6fe5593b02e0bbf253f391a974d72f09c67c96891e97b885ce699a004c4ced"
+    },
+    {
+      "path": "evaluation/r7/neuq_2023_source_lock.json",
+      "sha256": "d6a658da53c17a106b5368ad073411db0ade5e2962c80912b09923a0cb63d087"
+    },
+    {
+      "path": "evaluation/r7/neuq_2023_ce_source_lock.json",
+      "sha256": "fb4667ad9b2cf8396b5faa529a970d857b7929279778ef5a270f12818abd6943"
+    }
+  ],
+  "boundary": "R7-A仅验收源字段、题意、必要来源与候选余量。R7-B仍须安全输入、Chunk Gold、参数/评分分母和预注册冻结。旧草案及旧报告的未冻结字段保留历史状态，以本记录说明当前源级进度，不将其升级为完整Gold。",
+  "source_review": {
+    "hash_verified_documents": 44,
+    "text_pages_scanned": 605,
+    "evidence_pages_covered": 55,
+    "all_605_pages_visually_reviewed": false,
+    "reused_review": "evaluation/r7/preparation/matched_course_review_20260909.json",
+    "pages": [
+      {
+        "source_id": "neuq-ce-2023-autumn-01",
+        "page_number": 1,
+        "source_sha256": "7bd8cc2589e83ed2e9338022a73b6c860239ac11626fd196ea118caf8201770e",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-03",
+        "page_number": 1,
+        "source_sha256": "2b973af70fc7be743159859adbe08005ae1609a5f82e25faeef80b4494e41eae",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-04",
+        "page_number": 1,
+        "source_sha256": "51b78d0742dc24e3b0bc01bf035a38928f062fb9fd650739fcf035139daa69e0",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-05",
+        "page_number": 1,
+        "source_sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-06",
+        "page_number": 1,
+        "source_sha256": "34badba709b6b8023442d401c6173dd8308477317d1a8100ff3b7e4eec058616",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-07",
+        "page_number": 1,
+        "source_sha256": "e1bd0d76063c3e606a5d3a6ea4aba255035cd22deee0e308a9670b978d18e766",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-08",
+        "page_number": 1,
+        "source_sha256": "3ff22594308a254f0235ba4a01cc5ac3e56075b6bf5061e2801869d557a6bb28",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-08",
+        "page_number": 2,
+        "source_sha256": "3ff22594308a254f0235ba4a01cc5ac3e56075b6bf5061e2801869d557a6bb28",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-autumn-09",
+        "page_number": 1,
+        "source_sha256": "47e622b15fd341c2b0cac1db8c3838c4edc6cb1c77729c436b9e3f10b00170f9",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-01",
+        "page_number": 1,
+        "source_sha256": "1ae486533cfe1da8bcfd9f34fe8beba7cc745c71fa4c562132a1fc3373a5651e",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-02",
+        "page_number": 1,
+        "source_sha256": "328338e901a49400898072cbced293ddf193ac5c5e712523fe3d91cccc0de31f",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-03",
+        "page_number": 1,
+        "source_sha256": "723f971a27429b00636d4f873e36d8cd5a52030b107d5f00a87f61881dc76874",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-06",
+        "page_number": 1,
+        "source_sha256": "b1cfc8834a15983df34313189b4dee09311c2ad337644b6eb72c61fd33d725b3",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-08",
+        "page_number": 1,
+        "source_sha256": "851be12e1ca3e6f46d7b6148916c513a0242f94fd811d2becc074589269b2e83",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-09",
+        "page_number": 1,
+        "source_sha256": "44d48d86fa16336c24f0667423e9d23fa64045f448251fd75fa19345dc5a9e0b",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-10",
+        "page_number": 1,
+        "source_sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-10",
+        "page_number": 6,
+        "source_sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-10",
+        "page_number": 7,
+        "source_sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-11",
+        "page_number": 1,
+        "source_sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-11",
+        "page_number": 6,
+        "source_sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-11",
+        "page_number": 7,
+        "source_sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-12",
+        "page_number": 1,
+        "source_sha256": "405a0715b27dee71e02ab97e456e513c55a4eddcf09efeb776b1908b45ca7fdb",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-ce-2023-spring-12",
+        "page_number": 9,
+        "source_sha256": "405a0715b27dee71e02ab97e456e513c55a4eddcf09efeb776b1908b45ca7fdb",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-01",
+        "page_number": 1,
+        "source_sha256": "b13e0d62bae69fe6cea27b7442bd5c6dbaea6dfc961e837fd0367864b863f818",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-02",
+        "page_number": 1,
+        "source_sha256": "0388779807ae4f841a15037b4712681c9f2d5553e30e1dd35390636615e2a79d",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-03",
+        "page_number": 1,
+        "source_sha256": "eee91799d1889311f43c4383a8418865266ff32b4fdc30b7b787f2d87639778a",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-04",
+        "page_number": 1,
+        "source_sha256": "fd4e7c0a54ed208b396b4da89e62d8ef7e896575c741e9ed407856a01d91b3df",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-05",
+        "page_number": 1,
+        "source_sha256": "49ed2b1395d3f0478c0861f25d08300ecd4a20d9266ab6d89ee1ec3a6fc72146",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-06",
+        "page_number": 1,
+        "source_sha256": "8ea77cd74d0f897241960d7c7b882f6917bd09ca11ae6836f1a493ea58578f91",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-07",
+        "page_number": 2,
+        "source_sha256": "5db24e5610636eaebc3d31b73596f1701f6e99f33f6708b275b22ff674e87546",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-08",
+        "page_number": 1,
+        "source_sha256": "bee8de6ef89934ee46817ba5fc0993276fdce3c3c8f63b1da26953dc0a573add",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-08",
+        "page_number": 2,
+        "source_sha256": "bee8de6ef89934ee46817ba5fc0993276fdce3c3c8f63b1da26953dc0a573add",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-09",
+        "page_number": 1,
+        "source_sha256": "3dcc2ea03a9d17c0a15f5adbd7831984f4f059a7b9b9de07fe4296988644963e",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-10",
+        "page_number": 1,
+        "source_sha256": "babce1c20f0341a3ba7bd78c9cbcb6cacbf325a89804d723121c79b5bc7ed7f7",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-11",
+        "page_number": 1,
+        "source_sha256": "733f57b515d2798b61a4a8e36576f481577612eb0b6dc274a71d0b8043d7ba9d",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-autumn-12",
+        "page_number": 1,
+        "source_sha256": "6968e0cfdbc3cf6f760d40793fe5cbc765a41325f6d8e1678d5d13f546629bb9",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-01",
+        "page_number": 1,
+        "source_sha256": "d6cc315b4b558612f7a5a7ff54dcd8a9b808053f9bf0bab8ef7f8a2f8b498624",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-02",
+        "page_number": 1,
+        "source_sha256": "0d60d5a3e1ba615ab810461d9665299d7836275da8bfa08aad96fd5f7000315f",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-03",
+        "page_number": 1,
+        "source_sha256": "e6e8523ea4fca267ebdbd52f5bcc61540800c0308beecb6650e962525ad33a5c",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-04",
+        "page_number": 1,
+        "source_sha256": "37156c35778e5a5800c87c11d7dcd555c546dc11a9d142414dbcc2508ce00fdb",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-05",
+        "page_number": 1,
+        "source_sha256": "7e27e59f6039cdce51077246430db22e273f4089bcff1868384b5a39134cf087",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-06",
+        "page_number": 1,
+        "source_sha256": "773c1dad0da439c712e27c28ed9f6cbcb4ace1fdeb1817b47d9da13577e2d30a",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-07",
+        "page_number": 1,
+        "source_sha256": "a9ddefc393c0e4342f0cfb7d0a08f9b75efe359bbbef23e4da872075b0c03c0e",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-08",
+        "page_number": 1,
+        "source_sha256": "98a92161ae38a400ef910e5fec228f4dbd8a2dac54624efb9d733e46db5ded15",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-08",
+        "page_number": 2,
+        "source_sha256": "98a92161ae38a400ef910e5fec228f4dbd8a2dac54624efb9d733e46db5ded15",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-09",
+        "page_number": 1,
+        "source_sha256": "7a8d9a45060aadca05818a62d9b0da085ecc0d21b1afaa2ba2055957f3be5dc4",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-09",
+        "page_number": 2,
+        "source_sha256": "7a8d9a45060aadca05818a62d9b0da085ecc0d21b1afaa2ba2055957f3be5dc4",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-10",
+        "page_number": 1,
+        "source_sha256": "524c33c9cb37d5065162787a77266de9bc9632ee86a66a5856ce52694b7aad6b",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-10",
+        "page_number": 2,
+        "source_sha256": "524c33c9cb37d5065162787a77266de9bc9632ee86a66a5856ce52694b7aad6b",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-11",
+        "page_number": 1,
+        "source_sha256": "ca7ff4a67a6a584f9475d239237283273821f240500fea112083d994cb1a2bbb",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-12",
+        "page_number": 1,
+        "source_sha256": "609c64bfb8ddd79bef85b84b9663dba39f4be13267f28c8b38ba34d5c1c1b15d",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-13",
+        "page_number": 1,
+        "source_sha256": "5f1dbd4228e2537149a413549dc80c725577183a7a00f189b27bd2d51d28b933",
+        "basis": "prior_complete_page_visual_review_reused"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-14",
+        "page_number": 14,
+        "source_sha256": "ea435b1a6a5a966f70e746e71e29b7d344147815ee91583c755f7eb22e5242f1",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-14",
+        "page_number": 15,
+        "source_sha256": "ea435b1a6a5a966f70e746e71e29b7d344147815ee91583c755f7eb22e5242f1",
+        "basis": "r7a_complete_page_visual_review"
+      },
+      {
+        "source_id": "neuq-cst-2023-spring-15",
+        "page_number": 1,
+        "source_sha256": "57c5a9e0c70f8a905242fb22be0a75b0441846f9abb3927aae602a4e71636cbe",
+        "basis": "r7a_complete_page_visual_review"
+      }
+    ],
+    "negative_scan": {
+      "terms": [
+        "抵认",
+        "等价替代",
+        "平均成绩",
+        "2030",
+        "2026",
+        "学分认定",
+        "credit transfer",
+        "credit recognition"
+      ],
+      "hits": [],
+      "limitation": "PDF文本关键词未命中只作辅助，不证明全球不存在该规则。拒答还依据输入类型、具体来源范围、逻辑不足或明确冲突。"
+    }
+  },
+  "formal_reviews": [
+    {
+      "question_id": "neuq-draft-001",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-08",
+          "page_number": 1,
+          "field": "课程学分/课程属性"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-002",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-01",
+          "page_number": 1,
+          "field": "理论学时/实验学时"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-003",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-11",
+          "page_number": 1,
+          "field": "开课学期"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-004",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-06",
+          "page_number": 1,
+          "field": "实验学时"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-005",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-02",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-006",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-01",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-007",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-008",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-13",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "这里的（一）（二）是课程名称阶段，不是学生年级；共享课程归属仍待适用专业复核。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-009",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-010",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-011",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-012",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-013",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-014",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-01",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-02",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-015",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-01",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-016",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "允许的Linux全文不含数据结构，不能提供操作系统自身先修栏；只拒绝确定结论，不补范围外来源。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-017",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-11",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "允许范围的正例，不许因其他专业或课程名称相似改变答案。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-018",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "允许CE大纲不含CST编号3100212004；同名不等于同一编号。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-019",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "历史教学大纲不是2026个人排课记录；输入没有个人选课信息，不能给时间/教室。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-020",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "课程模式EQV不是C替代C++的授权。未发现具体替代规定，不推断绝对禁止。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-021",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "学期顺序有冲突，只问文档记载，不给实际修读建议。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-022",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-023",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-03",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-024",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-03",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "显式编号区分CE同名课程。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-025",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-01",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-026",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-027",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-028",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-029",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-12",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-030",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-01",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-031",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "共享课程先修事实来自CE本文件；CST规范节点不意味着只适用于CST。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-032",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-033",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-034",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-spring-13",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-035",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-03",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-spring-04",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-02",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-036",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-037",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-01",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-038",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-12",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-039",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-040",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-02",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-041",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 7,
+          "field": "成绩评定/编号1–3"
+        }
+      ],
+      "basis": "概述另写“结课考试”；本题明确问编号细则，不消除这一原文冲突。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-042",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 7,
+          "field": "成绩评定/出勤"
+        }
+      ],
+      "basis": "只回答2023大纲条款，不承诺当前执行政策。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-043",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 6,
+          "field": "表2/知识单元五与六"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-044",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 7,
+          "field": "成绩评定/平时作业"
+        }
+      ],
+      "basis": "不要混成课程总成绩归零。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-045",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 6,
+          "field": "表2/知识单元三与四"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-046",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 6,
+          "field": "知识单元八/学习目标"
+        }
+      ],
+      "basis": "仅提炼术语，不复制课程原文段落。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-047",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-12",
+          "page_number": 9,
+          "field": "成绩评定/第2与3项"
+        }
+      ],
+      "basis": "不把余下5%自动认定为原文明示的出勤作业比例；概述部分数目有矛盾。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-048",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-12",
+          "page_number": 9,
+          "field": "表3续表/知识单元六"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-049",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-14",
+          "page_number": 15,
+          "field": "成绩评定/期末"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-050",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-14",
+          "page_number": 14,
+          "field": "成绩评定/实验"
+        }
+      ],
+      "basis": "内部分项权重的分母是实验环节，不是课程总成绩。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-051",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "允许DSP全文没有Web课程或所问50%规则；拒绝越界使用049证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-052",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-14",
+          "page_number": 14,
+          "field": "成绩评定/平时"
+        }
+      ],
+      "basis": "这是有来源的比例计算，不把实验环节的20%误用过来。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-053",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-054",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-055",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-12",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-056",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-08",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-057",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-15",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-058",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-04",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-059",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-060",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-061",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-03",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-03",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-spring-04",
+          "page_number": 1,
+          "field": "适用专业"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-062",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-01",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-063",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-06",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-09",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-064",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-065",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-08",
+          "page_number": 2,
+          "field": "专业目标1-4"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-066",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-09",
+          "page_number": 2,
+          "field": "专业目标1-1"
+        }
+      ],
+      "basis": "按该目标列举项作答，不从算法常识补上未列策略。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-067",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-10",
+          "page_number": 2,
+          "field": "专业目标1-2/1-3"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-068",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-07",
+          "page_number": 2,
+          "field": "整体目标"
+        }
+      ],
+      "basis": "知识基础表述不等于正式先修约束。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-069",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-08",
+          "page_number": 2,
+          "field": "整体目标"
+        }
+      ],
+      "basis": "本题不询问必修/选修；正文与首页属性矛盾另记，不自行纠正。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-070",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-08",
+          "page_number": 2,
+          "field": "整体目标"
+        }
+      ],
+      "basis": "核对指定来源字段、单位和语义；不扩展至当前选课或个人资格。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-071",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-03",
+          "page_number": 1,
+          "field": "课程编号/适用专业"
+        }
+      ],
+      "basis": "允许范围内有同名干扰，专业限定必须生效。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-072",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-08",
+          "page_number": 1,
+          "field": "课程编号/实验学时"
+        }
+      ],
+      "basis": "题目用编号锁定目标；不能把理论、PBL或总学时当实验学时。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-073",
+      "decision": "source_level_accepted",
+      "evidence_fields": [],
+      "basis": "IoT全文不提供通信原理先修名单；无法完成两名单交集，不把IoT名单直接当交集。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-074",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-01",
+          "page_number": 1,
+          "field": "先修课程空栏"
+        }
+      ],
+      "basis": "原表先修栏为空，中文教材栏的无不能挪作先修声明。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-075",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-08",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "只支持泛称高等数学建模，不能推出只二不一的排他规则。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-076",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-07",
+          "page_number": 2,
+          "field": "整体目标"
+        }
+      ],
+      "basis": "目标说明为后续学习打基础，不是正式强制选课规则。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-077",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-08",
+          "page_number": 1,
+          "field": "课程属性"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-08",
+          "page_number": 2,
+          "field": "整体目标"
+        }
+      ],
+      "basis": "首页选修与第2页必修冲突；合格输出须指出两处矛盾并拒绝唯一分类，不是只输出无证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-078",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-03",
+          "page_number": 1,
+          "field": "课程编号/适用专业"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-03",
+          "page_number": 1,
+          "field": "课程编号/适用专业"
+        }
+      ],
+      "basis": "两编号/同名/适用专业都不是自动抵认政策；关键词扫描与源字段审核未发现所问授权，不能把缺证据当禁止。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-079",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-04",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-080",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-07",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-081",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-08",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-082",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-02",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "先回答原名，不自动关联到CST课程编号或据此推断跨专业抵认。 2026-09-09补来源绑定的名称提及候选边，未断言其对应另一专业的课程编号；仍非正式Gold。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-083",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-04",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "该大纲适用CST/CE，规范文件所在目录不表示只适用CST。 2026-09-09补来源绑定的名称提及候选边，未断言其对应另一专业的课程编号；仍非正式Gold。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-084",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-07",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-085",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-086",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-10",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-05",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-087",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-08",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-088",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-09",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-05",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-089",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-11",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-08",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-090",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-06",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-spring-08",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-091",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-12",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-08",
+          "page_number": 1,
+          "field": "开课学期"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-092",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-02",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-autumn-04",
+          "page_number": 1,
+          "field": "开课学期"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-093",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-03",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-cst-2023-spring-04",
+          "page_number": 1,
+          "field": "开课学期"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-094",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-autumn-01",
+          "page_number": 1,
+          "field": "先修课程"
+        },
+        {
+          "source_id": "neuq-ce-2023-autumn-09",
+          "page_number": 1,
+          "field": "课程学分"
+        }
+      ],
+      "basis": "已审核每条必要关系/属性来源；必须完整引用各分支，不把问题给出的课程名视为证据。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-095",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-06",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "2026-09-09复核原页先修栏，补来源限定名称提及；不强行解析课程编号或等价。原缺口与旧路径保留于representation_batches，当前候选表示齐备仍非完整Gold，Chunk与评分待审。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-096",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-ce-2023-spring-03",
+          "page_number": 1,
+          "field": "适用专业"
+        }
+      ],
+      "basis": "该课程来自CE目录但并非仅适用CE；成员关系需在完整Gold表示中补齐。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-097",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-07",
+          "page_number": 1,
+          "field": "适用专业"
+        }
+      ],
+      "basis": "只记录已选来源中提及的AS，不增加AS专业语料或擅自展开缩写含义。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-098",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-05",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "仅说明此历史大纲的明示状态，不凭课程名称（二）自动补上（一）作为强制先修。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-099",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-spring-02",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "综合实践的课程名称不能作为推断必有先修的依据；明确无先修不表示任何学生都可无条件选课。",
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-100",
+      "decision": "source_level_accepted",
+      "evidence_fields": [
+        {
+          "source_id": "neuq-cst-2023-autumn-10",
+          "page_number": 1,
+          "field": "先修课程"
+        }
+      ],
+      "basis": "这是该源课程的直接关系；不能从教材用C语言的书名反推先修也必须是C。",
+      "full_gold_verified": false
+    }
+  ],
+  "development_review": {
+    "decision": "source_semantic_review_passed_chunk_pending",
+    "positive_ids": [
+      "neuq-dev-001",
+      "neuq-dev-002",
+      "neuq-dev-003",
+      "neuq-dev-004",
+      "neuq-dev-005",
+      "neuq-dev-006"
+    ],
+    "positive_target_fields_reused_by_formal": false,
+    "document_level_disjoint": false,
+    "statistical_independence_claimed": false,
+    "negative_reviews": [
+      {
+        "id": "neuq-dev-007",
+        "basis": "大纲给评分规则而非全班实际分数；605页文本辅助扫描未见平均成绩，未取得真实成绩记录。"
+      },
+      {
+        "id": "neuq-dev-008",
+        "basis": "输入没有个人成绩单和转学分决定；5学分的课程值不能证明个人已获认定。"
+      },
+      {
+        "id": "neuq-dev-009",
+        "basis": "允许范围只有工程经济学；全文不含组网技术。16单数字命中不构成该课程实验学时证据。",
+        "counterfactual_of": "neuq-dev-003"
+      },
+      {
+        "id": "neuq-dev-010",
+        "basis": "历史课程模式不保证2030开课；输入没有未来保证文件。"
+      }
+    ],
+    "limitations": [
+      "10题仍偏首页字段，不能证明全部版式适用。",
+      "负例机制与正式范围/历史题同类，事实目标不同；不声称问题类别隔离。",
+      "开发003/009是范围反事实，开发001的5学分亦出现在008前提，不是10个统计独立事实。",
+      "未读取正式检索结果，不据正式100题调阈值。"
+    ]
+  },
+  "multi_source_review": {
+    "formal_ids": [
+      "neuq-draft-010",
+      "neuq-draft-011",
+      "neuq-draft-012",
+      "neuq-draft-013",
+      "neuq-draft-014",
+      "neuq-draft-015",
+      "neuq-draft-033",
+      "neuq-draft-034",
+      "neuq-draft-035",
+      "neuq-draft-036",
+      "neuq-draft-037",
+      "neuq-draft-038",
+      "neuq-draft-039",
+      "neuq-draft-040",
+      "neuq-draft-059",
+      "neuq-draft-060",
+      "neuq-draft-061",
+      "neuq-draft-062",
+      "neuq-draft-063",
+      "neuq-draft-064",
+      "neuq-draft-085",
+      "neuq-draft-086",
+      "neuq-draft-087",
+      "neuq-draft-088",
+      "neuq-draft-089",
+      "neuq-draft-090",
+      "neuq-draft-091",
+      "neuq-draft-092",
+      "neuq-draft-093",
+      "neuq-draft-094"
+    ],
+    "prior_structural_report": "evaluation/r7/preparation/multi_source_audit_20260909.json",
+    "source_removal_checks": 66,
+    "source_level_necessity_passed": 30,
+    "full_corpus_retrieval_ablation_performed": false,
+    "meaning": "必要性相对于题目要求的完整关系/属性结论和标注来源；不证明全语料不存在替代证据。",
+    "overlap_review": [
+      {
+        "ids": [
+          "neuq-draft-010",
+          "neuq-draft-086"
+        ],
+        "difference": "追溯下一层先修 vs 操作系统自身学分",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-011",
+          "neuq-draft-085"
+        ],
+        "difference": "数据结构再先修C++ vs 数据结构学分",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-013",
+          "neuq-draft-063"
+        ],
+        "difference": "现代交换为入口到复变 vs 通信原理为入口到数学两阶段",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-013",
+          "neuq-draft-088"
+        ],
+        "difference": "三边先修链 vs 通信原理学分",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-033",
+          "neuq-draft-060"
+        ],
+        "difference": "两分支汇合数据结构 vs 单分支继续到C++",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-035",
+          "neuq-draft-093"
+        ],
+        "difference": "两条实践路径的C/C++区别 vs 工程领导力开课学期",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-036",
+          "neuq-draft-064"
+        ],
+        "difference": "移动经通信到信号 vs 直接/间接数字电子两路径",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      },
+      {
+        "ids": [
+          "neuq-draft-062",
+          "neuq-draft-094"
+        ],
+        "difference": "经复变继续到数学阶段 vs 复变学分",
+        "decision": "retain_distinct_required_conclusion_with_source_correlation"
+      }
+    ],
+    "statistical_independence_claimed": false,
+    "source_level_candidate_count": 36,
+    "reserve_count": 6,
+    "reserve_gate_passed": true,
+    "full_gold_reserve_gate_passed": false,
+    "reserves": [
+      {
+        "id": "neuq-reserve-001",
+        "subtype": "two_step_prerequisite",
+        "question": "从操作系统沿先修关系追溯两步，写出完整链。",
+        "expected_answer": "操作系统 → 数据结构 → C++程序设计基础。",
+        "allowed_document_ids": [
+          "neuq-cst-2023-autumn-05",
+          "neuq-cst-2023-autumn-10"
+        ],
+        "required_claims": [
+          {
+            "id": "CST-A05--requires--CST-A10",
+            "subject": "CST-A05",
+            "predicate": "REQUIRES",
+            "object": "CST-A10",
+            "source_id": "neuq-cst-2023-autumn-05",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "49ed2b1395d3f0478c0861f25d08300ecd4a20d9266ab6d89ee1ec3a6fc72146"
+          },
+          {
+            "id": "CST-A10--requires--CST-A11",
+            "subject": "CST-A10",
+            "predicate": "REQUIRES",
+            "object": "CST-A11",
+            "source_id": "neuq-cst-2023-autumn-10",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "babce1c20f0341a3ba7bd78c9cbcb6cacbf325a89804d723121c79b5bc7ed7f7"
+          }
+        ],
+        "required_paths": [
+          [
+            "CST-A05--requires--CST-A10",
+            "CST-A10--requires--CST-A11"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "以操作系统为入口检索两份大纲；不是只换问法的Linux两步题。与其他数据结构链相关，只作同类替换候选。",
+        "related_formal_ids": [
+          "neuq-draft-010",
+          "neuq-draft-011",
+          "neuq-draft-059",
+          "neuq-draft-060"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      },
+      {
+        "id": "neuq-reserve-002",
+        "subtype": "three_edge_prerequisite",
+        "question": "从Linux操作系统及内核分析沿先修关系追溯三步，写出每一步。",
+        "expected_answer": "Linux操作系统及内核分析 → 操作系统 → 数据结构 → C++程序设计基础。",
+        "allowed_document_ids": [
+          "neuq-cst-2023-autumn-05",
+          "neuq-cst-2023-autumn-10",
+          "neuq-cst-2023-spring-10"
+        ],
+        "required_claims": [
+          {
+            "id": "CST-S10--requires--CST-A05",
+            "subject": "CST-S10",
+            "predicate": "REQUIRES",
+            "object": "CST-A05",
+            "source_id": "neuq-cst-2023-spring-10",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "524c33c9cb37d5065162787a77266de9bc9632ee86a66a5856ce52694b7aad6b"
+          },
+          {
+            "id": "CST-A05--requires--CST-A10",
+            "subject": "CST-A05",
+            "predicate": "REQUIRES",
+            "object": "CST-A10",
+            "source_id": "neuq-cst-2023-autumn-05",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "49ed2b1395d3f0478c0861f25d08300ecd4a20d9266ab6d89ee1ec3a6fc72146"
+          },
+          {
+            "id": "CST-A10--requires--CST-A11",
+            "subject": "CST-A10",
+            "predicate": "REQUIRES",
+            "object": "CST-A11",
+            "source_id": "neuq-cst-2023-autumn-10",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "babce1c20f0341a3ba7bd78c9cbcb6cacbf325a89804d723121c79b5bc7ed7f7"
+          }
+        ],
+        "required_paths": [
+          [
+            "CST-S10--requires--CST-A05",
+            "CST-A05--requires--CST-A10",
+            "CST-A10--requires--CST-A11"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "比010多一份必要来源和一条关系；与备用001及010共享链，不把它们作为独立事实增量。只备用，不同时追加正式集。",
+        "related_formal_ids": [
+          "neuq-draft-010",
+          "neuq-draft-060"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      },
+      {
+        "id": "neuq-reserve-003",
+        "subtype": "prerequisite_then_attribute",
+        "question": "数据库原理所列的数学先修是哪门课？按该先修课自身大纲，它是多少学分？两项均需证据。",
+        "expected_answer": "数据库原理要求离散数学；离散数学为3学分。",
+        "allowed_document_ids": [
+          "neuq-cst-2023-spring-06",
+          "neuq-cst-2023-spring-13"
+        ],
+        "required_claims": [
+          {
+            "id": "CST-S06--requires--CST-S13",
+            "subject": "CST-S06",
+            "predicate": "REQUIRES",
+            "object": "CST-S13",
+            "source_id": "neuq-cst-2023-spring-06",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "773c1dad0da439c712e27c28ed9f6cbcb4ace1fdeb1817b47d9da13577e2d30a"
+          },
+          {
+            "id": "CST-S13--has_credit--CST-S13::credits",
+            "subject": "CST-S13",
+            "predicate": "HAS_CREDIT",
+            "object": "CST-S13::credits",
+            "value": 3,
+            "source_id": "neuq-cst-2023-spring-13",
+            "source_sha256": "5f1dbd4228e2537149a413549dc80c725577183a7a00f189b27bd2d51d28b933",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          }
+        ],
+        "required_paths": [
+          [
+            "CST-S06--requires--CST-S13",
+            "CST-S13--has_credit--CST-S13::credits"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "区别于034追溯数学阶段：终点是离散数学自身学分；未复用开发集数学（一）5学分。",
+        "related_formal_ids": [
+          "neuq-draft-021",
+          "neuq-draft-034"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      },
+      {
+        "id": "neuq-reserve-004",
+        "subtype": "shared_or_branch",
+        "question": "核对计算机体系结构先修中的计算机组成原理和编译原理，再比较两者自身大纲学分：哪门更高，相差多少？",
+        "expected_answer": "两门均在先修名单；组成原理4.5学分、编译原理3.5学分，组成原理高1学分。",
+        "allowed_document_ids": [
+          "neuq-cst-2023-autumn-08",
+          "neuq-cst-2023-autumn-09",
+          "neuq-cst-2023-spring-11"
+        ],
+        "required_claims": [
+          {
+            "id": "CST-S11--requires--CST-A08",
+            "subject": "CST-S11",
+            "predicate": "REQUIRES",
+            "object": "CST-A08",
+            "source_id": "neuq-cst-2023-spring-11",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "ca7ff4a67a6a584f9475d239237283273821f240500fea112083d994cb1a2bbb"
+          },
+          {
+            "id": "CST-A08--has_credit--CST-A08::credits",
+            "subject": "CST-A08",
+            "predicate": "HAS_CREDIT",
+            "object": "CST-A08::credits",
+            "value": 4.5,
+            "source_id": "neuq-cst-2023-autumn-08",
+            "source_sha256": "bee8de6ef89934ee46817ba5fc0993276fdce3c3c8f63b1da26953dc0a573add",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          },
+          {
+            "id": "CST-S11--requires--CST-A09",
+            "subject": "CST-S11",
+            "predicate": "REQUIRES",
+            "object": "CST-A09",
+            "source_id": "neuq-cst-2023-spring-11",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "ca7ff4a67a6a584f9475d239237283273821f240500fea112083d994cb1a2bbb"
+          },
+          {
+            "id": "CST-A09--has_credit--CST-A09::credits",
+            "subject": "CST-A09",
+            "predicate": "HAS_CREDIT",
+            "object": "CST-A09::credits",
+            "value": 3.5,
+            "source_id": "neuq-cst-2023-autumn-09",
+            "source_sha256": "3dcc2ea03a9d17c0a15f5adbd7831984f4f059a7b9b9de07fe4296988644963e",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          }
+        ],
+        "required_paths": [
+          [
+            "CST-S11--requires--CST-A08",
+            "CST-A08--has_credit--CST-A08::credits"
+          ],
+          [
+            "CST-S11--requires--CST-A09",
+            "CST-A09--has_credit--CST-A09::credits"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "三份必要来源，两条分支均需关系及属性；不以问题点名的课程作为已证实关系。保留组成原理性质冲突，不影响明确学分字段。",
+        "related_formal_ids": [
+          "neuq-draft-033",
+          "neuq-draft-087"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      },
+      {
+        "id": "neuq-reserve-005",
+        "subtype": "shared_or_branch",
+        "question": "在通信原理明确列出的先修中，集成电路系统设计与数字电子技术基础分别多少学分？比较大小并给出差值。",
+        "expected_answer": "两门均为所列先修；集成电路系统设计2.5、数字电子技术基础3学分，后者高0.5学分。",
+        "allowed_document_ids": [
+          "neuq-ce-2023-autumn-05",
+          "neuq-ce-2023-autumn-06",
+          "neuq-ce-2023-spring-08"
+        ],
+        "required_claims": [
+          {
+            "id": "CE-A05--requires--CE-S08",
+            "subject": "CE-A05",
+            "predicate": "REQUIRES",
+            "object": "CE-S08",
+            "source_id": "neuq-ce-2023-autumn-05",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9"
+          },
+          {
+            "id": "CE-S08--has_credit--CE-S08::credits",
+            "subject": "CE-S08",
+            "predicate": "HAS_CREDIT",
+            "object": "CE-S08::credits",
+            "value": 2.5,
+            "source_id": "neuq-ce-2023-spring-08",
+            "source_sha256": "851be12e1ca3e6f46d7b6148916c513a0242f94fd811d2becc074589269b2e83",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          },
+          {
+            "id": "CE-A05--requires--CE-A06",
+            "subject": "CE-A05",
+            "predicate": "REQUIRES",
+            "object": "CE-A06",
+            "source_id": "neuq-ce-2023-autumn-05",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9"
+          },
+          {
+            "id": "CE-A06--has_credit--CE-A06::credits",
+            "subject": "CE-A06",
+            "predicate": "HAS_CREDIT",
+            "object": "CE-A06::credits",
+            "value": 3,
+            "source_id": "neuq-ce-2023-autumn-06",
+            "source_sha256": "34badba709b6b8023442d401c6173dd8308477317d1a8100ff3b7e4eec058616",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          }
+        ],
+        "required_paths": [
+          [
+            "CE-A05--requires--CE-S08",
+            "CE-S08--has_credit--CE-S08::credits"
+          ],
+          [
+            "CE-A05--requires--CE-A06",
+            "CE-A06--has_credit--CE-A06::credits"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "必须用通信原理确认成员再查两个学分；不能用数字→集成一条关系替代题目要求的两条直接关系。",
+        "related_formal_ids": [
+          "neuq-draft-012",
+          "neuq-draft-015",
+          "neuq-draft-090"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      },
+      {
+        "id": "neuq-reserve-006",
+        "subtype": "shared_or_branch",
+        "question": "核对软件体系结构与设计模式所列的两门先修，并比较它们自身大纲学分，哪门较低、低多少？",
+        "expected_answer": "先修为C++程序设计基础、业务需求建模；分别4.5和3.5学分，业务需求建模低1学分。",
+        "allowed_document_ids": [
+          "neuq-cst-2023-autumn-02",
+          "neuq-cst-2023-autumn-04",
+          "neuq-cst-2023-autumn-11"
+        ],
+        "required_claims": [
+          {
+            "id": "CST-A02--requires--CST-A11",
+            "subject": "CST-A02",
+            "predicate": "REQUIRES",
+            "object": "CST-A11",
+            "source_id": "neuq-cst-2023-autumn-02",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "0388779807ae4f841a15037b4712681c9f2d5553e30e1dd35390636615e2a79d"
+          },
+          {
+            "id": "CST-A11--has_credit--CST-A11::credits",
+            "subject": "CST-A11",
+            "predicate": "HAS_CREDIT",
+            "object": "CST-A11::credits",
+            "value": 4.5,
+            "source_id": "neuq-cst-2023-autumn-11",
+            "source_sha256": "733f57b515d2798b61a4a8e36576f481577612eb0b6dc274a71d0b8043d7ba9d",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          },
+          {
+            "id": "CST-A02--requires--CST-A04",
+            "subject": "CST-A02",
+            "predicate": "REQUIRES",
+            "object": "CST-A04",
+            "source_id": "neuq-cst-2023-autumn-02",
+            "page_number": 1,
+            "field": "先修课程",
+            "chunk_id": null,
+            "source_sha256": "0388779807ae4f841a15037b4712681c9f2d5553e30e1dd35390636615e2a79d"
+          },
+          {
+            "id": "CST-A04--has_credit--CST-A04::credits",
+            "subject": "CST-A04",
+            "predicate": "HAS_CREDIT",
+            "object": "CST-A04::credits",
+            "value": 3.5,
+            "source_id": "neuq-cst-2023-autumn-04",
+            "source_sha256": "fd4e7c0a54ed208b396b4da89e62d8ef7e896575c741e9ed407856a01d91b3df",
+            "page_number": 1,
+            "field": "课程学分",
+            "chunk_id": null
+          }
+        ],
+        "required_paths": [
+          [
+            "CST-A02--requires--CST-A11",
+            "CST-A11--has_credit--CST-A11::credits"
+          ],
+          [
+            "CST-A02--requires--CST-A04",
+            "CST-A04--has_credit--CST-A04::credits"
+          ]
+        ],
+        "review_decision": "source_level_accepted_chunk_pending",
+        "full_gold_verified": false,
+        "novelty_and_overlap": "区别于040共同先修及092开课学期；两个目标课程的学分都必须引用。与正式题相关，不作为额外正式样本。",
+        "related_formal_ids": [
+          "neuq-draft-005",
+          "neuq-draft-040",
+          "neuq-draft-092"
+        ],
+        "selection": "replacement_only_not_additional_formal_question"
+      }
+    ]
+  },
+  "summary": {
+    "formal_source_reviews": 100,
+    "formal_answers": 89,
+    "formal_refusals": 11,
+    "development_reviews": 10,
+    "source_level_multisource_candidates": 36,
+    "formal_questions_changed": false,
+    "full_gold_verified": 0,
+    "formal_freeze": false,
+    "provider_calls": 0,
+    "production_changes": false
+  },
+  "remaining_r7b": [
+    "无教师信息的统一输入表示，不能按正式Gold剪裁",
+    "稳定Chunk ID和逐题Gold映射",
+    "开发题选择切分/阈值与新语料付费授权",
+    "声明/冲突题评分和路径分母",
+    "冻结全套哈希及三组公平预算"
+  ],
+  "execution_authorized": false
+}

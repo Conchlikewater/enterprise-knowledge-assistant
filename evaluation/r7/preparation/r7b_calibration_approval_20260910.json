@@ -1,0 +1,13 @@
+{
+  "status": "approved_by_user",
+  "approved_on": "2026-09-10",
+  "authorization_basis": "User authorized necessary continuation calls within cumulative CNY 10; this execution retains the narrower USD 0.04 ceiling.",
+  "aggregate_authorization_cny": 10,
+  "purpose": "development_threshold_calibration_only",
+  "candidate_corpus_sha256": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90",
+  "model": "text-embedding-3-small",
+  "max_requests": 21,
+  "max_input_token_upper_bound": 2000000,
+  "max_budget_usd": 0.04,
+  "formal_100_question_run": false
+}

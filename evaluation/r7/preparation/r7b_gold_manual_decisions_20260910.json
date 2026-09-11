@@ -1,0 +1,50 @@
+{
+  "schema_version": "r7-chunk-gold-manual-decisions-v1",
+  "reviewed_at": "2026-09-10",
+  "candidate_corpus_sha256": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90",
+  "profile_sha256": "d87725010b58ba87dd3021ec9adf2876be0f9b7c1e581863a6409c2fce17c39e",
+  "review_method": "Compare the source-bound sanitized chunk with the question, expected answer and declared structural field. Lexical rank is advisory only.",
+  "choices": [
+    {
+      "key": "neuq-draft-050:1",
+      "chunk_id": "dbcccd98-07f5-59d3-a912-7038b2efc56e",
+      "reason": "The chunk contains both the experiment total weight and all three requested internal weights."
+    },
+    {
+      "key": "neuq-draft-052:1",
+      "chunk_id": "dbcccd98-07f5-59d3-a912-7038b2efc56e",
+      "reason": "The chunk contains the behavior-section total weight and its attendance/classroom proportion."
+    },
+    {
+      "key": "neuq-draft-065:1",
+      "chunk_id": "0969069e-36e0-51f9-8b2a-78b3630a2dec",
+      "reason": "The chunk contains professional objective 1-4 and the requested programming paradigm."
+    },
+    {
+      "key": "neuq-draft-066:1",
+      "chunk_id": "9dfeb7b5-55c1-578e-b6d1-460dad674d8d",
+      "reason": "The chunk contains professional objective 1-1 and the complete strategy list."
+    },
+    {
+      "key": "neuq-draft-067:1",
+      "chunk_id": "471ea584-cb9d-5235-b4a2-f752362dc3b1",
+      "reason": "The chunk contains objectives 1-2 and 1-3, including the requested kernel principle."
+    },
+    {
+      "key": "neuq-draft-068:1",
+      "chunk_id": "f0015177-ba55-5423-b3b6-ecb388c18bbf",
+      "reason": "The chunk contains the overall objective and both requested AI directions."
+    },
+    {
+      "key": "neuq-draft-069:1",
+      "chunk_id": "72936a17-f740-5baa-a392-2852185c440c",
+      "reason": "The chunk contains the overall objective and the named computer architecture."
+    },
+    {
+      "key": "neuq-draft-070:1",
+      "chunk_id": "4dc26ca9-127b-57ed-96b7-ec18eea66b68",
+      "reason": "The chunk is the declared overall-objective segment and contains both filter families; a later objective repeats the fact but is outside the locator field."
+    }
+  ],
+  "privacy_note": "No teacher names or source paragraphs are stored in this decision file."
+}

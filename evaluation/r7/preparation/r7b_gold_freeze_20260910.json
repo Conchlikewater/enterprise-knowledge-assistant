@@ -1,0 +1,64 @@
+{
+  "schema_version": "r7-gold-freeze-manifest-v1",
+  "status": "chunk_and_graph_gold_frozen",
+  "frozen_at": "2026-09-10",
+  "reconstruction": {
+    "generator": "evaluation/r7_gold_mapping.py",
+    "generator_sha256": "619f573ecd168b2777a2ded0807329923bfcfe3959a8f2d548e584fc4e33934b",
+    "local_output_canonical_sha256": "d9d8f40340ac59c51e31615f959e306a4e0e4de34c907168611eda78f382963a",
+    "local_output_committed": false
+  },
+  "input_canonical_sha256": {
+    "formal_questions": "0894ad195f0015cdbcb0afe75fd881ee9b7ea66c1a1ab5ddebbafa436dac8b09",
+    "candidate_corpus": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90",
+    "chunk_profile": "d87725010b58ba87dd3021ec9adf2876be0f9b7c1e581863a6409c2fce17c39e",
+    "relation_candidates": "fe3415fbf6449b3839b1f61ab45bc609b8cd457811ac5d9252be796af654a7d5",
+    "manual_decisions": "bdb5b669f4209e2a0cdc3506994c7512643d4f6fef154860f4d452a4262dfa7a"
+  },
+  "input_file_sha256": {
+    "formal_questions": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2",
+    "manual_decisions": "ab6b1ccecb73754714b9110d52e926a58c352b7ce3c9d22c7e5fb93b38fcd1fa"
+  },
+  "summary": {
+    "questions": 100,
+    "category_counts": {
+      "ordinary_fact": 20,
+      "relationship": 35,
+      "multi_hop": 30,
+      "scope_isolation": 8,
+      "unanswerable": 7
+    },
+    "behavior_counts": {
+      "answer": 89,
+      "refuse": 11
+    },
+    "evidence_locators": 125,
+    "structurally_unique_locators": 117,
+    "manually_selected_locators": 8,
+    "questions_with_graph_paths": 63,
+    "graph_path_instances": 111,
+    "graph_edges": 79,
+    "explicit_none_declarations": 2,
+    "assertion_chunk_bindings": 81
+  },
+  "scoring_denominators": {
+    "retrieval_questions_with_declared_evidence": 89,
+    "graph_path_questions": 63,
+    "answer_refusal_questions": 100,
+    "scope_isolation_questions": 8,
+    "citation_answer_questions": 89
+  },
+  "integrity": {
+    "all_evidence_locators_have_one_chunk": true,
+    "all_formal_path_edges_exist_in_relation_snapshot": true,
+    "all_graph_assertions_have_source_page_and_chunk": true,
+    "formal_results_used_for_parameter_selection": false,
+    "provider_calls": 0
+  },
+  "limitations": [
+    "The source question filename retains draft for hash continuity; this manifest is the separate freeze authority.",
+    "Gold becomes stale if source bytes, safe representation, chunk profile, questions, manual choices or relation assertions change.",
+    "Graph paths are source-reviewed human assertions, not automatically extracted knowledge.",
+    "No Dense or Graph retrieval experiment has run."
+  ]
+}

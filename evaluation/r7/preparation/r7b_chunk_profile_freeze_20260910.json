@@ -1,0 +1,70 @@
+{
+  "schema_version": "r7-chunk-profile-freeze-v1",
+  "status": "chunk_profile_frozen",
+  "frozen_at": "2026-09-10",
+  "candidate_corpus_sha256": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90",
+  "development_questions_canonical_sha256": "098c798d494faac9006e9c15a19fc540cc977eb9fb701558374fc1e03a997ee8",
+  "analysis_implementation_sha256": "8b4f9f141896ecf28ded7a3baf2cbea68cba6230348708b7753f03f3d4f59a2d",
+  "selection_policy": {
+    "selected_profile": "production_contextual_1000_150",
+    "chunk_size": 1000,
+    "overlap": 150,
+    "identity_header": true,
+    "profile_sha256": "d87725010b58ba87dd3021ec9adf2876be0f9b7c1e581863a6409c2fce17c39e",
+    "reason": "Keep the current production character limits to control the representation variable across all three arms, while adding a course identity header so every returned chunk is independently attributable.",
+    "formal_results_used": false,
+    "provider_calls": 0
+  },
+  "required_constraints": {
+    "development_evidence_targets_mapped": "8/8",
+    "course_identity_rate": 1.0,
+    "maximum_chunk_length": 999,
+    "character_budget_respected": true
+  },
+  "diagnostics": [
+    {
+      "profile": "compact_contextual_700_100",
+      "profile_sha256": "1a9ee5f43d47b85340c0c412a835d1a40a7722eb99509c6d97423f61d9b19266",
+      "chunks": 1630,
+      "p50_length": 648,
+      "p95_length": 695,
+      "maximum_length": 700,
+      "single_chunk_blocks": 308,
+      "split_blocks": 453,
+      "maximum_chunks_per_block": 5,
+      "course_identity_rate": 1.0,
+      "development_evidence_targets_mapped": "8/8"
+    },
+    {
+      "profile": "production_contextual_1000_150",
+      "profile_sha256": "d87725010b58ba87dd3021ec9adf2876be0f9b7c1e581863a6409c2fce17c39e",
+      "chunks": 1241,
+      "p50_length": 774,
+      "p95_length": 994,
+      "maximum_length": 999,
+      "single_chunk_blocks": 368,
+      "split_blocks": 393,
+      "maximum_chunks_per_block": 3,
+      "course_identity_rate": 1.0,
+      "development_evidence_targets_mapped": "8/8"
+    },
+    {
+      "profile": "production_no_identity_1000_150",
+      "profile_sha256": "830e20e7ea019d41f6f5eefd3e0b0b0bd581f53aa6d6e4aac1292d6ca67ecb35",
+      "chunks": 1216,
+      "p50_length": 749,
+      "p95_length": 993,
+      "maximum_length": 1000,
+      "single_chunk_blocks": 374,
+      "split_blocks": 387,
+      "maximum_chunks_per_block": 3,
+      "course_identity_rate": 0.03618421052631579,
+      "development_evidence_targets_mapped": "8/8"
+    }
+  ],
+  "limitations": [
+    "The current chunker is character-budgeted with natural-boundary preference and overlap; it is not embedding-based semantic segmentation.",
+    "This freezes corpus representation only. The semantic score threshold is still uncalibrated for the Chinese corpus.",
+    "The diagnostic profiles are not additional formal experiment arms."
+  ]
+}

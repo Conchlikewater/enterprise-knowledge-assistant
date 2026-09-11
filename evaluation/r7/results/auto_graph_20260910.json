@@ -1,0 +1,35 @@
+{
+  "status": "implemented_and_run_not_approved_for_integration",
+  "model_requested": "deepseek-flash",
+  "model_documented_version": "DeepSeek-V4.1-Flash",
+  "input_boundary": "human-reviewed reconstructed structural chunks, not raw PDF extraction",
+  "smoke_v1": {"sources": 4, "chunks": 8, "schema_and_quote_passed": 8, "edges": 23,
+    "known_directory_applicability_errors": 4, "input_tokens": 4508, "output_tokens": 1025,
+    "cost_upper_estimate_usd": 0.0025824,
+    "summary_sha256": "4288b9c9349d7389602e42107303951d812fa001369776c8be5d0e836f1f2b9d"},
+  "review_v1_1": {"sources": 40, "chunks": 80, "schema_and_quote_passed": 80,
+    "nodes": 179, "edges": 139, "edge_types": {"REQUIRES": 53, "HAS_CREDIT": 40, "OFFERED_IN": 40, "BELONGS_TO": 6},
+    "input_tokens": 47714, "output_tokens": 6644, "cost_upper_estimate_usd": 0.022287,
+    "graph_sha256": "5ade81c91acc572855dd4e0db4a9e0532469c2bea3c41dd0c6678091e2bfa9e1",
+    "plan_sha256": "ebfa84eddc83cd2de0f1721e868fe2c145f7b5da650c2274676861a7f5a0496f",
+    "summary_sha256": "e550d05dcb4f2ab166b9184fe403cea9a0a71870bca8e46c865b4acfcb251bd4"},
+  "ai_assisted_review_observations": [
+    {"source_id": "neuq-ce-2023-spring-03", "issue": "CE and CST extracted as one combined Program node"},
+    {"source_id": "neuq-cst-2023-autumn-02", "issue": "Chinese and English prerequisite labels split into separate mentions; not resolved course identities"},
+    {"source_id": "neuq-ce-2023-spring-08", "issue": "One prerequisite object includes adjacent English labels, indicating non-atomic mention boundaries"}
+  ],
+  "independent_human_review_coverage": 0,
+  "human_reviewed_precision": null,
+  "exhaustively_annotated_recall": null,
+  "promotion_gate_passed": false,
+  "production_integration": false,
+  "new_retrieval_comparison_run": false,
+  "cumulative_cost_upper_estimate_usd_since_cny10_authorization": 0.03205726,
+  "local_artifacts": [".tmp/r7auto-smoke-20260910/", ".tmp/r7auto-review-20260910/"],
+  "limitations": [
+    "Schema and verbatim quote validation do not establish semantic precision.",
+    "Pilot errors were preserved; v1.1 was fixed before running the other 40 sources, not after their results.",
+    "The graph is quarantined; program grouping and bilingual mention granularity need review before any use.",
+    "No further feature work, automatic reruns or production integration are authorized by this result."
+  ]
+}

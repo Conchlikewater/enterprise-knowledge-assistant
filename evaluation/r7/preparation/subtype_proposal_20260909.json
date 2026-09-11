@@ -1,0 +1,277 @@
+{
+  "schema_version": "r7-neuq-subtype-proposal-v1",
+  "status": "counts_approved_quality_review_pending_not_frozen",
+  "created_on": "2026-09-09",
+  "revision_direction_approved": true,
+  "exact_counts_approved": true,
+  "exact_counts_approved_on": "2026-09-09",
+  "execution_authorized": false,
+  "question_projection_fields": [
+    "id",
+    "category",
+    "question",
+    "expected_answer"
+  ],
+  "question_projection_sha256": "ae64da3aa845ce678b40547641f4dbd38be21d6af5556a6710f5d2a1a2b437d1",
+  "category_targets": {
+    "ordinary_fact": 20,
+    "relationship": 35,
+    "multi_hop": 30,
+    "scope_isolation": 8,
+    "unanswerable": 7
+  },
+  "assignment_policy": "按当前题面/答案人工审核，比较分支优先于路径长度；编号只定位候选，不表示Gold通过。质量淘汰后须同类补足并重新审核，不能自动减配额或标记冻结。",
+  "groups": [
+    {
+      "category": "ordinary_fact",
+      "subtype": "course_attribute",
+      "label": "课程属性",
+      "target_count": 4,
+      "question_ids": [
+        "neuq-draft-001",
+        "neuq-draft-002",
+        "neuq-draft-003",
+        "neuq-draft-004"
+      ]
+    },
+    {
+      "category": "ordinary_fact",
+      "subtype": "teaching_assessment",
+      "label": "教学/考核规则",
+      "target_count": 9,
+      "question_ids": [
+        "neuq-draft-041",
+        "neuq-draft-042",
+        "neuq-draft-043",
+        "neuq-draft-044",
+        "neuq-draft-045",
+        "neuq-draft-047",
+        "neuq-draft-048",
+        "neuq-draft-049",
+        "neuq-draft-050"
+      ]
+    },
+    {
+      "category": "ordinary_fact",
+      "subtype": "content_objective",
+      "label": "内容/目标",
+      "target_count": 7,
+      "question_ids": [
+        "neuq-draft-046",
+        "neuq-draft-065",
+        "neuq-draft-066",
+        "neuq-draft-067",
+        "neuq-draft-068",
+        "neuq-draft-069",
+        "neuq-draft-070"
+      ]
+    },
+    {
+      "category": "relationship",
+      "subtype": "single_prerequisite",
+      "label": "单个先修及准确名称",
+      "target_count": 16,
+      "question_ids": [
+        "neuq-draft-006",
+        "neuq-draft-007",
+        "neuq-draft-009",
+        "neuq-draft-021",
+        "neuq-draft-023",
+        "neuq-draft-024",
+        "neuq-draft-026",
+        "neuq-draft-055",
+        "neuq-draft-057",
+        "neuq-draft-058",
+        "neuq-draft-079",
+        "neuq-draft-080",
+        "neuq-draft-082",
+        "neuq-draft-083",
+        "neuq-draft-084",
+        "neuq-draft-100"
+      ]
+    },
+    {
+      "category": "relationship",
+      "subtype": "prerequisite_list",
+      "label": "完整先修名单",
+      "target_count": 15,
+      "question_ids": [
+        "neuq-draft-005",
+        "neuq-draft-008",
+        "neuq-draft-022",
+        "neuq-draft-025",
+        "neuq-draft-027",
+        "neuq-draft-028",
+        "neuq-draft-029",
+        "neuq-draft-030",
+        "neuq-draft-031",
+        "neuq-draft-032",
+        "neuq-draft-053",
+        "neuq-draft-054",
+        "neuq-draft-056",
+        "neuq-draft-081",
+        "neuq-draft-095"
+      ]
+    },
+    {
+      "category": "relationship",
+      "subtype": "program_membership",
+      "label": "适用专业",
+      "target_count": 2,
+      "question_ids": [
+        "neuq-draft-096",
+        "neuq-draft-097"
+      ]
+    },
+    {
+      "category": "relationship",
+      "subtype": "explicit_no_prerequisite",
+      "label": "明确无先修声明",
+      "target_count": 2,
+      "question_ids": [
+        "neuq-draft-098",
+        "neuq-draft-099"
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "subtype": "two_step_prerequisite",
+      "label": "跨来源两段先修链",
+      "target_count": 7,
+      "question_ids": [
+        "neuq-draft-010",
+        "neuq-draft-011",
+        "neuq-draft-012",
+        "neuq-draft-034",
+        "neuq-draft-036",
+        "neuq-draft-059",
+        "neuq-draft-062"
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "subtype": "prerequisite_then_attribute",
+      "label": "先修后查自身属性",
+      "target_count": 10,
+      "question_ids": [
+        "neuq-draft-085",
+        "neuq-draft-086",
+        "neuq-draft-087",
+        "neuq-draft-088",
+        "neuq-draft-089",
+        "neuq-draft-090",
+        "neuq-draft-091",
+        "neuq-draft-092",
+        "neuq-draft-093",
+        "neuq-draft-094"
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "subtype": "three_edge_prerequisite",
+      "label": "三边先修链",
+      "target_count": 3,
+      "question_ids": [
+        "neuq-draft-013",
+        "neuq-draft-060",
+        "neuq-draft-063"
+      ]
+    },
+    {
+      "category": "multi_hop",
+      "subtype": "shared_or_branch",
+      "label": "共同条件/分支比较",
+      "target_count": 10,
+      "question_ids": [
+        "neuq-draft-014",
+        "neuq-draft-015",
+        "neuq-draft-033",
+        "neuq-draft-035",
+        "neuq-draft-037",
+        "neuq-draft-038",
+        "neuq-draft-039",
+        "neuq-draft-040",
+        "neuq-draft-061",
+        "neuq-draft-064"
+      ]
+    },
+    {
+      "category": "scope_isolation",
+      "subtype": "scope_refusal",
+      "label": "范围不足拒答",
+      "target_count": 4,
+      "question_ids": [
+        "neuq-draft-016",
+        "neuq-draft-018",
+        "neuq-draft-051",
+        "neuq-draft-073"
+      ]
+    },
+    {
+      "category": "scope_isolation",
+      "subtype": "scoped_answer",
+      "label": "范围内应答",
+      "target_count": 4,
+      "question_ids": [
+        "neuq-draft-017",
+        "neuq-draft-052",
+        "neuq-draft-071",
+        "neuq-draft-072"
+      ]
+    },
+    {
+      "category": "unanswerable",
+      "subtype": "historical_limit",
+      "label": "历史不能支持当前事实",
+      "target_count": 1,
+      "question_ids": [
+        "neuq-draft-019"
+      ]
+    },
+    {
+      "category": "unanswerable",
+      "subtype": "unsupported_equivalence",
+      "label": "无等价/抵认依据",
+      "target_count": 2,
+      "question_ids": [
+        "neuq-draft-020",
+        "neuq-draft-078"
+      ]
+    },
+    {
+      "category": "unanswerable",
+      "subtype": "unsupported_inference",
+      "label": "空栏/泛称/目标不能推出强规则",
+      "target_count": 3,
+      "question_ids": [
+        "neuq-draft-074",
+        "neuq-draft-075",
+        "neuq-draft-076"
+      ]
+    },
+    {
+      "category": "unanswerable",
+      "subtype": "source_conflict",
+      "label": "来源内部冲突",
+      "target_count": 1,
+      "question_ids": [
+        "neuq-draft-077"
+      ]
+    }
+  ],
+  "quality_gates": {
+    "all_gold_review_complete": false,
+    "multi_source_reserve_required": 36,
+    "multi_source_reserve_verified": false,
+    "per_primary_source_ordinary_and_relationship_max": 4,
+    "safe_input_representation_complete": false,
+    "development_semantic_split_complete": false
+  },
+  "reporting_constraints": [
+    "单名单题不是AND/OR逻辑推理；来源未支持的推荐/等价不编为正例。",
+    "多来源30题不能合称30道长链题；两段属性、三边链和分支分开报告。",
+    "来源重叠8对待最终独立考点复核；普通/关系来源集中度检查不是独立性证明。",
+    "明确无先修题不以空路径自动得满分；路径指标适用分母仍需正式冻结。",
+    "不变更三组对照、主要指标或晋级门槛；未运行正式结果。"
+  ]
+}

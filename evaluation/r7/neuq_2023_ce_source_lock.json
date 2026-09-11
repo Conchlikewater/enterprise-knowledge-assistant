@@ -1,0 +1,453 @@
+{
+  "schema_version": "r7-supplementary-source-lock-v1",
+  "status": "source_bytes_pinned_pending_evidence_audit",
+  "reviewed_at": "2026-09-08",
+  "base_source_lock": "evaluation/r7/neuq_2023_source_lock.json",
+  "base_source_lock_sha256": "d6a658da53c17a106b5368ad073411db0ade5e2962c80912b09923a0cb63d087",
+  "institution": "东北大学悉尼智能科技学院（秦皇岛）",
+  "program": "通信工程 CE；与同院 CST 来源一起审核，不混入其他学校课程体系",
+  "usage_statement": "语料来源为候选人本人就读院系的公开课程大纲，候选人已知晓并接受此选择；仅用于候选人个人求职作品集的非商业检索评测实验。题目和答案从公开大纲提炼为派生内容，不直接复制原文段落，不涉及具体授课教师姓名，只使用课程结构性信息。",
+  "source_scope_note": "Official publisher/catalogue is SSTC; some PDFs name 计算机与通信工程学院 as teaching unit. Catalogue membership does not imply identical teaching unit.",
+  "temporal_scope": "2023 catalogue files downloaded on 2026-09-08; not current enrolment rules or a guaranteed internally consistent cohort schedule.",
+  "downloaded_at_for_all_documents": "2026-09-08",
+  "local_snapshot_directory": ".tmp/r7-source-review-20260908",
+  "raw_files_committed": false,
+  "open_redistribution_license_found": false,
+  "external_provider_upload_authorized": false,
+  "teacher_names_allowed_in_questions_or_answers": false,
+  "verbatim_paragraphs_allowed_in_questions_or_answers": false,
+  "formal_corpus_and_questions_frozen": false,
+  "verification": {
+    "supplementary_downloads_and_pdf_parses": 22,
+    "supplementary_pages": 300,
+    "combined_downloads": 49,
+    "distinct_pdf_sha256": 49,
+    "combined_pages": 670,
+    "excluded_duplicate_course_code_documents": 5,
+    "candidate_documents_after_deduplication": 44,
+    "candidate_pages_after_deduplication": 605,
+    "unique_100_question_capacity_verified": false,
+    "formal_metrics_produced": false
+  },
+  "deduplication_rule": "Group explicit identical course codes across CST/CE; keep CST file for candidate work and retain CE metadata here. Different codes with same title remain separate. Do not equate ambiguous prerequisite names or count two copies as separate necessary evidence.",
+  "documents": [
+    {
+      "id": "neuq-ce-2023-spring-01",
+      "title": "1-先进物联网技术教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/B/AB/99/6AFF0EC7F7C858088E575D76141_AA08F1A5_76606.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "1ae486533cfe1da8bcfd9f34fe8beba7cc745c71fa4c562132a1fc3373a5651e",
+      "bytes": 484870,
+      "pages": 19,
+      "pdf_creation_date": "D:20230908145349+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112009",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-01",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-02",
+      "title": "2-电子工程高级实践教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/9/C9/C7/69DFD4617060D4806967F7B328E_BB9F6A28_7D799.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "328338e901a49400898072cbced293ddf193ac5c5e712523fe3d91cccc0de31f",
+      "bytes": 513945,
+      "pages": 12,
+      "pdf_creation_date": "D:20230908151858+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100114002",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-02",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-03",
+      "title": "3-创新创业设计基础教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/4/6A/9D/A9C180D325F9536571479F3ABA8_A88EF4CA_65C8A.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "723f971a27429b00636d4f873e36d8cd5a52030b107d5f00a87f61881dc76874",
+      "bytes": 416906,
+      "pages": 9,
+      "pdf_creation_date": "D:20230908152021+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113007",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-03",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-04",
+      "title": "4-工程领导力教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/F/E1/42/8356655DD4578395C676F0A4974_BFE9BC51_7DE73.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "2adde30b2ca09f513eef992d6596c82bfd3917f58bd65a22144eb995407f5866",
+      "bytes": 515699,
+      "pages": 12,
+      "pdf_creation_date": "D:20230908152121+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100212003",
+      "selected_for_candidate_work": false,
+      "canonical_source_id": "neuq-cst-2023-spring-04",
+      "exclusion_reason": "Same course code as CST candidate; retain CST as canonical to avoid duplicate evidence. Byte hashes differ; no claim of complete PDF equivalence."
+    },
+    {
+      "id": "neuq-ce-2023-spring-05",
+      "title": "5-高等数学建模(二)教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/2/B1/A7/3DDA76BE5C016FC43E55FF4C1F6_E473CC0E_7B2CB.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "307b8ca436b7528308ed3b4152a2e83ce78c9a2a44097ccb39cd0969652d4918",
+      "bytes": 504523,
+      "pages": 14,
+      "pdf_creation_date": "D:20230908152233+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "EQV-CS-33130",
+      "selected_for_candidate_work": false,
+      "canonical_source_id": "neuq-cst-2023-spring-05",
+      "exclusion_reason": "Same course code as CST candidate; retain CST as canonical to avoid duplicate evidence. Byte hashes differ; no claim of complete PDF equivalence."
+    },
+    {
+      "id": "neuq-ce-2023-spring-06",
+      "title": "6-信号与系统分析教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/7/CF/87/D01F6CCDAA57C8BA62EBF8F467D_E14D5FD6_88BB9.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "b1cfc8834a15983df34313189b4dee09311c2ad337644b6eb72c61fd33d725b3",
+      "bytes": 560057,
+      "pages": 19,
+      "pdf_creation_date": "D:20230908152319+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112008.01",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-06",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-07",
+      "title": "7-物理建模A教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/3/A4/03/4128272DA46F1C171E4435BFBC6_3F992AD3_82530.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "7bce9b7dbd0b6e51ccecee2e7d6da5958c07799cd13907a4cecc406f41221a43",
+      "bytes": 533808,
+      "pages": 16,
+      "pdf_creation_date": "D:20230908152425+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3070111011",
+      "selected_for_candidate_work": false,
+      "canonical_source_id": "neuq-cst-2023-spring-07",
+      "exclusion_reason": "Same course code as CST candidate; retain CST as canonical to avoid duplicate evidence. Byte hashes differ; no claim of complete PDF equivalence."
+    },
+    {
+      "id": "neuq-ce-2023-spring-08",
+      "title": "8-集成电路系统设计教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/7/C4/52/B1E88F46BB48FD954832CDD0DCE_94766CF0_8824C.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "851be12e1ca3e6f46d7b6148916c513a0242f94fd811d2becc074589269b2e83",
+      "bytes": 557644,
+      "pages": 18,
+      "pdf_creation_date": "D:20230908152525+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "41033",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-08",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-09",
+      "title": "9-现代通信新技术教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/6/22/F0/D1D3038771B539E540FDF3223BE_E426013C_6BE95.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "44d48d86fa16336c24f0667423e9d23fa64045f448251fd75fa19345dc5a9e0b",
+      "bytes": 442005,
+      "pages": 17,
+      "pdf_creation_date": "D:20230908152617+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113022",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-09",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-10",
+      "title": "10-移动通信系统教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/2/D7/57/6731A0C2092F728CDBFA593FA53_07F2B1E8_9A4DB.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+      "bytes": 632027,
+      "pages": 7,
+      "pdf_creation_date": "D:20230908152705+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113024",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-10",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-11",
+      "title": "11-多媒体图像通信教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/B/B0/62/C4A1FB6389FF36BE62219EED509_B59C61AD_6F742.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+      "bytes": 456514,
+      "pages": 7,
+      "pdf_creation_date": "D:20230908152910+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113018",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-11",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-spring-12",
+      "title": "12-DSP技术及应用教学大纲-2023年春季",
+      "url": "https://sstc.neuq.edu.cn/__local/8/58/B3/27492FCECCB9393470C4A70413A_083AA38F_A5DDA.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2705.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "spring",
+      "sha256": "405a0715b27dee71e02ab97e456e513c55a4eddcf09efeb776b1908b45ca7fdb",
+      "bytes": 679386,
+      "pages": 10,
+      "pdf_creation_date": "D:20230908154252+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113016",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-spring-12",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-01",
+      "title": "1-电路分析与设计教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/F/4F/51/1B0FD1E408E069ED32DAD4BE1F4_53443778_97F97.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "7bd8cc2589e83ed2e9338022a73b6c860239ac11626fd196ea118caf8201770e",
+      "bytes": 622487,
+      "pages": 16,
+      "pdf_creation_date": "D:20230908125304+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113012",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-01",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-02",
+      "title": "2-工程经济学教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/F/7E/47/C139CD7BFD67996567DFC8B9C21_B37A3641_73F72.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "fb3ab0c54d515087f18ee70df0866ac52a68136fca7d0b6b8e9bec6e5531a21c",
+      "bytes": 474994,
+      "pages": 11,
+      "pdf_creation_date": "D:20230908125351+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113011.01",
+      "selected_for_candidate_work": false,
+      "canonical_source_id": "neuq-cst-2023-autumn-01",
+      "exclusion_reason": "Same course code as CST candidate; retain CST as canonical to avoid duplicate evidence. Byte hashes differ; no claim of complete PDF equivalence."
+    },
+    {
+      "id": "neuq-ce-2023-autumn-03",
+      "title": "3-计算机网络基础教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/1/69/4A/07FB411355B3F1BB322D54DD0A4_BF77E69C_7376F.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "2b973af70fc7be743159859adbe08005ae1609a5f82e25faeef80b4494e41eae",
+      "bytes": 472943,
+      "pages": 11,
+      "pdf_creation_date": "D:20230908125502+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112006",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-03",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-04",
+      "title": "4-传感、驱动与控制教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/F/B7/6B/8FC8B204DFC6A8FEB87305A7516_8905CF29_72346.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "51b78d0742dc24e3b0bc01bf035a38928f062fb9fd650739fcf035139daa69e0",
+      "bytes": 467782,
+      "pages": 18,
+      "pdf_creation_date": "D:20230915082520+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112005",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-04",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-05",
+      "title": "5-通信原理教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/4/91/E8/0F9B3750FC38CFE293118F52374_4EAEE50F_6E8D7.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9",
+      "bytes": 452823,
+      "pages": 10,
+      "pdf_creation_date": "D:20230908130208+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "UTS-CE-41092",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-05",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-06",
+      "title": "6-数字电子技术基础教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/9/68/70/6D49476CBEB3A974A0AAF8B81FD_E58E78DB_8DC46.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "34badba709b6b8023442d401c6173dd8308477317d1a8100ff3b7e4eec058616",
+      "bytes": 580678,
+      "pages": 15,
+      "pdf_creation_date": "D:20230908130955+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112007",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-06",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-07",
+      "title": "7--电气电子工程导论教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/F/C9/BB/193944A36CF2E084111060A8E93_F339252A_80DD9.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "e1bd0d76063c3e606a5d3a6ea4aba255035cd22deee0e308a9670b978d18e766",
+      "bytes": 527833,
+      "pages": 15,
+      "pdf_creation_date": "D:20230908131105+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100112002",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-07",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-08",
+      "title": "8--数字信号处理教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/5/20/15/11E55A66018280CA6A7C9C50A76_3843BE02_B1C5F.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "3ff22594308a254f0235ba4a01cc5ac3e56075b6bf5061e2801869d557a6bb28",
+      "bytes": 728159,
+      "pages": 18,
+      "pdf_creation_date": "D:20230908131159+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100113013",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-08",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-09",
+      "title": "9-复变函数与积分变换教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/C/CD/93/29AD53991AD79334E1925B45753_25F78ABB_7FF3B.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "47e622b15fd341c2b0cac1db8c3838c4edc6cb1c77729c436b9e3f10b00170f9",
+      "bytes": 524091,
+      "pages": 14,
+      "pdf_creation_date": "D:20230908131302+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100111001",
+      "selected_for_candidate_work": true,
+      "canonical_source_id": "neuq-ce-2023-autumn-09",
+      "exclusion_reason": null
+    },
+    {
+      "id": "neuq-ce-2023-autumn-10",
+      "title": "10-高等数学建模(一)教学大纲-2023年秋季",
+      "url": "https://sstc.neuq.edu.cn/__local/B/58/E1/2449EF70E36772792AC5DBA061A_76B0690D_8E627.pdf",
+      "index_url": "https://sstc.neuq.edu.cn/info/1077/2702.htm",
+      "index_publication_date": "2023-09-08",
+      "catalogue_term": "autumn",
+      "sha256": "39bf6b5ef4219f2515eb34450a1c2853e76537a3ea40f6cf40ce3cef82c0dfd5",
+      "bytes": 583207,
+      "pages": 12,
+      "pdf_creation_date": "D:20230908131506+08'00'",
+      "catalogue_memberships": [
+        "CE"
+      ],
+      "course_code": "3100311003",
+      "selected_for_candidate_work": false,
+      "canonical_source_id": "neuq-cst-2023-autumn-12",
+      "exclusion_reason": "Same course code as CST candidate; retain CST as canonical to avoid duplicate evidence. Byte hashes differ; no claim of complete PDF equivalence."
+    }
+  ]
+}

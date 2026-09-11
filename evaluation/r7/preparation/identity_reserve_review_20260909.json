@@ -1,0 +1,417 @@
+{
+  "schema_version": "r7-cross-program-identity-reserve-review-v1",
+  "status": "partial_identity_review_not_frozen",
+  "reviewed_on": "2026-09-09",
+  "ledger_sha256": "9d275d1dc67a4e8b31b068de2ff9aca1e35e60d0fc86ff18be406ac41fddc0ef",
+  "label_recheck_previous_sha256": "dffe0a33213d2e5e9f2747092c8652f646743eeb71ed75c5531e7e75431adea4",
+  "follow_up_review": "preparation/matched_course_review_20260909.json",
+  "historical_status_note": "本文件3已审/29待审保留为首批历史状态；后续全32条名称依据已审见follow_up_review，旧31路径归组结果不变。",
+  "method": "核验5份原件哈希并重新查看完整首页，检查3条跨专业关联的引用名称、目标标题/编号/适用专业；其他29条已关联课程边本轮不计作原文身份复核完成。只读既有候选路径并按完整答题任务归组，不构建检索算法。",
+  "checked_edges": [
+    {
+      "edge_id": "CE-S03--requires--CST-S04",
+      "source_id": "neuq-ce-2023-spring-03",
+      "source_sha256": "723f971a27429b00636d4f873e36d8cd5a52030b107d5f00a87f61881dc76874",
+      "page_number": 1,
+      "prerequisite_label": "工程领导力",
+      "target_source_id": "neuq-cst-2023-spring-04",
+      "target_sha256": "37156c35778e5a5800c87c11d7dcd555c546dc11a9d142414dbcc2508ce00fdb",
+      "target_page_number": 1,
+      "target_title_in_pdf": "工程领导力",
+      "target_course_code": "3100212003",
+      "target_applicable_programs": [
+        "CST",
+        "CE"
+      ],
+      "reference_contains_target_course_code": false,
+      "decision": "retain_as_documented_corpus_name_link_not_official_code_mapping",
+      "basis": "同名中文标题，目标适用CST/CE；英文标题Communication Engineering与中文不一致，不采用英文建立额外别名。",
+      "full_gold_verified": false
+    },
+    {
+      "edge_id": "CE-A09--requires--CST-A12",
+      "source_id": "neuq-ce-2023-autumn-09",
+      "source_sha256": "47e622b15fd341c2b0cac1db8c3838c4edc6cb1c77729c436b9e3f10b00170f9",
+      "page_number": 1,
+      "prerequisite_label": "高等数学建模（一）",
+      "target_source_id": "neuq-cst-2023-autumn-12",
+      "target_sha256": "6968e0cfdbc3cf6f760d40793fe5cbc765a41325f6d8e1678d5d13f546629bb9",
+      "target_page_number": 1,
+      "target_title_in_pdf": "高等数学建模（一）",
+      "target_course_code": "3100311003",
+      "target_applicable_programs": [
+        "CST",
+        "CE"
+      ],
+      "reference_contains_target_course_code": false,
+      "decision": "retain_as_documented_corpus_name_link_not_official_code_mapping",
+      "basis": "原先修明确写（一），目标中文标题一致，适用CST/CE；不把泛称高等数学映射到（一）。",
+      "full_gold_verified": false
+    },
+    {
+      "edge_id": "CE-A09--requires--CST-S05",
+      "source_id": "neuq-ce-2023-autumn-09",
+      "source_sha256": "47e622b15fd341c2b0cac1db8c3838c4edc6cb1c77729c436b9e3f10b00170f9",
+      "page_number": 1,
+      "prerequisite_label": "高等数学建模（二）",
+      "target_source_id": "neuq-cst-2023-spring-05",
+      "target_sha256": "7e27e59f6039cdce51077246430db22e273f4089bcff1868384b5a39134cf087",
+      "target_page_number": 1,
+      "target_title_in_pdf": "高等数学建模 II",
+      "target_course_code": "EQV-CS-33130",
+      "target_applicable_programs": [
+        "CST",
+        "CE"
+      ],
+      "reference_contains_target_course_code": false,
+      "decision": "retain_as_documented_corpus_name_link_not_official_code_mapping",
+      "basis": "原先修中文（二）和英文(II)与目标II对应，适用CST/CE；这是本对来源的人工阶段核对，不启用全局模糊别名。",
+      "full_gold_verified": false
+    }
+  ],
+  "identity_inventory": [
+    {
+      "edge_id": "CST-S01--requires--CST-A04",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S03--requires--CST-S04",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S06--requires--CST-S13",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S09--requires--CST-A10",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S10--requires--CST-A05",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S11--requires--CST-A08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S11--requires--CST-A05",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S11--requires--CST-A09",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S13--requires--CST-A12",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-S13--requires--CST-S05",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A02--requires--CST-A11",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A02--requires--CST-A04",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A03--requires--CST-S04",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A05--requires--CST-A10",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A09--requires--CST-A10",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CST-A10--requires--CST-A11",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S01--requires--CE-S08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S01--requires--CE-A06",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S03--requires--CST-S04",
+      "review_status": "cross_program_name_basis_checked"
+    },
+    {
+      "edge_id": "CE-S06--requires--CE-A09",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S09--requires--CE-A05",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S10--requires--CE-A05",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S10--requires--CE-A06",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S11--requires--CE-A08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-S12--requires--CE-A08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A01--requires--CE-A09",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A05--requires--CE-S06",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A05--requires--CE-S08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A05--requires--CE-A06",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A06--requires--CE-S08",
+      "review_status": "individual_identity_review_pending"
+    },
+    {
+      "edge_id": "CE-A09--requires--CST-A12",
+      "review_status": "cross_program_name_basis_checked"
+    },
+    {
+      "edge_id": "CE-A09--requires--CST-S05",
+      "review_status": "cross_program_name_basis_checked"
+    }
+  ],
+  "reserve_review": {
+    "scope": "仅对既有31条已匹配课程先修路径去除明确的（一）/（二）分支重复计数，非完整候选库，也不包含后加属性与多来源比较题。",
+    "original_paths": 31,
+    "paired_branch_groups": 4,
+    "grouped_candidate_tasks": 27,
+    "units": [
+      {
+        "path_ids": [
+          "path-candidate-01",
+          "path-candidate-02"
+        ],
+        "type": "both_named_math_stages_one_candidate_task",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-13",
+          "path-candidate-14"
+        ],
+        "type": "both_named_math_stages_one_candidate_task",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-26",
+          "path-candidate-27"
+        ],
+        "type": "both_named_math_stages_one_candidate_task",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-29",
+          "path-candidate-30"
+        ],
+        "type": "both_named_math_stages_one_candidate_task",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-03"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-04"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-05"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-06"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-07"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-08"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-09"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-10"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-11"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-12"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-15"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-16"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-17"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-18"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-19"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-20"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-21"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-22"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-23"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-24"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-25"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-28"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      },
+      {
+        "path_ids": [
+          "path-candidate-31"
+        ],
+        "type": "single_path_candidate_pending_review",
+        "accepted": false
+      }
+    ],
+    "semantic_independence_verified": false,
+    "accepted_candidate_tasks": 0,
+    "required_reserve": 36,
+    "gate_passed": false,
+    "caveat": "27只表示这一旧子清单归组后的候选任务数；不能推导全语料只有27题、还缺9题或必须扩语料。仍需合并属性/比较候选并审必要证据、重复考点及各细分备用名额。"
+  },
+  "source_notes": [
+    "中文课程名作为本次来源对应的依据，不纠正原PDF中的英文标题，也不将其传入全局别名字典。",
+    "CST目录来源不等于仅CST可用；反之适用CE也不证明所有同名历史版本都可合并。",
+    "两门创新创业课程编号不同继续分开，共享先修不能证明课程互认。"
+  ],
+  "question_content_changed": false,
+  "ledger_changed": false,
+  "execution_authorized": false,
+  "provider_calls": 0
+}

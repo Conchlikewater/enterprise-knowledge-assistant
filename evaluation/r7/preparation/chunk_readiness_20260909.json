@@ -1,0 +1,907 @@
+{
+  "schema_version": "r7-source-chunk-diagnostic-v1",
+  "status": "diagnostic_only_not_gold_not_parameter_selection",
+  "profile": {
+    "chunk_size": 220,
+    "chunk_overlap": 30,
+    "origin": "historical_r7_profile_not_frozen_for_neuq"
+  },
+  "input_hashes": {
+    "neuq_2023_source_lock.json": "d6a658da53c17a106b5368ad073411db0ade5e2962c80912b09923a0cb63d087",
+    "neuq_2023_ce_source_lock.json": "fb4667ad9b2cf8396b5faa529a970d857b7929279778ef5a270f12818abd6943",
+    "neuq_2023_relation_candidates.json": "a4e520e049102e1db6e0caaa99e5dee70b8378ad3bb51de3ad36b3f310ecae86"
+  },
+  "implementation_hashes": {
+    "app/document_processing/loaders.py": "8c6ae68a9b78dc6953635c8eae931cf2e83e11306d49a686562d36c1d1574185",
+    "app/document_processing/chunker.py": "c3cbbaece611e223209aea3aa5604554823857fc0f095c21896ab7166910c004",
+    "evaluation/r7_chunk_readiness.py": "f609a60edcfe7ca02b151a98666c2280d5e77a9d826f214139a3462f0a5f63db"
+  },
+  "provider_calls": 0,
+  "question_files_loaded": false,
+  "raw_text_exported": false,
+  "formal_chunk_ids_assigned": false,
+  "summary": {
+    "documents": 44,
+    "parsed_nonempty_pages": 605,
+    "chunks": 5235,
+    "sources_with_known_course_code": 39,
+    "known_codes_found_on_page_one": 39,
+    "sources_with_prerequisite_marker": 44,
+    "known_code_and_marker_share_chunk": 3
+  },
+  "limitations": [
+    "Field-label presence is not complete field-value evidence or Gold coverage.",
+    "Course-code substring matches are diagnostics, not canonical entity resolution.",
+    "Do not choose parameters using formal questions or these source diagnostics.",
+    "No header injection, redaction pipeline or privacy clearance has been implemented here.",
+    "Locators are diagnostic index/hash pairs; production UUIDs are not reused or frozen."
+  ],
+  "documents": [
+    {
+      "source_id": "neuq-cst-2023-spring-01",
+      "source_sha256": "d6cc315b4b558612f7a5a7ff54dcd8a9b808053f9bf0bab8ef7f8a2f8b498624",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 122,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "51f2e34ae51aa404bb4637c136b80eb6d6ea3fb20d288c3c093c86352c80ae8c"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "f981047d4821939341311dde01ebd1d58ce603399e555f9a45a5136577bf2a7c"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-02",
+      "source_sha256": "0d60d5a3e1ba615ab810461d9665299d7836275da8bfa08aad96fd5f7000315f",
+      "parsed_nonempty_pages": 10,
+      "chunk_count": 89,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "1071f670d70d1a33807fd27328bebb1f49a4ecb71068a7fee1ceb69d8a64e463"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-03",
+      "source_sha256": "e6e8523ea4fca267ebdbd52f5bcc61540800c0308beecb6650e962525ad33a5c",
+      "parsed_nonempty_pages": 9,
+      "chunk_count": 87,
+      "page_one_chunk_count": 4,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "01b6d25124b45f53203aa25fb8db63f76e8bed5d4aec2c6d39588c93acdb4f6d"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-04",
+      "source_sha256": "37156c35778e5a5800c87c11d7dcd555c546dc11a9d142414dbcc2508ce00fdb",
+      "parsed_nonempty_pages": 12,
+      "chunk_count": 114,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "c7e61e966a937ff849cb6877aa2693a73ffb8f504c96e6a49bb7520326a3af66"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-05",
+      "source_sha256": "7e27e59f6039cdce51077246430db22e273f4089bcff1868384b5a39134cf087",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 132,
+      "page_one_chunk_count": 8,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "c24df862c79f5f607ba5d5146f547b71f575bf76aa3daec38932cb8705c35f7f"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-06",
+      "source_sha256": "773c1dad0da439c712e27c28ed9f6cbcb4ace1fdeb1817b47d9da13577e2d30a",
+      "parsed_nonempty_pages": 16,
+      "chunk_count": 144,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "38311fecb628e33f9183d81d00054320442465b70c003300f3b851889c02909d"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "6383f005de83ddefb3ed3f180ff93479ca6cc0b94f9d0d3005e096abb266b255"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-07",
+      "source_sha256": "a9ddefc393c0e4342f0cfb7d0a08f9b75efe359bbbef23e4da872075b0c03c0e",
+      "parsed_nonempty_pages": 16,
+      "chunk_count": 150,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "78e3eb9ef70c2ac6610f790012fec7e6417c59fbab6deb55457687ab5e8247ba"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-08",
+      "source_sha256": "98a92161ae38a400ef910e5fec228f4dbd8a2dac54624efb9d733e46db5ded15",
+      "parsed_nonempty_pages": 13,
+      "chunk_count": 103,
+      "page_one_chunk_count": 6,
+      "course_code_available": false,
+      "course_code_found_on_page_one": false,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "a2e9661cb34a17425e68628177b754491514bea2b8b5d00587fcffcdf46d36e9"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-09",
+      "source_sha256": "7a8d9a45060aadca05818a62d9b0da085ecc0d21b1afaa2ba2055957f3be5dc4",
+      "parsed_nonempty_pages": 13,
+      "chunk_count": 98,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "ff6057a0b85d55c9014e4a6964fce6bd48dc33f3b8a1bbe0ed833a9ba4423ba0"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-10",
+      "source_sha256": "524c33c9cb37d5065162787a77266de9bc9632ee86a66a5856ce52694b7aad6b",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 97,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "ac7773dabf6fbc42f54c253c97a472b1d8cdc0fdf780cea54e6a2d45826c9921"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-11",
+      "source_sha256": "ca7ff4a67a6a584f9475d239237283273821f240500fea112083d994cb1a2bbb",
+      "parsed_nonempty_pages": 13,
+      "chunk_count": 116,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "b288531c4a806a9d21b46d03f24593ed338a8f078a6a6c8cca13f49572270b6e"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-12",
+      "source_sha256": "609c64bfb8ddd79bef85b84b9663dba39f4be13267f28c8b38ba34d5c1c1b15d",
+      "parsed_nonempty_pages": 16,
+      "chunk_count": 131,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "98fc911a86ac3e3b7926de2804bc8b829f6ecd9ab701bd3081dac8383d318ce7"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-13",
+      "source_sha256": "5f1dbd4228e2537149a413549dc80c725577183a7a00f189b27bd2d51d28b933",
+      "parsed_nonempty_pages": 10,
+      "chunk_count": 84,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "b4ae6f05241dbdf132b341b9bd0350ffa2d9cc561b92c90d62b0ebec264832fd"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "d3f2e26f00a05e248afdb837aa223a252406168a76b9c1871ad49238dacbd5fd"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-14",
+      "source_sha256": "ea435b1a6a5a966f70e746e71e29b7d344147815ee91583c755f7eb22e5242f1",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 119,
+      "page_one_chunk_count": 6,
+      "course_code_available": false,
+      "course_code_found_on_page_one": false,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "8dde6f282fc1f272e289687305c33b3de966a0a92473db8cce95e0bf3bb14c6a"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-spring-15",
+      "source_sha256": "57c5a9e0c70f8a905242fb22be0a75b0441846f9abb3927aae602a4e71636cbe",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 96,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "2767d3894d429a7a5685728902613fe5a050373f1afad99f609e1614c18393b0"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-01",
+      "source_sha256": "b13e0d62bae69fe6cea27b7442bd5c6dbaea6dfc961e837fd0367864b863f818",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 96,
+      "page_one_chunk_count": 6,
+      "course_code_available": false,
+      "course_code_found_on_page_one": false,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "7a09a8bcd81529b8552e1664ccca36df94b7ba01dc8a263adbb765019e41d5b2"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-02",
+      "source_sha256": "0388779807ae4f841a15037b4712681c9f2d5553e30e1dd35390636615e2a79d",
+      "parsed_nonempty_pages": 10,
+      "chunk_count": 84,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "989557ed53c7bebfed62471c3cbc800d4fae03cbff28fbfd6dfee9f0c6779366"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-03",
+      "source_sha256": "eee91799d1889311f43c4383a8418865266ff32b4fdc30b7b787f2d87639778a",
+      "parsed_nonempty_pages": 18,
+      "chunk_count": 160,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "2637ed6d8dbddb87019873e25af72a6ea4ae113a3f69579659a1e88d9fada56d"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "97530ac17a1e684a470e999c5ee2d8dbb69a80c1032cef6c01d4aa82a6a46808"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-04",
+      "source_sha256": "fd4e7c0a54ed208b396b4da89e62d8ef7e896575c741e9ed407856a01d91b3df",
+      "parsed_nonempty_pages": 19,
+      "chunk_count": 172,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "d98e86a7698fd5bfffa82aa54433bb3c54bbc8f18fc7edcdf79d40638d18152f"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-05",
+      "source_sha256": "49ed2b1395d3f0478c0861f25d08300ecd4a20d9266ab6d89ee1ec3a6fc72146",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 79,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "a420c0e4baad34df3cc3fb3eaf05d46ec7067b50c9d52d7f0d84c5b9ad202071"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "0e0534ab0bacfed36280fbed53bcf9a8eb5ee3ecde281001a9f94121db18095b"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-06",
+      "source_sha256": "8ea77cd74d0f897241960d7c7b882f6917bd09ca11ae6836f1a493ea58578f91",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 108,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "b213087f42fea0169da37ef0682ec698965233e6c3138226d5094bc1118bedcc"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-07",
+      "source_sha256": "5db24e5610636eaebc3d31b73596f1701f6e99f33f6708b275b22ff674e87546",
+      "parsed_nonempty_pages": 14,
+      "chunk_count": 130,
+      "page_one_chunk_count": 6,
+      "course_code_available": false,
+      "course_code_found_on_page_one": false,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "b073843f40e6caafbf17497b0c7fb8b07f2931e83d432610ccbb50f412d9d045"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-08",
+      "source_sha256": "bee8de6ef89934ee46817ba5fc0993276fdce3c3c8f63b1da26953dc0a573add",
+      "parsed_nonempty_pages": 18,
+      "chunk_count": 176,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "74015579be7a273fda390c2e408974d25d81e4ad72f146689bf3ccb74907b674"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-09",
+      "source_sha256": "3dcc2ea03a9d17c0a15f5adbd7831984f4f059a7b9b9de07fe4296988644963e",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 122,
+      "page_one_chunk_count": 8,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "fac338b9c486373ca353f1f83d018eb673a229bab0cd462cf9d284f5a7001d0f"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "d7560139c2d0e7e864bc6abc025e3942389668c4a823ad3c15337225ee36c73a"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-10",
+      "source_sha256": "babce1c20f0341a3ba7bd78c9cbcb6cacbf325a89804d723121c79b5bc7ed7f7",
+      "parsed_nonempty_pages": 13,
+      "chunk_count": 106,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "17ba9bd1baf4034c379184d89afb93c1fe9b4ae240ff98866f3d6cdcf548cb9d"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "c8fa554c5fb55388f9c88a5402a856d695a0e1aa8478ee03c48a0dc58722bbda"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-11",
+      "source_sha256": "733f57b515d2798b61a4a8e36576f481577612eb0b6dc274a71d0b8043d7ba9d",
+      "parsed_nonempty_pages": 23,
+      "chunk_count": 200,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "85a967f92eeffb9afc22fc5fba053708b1271dbc14d4e93dc46c91ce6c3cd097"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "0c75f37ff37fa8c9abfc9aa626b7a2b247c2b4f65d569c5d7c3f9ca0130d7d5b"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-cst-2023-autumn-12",
+      "source_sha256": "6968e0cfdbc3cf6f760d40793fe5cbc765a41325f6d8e1678d5d13f546629bb9",
+      "parsed_nonempty_pages": 12,
+      "chunk_count": 117,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "9fb7ceee4ba3b13548a5d7b02eccc72aaff119c40f74a4713f3a9c283200faa0"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-01",
+      "source_sha256": "1ae486533cfe1da8bcfd9f34fe8beba7cc745c71fa4c562132a1fc3373a5651e",
+      "parsed_nonempty_pages": 19,
+      "chunk_count": 161,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "2897a96cd61001e2fec1fc1810ced0d00b8bcfa604872c7c0392f762d8c63e0d"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "88353d1176e6c1e628a2f57503e7bcf7fc650fe48772958bceddb0e0559f6204"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-02",
+      "source_sha256": "328338e901a49400898072cbced293ddf193ac5c5e712523fe3d91cccc0de31f",
+      "parsed_nonempty_pages": 12,
+      "chunk_count": 100,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "82cef4bc3c79ef57b3cbeabe2f19ce73d11cea54483cd6acfbc1ae796d025d55"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "63ccf8bdcc805ef8e487e2ca9f7160a9bdd5e8d684e63e9a144ca6f98371179b"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-03",
+      "source_sha256": "723f971a27429b00636d4f873e36d8cd5a52030b107d5f00a87f61881dc76874",
+      "parsed_nonempty_pages": 9,
+      "chunk_count": 87,
+      "page_one_chunk_count": 4,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "01b6d25124b45f53203aa25fb8db63f76e8bed5d4aec2c6d39588c93acdb4f6d"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-06",
+      "source_sha256": "b1cfc8834a15983df34313189b4dee09311c2ad337644b6eb72c61fd33d725b3",
+      "parsed_nonempty_pages": 19,
+      "chunk_count": 184,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "08d0e080d2dfd8ecdb6219f315a8184a8b2b7c5def1b43f11dad28c81bff90f3"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "0b67cd2f13fe8959e736003eb199e4f2bd0e5f8ab60bce9d406af4837d7c8cbd"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-08",
+      "source_sha256": "851be12e1ca3e6f46d7b6148916c513a0242f94fd811d2becc074589269b2e83",
+      "parsed_nonempty_pages": 18,
+      "chunk_count": 156,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "f62025bd6b7bcc56831616611d963036ed4618eeb6c0077a2f38bdb0804ba239"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-09",
+      "source_sha256": "44d48d86fa16336c24f0667423e9d23fa64045f448251fd75fa19345dc5a9e0b",
+      "parsed_nonempty_pages": 17,
+      "chunk_count": 154,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "a37d12e5928d72cb9176a1bc849074a282fd14afb0edb0fff3f0cf81f419c80a"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-10",
+      "source_sha256": "1704e5ff80b94eb5fc8bab7b3d5de99169dc88cd926d0675d6bfc7b58ba09e9c",
+      "parsed_nonempty_pages": 7,
+      "chunk_count": 32,
+      "page_one_chunk_count": 4,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": true,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 0,
+          "content_sha256": "502e92ffdcf2543ff3255905a8d16af04d4326a900a3aaf307ccddc336a8e7d0"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-11",
+      "source_sha256": "c7a37307ffddd63a28af9595c45c593344f4d57a7c14b21b7aa93e39e9bc0b10",
+      "parsed_nonempty_pages": 7,
+      "chunk_count": 31,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": true,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 0,
+          "content_sha256": "7c2f195d031da5e3203f36878eea46f826944f3aeabcdd456aca84dbcd10f504"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-spring-12",
+      "source_sha256": "405a0715b27dee71e02ab97e456e513c55a4eddcf09efeb776b1908b45ca7fdb",
+      "parsed_nonempty_pages": 10,
+      "chunk_count": 43,
+      "page_one_chunk_count": 5,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": true,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 0,
+          "content_sha256": "d08c83ae8a6a496738e9ecf8bc3e13089efac2aee8b737f006bb71753aae3e45"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-01",
+      "source_sha256": "7bd8cc2589e83ed2e9338022a73b6c860239ac11626fd196ea118caf8201770e",
+      "parsed_nonempty_pages": 16,
+      "chunk_count": 135,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "524f7243a2d363e27aa0166fb9cfd78c2c9ac7e1b6285fba5012ddae36031441"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-03",
+      "source_sha256": "2b973af70fc7be743159859adbe08005ae1609a5f82e25faeef80b4494e41eae",
+      "parsed_nonempty_pages": 11,
+      "chunk_count": 108,
+      "page_one_chunk_count": 7,
+      "course_code_available": false,
+      "course_code_found_on_page_one": false,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "742ed5146061690864d73f60d83ba1a8430b822f799cd234e0b1c136525d6557"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-04",
+      "source_sha256": "51b78d0742dc24e3b0bc01bf035a38928f062fb9fd650739fcf035139daa69e0",
+      "parsed_nonempty_pages": 18,
+      "chunk_count": 159,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "6ad1cc74fa0b7b39658c1743ca6f0d6388d9f1978851b220cf87e2c297de251a"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "3ac932b9fbe0da51dbec9a17c6d8bef46a858af9aa34f1e80fc8a3381df31288"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-05",
+      "source_sha256": "572d33a2e6a7167379ea5bf125635b8d6c4da6767bd655a0266eb83c408ae1f9",
+      "parsed_nonempty_pages": 10,
+      "chunk_count": 76,
+      "page_one_chunk_count": 4,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "ffd65604b105cd57e43f5f13a739b2672f6e2cf9217f698bb202cf8de47f18de"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-06",
+      "source_sha256": "34badba709b6b8023442d401c6173dd8308477317d1a8100ff3b7e4eec058616",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 135,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "b735d9009c6ba6f869c2f72edf95bda2fd477fc6de458572c2ac6511494174e9"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "becf1a8027b242827875113231197c93698208db0f3e5f050e83607450ee5939"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-07",
+      "source_sha256": "e1bd0d76063c3e606a5d3a6ea4aba255035cd22deee0e308a9670b978d18e766",
+      "parsed_nonempty_pages": 15,
+      "chunk_count": 121,
+      "page_one_chunk_count": 6,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "c0e6b591fb0555d5ba19677173df65515ea7f4ddd959b4b98a9d2dff655a93ed"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-08",
+      "source_sha256": "3ff22594308a254f0235ba4a01cc5ac3e56075b6bf5061e2801869d557a6bb28",
+      "parsed_nonempty_pages": 18,
+      "chunk_count": 174,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "6c742f3391c08435ea8b69afc2bcc6a830819ee7b871a9387ef98229d7f9a6c0"
+        }
+      ]
+    },
+    {
+      "source_id": "neuq-ce-2023-autumn-09",
+      "source_sha256": "47e622b15fd341c2b0cac1db8c3838c4edc6cb1c77729c436b9e3f10b00170f9",
+      "parsed_nonempty_pages": 14,
+      "chunk_count": 147,
+      "page_one_chunk_count": 7,
+      "course_code_available": true,
+      "course_code_found_on_page_one": true,
+      "prerequisite_marker_found_on_page_one": true,
+      "code_and_marker_share_chunk": false,
+      "prerequisite_marker_locators": [
+        {
+          "page_number": 1,
+          "chunk_index": 2,
+          "content_sha256": "b1d17620b90f5d59b9754212ab42cfa5934c44af0058970b5b791921a59c2f04"
+        },
+        {
+          "page_number": 1,
+          "chunk_index": 3,
+          "content_sha256": "388ac24c4139283b92494b14d50ab3b46941b9b81497377665c0f57931993f22"
+        }
+      ]
+    }
+  ],
+  "executed_on": "2026-09-09",
+  "reproduction_command": "python -m evaluation.r7_chunk_readiness --raw-dir .tmp/r7-source-review-20260908",
+  "finding": "36 of 39 known-code sources do not co-locate course code and prerequisite field label in one page-one chunk. This is not an evidence-recall metric or proof of retrieval failure.",
+  "next_gate": "Review privacy-safe representation and independent development fixtures before choosing or freezing NEUQ chunking; do not tune on the formal question set."
+}

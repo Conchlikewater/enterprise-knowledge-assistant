@@ -1,0 +1,1266 @@
+{
+  "schema_version": "r7-multi-source-annotation-audit-v1",
+  "status": "structural_check_only_not_gold_not_retrieval_experiment",
+  "reviewed_on": "2026-09-09",
+  "inputs": [
+    {
+      "path": "evaluation/r7/neuq_2023_questions_draft.json",
+      "sha256": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2"
+    },
+    {
+      "path": "evaluation/r7/neuq_2023_relation_candidates.json",
+      "sha256": "9d275d1dc67a4e8b31b068de2ff9aca1e35e60d0fc86ff18be406ac41fddc0ef",
+      "previous_label_revision_sha256": "dffe0a33213d2e5e9f2747092c8652f646743eeb71ed75c5531e7e75431adea4",
+      "recheck_reason": "仅纠正Linux节点名称；候选路径/字段与66次结构检查重算不变。"
+    }
+  ],
+  "method": "只检查已标注Evidence与候选边，不读原PDF或检索结果。每条gold_path_candidates均视为标注要求的证据分支；按来源移除边，记录被破坏分支。不是在完整语料删除文件后重跑检索，也不是证明没有其他可替代证据。",
+  "input_revision": {
+    "previous_ledger_sha256": "a4e520e049102e1db6e0caaa99e5dee70b8378ad3bb51de3ad36b3f310ecae86",
+    "reason": "补2项先修名单提及后重跑同一标注检查；新增边不在原30题路径中，逐题结果及66次检查结果不变。"
+  },
+  "summary": {
+    "questions_reviewed": 30,
+    "annotation_structure_passed": 30,
+    "source_removal_checks": 66,
+    "semantic_gold_verified": 0,
+    "required_reviewed_reserve": 36,
+    "reserve_gate_passed": false,
+    "source_overlap_pairs": 8
+  },
+  "rows": [
+    {
+      "question_id": "neuq-draft-010",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A05--requires--CST-A10",
+        "CST-S10--requires--CST-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-05",
+          "lost_edge_ids": [
+            "CST-A05--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-10",
+          "lost_edge_ids": [
+            "CST-S10--requires--CST-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-011",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A10--requires--CST-A11",
+        "CST-S09--requires--CST-A10"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-10",
+          "lost_edge_ids": [
+            "CST-A10--requires--CST-A11"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-09",
+          "lost_edge_ids": [
+            "CST-S09--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-012",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A05--requires--CE-A06",
+        "CE-A06--requires--CE-S08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-A06"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-06",
+          "lost_edge_ids": [
+            "CE-A06--requires--CE-S08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-013",
+      "source_count": 3,
+      "path_count": 1,
+      "max_path_edges": 3,
+      "edge_ids": [
+        "CE-A05--requires--CE-S06",
+        "CE-S06--requires--CE-A09",
+        "CE-S09--requires--CE-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-S06"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-06",
+          "lost_edge_ids": [
+            "CE-S06--requires--CE-A09"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-09",
+          "lost_edge_ids": [
+            "CE-S09--requires--CE-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-014",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CST-A02--requires--CST-A04",
+        "CST-S01--requires--CST-A04"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-02",
+          "lost_edge_ids": [
+            "CST-A02--requires--CST-A04"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-01",
+          "lost_edge_ids": [
+            "CST-S01--requires--CST-A04"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-015",
+      "source_count": 2,
+      "path_count": 4,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CE-A05--requires--CE-A06",
+        "CE-A05--requires--CE-S08",
+        "CE-S01--requires--CE-A06",
+        "CE-S01--requires--CE-S08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-A06",
+            "CE-A05--requires--CE-S08"
+          ],
+          "broken_path_indexes": [
+            1,
+            3
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-01",
+          "lost_edge_ids": [
+            "CE-S01--requires--CE-A06",
+            "CE-S01--requires--CE-S08"
+          ],
+          "broken_path_indexes": [
+            0,
+            2
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-033",
+      "source_count": 3,
+      "path_count": 2,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A05--requires--CST-A10",
+        "CST-A09--requires--CST-A10",
+        "CST-S11--requires--CST-A05",
+        "CST-S11--requires--CST-A09"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-05",
+          "lost_edge_ids": [
+            "CST-A05--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-09",
+          "lost_edge_ids": [
+            "CST-A09--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-11",
+          "lost_edge_ids": [
+            "CST-S11--requires--CST-A05",
+            "CST-S11--requires--CST-A09"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-034",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-S06--requires--CST-S13",
+        "CST-S13--requires--CST-A12",
+        "CST-S13--requires--CST-S05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-spring-06",
+          "lost_edge_ids": [
+            "CST-S06--requires--CST-S13"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-13",
+          "lost_edge_ids": [
+            "CST-S13--requires--CST-A12",
+            "CST-S13--requires--CST-S05"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-035",
+      "source_count": 3,
+      "path_count": 2,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-S02--requires--CE-S02::prerequisite-cpp",
+        "CST-A03--requires--CST-S04",
+        "CST-S04--requires--CST-S04::prerequisite-c"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-spring-02",
+          "lost_edge_ids": [
+            "CE-S02--requires--CE-S02::prerequisite-cpp"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-03",
+          "lost_edge_ids": [
+            "CST-A03--requires--CST-S04"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-04",
+          "lost_edge_ids": [
+            "CST-S04--requires--CST-S04::prerequisite-c"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-036",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A05--requires--CE-S06",
+        "CE-S10--requires--CE-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-S06"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-10",
+          "lost_edge_ids": [
+            "CE-S10--requires--CE-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-037",
+      "source_count": 2,
+      "path_count": 6,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CE-A01--requires--CE-A01::prerequisite-mention-1",
+        "CE-A01--requires--CE-A01::prerequisite-mention-2",
+        "CE-A01--requires--CE-A09",
+        "CE-S06--requires--CE-A09",
+        "CE-S06--requires--CE-S06::prerequisite-mention-1",
+        "CE-S06--requires--CE-S06::prerequisite-mention-2"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-01",
+          "lost_edge_ids": [
+            "CE-A01--requires--CE-A01::prerequisite-mention-1",
+            "CE-A01--requires--CE-A01::prerequisite-mention-2",
+            "CE-A01--requires--CE-A09"
+          ],
+          "broken_path_indexes": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-06",
+          "lost_edge_ids": [
+            "CE-S06--requires--CE-A09",
+            "CE-S06--requires--CE-S06::prerequisite-mention-1",
+            "CE-S06--requires--CE-S06::prerequisite-mention-2"
+          ],
+          "broken_path_indexes": [
+            1,
+            4,
+            5
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-038",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CE-S11--requires--CE-A08",
+        "CE-S12--requires--CE-A08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-spring-11",
+          "lost_edge_ids": [
+            "CE-S11--requires--CE-A08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-12",
+          "lost_edge_ids": [
+            "CE-S12--requires--CE-A08"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-039",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CE-S09--requires--CE-A05",
+        "CE-S10--requires--CE-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-spring-09",
+          "lost_edge_ids": [
+            "CE-S09--requires--CE-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-10",
+          "lost_edge_ids": [
+            "CE-S10--requires--CE-A05"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-040",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 1,
+      "edge_ids": [
+        "CST-A02--requires--CST-A11",
+        "CST-A10--requires--CST-A11"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-02",
+          "lost_edge_ids": [
+            "CST-A02--requires--CST-A11"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-10",
+          "lost_edge_ids": [
+            "CST-A10--requires--CST-A11"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-059",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A09--requires--CST-A10",
+        "CST-A10--requires--CST-A11"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-09",
+          "lost_edge_ids": [
+            "CST-A09--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-10",
+          "lost_edge_ids": [
+            "CST-A10--requires--CST-A11"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-060",
+      "source_count": 3,
+      "path_count": 1,
+      "max_path_edges": 3,
+      "edge_ids": [
+        "CST-A05--requires--CST-A10",
+        "CST-A10--requires--CST-A11",
+        "CST-S11--requires--CST-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-05",
+          "lost_edge_ids": [
+            "CST-A05--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-10",
+          "lost_edge_ids": [
+            "CST-A10--requires--CST-A11"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-11",
+          "lost_edge_ids": [
+            "CST-S11--requires--CST-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-061",
+      "source_count": 3,
+      "path_count": 4,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-S03--requires--CST-S04",
+        "CST-S03--requires--CST-S04",
+        "CST-S04--belongs_to--CST-S04::program-CE",
+        "CST-S04--belongs_to--CST-S04::program-CST"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-spring-03",
+          "lost_edge_ids": [
+            "CE-S03--requires--CST-S04"
+          ],
+          "broken_path_indexes": [
+            2,
+            3
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-03",
+          "lost_edge_ids": [
+            "CST-S03--requires--CST-S04"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-04",
+          "lost_edge_ids": [
+            "CST-S04--belongs_to--CST-S04::program-CE",
+            "CST-S04--belongs_to--CST-S04::program-CST"
+          ],
+          "broken_path_indexes": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-062",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A01--requires--CE-A09",
+        "CE-A09--requires--CST-A12",
+        "CE-A09--requires--CST-S05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-01",
+          "lost_edge_ids": [
+            "CE-A01--requires--CE-A09"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-09",
+          "lost_edge_ids": [
+            "CE-A09--requires--CST-A12",
+            "CE-A09--requires--CST-S05"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-063",
+      "source_count": 3,
+      "path_count": 2,
+      "max_path_edges": 3,
+      "edge_ids": [
+        "CE-A05--requires--CE-S06",
+        "CE-A09--requires--CST-A12",
+        "CE-A09--requires--CST-S05",
+        "CE-S06--requires--CE-A09"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-S06"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-09",
+          "lost_edge_ids": [
+            "CE-A09--requires--CST-A12",
+            "CE-A09--requires--CST-S05"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-06",
+          "lost_edge_ids": [
+            "CE-S06--requires--CE-A09"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-064",
+      "source_count": 2,
+      "path_count": 2,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A05--requires--CE-A06",
+        "CE-S10--requires--CE-A05",
+        "CE-S10--requires--CE-A06"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--requires--CE-A06"
+          ],
+          "broken_path_indexes": [
+            1
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-10",
+          "lost_edge_ids": [
+            "CE-S10--requires--CE-A05",
+            "CE-S10--requires--CE-A06"
+          ],
+          "broken_path_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-085",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A10--has_credit--CST-A10::credits",
+        "CST-S09--requires--CST-A10"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-10",
+          "lost_edge_ids": [
+            "CST-A10--has_credit--CST-A10::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-09",
+          "lost_edge_ids": [
+            "CST-S09--requires--CST-A10"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-086",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A05--has_credit--CST-A05::credits",
+        "CST-S10--requires--CST-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-05",
+          "lost_edge_ids": [
+            "CST-A05--has_credit--CST-A05::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-10",
+          "lost_edge_ids": [
+            "CST-S10--requires--CST-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-087",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A08--has_credit--CST-A08::credits",
+        "CST-S11--requires--CST-A08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-08",
+          "lost_edge_ids": [
+            "CST-A08--has_credit--CST-A08::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-11",
+          "lost_edge_ids": [
+            "CST-S11--requires--CST-A08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-088",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A05--has_credit--CE-A05::credits",
+        "CE-S09--requires--CE-A05"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-05",
+          "lost_edge_ids": [
+            "CE-A05--has_credit--CE-A05::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-09",
+          "lost_edge_ids": [
+            "CE-S09--requires--CE-A05"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-089",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A08--has_credit--CE-A08::credits",
+        "CE-S11--requires--CE-A08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-08",
+          "lost_edge_ids": [
+            "CE-A08--has_credit--CE-A08::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-11",
+          "lost_edge_ids": [
+            "CE-S11--requires--CE-A08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-090",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A06--requires--CE-S08",
+        "CE-S08--has_credit--CE-S08::credits"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-06",
+          "lost_edge_ids": [
+            "CE-A06--requires--CE-S08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-08",
+          "lost_edge_ids": [
+            "CE-S08--has_credit--CE-S08::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-091",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A08--offered_in--CE-A08::semester",
+        "CE-S12--requires--CE-A08"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-08",
+          "lost_edge_ids": [
+            "CE-A08--offered_in--CE-A08::semester"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-spring-12",
+          "lost_edge_ids": [
+            "CE-S12--requires--CE-A08"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-092",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A02--requires--CST-A04",
+        "CST-A04--offered_in--CST-A04::semester"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-02",
+          "lost_edge_ids": [
+            "CST-A02--requires--CST-A04"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-04",
+          "lost_edge_ids": [
+            "CST-A04--offered_in--CST-A04::semester"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-093",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CST-A03--requires--CST-S04",
+        "CST-S04--offered_in--CST-S04::semester"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-cst-2023-autumn-03",
+          "lost_edge_ids": [
+            "CST-A03--requires--CST-S04"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-cst-2023-spring-04",
+          "lost_edge_ids": [
+            "CST-S04--offered_in--CST-S04::semester"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    },
+    {
+      "question_id": "neuq-draft-094",
+      "source_count": 2,
+      "path_count": 1,
+      "max_path_edges": 2,
+      "edge_ids": [
+        "CE-A01--requires--CE-A09",
+        "CE-A09--has_credit--CE-A09::credits"
+      ],
+      "evidence_locators_match": true,
+      "source_removal_checks": [
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-01",
+          "lost_edge_ids": [
+            "CE-A01--requires--CE-A09"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        },
+        {
+          "removed_source_id": "neuq-ce-2023-autumn-09",
+          "lost_edge_ids": [
+            "CE-A09--has_credit--CE-A09::credits"
+          ],
+          "broken_path_indexes": [
+            0
+          ]
+        }
+      ],
+      "annotation_structure_passed": true,
+      "semantic_necessity_verified": false,
+      "full_gold_verified": false
+    }
+  ],
+  "pair_review": [
+    {
+      "question_ids": [
+        "neuq-draft-010",
+        "neuq-draft-086"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "先修→先修得到数据结构，与先修→学分得到操作系统4学分，是不同终点字段；共享Linux→操作系统这一事实。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-011",
+        "neuq-draft-085"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "前者追溯到C++，后者核对数据结构学分；第二份来源所需字段不同，但共享算法→数据结构。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-013",
+        "neuq-draft-063"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "三步链起点与终点不同；共享通信→信号→复变子链，须披露相关性，不能算三个全新关系。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-013",
+        "neuq-draft-088"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "前者追到复变函数，后者查通信原理学分；同一起点但推理目标和终点字段不同。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-033",
+        "neuq-draft-060"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "前者要求两条分支的交汇数据结构，后者要求一条三步链到C++；不能只答公共子链。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-035",
+        "neuq-draft-093"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "35比较跨来源的C/C++名称及关系链，93读取工程领导力学期；共享系统测试→工程领导力但所需末端字段不同。保留相关性说明，不作统计独立证明。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-036",
+        "neuq-draft-064"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "前者求信号课程，后者同时验证数字电子的直接和间接先修；同页不同关系，仍共享通信前缀。",
+      "independence_verified": false
+    },
+    {
+      "question_ids": [
+        "neuq-draft-062",
+        "neuq-draft-094"
+      ],
+      "decision": "retain_conditionally_with_shared_evidence_disclosure",
+      "reason": "前者继续追溯两门数学先修，后者读取复变学分；第二份来源的目标字段不同。",
+      "independence_verified": false
+    }
+  ],
+  "semantic_risks": [
+    {
+      "question_ids": [
+        "neuq-draft-85",
+        "neuq-draft-87",
+        "neuq-draft-89",
+        "neuq-draft-91",
+        "neuq-draft-92",
+        "neuq-draft-94"
+      ],
+      "risk": "题面已点名先修两端，是核对关系后查属性，不是自主发现中间实体；不能只用第二份文档给属性就判完整证据通过。"
+    },
+    {
+      "question_ids": [
+        "neuq-draft-014",
+        "neuq-draft-015",
+        "neuq-draft-037",
+        "neuq-draft-038",
+        "neuq-draft-039",
+        "neuq-draft-040"
+      ],
+      "risk": "已有共同项候选边只能证明包含该项；完整名单交集或唯一共同项还须复核两份完整先修栏，不以候选子图缺边证明没有其他共同项。"
+    },
+    {
+      "question_ids": [
+        "neuq-draft-013",
+        "neuq-draft-063"
+      ],
+      "risk": "三边题共用通信到信号到复变子链；起终点不同不等于独立样本，不能包装为多个全新关系。"
+    }
+  ],
+  "execution_authorized": false,
+  "provider_calls": 0,
+  "question_content_changed": false,
+  "next_gate": "继续原文与完整名单、路径实体身份及备用候选审核；不因30题结构通过而把accepted_multi_hop_questions改为30。"
+}

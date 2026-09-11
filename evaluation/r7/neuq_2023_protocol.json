@@ -1,0 +1,329 @@
+{
+  "schema_version": "r7-neuq-graph-retrieval-protocol-v2",
+  "status": "preregistered_frozen",
+  "updated_at": "2026-09-10",
+  "supersedes_for_execution": "evaluation/r7/protocol.json",
+  "scope": {
+    "name": "bounded Graph Retrieval experiment",
+    "implementation_root": "evaluation/experiments/",
+    "production_integration": false,
+    "app_changes_allowed": false,
+    "langgraph_memory_multi_agent": false,
+    "automatic_graph_extraction": false,
+    "description": "Compare a manually curated, provenance-bound Property Graph with Dense retrieval; this is not production GraphRAG."
+  },
+  "authorization": {
+    "offline_engineering": true,
+    "real_provider": true,
+    "aggregate_budget_cny": 10,
+    "production_integration": false,
+    "threshold_calibration_requires_separate_user_approval": true,
+    "formal_experiment_requires_separate_user_approval": false,
+    "formal_experiment_requires_cost_and_phase_gate": true
+  },
+  "frozen_assets": {
+    "development_calibration": {
+      "path": "evaluation/r7/preparation/r7b_calibration_result_20260910.json",
+      "file_sha256": "de826050558d377c988fd56ba375726cbab42fea84e301aec5338d4d6c2aa04b"
+    },
+    "cst_source_lock": {
+      "path": "evaluation/r7/neuq_2023_source_lock.json",
+      "file_sha256": "d6a658da53c17a106b5368ad073411db0ade5e2962c80912b09923a0cb63d087"
+    },
+    "ce_source_lock": {
+      "path": "evaluation/r7/neuq_2023_ce_source_lock.json",
+      "file_sha256": "fb4667ad9b2cf8396b5faa529a970d857b7929279778ef5a270f12818abd6943"
+    },
+    "source_review": {
+      "path": "evaluation/r7/preparation/r7a_source_review_20260910.json",
+      "file_sha256": "5479a33fde2ac8c3329cb2cc8f297fe1c6dd9e5582ed6aff1a01f489318ff8f8"
+    },
+    "safe_corpus_admission": {
+      "path": "evaluation/r7/preparation/r7b_safe_corpus_admission_20260910.json",
+      "file_sha256": "08e35744988a9cc7d89f1854cc9a40d347c31c56e4ca78940a312d93fd1685d3",
+      "candidate_corpus_sha256": "dfbfee74ea6bd6c1297cb38115d89ba2cc2e0d6593c1c29b3b978fc4791a5b90"
+    },
+    "chunk_profile": {
+      "path": "evaluation/r7/preparation/r7b_chunk_profile_freeze_20260910.json",
+      "file_sha256": "d12b6da53ea1f75e146da148233a0d72892e3fe5c40a1c04de2381fcc06158d1",
+      "profile_sha256": "d87725010b58ba87dd3021ec9adf2876be0f9b7c1e581863a6409c2fce17c39e"
+    },
+    "formal_questions": {
+      "path": "evaluation/r7/neuq_2023_questions_draft.json",
+      "file_sha256": "aa7fadd34bfcc80ced2249c97a712f71b146931f688aa2331e770814d173c7b2",
+      "count": 100
+    },
+    "development_questions": {
+      "path": "evaluation/r7/neuq_2023_development_questions_draft.json",
+      "file_sha256": "84a06eb6e1eaeebdb93505332e8d092cf6a9696c84d6f6f0702041542277444c",
+      "count": 10,
+      "excluded_from_formal_metrics": true
+    },
+    "relations": {
+      "path": "evaluation/r7/neuq_2023_relation_candidates.json",
+      "file_sha256": "9d275d1dc67a4e8b31b068de2ff9aca1e35e60d0fc86ff18be406ac41fddc0ef"
+    },
+    "gold": {
+      "path": "evaluation/r7/preparation/r7b_gold_freeze_20260910.json",
+      "file_sha256": "58a8f4fdab0b7fb1529bf560011cf9f007e9d69a22c878d52cf75a0b05ac185d",
+      "local_reconstructed_gold_canonical_sha256": "d9d8f40340ac59c51e31615f959e306a4e0e4de34c907168611eda78f382963a"
+    }
+  },
+  "corpus": {
+    "institution_scope": "Northeastern University at Qinhuangdao, Sydney Smart Technology College",
+    "catalogue_year": 2023,
+    "programmes": [
+      "CST",
+      "CE"
+    ],
+    "documents": 44,
+    "source_pages": 605,
+    "safe_retained_pages": 566,
+    "reviewed_structural_blocks": 761,
+    "derived_use": "candidate personal non-commercial job portfolio retrieval evaluation",
+    "raw_pdfs_committed": false,
+    "safe_text_committed": false,
+    "external_provider_upload_authorized": true,
+    "current_curriculum_claims_allowed": false
+  },
+  "chunking": {
+    "algorithm": "character limit with natural-boundary preference and overlap",
+    "semantic_segmentation": false,
+    "chunk_size": 1000,
+    "chunk_overlap": 150,
+    "identity_header": true,
+    "stable_uuidv5": true,
+    "pdf_page_boundary_preserved": true,
+    "reviewed_block_boundary_preserved": true,
+    "same_immutable_chunks_required_for_all_arms": true,
+    "expected_chunk_count": 1241
+  },
+  "gold": {
+    "questions": 100,
+    "categories": {
+      "ordinary_fact": 20,
+      "relationship": 35,
+      "multi_hop": 30,
+      "scope_isolation": 8,
+      "unanswerable": 7
+    },
+    "expected_behavior": {
+      "answer": 89,
+      "refuse": 11
+    },
+    "evidence_units": 125,
+    "questions_with_evidence": 89,
+    "graph_path_questions": 63,
+    "graph_path_instances": 111,
+    "scope_questions": 8,
+    "evidence_unit_definition": "one source/page/field locator bound to one exact chunk; one chunk may satisfy more than one evidence unit",
+    "formal_set_must_not_select_parameters": true
+  },
+  "graph_contract": {
+    "model": "Property Graph",
+    "storage": "versioned JSON loaded into an in-memory adjacency index",
+    "node_types": [
+      "Course",
+      "Program",
+      "Requirement",
+      "Credit",
+      "Semester"
+    ],
+    "edge_types": [
+      "REQUIRES",
+      "BELONGS_TO",
+      "OFFERED_IN",
+      "HAS_CREDIT"
+    ],
+    "source_assertions": "human curated",
+    "edge_count": 79,
+    "explicit_none_declarations": 2,
+    "max_path_edges": 3,
+    "required_provenance": [
+      "assertion_id",
+      "document_id",
+      "chunk_id",
+      "page_number"
+    ],
+    "document_scope_rule": "Every traversed assertion and returned chunk must be backed by an allowed document_id; node visibility alone never expands scope.",
+    "unresolved_course_mentions_must_remain_source_scoped": true,
+    "blank_prerequisite_is_not_explicit_none": true
+  },
+  "retrieval_arms": [
+    {
+      "id": "dense_top5",
+      "max_rounds": 1,
+      "dense_per_round": 5,
+      "graph_per_round": 0,
+      "final_per_round": 5,
+      "final_unique_budget": 5
+    },
+    {
+      "id": "dense_retry_5x2",
+      "max_rounds": 2,
+      "dense_per_round": 5,
+      "graph_per_round": 0,
+      "final_per_round": 5,
+      "final_unique_budget": 10
+    },
+    {
+      "id": "graph_dense_retry_5x2",
+      "max_rounds": 2,
+      "dense_per_round": 5,
+      "graph_per_round": 5,
+      "prefusion_pool_max_per_round": 10,
+      "final_per_round": 5,
+      "final_unique_budget": 10,
+      "prefusion_pool_must_be_reported": true
+    }
+  ],
+  "retry_policy": {
+    "implementation": "R6 EvidenceSufficiencyPolicy and RuleBasedQueryRewriter",
+    "decision_input": "Dense results before graph fusion for both retry arms",
+    "required_relevant_result_count": 2,
+    "max_rounds": 2,
+    "max_rewrites": 1,
+    "document_scope_immutable": true,
+    "retry_on_exception": false,
+    "semantic_score_threshold": 0.53,
+    "threshold_status": "frozen_from_chinese_development_calibration",
+    "candidate_range": {
+      "minimum": 0.2,
+      "maximum": 0.6,
+      "step": 0.01
+    },
+    "selection_data": "10 development questions only",
+    "selection_rule": [
+      "retain at least one Gold evidence chunk for every answerable development question",
+      "then maximize unanswerable questions with fewer than two retained candidates",
+      "then maximize answerable-question MRR",
+      "then choose the lowest threshold"
+    ],
+    "formal_100_results_forbidden": true
+  },
+  "fusion": {
+    "algorithm": "reciprocal rank fusion",
+    "rrf_k": 60,
+    "dense_order": "score descending then chunk_id ascending",
+    "graph_order": "exact entity matches, relation cue matches, shorter path, assertion_id sequence",
+    "formula": "sum(1/(60+rank)) over available rankings",
+    "tie_breakers": [
+      "higher dense score",
+      "shorter graph path",
+      "chunk_id ascending"
+    ],
+    "round_merge": "retain round-one order, append unseen round-two chunk_ids, never run a third search"
+  },
+  "fairness": {
+    "same_for_all_arms": [
+      "100 formal questions and document scopes",
+      "1241 immutable chunks",
+      "Embedding provider/model/dimensions/cache",
+      "semantic score threshold",
+      "Gold evidence and scoring code"
+    ],
+    "same_for_retry_arms": [
+      "first query",
+      "R6 query rewriter",
+      "Dense-only retry decision",
+      "two-round maximum",
+      "five final candidates per round",
+      "ten final unique candidates maximum"
+    ],
+    "graph_increment": "Up to five graph candidates enter each pre-fusion pool, but only five fused candidates leave a round; pre-fusion cost is reported."
+  },
+  "response_baseline": {
+    "implementation": "evaluation/experiments/r7_decision.py:decide",
+    "rule": "Offer evidence (answer label) when at least two distinct in-scope final candidates survive retrieval; otherwise refuse. Cite first five final candidates.",
+    "gold_input_forbidden": true,
+    "rrf_scores_are_not_cosine_scores": true,
+    "factual_answer_generation": false,
+    "limitation": "Evidence-availability proxy only; neither candidate count nor graph provenance proves semantic support. Report false answers without post-hoc rule tuning.",
+    "frozen_before_formal_run": true
+  },
+  "scoring": {
+    "evidence_recall_at_5": "evidence units covered by the first five final chunks divided by declared evidence units for that question",
+    "mrr": "reciprocal rank of the first chunk covering any evidence unit; zero if none",
+    "ndcg_at_5": "Each rank gains one only when it first covers a previously unmatched gold evidence item; divide DCG by the ideal placement of min(5, gold count) unit gains.",
+    "multi_hop_necessary_evidence_coverage": "covered evidence units over all required units on multi_hop questions",
+    "graph_path_correctness": "per graph question, fully returned registered path instances divided by registered path instances; macro-average over 63 questions",
+    "citation_chunk_identity": "citation chunk_id equals a returned immutable chunk",
+    "citation_source_page": "citation source_id and page_number equal that chunk's provenance",
+    "citation_semantic_support": "citation chunk covers at least one Gold evidence unit supporting the answer",
+    "citation_evidence_coverage": "Gold evidence units covered by citations divided by all Gold evidence units",
+    "answer_refuse": "compare deterministic evidence-gated behavior with 89 answer and 11 refuse labels",
+    "explicit_none_note": "the two declaration questions are excluded from graph-path denominator and scored by evidence plus answer/refuse"
+  },
+  "paired_analysis": {
+    "unit": "same formal question across all three arms",
+    "strata": [
+      "ordinary_fact",
+      "relationship",
+      "multi_hop",
+      "scope_isolation",
+      "unanswerable"
+    ],
+    "comparisons": [
+      "dense_retry_5x2 - dense_top5",
+      "graph_dense_retry_5x2 - dense_top5",
+      "graph_dense_retry_5x2 - dense_retry_5x2"
+    ],
+    "win_tie_loss": "per-question exact deltas for Recall and nDCG",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260908,
+    "confidence_interval": "paired percentile bootstrap 95%",
+    "statistical_significance_claim_allowed": false
+  },
+  "promotion_gates": {
+    "comparison": "graph_dense_retry_5x2 versus dense_retry_5x2",
+    "relationship_multi_hop_recall_delta_min": 0.05,
+    "relationship_multi_hop_ndcg_delta_min": 0.03,
+    "multi_hop_evidence_coverage_delta_min": 0.05,
+    "relationship_multi_hop_recall_wins_minus_losses_min": 3,
+    "ordinary_fact_recall_delta_min": -0.05,
+    "ordinary_fact_regressed_questions_max": 1,
+    "scope_violations_max": 0,
+    "citation_identity_source_page_min": 1.0,
+    "answer_refuse_delta_min": -0.02,
+    "graph_path_correctness_min": 0.9,
+    "p95_latency_ratio_max": 2.0,
+    "all_required": true,
+    "passing_does_not_authorize_production_integration": true,
+    "failure": "Record a negative or inconclusive result and keep Dense as the production path."
+  },
+  "provider": {
+    "offline_engineering": {
+      "mode": "deterministic/fake",
+      "network_calls": 0,
+      "cost_usd": 0
+    },
+    "development_calibration": {
+      "provider": "OpenAI",
+      "model": "text-embedding-3-small",
+      "dimensions": 1536,
+      "status": "completed_development_only",
+      "external_corpus_upload_authorized": true
+    },
+    "formal_comparison": {
+      "status": "budget_authorized_not_run_phase_gate_required",
+      "same_cached_embeddings_for_all_arms": true,
+      "llm_generation_calls": 0
+    }
+  },
+  "phase_gate": {
+    "r7b_complete": true,
+    "remaining_blocker": "R7-D must validate frozen hashes and remaining budget before the formal run.",
+    "r7c_graph_code_allowed": true,
+    "r7c_engineering_acceptance": "evaluation/r7/preparation/r7c_acceptance_20260910.json",
+    "r7d_formal_results_allowed": true
+  },
+  "reporting_boundaries": {
+    "report_denominators_and_per_question_results": true,
+    "report_prefusion_cost_and_negative_results": true,
+    "do_not_mix_r6_routing_metrics_with_r7_retrieval_metrics": true,
+    "do_not_claim_current_curriculum": true,
+    "do_not_claim_automatic_graph_extraction": true,
+    "do_not_claim_production_graphrag": true,
+    "do_not_change_rules_after_formal_results": true
+  }
+}

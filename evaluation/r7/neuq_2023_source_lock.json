@@ -9,6 +9,14 @@
   "institution": "东北大学",
   "college": "悉尼智能科技学院（秦皇岛）",
   "program": "计算机科学与技术 CST",
+  "usage_statement": "语料来源为候选人本人就读院系（东北大学悉尼智能科技学院，秦皇岛）的公开课程大纲，候选人已知晓并接受此选择；仅用于候选人个人求职作品集的非商业检索评测实验，题目与答案由公开大纲提炼为派生内容，不直接复制原文段落，不涉及具体授课教师姓名。",
+  "candidate_affiliation_verification": "用户自述并确认；未核验学籍，不记录身份凭证。",
+  "question_content_policy": {
+    "allowed": ["课程编号", "学分", "先修关系", "教学内容", "考核规则", "课程结构性信息"],
+    "teacher_names_allowed": false,
+    "verbatim_paragraphs_allowed": false,
+    "noncommercial_purpose_does_not_grant_redistribution_rights": true
+  },
   "catalogue_year": 2023,
   "temporal_scope": "2023 syllabus listings as downloaded on 2026-09-08; not a 2023-09-08 historical web snapshot or current enrolment rules.",
   "publication_date_rule": "index_publication_date belongs to the official listing page; pdf_creation_date is untrusted PDF metadata, not a verified publication or effective date.",
