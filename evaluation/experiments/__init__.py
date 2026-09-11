@@ -1,4 +1,4 @@
-"""Reproducible, isolated comparisons across offline retrieval configurations."""
+"""Reproducible isolated comparisons; preserve the legacy experiment imports."""
 
 from __future__ import annotations
 
