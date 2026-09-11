@@ -15,7 +15,8 @@ Qdrant，通过 OpenAI embedding 检索证据，并可选择 OpenAI 或 DeepSeek
 > Worker，不是分布式任务平台。应用检索仍使用 Dense；Hybrid 仅是被评测并
 > 拒绝上线的实验原型。R6 的 `POST /api/v2/answers` 只会路由到检索、固定模板
 > 直接回答或安全拒答，Evidence 不足时最多确定性改写并再检索一次；它不是通用
-> Agent，也不是 GraphRAG。R7 图检索实验尚未开始。项目面向本地单用户演示，
+> Agent，也不是 GraphRAG。R7人工图对照与自动构图实验已运行，均未获准接入生产。
+> 详见下方实验收口说明。项目面向本地单用户演示，
 > 尚未提供认证、多租户或公网生产部署能力。
 
 ## 项目亮点
@@ -390,7 +391,20 @@ fixture，不能写成开放域 Agent 准确率或生产流量结论。设计、
 逐题报告见 [`docs/r6_routing_agent_design.md`](docs/r6_routing_agent_design.md)、
 [`evaluation/r6_routing_protocol.json`](evaluation/r6_routing_protocol.json) 和
 [`evaluation/r6_routing_report.json`](evaluation/r6_routing_report.json)。R7
-学校语料与 Graph Retrieval 对照尚未开始。
+学校语料与 Graph Retrieval 对照及独立自动构图实验已执行，结果如下。
+
+### R7实验收口（2026-09-10）
+
+- 学校44份2023大纲、固定100题的三组对照：有Gold的89题上，Dense Recall@5为
+  83.33%，Graph+Dense为91.76%；但完整路径得分43.52%低于90%门槛，且实验弱规则
+  在11道应拒答题全部误应答。因此不接入生产，不能宣传可靠多跳推理或拒答。
+- 自动构图独立实验：4来源冒烟后，在其余40来源生成179节点139边；输入是人工审核过的
+  结构文本。格式/引用检查通过不等于语义正确，仍有专业组合节点及中英名称粒度问题，
+  独立人工审核未完成，候选图隔离，不声称原始PDF全自动GraphRAG。
+- [人工图正式报告](docs/r7_formal_result_20260910.md)与
+  [自动构图结果/复现边界](docs/r7_auto_graph_result_20260910.md)分别记录，不混用指标。
+- 结果尚未提交/推送时，远端README、CI和本地状态并不等同。新机器可运行离线测试；
+  真实语料、许可和本地缓存另有条件，不能宣称clone即可重现付费实验。
 
 仅运行评估：
 

@@ -104,6 +104,7 @@ def test_public_docs_separate_r5_protocol_from_r6_bounded_routing() -> None:
     assert "R5 Agentic Retrieval 评测协议（无实现、无结果）" in readme
     assert "R6 受限路由控制器（已实现并完成离线边界评测）" in readme
     assert "它不是通用" in readme
-    assert "R7 图检索实验尚未开始" in readme
+    assert "R7人工图对照与自动构图实验已运行，均未获准接入生产" in readme
+    assert "原始PDF全自动GraphRAG" in readme
     assert "未实现、未运行 Agent，也没有实验结果" in protocol_doc
     assert "不能表述为“实现了 Agent”" in protocol_doc
